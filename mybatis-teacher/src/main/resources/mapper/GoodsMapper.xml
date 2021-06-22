@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmart39.mybatis.dao.GoodsMapper">
+
+	<resultMap type="Goods" id="goodsResultMap">
+		<result property="goodsCode" 		column="g_code"/>
+		<result property="goodsName" 		column="g_name"/>
+		<result property="goodsPrice" 		column="g_price"/>
+		<result property="goodsRegDate" 	column="g_reg_date"/>
+		<result property="goodsSellerId" 	column="g_seller_id"/>
+		<association property="member" javaType="Member">
+			<id 	property="memberId"			column="m_id"/>
+			<result property="memberPw" 		column="m_pw"/>
+			<result property="memberName" 		column="m_name"/>
+			<result property="memberLevel" 		column="m_level"/>
+			<result property="memberRegDate" 	column="m_reg_date"/>
+			<result property="memberAddr" 		column="m_addr"/>
+			<result property="memberEmail" 		column="m_email"/>
+		</association>
+	</resultMap>
+	<insert id="addGoods" parameterType="Goods">
+		INSERT INTO tb_goods
+		(	  g_code
+			, g_name
+			, g_price
+			, g_seller_id
+			, g_reg_date
+		) VALUES (
+			sf_newGoodsCode()
+			, #{goodsName}
+			, #{goodsPrice}
+			, #{goodsSellerId}
+			, CURDATE())
+	</insert>
+	
+	
+	<select id="getGoodsList" parameterType="map" resultMap="goodsResultMap">
+		SELECT
+			 g.g_code
+			,g.g_name
+			,g.g_price
+			,g.g_seller_id
+			,m.m_name
+			,m.m_email
+			,g.g_reg_date
+		FROM
+		 	tb_goods AS g
+		 	INNER JOIN 
+		 	tb_member AS m
+			ON 
+			g.g_seller_id = m.m_id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="memberId != null and memberId != ''.toString()">
+				g.g_seller_id = #{memberId};
+			</if>
+		</trim>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
