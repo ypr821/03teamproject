@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="@{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title th:text="${title}"></title>
+</th:block>
+
+<th:block layout:fragment="customJs">
+	<script>
+		$(function(){
+						
+			$('#addGoodsBtn').click(function(){
+				var regexName = /^[가-힣a-zA-Z]+$/;
+				var regexPrice = /^[0-9]*$/;
+				var submitFlag = true;
+				var goodsForm = $('#addGoodsForm');
+				var inputObj = goodsForm.find('input');
+				
+				$.each(inputObj, function(e){
+					var inputName = $(this).attr('name');
+					var inputValue = $(this).val();
+					console.log(inputValue)
+					var inputLabel = $(this).parent().parent().children().eq(0).text();
+					if(inputName == 'goodsName'){
+						if(!regexName.test(inputValue)){
+							alert(inputLabel + ' 을 다시 입력해주세요.');
+							$(this).focus();
+							submitFlag = false;
+							return submitFlag;
+						}
+					}else if(inputName == 'goodsPrice'){
+						if(!regexPrice.test(inputValue)){
+							alert(inputLabel + ' 을 다시 입력해주세요.');
+							$(this).focus();
+							submitFlag = false;
+							return submitFlag;
+						}
+					}
+				});
+				
+				if(submitFlag) goodsForm.submit();
+				
+			});
+		});
+	</script>
+</th:block>
+
+<th:block layout:fragment="customContents">
+	<form id="addGoodsForm" th:action="@{/addGoods}" method="post">
+		<table border="1">
+			<tr>
+				<td>상품이름</td>
+				<td>
+					<input type="text" name="goodsName" placeholder="상품이름을 입력해주세요." />
+				</td>			
+			</tr>
+			<tr>
+				<td>가격</td>
+				<td>
+					<input type="text" name="goodsPrice" placeholder="상품가격을 입력해주세요."/>
+				</td>			
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<button type="button" id="addGoodsBtn" >상품등록</button>
+				</td>			
+			</tr>
+		</table>
+	</form>
+</th:block>
+</html>
