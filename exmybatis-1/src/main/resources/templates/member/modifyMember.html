@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/default}">
+	
+	
+	<th:block layout:fragment="customTitle">
+		<title th:text="${title}"></title>
+	</th:block>
+	<th:block layout:fragment="customContents">
+		❤❤❤회원수정 화면입니다❤❤❤
+		
+			<form th:action="@{/modifyMember}" method="post">
+				<table border="1">
+					<tr>
+						<td>
+							아이디
+						</td>
+						<td>
+							<input type="text" name="memberId" th:value="${member.memberId}" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							비번
+						</td>
+						<td>
+							<input type="text" name="memberPw"  th:value="${member.memberPw}">
+						</td>
+					</tr>	
+					<tr>
+						<td>
+							이름
+						</td>
+						<td>
+							<input type="text" name="memberName"  th:value="${member.memberName}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							권한
+						</td>
+						<td>
+							<select name="memberLevel"  th:value="${member.memberLevel}">
+								<option value="1">관리자</option>
+								<option value="2">판매자</option>
+								<option value="3">구매자</option>
+							</select>
+						</td>
+					</tr>
+						
+					<tr>	
+						<td>
+							이메일
+						</td>
+						<td>
+							<input type="text" name="memberEmail"  th:value="${member.memberEmail}">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							주소
+						</td>
+						<td>
+							<input type="text" name="memberAddr"  th:value="${member.memberAddr}">
+						</td>
+					</tr>
+					
+				</table>
+				<button type="submit">회원수정</button>
+			</form>
+		
+	</th:block>
+	
+	
+	
+</html>

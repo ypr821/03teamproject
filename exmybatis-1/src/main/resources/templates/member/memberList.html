@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/default}">
+	
+	
+	
+	<th:block layout:fragment="customTitle">
+		<title th:text="${title}"></title>
+	</th:block>
+	<th:block layout:fragment="customContents">
+		🙌🙌 회원 목록입니다 🙌🙌
+		
+		<table border="1">
+		<thead>
+		
+			<tr>
+			
+				<td>아이디</td>
+				<td>비번</td>
+				<td>이름</td>
+				<td>권한</td>
+				<td>이메일</td>
+				<td>주소</td>
+				<td>등록일</td>
+				<td>수정</td>
+				<td>삭제</td>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="l: ${memberList}" >
+				<td th:text="${l.memberId}"></td>
+				<td th:text="${l.memberPw}"></td>
+				<td th:text="${l.memberName}"></td>
+				<td th:text="${l.memberLevel}"></td>
+				<td th:text="${l.memberEmail}"></td>
+				<td th:text="${l.memberAddr}"></td>
+				<td th:text="${l.memberRegDate}"></td>	
+							
+				<td>
+					<a th:href="@{/modifyMember(memberId=${l.memberId})}" >
+						수정
+					</a>
+					
+				</td>
+				<td>
+					<a th:href="@{/removeMember(memberId=${l.memberId})}">
+						삭제
+					</a>
+				</td>				
+		
+			</tr>
+		</tbody>
+		
+		
+		
+		
+		
+		
+		
+		
+		</table>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</th:block>
+	
+	
+	
+</html>
