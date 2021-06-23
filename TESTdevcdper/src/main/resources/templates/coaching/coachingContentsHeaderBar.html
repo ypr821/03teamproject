@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:fragment="coachingContentsHeaderBar">
+	<!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/mentoring}">!멘토링</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/consulting}">!컨설팅</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/myCoachingClient}">!나의 코칭(일반)</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/myCoachingCoach}">!나의 코칭(코치)</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/coachingAdminPage}">#코칭 관리자페이지</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/coachAdmin}">#코치관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/coachingReview}">#후기관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/coachingReview}">#카테고리 관리</a></li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+</html>

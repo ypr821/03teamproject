@@ -24,6 +24,58 @@ public class CoachingController {
 		
 	}
 	
+	//코칭 관리자 화면
+	@GetMapping("/coachingAdminPage")
+	public String coachingAdminPage(Model model) {
+		System.out.println("=========================================");
+		System.out.println("======coachingAdminPage 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======myCoachingCoach 메서드 실행=================");
+		model.addAttribute("title", "코칭관리자페이지 ");
+		return "coaching/coachingAdminPage";
+	}
+	//코치  프로필 화면
+	@GetMapping("/coachProfile")
+	public String coachProfile(Model model) {
+		System.out.println("=========================================");
+		System.out.println("======coachProfile 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======myCoachingCoach 메서드 실행=================");
+		model.addAttribute("title", "코치  프로필 ");
+		return "coaching/coachProfile";
+	}
+	//나의 코칭(코치) 화면
+	@GetMapping("/myCoachingCoach")
+	public String myCoaching(Model model) {
+		System.out.println("=========================================");
+		System.out.println("======myCoachingCoach 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======myCoachingCoach 메서드 실행=================");
+		model.addAttribute("title", "나의 코칭 화면");
+		return "coaching/myCoachingCoach";
+	}
+	//코칭서비스 사용자 페이지 화면
+	@GetMapping("/myCoachingClient")
+	public String myCoachingClient(Model model) {
+		System.out.println("=========================================");
+		System.out.println("======myCoachingClient 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======myCoachingClient 메서드 실행=================");
+		model.addAttribute("title", "나의 코칭 화면");
+		return "coaching/myCoachingClient";
+	}
+	//코칭 견적결과 등록 화면
+	@GetMapping("/coachingRFQResult")
+	public String coachingRFQResult(Model model) {
+		System.out.println("=========================================");
+		System.out.println("======coachingRFQResult 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======coachingRFQ 메서드 실행=================");
+		model.addAttribute("title", "코칭 견적결과 화면");
+		return "coaching/coachingRFQResult";
+	}
+	
+	
 	//코칭 견적요청화면
 	@GetMapping("/coachingRFQ")
 	public String coachingRFQ(Model model) {
@@ -68,6 +120,7 @@ public class CoachingController {
 		return "coaching/coachAdmin";
 	}
 	
+	//코칭 리뷰 화면
 	@GetMapping("/coachingReview")
 	public String coachingReview(Model model) {
 		System.out.println("=========================================");
