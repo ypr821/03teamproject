@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">main title</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">DEV-CDPER🌟</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active">main.html</li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">DEV-CDPER</h3>
+    <div class="card-tools">
+      <!-- Buttons, labels, and many other things can be placed here! -->
+      <!-- Here is a label for example -->
+      <span class="badge badge-primary">Label</span>
+    </div>
+    <!-- /.card-tools -->
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    	TEST
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer">
+    	배포일시 : 2021년 6월 18일 23:05 수정을한다  222
+  </div>
+  <!-- /.card-footer -->
+</div>
+<!-- /.card -->
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
+
