@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeUserDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+</th:block>
+
+
+
+<th:block layout:fragment="container">
+
+	<div class="card card-default">
+		<div class="card-header">
+			<h3 class="card-title">진행중인 챌린지</h3>
+		</div>
+			<div class="card-body">
+			<a class="btn btn-app">
+		       <i class="fas fa-list"></i> 전체
+		    </a>
+			<a class="btn btn-app">
+		       <i class="fas fa-graduation-cap"></i> 학력
+		    </a>
+			<a class="btn btn-app">
+		        <i class="fas fa-file-code"></i> 프로젝트
+		    </a>
+			<a class="btn btn-app">
+		         <i class="fas fa-certificate"></i> 자격증
+		    </a>
+			<a class="btn btn-app">
+		         <i class="fas fa-atlas"></i> 공인어학
+		    </a>
+			<a class="btn btn-app">
+		        <i class="fab fa-dev"></i> 기술스택
+		    </a>
+			<a class="btn btn-app">
+		        <i class="fas fa-university"></i> 직종전문교육과정
+		    </a>
+			<a class="btn btn-app">
+		        <i class="fas fa-briefcase"></i> 인턴십
+		    </a>
+			<a class="btn btn-app">
+		       <i class="fas fa-pen-alt"></i> 공모전
+		    </a>
+			<a class="btn btn-app">
+		        <i class="fas fa-user-tie"></i> 경력
+		    </a>
+   		</div>
+   	</div>
+    
+    <div class="card card-default">
+			<div class="card-body">
+			    <section class="content">
+			        <div class="container-fluid">
+			            <h2 class="text-center display-5">챌린지 탐색하기</h2>
+			            <form action="enhanced-results.html">
+			                <div class="row">
+			                    <div class="col-md-10 offset-md-1">
+			                        <div class="row">
+			                            <div class="col-6">
+			                                <div class="form-group">
+			                                    <label>검색 타입</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option>제목으로 검색하기</option>
+			  										<option>카테고리로 검색하기</option>
+			  										<option>태그로 검색하기</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>정렬 순서</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" data-select2-id="5">ASC</option>
+			                                        <option>DESC</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>정렬 기준</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" data-select2-id="8">제목</option>
+			                                        <option>날짜</option>
+												</select>
+			                                </div>
+			                            </div>
+			                        </div>
+			                        <div class="form-group">
+			                            <div class="input-group input-group-lg">
+			                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
+			                                <div class="input-group-append">
+			                                    <button type="submit" class="btn btn-lg btn-default">
+			                                        <i class="fa fa-search"></i>
+			                                    </button>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </form>
+			        </div>
+    			</section>
+   			</div>
+    	</div>
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+	<script>
+    $(function () {
+      $('.select2').select2()
+    });
+	</script>
+
+</th:block>
+</html>

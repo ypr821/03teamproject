@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeAdminDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">챌린지 관리</h1>
+	</div>
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCategory}">챌린지 카테고리 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeParticipation}">챌린지 참여 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCertification}">챌린지 인증 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeReport}">챌린지 신고 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeAchievement}">챌린지 달성율 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCompensation}">챌린지 보상지급 관리</a></li>
+		</ol>
+	</div>
+</th:block>
+
+
+
+<th:block layout:fragment="container">
+
+	<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">챌린지 관리</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 200px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0" style="height: 500;">
+                <table class="table table-head-fixed table-responsive">
+                  <thead class="challenge-head">
+                    <tr>
+                     	<th>챌린지 코드</th>
+						<th>챌린지 카테고리 코드</th>
+						<th>개설자 이메일</th>
+						<th>챌린지명</th>
+						<th>공개범위</th>
+						<th>참여비밀번호</th>
+						<th>태그</th>
+						<th>최대참여인원수</th>
+						<th>베팅금액</th>
+						<th>인증방법</th>
+						<th>인증내용</th>
+						<th>인증빈도</th>
+						<th>총횟수</th>
+						<th>하루인증횟수</th>
+						<th>인증가능시간</th>
+						<th>시작일</th>
+						<th>종료일</th>
+						<th>등록일자</th>
+						<th>삭제</th>
+                    </tr>
+                  </thead>
+                  <tbody class="challenge-body">
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                    <tr>
+	                    <td>challenge_code_01</td>
+						<td>challenge_category_code_02</td>
+						<td>park01@hanmail.net</td>
+						<td>깃허브 잔디심기</td>
+						<td>공개</td>
+						<td></td>
+						<td>#깃허브 #잔디 #경력 #개발</td>
+						<td>3명</td>
+						<td>1000원</td>
+						<td>사진, 영상</td>
+						<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+						<td>월~일 매일 인증하기</td>
+						<td>10일</td>
+						<td>1회</td>
+						<td>00:00~24:00</td>
+						<td>2021년 4월 22일</td>
+						<td>2021년 5월 6일</td>
+						<td>2021년 4월 15일</td>
+						<td>삭제</td>
+                    </tr>
+                  </tbody>
+                </table>
+	                <div class="card-footer clearfix">
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                </ul>
+				   </div>	
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+
+<!-- <table border="1">
+	<tr>
+		<th>챌린지 코드</th>
+		<th>챌린지 카테고리 코드</th>
+		<th>개설자 이메일</th>
+		<th>챌린지명</th>
+		<th>공개범위</th>
+		<th>참여비밀번호</th>
+		<th>태그</th>
+		<th>최대참여인원수</th>
+		<th>베팅금액</th>
+		<th>인증방법</th>
+		<th>인증내용</th>
+		<th>인증빈도</th>
+		<th>총횟수</th>
+		<th>하루인증횟수</th>
+		<th>인증가능시간</th>
+		<th>시작일</th>
+		<th>종료일</th>
+		<th>등록일자</th>
+		<th>삭제</th>
+	</tr>
+	<tr>
+		<td>challenge_code_01</td>
+		<td>challenge_category_code_02</td>
+		<td>park01@hanmail.net</td>
+		<td>깃허브 잔디심기</td>
+		<td>공개</td>
+		<td></td>
+		<td>#깃허브 #잔디 #경력 #개발</td>
+		<td>3명</td>
+		<td>1000원</td>
+		<td>사진, 영상</td>
+		<td>자신의 깃허브주소의 잔디화면을 찍어주세요</td>
+		<td>월~일 매일 인증하기</td>
+		<td>10일</td>
+		<td>1회</td>
+		<td>00:00~24:00</td>
+		<td>2021년 4월 22일</td>
+		<td>2021년 5월 6일</td>
+		<td>2021년 4월 15일</td>
+		<td>삭제</td>
+	</tr>
+</table> -->
+
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>

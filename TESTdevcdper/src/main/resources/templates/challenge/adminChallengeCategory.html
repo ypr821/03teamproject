@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeAdminDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">챌린지 카테고리 관리</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/adminChallenge}">챌린지 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeParticipation}">챌린지 참여 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCertification}">챌린지 인증 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeReport}">챌린지 신고 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeAchievement}">챌린지 달성율 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCompensation}">챌린지 보상지급 관리</a></li>
+		</ol>
+	</div>
+</th:block>
+
+
+
+<th:block layout:fragment="container">
+<div>
+<button type="button" class="btn btn-block bg-gradient-danger btn-lg categoryadd">카테고리 추가하기</button>
+<button type="button" class="btn btn-block bg-gradient-danger btn-lg categorymodify">카테고리 수정하기</button>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-info">
+      <div class="inner">
+        <h3>Category 1</h3>
+        <h4>학력</h4>
+      </div>
+      <div class="icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 학력 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	학력 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-success">
+      <div class="inner">
+        <h3>Category 2</h3>
+        <h4>프로젝트</h4>
+      </div>
+      <div class="icon">
+	      <i class="fas fa-file-code"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 프로젝트 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	프로젝트 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-secondary">
+      <div class="inner">
+        <h3>Category 3</h3>
+        <h4>자격증</h4>
+      </div>
+      <div class="icon">
+        <i class="fas fa-certificate"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 자격증 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	자격증 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-secondary">
+      <div class="inner">
+        <h3>Category 4</h3>
+        <h4>공인어학(외국어능력)</h4>
+      </div>
+      <div class="icon">
+        <i class="fas fa-atlas"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 공인어학(외국어능력) 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	공인어학(외국어능력) 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-info">
+      <div class="inner">
+        <h3>Category 5</h3>
+        <h4>기술스택</h4>
+      </div>
+      <div class="icon">
+	      <i class="fab fa-dev"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 기술스택 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	기술스택 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-success">
+      <div class="inner">
+        <h3>Category 6</h3>
+        <h4>직종전문교육과정</h4>
+      </div>
+      <div class="icon">
+        <i class="fas fa-university"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 직종전문교육과정 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	직종전문교육과정 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-success">
+      <div class="inner">
+        <h3>Category 7</h3>
+        <h4>인턴십</h4>
+      </div>
+      <div class="icon">
+	      <i class="fas fa-briefcase"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 인턴십 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	인턴십 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div> 
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-secondary">
+      <div class="inner">
+        <h3>Category 8</h3>
+        <h4>공모전</h4>
+      </div>
+      <div class="icon">
+      	<i class="fas fa-pen-alt"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 공모전 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	공모전 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+    <div class="small-box bg-gradient-info">
+      <div class="inner">
+        <h3>Category 9</h3>
+        <h4>경력</h4>
+      </div>
+      <div class="icon">
+      	<i class="fas fa-user-tie"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+        	회원 경력 계획 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+      <a href="#" class="small-box-footer">
+        	경력 관련 챌린지 목록   <i class="fas fa-arrow-circle-right"></i>
+      </a>
+    </div>
+</div>
+
+
+
+
+</div>
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>

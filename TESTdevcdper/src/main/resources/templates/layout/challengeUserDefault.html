@@ -13,12 +13,19 @@
 	<link rel="stylesheet" th:href="@{/AdminLTE3/plugins/fontawesome-free/css/all.min.css}">
 	<!-- IonIcons -->
 	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<!-- select2 -->
-	<link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
+	<!-- Select2 -->
+	<script th:href="@{/AdminLTE3/plugins/select2/js/select2.full.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/AdminLTE3/dist/css/timepicki.css}"/>
+	<!-- Timepicker CSS -->
+	<link rel="stylesheet" th:href="@{/AdminLTE3/dist/css/wickedpicker.min.css}">
 	<!-- Theme style -->
-	<link rel="stylesheet" th:href="@{/AdminLTE3/dist/css/adminlte.min.css}">
+	<link rel="stylesheet" th:href="@{/AdminLTE3/dist/css/adminlte.challenge.min.css}">
 	<!-- Jquery, Ajax -->
 	<script th:src="@{/js/jquery-3.6.0.min.js}" type="text/javascript"></script>
+	<!-- Timepicker Js -->
+	<script th:href="@{/AdminLTE3/dist/js/wickedpicker.min.js}"></script>
+	
+	
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -27,7 +34,7 @@
 		<!-- /.navbar -->
 	
 		<!-- Main Sidebar Container -->
-			<nav th:replace="/fragments/left :: left"></nav>
+			<nav th:replace="/fragments/challengeUserLeft :: left"></nav>
 		<!-- /Main Sidebar Container End -->
 	
 		<!-- Content Wrapper. Contains page content -->
@@ -73,17 +80,17 @@
 	<!-- <script th:src="@{/AdminLTE3/dist/js/demo.js}"></script> -->
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<!-- <script th:src="@{/AdminLTE3/dist/js/pages/dashboard3.js}"></script> -->
-	<!-- select2 -->
-	<script src="vendor/select2/dist/js/select2.min.js"></script>
+	
 	<!-- ionicon -->
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	
-		<!-- chart js -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	
 	<!-- ionicon -->
 	
-	<th:block layout:fragment="pageJavascript"></th:block>
+	<th:block layout:fragment="pageJavascript">
+	
+		
+	
+	</th:block>
 </body>
 </html>
