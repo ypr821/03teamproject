@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout/default">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">Insert title here</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">기술스택</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/mainCdp}">계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+	
+</th:block>
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
