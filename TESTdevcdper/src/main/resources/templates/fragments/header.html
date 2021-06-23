@@ -9,8 +9,16 @@
 		<li class="nav-item d-none d-sm-inline-block">
 			<a href="/" class="nav-link">Home</a>
 		</li>
-		<li class="nav-item d-none d-sm-inline-block">
-			<a href="plan/mainPlan.html" class="nav-link">경력개발계획</a>
+		<li class="nav-item dropdown d-none d-sm-inline-block">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+              	경력개발계획 <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu">
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/totalPlan}">통합계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/mainCdp}">계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/detailPlan}">상세계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/actionPlan}">실천계획</a>
+            </div>
 		</li>
 		<li class="nav-item d-none d-sm-inline-block">
 			<!-- Single button -->
