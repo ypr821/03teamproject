@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="left" class="main-sidebar sidebar-dark-primary elevation-4">
+	<!-- Brand Logo -->
+	<a th:href="@{/}" class="brand-link">
+	  <img th:src="@{/AdminLTE3/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+	  <span class="brand-text font-weight-light">DEV-CDPER</span>
+	</a>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+	  <!-- Sidebar user panel (optional) -->
+	  <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:unless="${session.SID eq null}">
+	    <div class="image">
+	      <img th:src="@{/AdminLTE3/dist/img/psm2.jpg}" class="img-circle elevation-2" alt="User Image">
+	    </div>
+	    <div th:href="@{/}" class="brand-link">
+	      <a href="#" class="d-block">[[${session.SLEVELNAME}]] [[${session.SNAME}]] </a>
+	      <a>Mypage</a>
+	    </div>
+	    <br/>
+	   <!--  <button type="button" class="btn btn-block btn-outline-primary btn-sm">Mypage</button> -->
+	 
+	  </div>
+	  <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${session.SID eq null}">
+	    <div class="image">
+	      <img th:src="@{/AdminLTE3/dist/img/usernull.jpg}" class="img-circle elevation-2" alt="User Image">
+	    </div>
+	    <div class="info">
+	      <a th:href="@{/login}" class="d-block">로그인을 해주세요.</a>
+	    </div>
+	  </div>
+	
+	  <!-- SidebarSearch Form -->
+	  <div class="form-inline">
+	    <div class="input-group" data-widget="sidebar-search">
+	      <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+	      <div class="input-group-append">
+	        <button class="btn btn-sidebar">
+	          <i class="fas fa-search fa-fw"></i>
+	        </button>
+	      </div>
+	    </div>
+	  </div>
+	
+	  <!-- Sidebar Menu -->
+	  <nav class="mt-2">
+	    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+	      <!-- Add icons to the links using the .nav-icon class
+	           with font-awesome or any other icon font library -->
+           <!-- 챌린지 관리 -->
+	      <li class="nav-item menu-open"  >
+            <a href="#" class="nav-link">
+           	 <i class="nav-icon fas fad fa-thumbs-up"></i>
+              <p>
+               		 챌린지 
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+             <!--  <li class="nav-item">
+                <a href="challenge/challenge.html" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 가이드</p>
+                </a>
+              </li> -->
+              <li class="nav-item">
+                <a th:href="@{/challengeExploration}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 탐색하기</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/challengeInsert}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 개설하기</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/challengeParticipation}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 참여하기</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/challengeCertification}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 인증하기</p>
+                </a>
+              </li>
+             </ul>
+	         <!-- 결제 및 환불 관리 -->
+	      <li class="nav-item has-treeview menu-open"  >
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-credit-card"></i>
+              <p>
+               		 결제 및 환불 관리
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="paymentRefund/payment.html" class="nav-link">
+                  <i class="nav-icon fas fa-credit-card"></i>
+                  <p>챌린지 결제 관리</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="paymentRefund/refund.html" class="nav-link">
+                  <i class="nav-icon fas fa-credit-card"></i>
+                  <p>챌린지 환불 관리</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+	    </ul>
+	  </nav>
+	  <!-- /.sidebar-menu -->
+	</div>
+	<!-- /.sidebar -->
+</aside>
+</html>

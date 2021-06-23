@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/default}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">main title</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">my coachingCoach page</h1>
+	</div>
+	<!-- /.col -->
+	<th:block
+		th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block>
+
+	<!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+
+
+
+	
+		<br>
+		<!-- State box  -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<!-- Default box -->
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Mentoring/Consulting State</h3>
+	
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool"
+									data-card-widget="collapse" title="Collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+	
+							</div>
+						</div>
+						<div class="card-body">
+							⁕   전체 5   ⁕   견적요청 1   ⁕   견적결과 1   ⁕   신청완료 1   ⁕    이용완료 1  ⁕  서비스기간만료 0   ⁕   취소환불 1
+
+						</div>
+						<!-- /.card-body -->
+	
+					</div>
+					<!-- /.card -->
+				</div>
+			</div>
+		</div>
+	
+		<div class="col-5">
+			<a th:href="@{/coachProfile}" class="btn btn-block btn-secondary btn-sm">나의 프로필 관리</a>
+		</div>
+		<br>
+		<form action="enhanced-results.html" data-select2-id="15">
+                <div class="row" data-select2-id="14">
+                    <div class="col-md-10" data-select2-id="13">
+                        <div class="row" data-select2-id="12">
+
+                            <div class="col-3" data-select2-id="19">
+                                <div class="form-group" data-select2-id="18">
+                                    <label>구분:</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="5">멘토링</option>
+                                        <option data-select2-id="20">컨설팅</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3" data-select2-id="11">
+                                <div class="form-group" data-select2-id="10">
+                                    <label>상태</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="8">견적요청</option>
+                                        <option data-select2-id="16">견적결과</option>
+                                        <option data-select2-id="16">신청완료</option>
+                                        <option data-select2-id="16">이용완료</option>
+                                        <option data-select2-id="16">서비스기간만료</option>
+                                        <option data-select2-id="16">취소환불</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3" data-select2-id="11">
+                                <div class="form-group" data-select2-id="10">
+                                    <label>기간선택</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="8">견적요청</option>
+                                        <option data-select2-id="16">견적결과</option>
+                                        <option data-select2-id="16">신청완료</option>
+                                        <option data-select2-id="16">이용완료</option>
+                                        <option data-select2-id="16">서비스기간만료</option>
+                                        <option data-select2-id="16">취소환불</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="col-3" data-select2-id="11">
+                                <div class="form-group" data-select2-id="10">
+                                    <label>정렬</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="8">최신순</option>
+                                        <option data-select2-id="16">오래된순</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-lg btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		</form>
+	
+		<!-- 코치 페이지  나의 코칭 내역 목록  -->
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">
+					<ion-icon size="small" name="list-outline"></ion-icon>
+					&emsp; <b>나의 멘토링/컨설팅 목록</b>
+				</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th style="width: 10px">#</th>
+							<th>구분</th>
+							<th>상태</th>
+							<th>수강생이메일</th>
+							<th>수강생연락처</th>
+							<th>코칭일정</th>
+							<th>견적요청</th>
+							<th>견적결과</th>
+							<th>&emsp;후기</th>
+							<th>중단</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1.</td>
+							<td>멘토링</td>
+							<td>견적요청</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<a th:href="coachingRFQResult" class="btn btn-block btn-default btn-xs">등록</a>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+	
+						</tr>
+						<tr>
+							<td>2.</td>
+							<td>멘토링</td>
+							<td>견적결과</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+	
+						</tr>
+						<tr>
+							<td>3.</td>
+							<td>컨설팅</td>
+							<td>신청완료</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+						</tr>
+						<tr>
+							<td>4.</td>
+							<td>컨설팅</td>
+							<td>이용완료</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+						</tr>
+						<tr>
+							<td>5.</td>
+							<td>멘토링</td>
+							<td>취소/환불</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+			<!-- 코칭 list 페이지 번호  -->
+			<ul class="pagination justify-content-center m-0">
+		              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+		              <li class="page-item"><a class="page-link" href="#">2</a></li>
+		              <li class="page-item"><a class="page-link" href="#">3</a></li>
+		              <li class="page-item"><a class="page-link" href="#">4</a></li>
+		              <li class="page-item"><a class="page-link" href="#">5</a></li>
+		              <li class="page-item"><a class="page-link" href="#">6</a></li>
+		              <li class="page-item"><a class="page-link" href="#">7</a></li>
+		              <li class="page-item"><a class="page-link" href="#">8</a></li>
+		   </ul>
+		</div>
+		<!-- / 코치 페이지  나의 코칭 내역 목록  -->
+		
+		
+		<!-- 나의 코칭페이지 실적 목록  -->
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<!-- card-header -->
+					<div class="card-header">
+						
+						<h3 class="card-title"><ion-icon name="bar-chart-outline"></ion-icon>
+						&emsp;<b>나의 코칭 실적 조회</b></h3>
+					</div>
+					<!-- ./card-header -->
+					
+					<div class="card-body">
+						<table class="table table-bordered table-hover">
+						
+							<thead>
+								<tr>
+									<th >#</th>
+									<th class="col-12">항목</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								<!--  나의 코칭 진행 수  추이   -->
+								<tr data-widget="expandable-table" aria-expanded="false" >
+									<td>1</td>
+									<td>나의 진행완료한 코칭  </td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">
+									
+										<!-- 월별 코칭 진행 수 추이  막대 그래프 -->									
+										<div class="card col-10">
+							              <div class="card-header border-0">
+							                <div class="d-flex justify-content-between">
+							                  <h3 class="card-title">월별 코칭 진행완료 횟수  추이</h3>
+							                </div>
+							              </div>
+							              <div class="card-body">
+							                <div class="d-flex">
+							                  <p class="d-flex flex-column">
+							                    <span class="text-bold text-lg"> 431 회</span>
+							                    <span>총 누적 횟수 </span>
+							                  </p>
+							                 &emsp;
+							                  <p class="d-flex flex-column">
+							                    <span class="text-bold text-lg"> 301 회 </span>
+							                    <span>올해 누적 횟수</span>
+							                  </p>
+							                 &emsp;
+							                  <p class="d-flex flex-column">
+							                    <span class="text-bold text-lg"> 5개 </span>
+							                    <span>진행중인 코칭 수</span>
+							                  </p>
+							                  <p class="ml-auto d-flex flex-column text-right">
+							                    <span class="text-success">
+							                      <i class="fas fa-arrow-up"></i> 33.1%
+							                    </span>
+							                    <span class="text-muted">Since last month</span>
+							                  </p>
+							                </div>
+							                <!-- /.d-flex -->
+							
+							                <div class="position-relative mb-4">
+								                <div class="chartjs-size-monitor">
+									                <div class="chartjs-size-monitor-expand">
+									               		 <div class=""></div>
+									                </div>
+									                <div class="chartjs-size-monitor-shrink">
+									                	<div class=""></div>
+									                </div>
+								                </div>
+								                  <canvas id="sales-chart" height="200" style="display: block; height: 200px; width: 323px;" width="484" class="chartjs-render-monitor"></canvas>
+							                </div>
+	
+							              </div>
+							            </div>
+										<!-- /월별 코칭 진행수  추이 그래프 -->
+									</td>
+								</tr>
+								<!-- / 나의 코칭 진행수  추이   -->
+								
+								<!-- 나의 총 수익 추이   -->
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>2</td>
+									<td>나의 수익 조회</td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">Lorem Ipsum is simply dummy text
+											of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when
+											an unknown printer took a galley of type and scrambled it to
+											make a type specimen book. It has survived not only five
+											centuries, but also the leap into electronic typesetting,
+											remaining essentially unchanged. It was popularised in the
+											1960s with the release of Letraset sheets containing Lorem
+											Ipsum passages, and more recently with desktop publishing
+											software like Aldus PageMaker including versions of Lorem
+											Ipsum.</p>
+									</td>
+								</tr>
+								<!-- / 나의 총 수익 추이   -->
+								
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>3</td>
+									<td>나의 1시간당 평균 금액 조회</td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">Lorem Ipsum is simply dummy text
+											of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when
+											an unknown printer took a galley of type and scrambled it to
+											make a type specimen book. It has survived not only five
+											centuries, but also the leap into electronic typesetting,
+											remaining essentially unchanged. It was popularised in the
+											1960s with the release of Letraset sheets containing Lorem
+											Ipsum passages, and more recently with desktop publishing
+											software like Aldus PageMaker including versions of Lorem
+											Ipsum.</p>
+									</td>
+								</tr>
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>4</td>
+									<td>나의 평점 확인 </td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">Lorem Ipsum is simply dummy text
+											of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when
+											an unknown printer took a galley of type and scrambled it to
+											make a type specimen book. It has survived not only five
+											centuries, but also the leap into electronic typesetting,
+											remaining essentially unchanged. It was popularised in the
+											1960s with the release of Letraset sheets containing Lorem
+											Ipsum passages, and more recently with desktop publishing
+											software like Aldus PageMaker including versions of Lorem
+											Ipsum.</p>
+									</td>
+								</tr>
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>134</td>
+									<td>Jim Doe</td>
+								
+								</tr>
+						
+							</tbody>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+		<!-- /나의 코칭페이지 실적 목록  -->
+
+
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+	<script>
+		var ctx = document.getElementById('sales-chart').getContext('2d');
+		var salesChart = new Chart(ctx, {
+		    type: 'bar',
+		    data: {
+		        labels: ['1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+		        datasets: [{
+		            label: 'last year',
+		            data: [0,0,1,2,5,10,15,10,17,20,30,20],
+		            backgroundColor: [
+		                'rgba(129, 144, 154)'
+		                
+		            ],
+		            borderColor: [
+		                'rgba(129, 144, 154)'
+		            ],
+		            borderWidth: 1
+		        },{
+		            label: 'this year',
+		            data: [20,30,20,25,30,20,10,26,30,40,20,30],
+		            backgroundColor: [
+		                'rgba(28, 156, 238)',
+		                
+		            ],
+		            borderColor: [
+		            	 'rgba(28, 156, 238)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		    	
+		        scales: {
+		            y: {
+		                beginAtZero: true
+		            }
+		        }
+		    }
+		});
+	</script>
+</th:block>
+</html>
+
+

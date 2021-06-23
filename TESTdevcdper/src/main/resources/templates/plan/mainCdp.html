@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout/default">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">Insert title here</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">나의 계획 한눈에보기</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/plan}">계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{#}">상세계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{#}">실천계획</a></li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+	<section class="content">
+	<div class="container-fluid"  th:align="center">
+		<!-- Default box -->
+		<div class="card col-md-6">
+			<div class="card-header">
+                <h3 class="card-title">나의 계획 한눈에보기</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="통합계획검색">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+			<div class="card-body table-responsive p-0">
+				<table class="table table-hover text-nowrap">
+		            <thead style="text-align: center;">
+		                <tr>
+		                    <th style="text-align: left;" class="col-2">통합계획명</th>
+	                        <th class="col-8">통합계획 팀프로젝트구현하기</th>
+	                        <th class="col-2">차수</th>
+		                </tr>
+		                <tr>
+		                    <th style="text-align: left;">
+		                    	<strong>
+		                    		기간
+		                    	</strong>
+		                    </th>
+	                        <th>
+								<a>2021.06.20 ~ </a>
+								<a>2021.08.06</a>
+								</td>
+	                        </th>
+	                        <th>2차</th>
+		                </tr>
+		            </thead>
+		            <tbody class="col-9">
+		                <tr>
+		                    <th>학력 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planEducationalHistory}">
+										<li>4년제 컴공 뿌시기</li>
+		                        	</a>
+		                        	<a th:href="@{/planEducationalHistory}">
+										<li>독학사를 통한 학위취득</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                    <td></td>
+		                </tr>
+		                <tr>
+		                    <th>프로젝트 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planProject}">
+										<li>혼자 토이프로젝트 해보기</li>
+		                        	</a>
+		                        	<a th:href="@{/planProject}">
+										<li>동기들과 토이프로젝트</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>자격증 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planCertificate}">
+										<li>정보처리기사 뿌시기</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>공인어학 계획</th>
+		                    <td>
+		                        <ul>
+			                        <a th:href="@{/planCertifiedLanguage}">
+										<li>토익준비하기!</li>
+			                        </a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>기술스택 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planTechnologyStack}">
+										<li>Phython 문법공부</li>
+		                        	</a>
+		                        	<a th:href="@{/planTechnologyStack}">
+										<li>JAVA 처음부터 다시 공부하기</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>직종전문교육과정 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planJobTraining}">
+										<li>한국스마트정보교육원 무사히수료하기</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>인턴십 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planInternship}">
+										<li>우아한 형제들 인턴들어가기</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>공모전 계획</th>
+		                    <td>
+		                        <ul>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		                <tr>
+		                    <th>경력 계획</th>
+		                    <td>
+		                        <ul>
+		                        	<a th:href="@{/planCareer}">
+										<li>직무관련 시스템 유지운영 실무 담당</li>
+		                        	</a>
+		                        	<a th:href="@{/planCareer}">
+										<li>사내 시스템관련 어플리케이션 개발</li>
+		                        	</a>
+		                        	<a th:href="@{/planCareer}">
+										<li>관련 개발언어 경험</li>
+		                        	</a>
+								</ul>
+		                    </td>
+		                     <td></td>
+		                </tr>
+		            </tbody>
+		        </table>
+			</div>
+		<!-- /.card-body -->
+		</div>
+	<!-- /.card -->
+	</div>
+	</section>
+	
+
+
+</th:block>
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>

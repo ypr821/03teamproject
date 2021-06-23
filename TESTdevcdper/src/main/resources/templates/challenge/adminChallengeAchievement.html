@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeAdminDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">챌린지 달성율 관리</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/adminChallenge}">챌린지 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCategory}">챌린지 카테고리 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeParticipation}">챌린지 참여 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCertification}">챌린지 인증 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeReport}">챌린지 신고 관리</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCompensation}">챌린지 보상지급 관리</a></li>
+		</ol>
+	</div>
+</th:block>
+
+
+
+<th:block layout:fragment="container">
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
