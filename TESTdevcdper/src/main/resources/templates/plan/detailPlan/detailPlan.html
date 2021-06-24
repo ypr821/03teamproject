@@ -1,11 +1,263 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-상세계획
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout/default">
+
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">Insert title here</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">상세계획</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/mainCdp}">계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>	  
+	  
+<th:block layout:fragment="container">
+
+			<div class="col-12 col-sm-12">
+	            <div class="card card-primary card-tabs">
+	            <!--card header start  -->
+	              <div class="card-header p-0 pt-1">
+	              	<!-- nav tab start  -->
+	                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+	                  <li class="nav-item">
+	                    <a class="nav-link active" id="custom-tabs-one-planEducationalHistoryDetail-tab" data-toggle="pill" href="#custom-tabs-one-planEducationalHistoryDetail" role="tab" aria-controls="custom-tabs-one-planEducationalHistoryDetail" aria-selected="true">학력 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planProjectDetail-tab" data-toggle="pill" href="#custom-tabs-one-planProjectDetail" role="tab" aria-controls="custom-tabs-one-planProjectDetail" aria-selected="false">프로젝트 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planCertificateDetail-tab" data-toggle="pill" href="#custom-tabs-planCertificateDetail-messages" role="tab" aria-controls="custom-tabs-one-planCertificateDetail" aria-selected="false">자격증 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planCertifiedLanguageDetail-tab" data-toggle="pill" href="#custom-tabs-one-planCertifiedLanguageDetail" role="tab" aria-controls="custom-tabs-one-planCertifiedLanguageDetail" aria-selected="false">공인어학 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planTechnologyStackDetail-tab" data-toggle="pill" href="#custom-tabs-one-planTechnologyStackDetail" role="tab" aria-controls="custom-tabs-one-planTechnologyStackDetail" aria-selected="false">기술스택 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planJobTrainingDetail-tab" data-toggle="pill" href="#custom-tabs-one-planJobTrainingDetail" role="tab" aria-controls="custom-tabs-one-planJobTrainingDetail" aria-selected="false">직종전문교육과정 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planInternshipDetail-tab" data-toggle="pill" href="#custom-tabs-one-planInternshipDetail" role="tab" aria-controls="custom-tabs-one-planInternshipDetail" aria-selected="false">인턴십 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planContestDetail-tab" data-toggle="pill" href="#custom-tabs-one-planContestDetail" role="tab" aria-controls="custom-tabs-one-planContestDetail" aria-selected="false">공모전 상세 계획</a>
+	                  </li>
+	                  <li class="nav-item">
+	                    <a class="nav-link" id="custom-tabs-one-planCareerDetail-tab" data-toggle="pill" href="#custom-tabs-one-planCareerDetail" role="tab" aria-controls="custom-tabs-one-planCareerDetail" aria-selected="false">경력 상세 계획</a>
+	                  </li>
+	                </ul>
+	                <!-- nav tab End  -->
+	              </div>
+	              <!--card header start  -->
+	              
+	              <!--card body start  -->
+	              <div class="card-body">
+	                <div class="tab-content" id="custom-tabs-one-tabContent">
+	                  
+	                  <div class="tab-pane fade show active" id="custom-tabs-one-planEducationalHistoryDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planEducationalHistoryDetail-tab">
+	                     <!-- table-striped start  -->
+	                     <table class="table table-striped" >
+		                  <thead>
+		                    <tr>
+		                      <th>번호</th>
+		                      <th>학력 상세 계획명</th>
+		                     <!--  <th>상세 계획 보러 가기</a></th> -->
+		                      <th>상세 계획 시작일</th>
+		                      <th>상세 계획 종료일</th>
+		                      <th>진행율</th>
+		                      <th>상태</th>
+		                      <th>차수</th>
+		                      <th> </th>
+		                    </tr>
+		                  </thead>
+		                  <!--tbody start  -->
+		                  <tbody >
+		                    <tr>
+		                      <td>1.</td>
+		                      <td>컴퓨터공학전공해서 취업하자</td>
+		                      <td>2021년 3월 2일</td>
+		                      <td>2025년 2월 10일</td>
+		                      <td>
+							   <div class="progress progress-sm" >
+							     <div class="progress-bar progress-bar bg-danger" style="width: 0%"></div>
+							   </div>
+							   <small>
+									0% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-warning">진행예정</span></td>
+		                      <td>1차</td>
+		                      <td class="project-actions text-center">
+								<a class="btn btn-primary btn-sm" id="standbyDetailPlan" th:href="@{/planEducationalHistoryDetail}">
+									<i class="fas fa-folder">
+									</i>
+									상세계획보기
+								</a>
+								<a class="btn btn-info btn-sm" id="standbyModifyDetailPlan">
+									<i class="fas fa-pencil-alt">
+									</i>
+									수정
+								</a>
+								<a class="btn btn-danger btn-sm" th:href="@{/deletePlanEducationalHistoryDetail}">
+									<i class="fas fa-trash">
+									</i>
+									삭제
+								</a>
+							</td>
+							
+		                    </tr>
+		                    <tr>
+		                      <td>2.</td>
+		                      <td>컴퓨터공학과 석사학위 취득</td>
+		                      <td>2025년 3월 2일</td>
+		                      <td>2027년 2월 10일</td>
+		                      <td>
+		                        <div class="progress progress-sm" >
+		                          <div class="progress-bar bg-warning" style="width: 0%"></div>
+		                        </div>
+		                        <small>
+									0% Complete
+								</small>
+		                      </td>
+		                      <td><span class="badge bg-warning">진행예정</span></td>
+		                      <td>1차</td>
+		                        <td class="project-actions text-center">
+								<a class="btn btn-primary btn-sm" id="standbyDetailPlan">
+									<i class="fas fa-folder">
+									</i>
+									상세계획보기
+								</a>
+								<a class="btn btn-info btn-sm" id="standbyModifyDetailPlan">
+									<i class="fas fa-pencil-alt">
+									</i>
+									수정
+								</a>
+								<a class="btn btn-danger btn-sm" th:href="@{/deletePlanEducationalHistoryDetail}">
+									<i class="fas fa-trash">
+									</i>
+									삭제
+								</a>
+							</td>
+		                      
+		                    </tr>
+		                    
+		                    
+		                    <tr>
+		                      <td>3.</td>
+		                      <td>Cron job running</td>
+		                      <td>2021년 3월 2일</td>
+		                      <td>2023년 2월 10일</td>
+		                      <td>
+		                        <div class="progress progress-sm progress-striped active">
+		                          <div class="progress-bar bg-primary" style="width: 30%"></div>
+		                        </div>
+		                        <small>
+									30% Complete
+								</small>
+		                      </td>
+		                      <td><span class="badge bg-primary">진행중</span></td>
+		                      <td>1차</td>
+		                      <td class="project-actions text-center">
+								<a class="btn btn-primary btn-sm" id="standbyDetailPlan">
+									<i class="fas fa-folder">
+									</i>
+									상세계획보기
+								</a>
+								<a class="btn btn-info btn-sm" id="standbyModifyDetailPlan">
+									<i class="fas fa-pencil-alt">
+									</i>
+									수정
+								</a>
+								<a class="btn btn-danger btn-sm" th:href="@{/deletePlanEducationalHistoryDetail}">
+									<i class="fas fa-trash">
+									</i>
+									삭제
+								</a>
+							</td>
+		                    </tr>
+		                    <tr>
+		                      <td>4.</td>
+		                      <td>Fix and squish bugs</td>
+		                      <td>2020년 3월 2일</td>
+		                      <td>2021년 2월 10일</td>
+		                      <td>
+		                        <div class="progress progress-sm progress-striped active">
+		                          <div class="progress-bar bg-success" style="width: 100%"></div>
+		                        </div>
+		                        <small>
+									100% Complete
+								</small>
+		                      </td>
+		                      <td><span class="badge bg-success">완료</span></td>
+		                      <td>1차</td>
+		                      <td class="project-actions text-center">
+								<a class="btn btn-primary btn-sm" id="standbyDetailPlan">
+									<i class="fas fa-folder">
+									</i>
+									상세계획보기
+								</a>
+								<a class="btn btn-info btn-sm" id="standbyModifyDetailPlan">
+									<i class="fas fa-pencil-alt">
+									</i>
+									수정
+								</a>
+								<a class="btn btn-danger btn-sm" th:href="@{/deletePlanEducationalHistoryDetail}">
+									<i class="fas fa-trash">
+									</i>
+									삭제
+								</a>
+							</td>
+		                      
+		                    </tr>
+		                  </tbody>
+		                  <!--tbody end  -->
+	               		 </table>
+	               		 <!-- table-striped End  -->
+	                  </div>
+	                  
+	                  <div class="tab-pane fade" id="custom-tabs-one-planProjectDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planProjectDetail-tab">
+	                     Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planCertificateDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planCertificateDetail-tab">
+	                     Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planCertifiedLanguageDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planCertifiedLanguageDetail-tab">
+	                     Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planTechnologyStackDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planTechnologyStackDetail-tab">
+	                     Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planJobTrainingDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planJobTrainingDetail-tab">
+	                     Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planInternshipDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planInternshipDetail-tab">
+	                     Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planContestDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planContestDetail-tab">
+	                     Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+	                  </div>
+	                  <div class="tab-pane fade" id="custom-tabs-one-planCareerDetail" role="tabpanel" aria-labelledby="custom-tabs-one-planCareerDetail-tab">
+	                     Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
+	                  </div>
+	                  
+	                </div>
+	              </div>
+	              <!--card body End  -->
+	              <!-- /.card -->
+	            </div>
+			</div>
+	
+</th:block>
+<!-- <body>
+상세계획관리
 <table border="1">
 	<tr>
 		<td>학력 상세계획</td> <td>프로젝트 상세계획</td>
@@ -15,5 +267,5 @@
 		<td>경력 상세계획</td>
 	</tr>
 </table>
-</body>
+</body> -->
 </html>
