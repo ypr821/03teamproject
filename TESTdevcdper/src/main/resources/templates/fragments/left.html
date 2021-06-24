@@ -48,7 +48,7 @@
 	    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 	      <!-- Add icons to the links using the .nav-icon class
 	           with font-awesome or any other icon font library -->
-	       <li class="nav-item">
+	       <li class="nav-item" th:if="${function == null}">
 	        <a href="devcdper/introduce.html" th:if="${session.SLEVEL == null}" class="nav-link">
 	          <i class="nav-icon fas fad fa-scroll"></i>
 	          <p>
@@ -56,7 +56,7 @@
 	          </p>
 	        </a>
 	      </li>
-	       <li class="nav-item">
+	       <li class="nav-item" th:if="${function == null}">
 	        <a href="devcdper/guide.html" th:if="${session.SLEVEL == null}" class="nav-link">
 	          <i class="nav-icon fas fad fa-scroll"></i>
 	          <p>
@@ -77,7 +77,7 @@
 	      
 	      
 	      
-	      <li class="nav-item has-treeview"  >
+	      <li class="nav-item has-treeview" th:if="${function == null}">
             <a href="#" class="nav-link">
 	      	<i class="nav-icon fas fa-user"></i>
                 <p>
@@ -111,8 +111,8 @@
 	        	</ul> 
 	     	 </li>
 	     
-          <!-- 계획 관리 Start -->
-	      <li class="nav-item has-treeview"  >
+          <!-- 전체 계획 관리 Start -->
+	      <li class="nav-item has-treeview" th:if="${function == null or function == 'plan'}">
             <a href="#" class="nav-link">
                <i class="nav-icon fas fa-tasks "></i>
               <p>
@@ -120,6 +120,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <!-- 승민 계획 관리 Start -->
             <ul class="nav nav-treeview" style="background-color: #2E2E2E;">
               <li class="nav-item">
                 <a th:href="@{/totalPlan}" class="nav-link">
@@ -141,7 +142,7 @@
                 <!-- 계획관리 하위메뉴 시작 -->
                  <ul class="nav nav-treeview" style="background-color: #151515;">
 	                <li class="nav-item">
-	                <a th:href="@{/mainCdp}" class="nav-link">
+	                <a th:href="@{/mainPlan}" class="nav-link">
 	                  <i class="nav-icon fas fa-tasks "></i>
 	                  <p>나의 계획 한눈에보기
 	                  	<span style="font-size: 10px;" class="badge badge-primary">#</span>
@@ -224,10 +225,10 @@
 	              </li>
                  </ul>
               </li>
-              <!-- 계획관리 하위메뉴 종료 -->
+              <!-- 승민 계획 관리 하위메뉴 END -->
               
               <li class="nav-item">
-                <a href="plan/detailPlan.html" class="nav-link">
+                <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-tasks "></i>
                   <p>상세 계획 관리(류준혁)
                   	<i class="right fas fa-angle-left"></i>
@@ -401,9 +402,10 @@
               </li>
             </ul>
           </li>
+          <!--전체 계획 관리 종료-->
 	     
 	      <!-- 최종 스펙 관리 -->
-	       <li class="nav-item">
+	       <li class="nav-item" th:if="${function == null}">
 	        <a th:href="@{/lastSpac}" class="nav-link" >
 	          <i class="nav-icon far fa-file-alt"></i>
 	          <p>
@@ -412,7 +414,7 @@
 	        </a>
 	      </li>
 	      <!-- 경력 관리서 관리 -->
-	       <li class="nav-item">
+	       <li class="nav-item" th:if="${function == null}">
 	        <a th:href="@{/careerManagement}" class="nav-link" >
 	           <i class="nav-icon far fa-file-alt"></i>
 	          <p>
@@ -423,7 +425,7 @@
 	      <!--계획 관리 END-->
 	      
 	       <!-- 코칭 관리 -->
-	      <li class="nav-item has-treeview"  >
+	      <li class="nav-item has-treeview" th:if="${function == null}">
             <a th:href="@{/mainCoaching}" class="nav-link">
               <i class="nav-icon fab fa-dev"></i>
               <p>
@@ -460,7 +462,7 @@
           </li>
           
            <!-- 챌린지 관리 -->
-	      <li class="nav-item has-treeview"  >
+	      <li class="nav-item has-treeview" th:if="${function == null}">
             <a href="#" class="nav-link">
            	 <i class="nav-icon fas fad fa-thumbs-up"></i>
               <p>
@@ -515,7 +517,7 @@
             </ul>
           </li>
 	         <!-- 결제 및 환불 관리 -->
-	      <li class="nav-item has-treeview"  >
+	      <li class="nav-item has-treeview" th:if="${function == null}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-credit-card"></i>
               <p>

@@ -15,25 +15,22 @@
             </a>
             <div class="dropdown-menu">
 	              <a class="dropdown-item" tabindex="-1" th:href="@{/totalPlan}">통합계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/mainCdp}">계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/mainPlan}">계획</a>
 	              <a class="dropdown-item" tabindex="-1" th:href="@{/detailPlan}">상세계획</a>
 	              <a class="dropdown-item" tabindex="-1" th:href="@{/actionPlan}">실천계획</a>
             </div>
 		</li>
-		<li class="nav-item d-none d-sm-inline-block">
-			<!-- Single button -->
-			<div class="btn-group">
-			<a th:href="@{/mainCoaching}" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">코칭</a>
-			  <ul class="dropdown-menu " role="menu">
-			    <li><a th:href="@{/mainCoaching}">코칭가이드</a></li>
-			    <li><a th:href="@{/mentoring}">멘토링</a></li>
-			    <li><a th:href="@{/consulting}">컨설팅</a></li>
-			    <li><a href="#">나의 진행중인 코칭</a></li>
-			    <li class="divider"></li>
-			    <li><a href="#">Separated link</a></li>
-			  </ul>
-			</div>
-		</li>
+		<li class="nav-item dropdown d-none d-sm-inline-block">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/mainCoachings}">
+                 <b>코칭</b><span class="caret"></span>
+            </a>
+            <div class="dropdown-menu">
+                 <a class="dropdown-item" tabindex="-1" th:href="@{/mainCoaching}">#코칭가이드</a>
+                 <a class="dropdown-item" tabindex="-1" th:href="@{/mentoring}">!멘토링</a>
+                 <a class="dropdown-item" tabindex="-1" th:href="@{/consulting}">!컨설팅</a>
+                 <a class="dropdown-item" tabindex="-1" th:href="@{#}">!나의 코칭</a>
+            </div>
+      	</li>
 		<li class="nav-item d-none d-sm-inline-block">
 			<a href="challenge/mainChallenge.html" class="nav-link">두배러 챌린지</a>
 		</li>

@@ -9,17 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PlanController {
 	
 	
-	/*------------------------------------------------나의 계획 한눈에 보기 Start-----------------------------------------------------*/
-	@GetMapping("/mainCdp")
-	public String mainCdp(Model model) {
-		model.addAttribute("title", "나의 계획 한눈에 보기");
-		return "plan/mainCdp";
-	}
-	/*------------------------------------------------나의 계획 한눈에 보기 End-----------------------------------------------------*/
 	/*---------------------------------------------:::: 통합계획 Start ::::-----------------------------------------------------*/
 	@GetMapping("/totalPlan")
 	public String totalPlan(Model model) {
 		model.addAttribute("title", "통합계획");
+		model.addAttribute("function", "plan");
 		return "plan/totalPlan/totalPlan";
 	}
 	
@@ -27,6 +21,7 @@ public class PlanController {
 	@GetMapping("/addTotalPlan")
 	public String addTotalPlan(Model model) {
 		model.addAttribute("title", "통합계획등록");
+		model.addAttribute("function", "none");
 		return "plan/totalPlan/addTotalPlan";
 	}
 	@PostMapping("/addTotalPlan")
@@ -39,6 +34,7 @@ public class PlanController {
 	@GetMapping("/modifyTotalPlan")
 	public String modifyTotalPlan(Model model) {
 		model.addAttribute("title", "통합계획수정");
+		model.addAttribute("function", "none");
 		return"plan/totalPlan/modifyTotalPlan";
 	}
 	
@@ -56,42 +52,50 @@ public class PlanController {
 	/*------------------------------------------------통합계획삭제 End-----------------------------------------------------*/
 	/*--------------------------------------------:::: 통합계획 End ::::-----------------------------------------------------*/
 	
-	/*--------------------------------------------:::: 계획 Start ::::-----------------------------------------------*/
-	@GetMapping("/plan")
-	public String plan(Model model) {
-		model.addAttribute("title", "계획");
-		return "plan/plan/plan";
-	}
 	
+	
+	
+	
+	/*--------------------------------------------:::: 계획 Start ::::-----------------------------------------------*/
+	/*------------------------------------------------나의 계획 한눈에 보기 Start-----------------------------------------------------*/
+	@GetMapping("/mainPlan")
+	public String mainPlan(Model model) {
+		model.addAttribute("title", "나의 계획 한눈에 보기");
+		model.addAttribute("function", "plan");
+		return "plan/mainPlan";
+	}
+	/*------------------------------------------------나의 계획 한눈에 보기 End-----------------------------------------------------*/
 	/*------------------------------------------------addPlan Start-----------------------------------------------------*/
 	@GetMapping("/addPlan")
 	public String addPlan(Model model) {
 		model.addAttribute("title", "계획등록");
+		model.addAttribute("function", "none");
 		return "plan/plan/addPlan";
 	}
 	@PostMapping("/addPlan")
 	public String addPlan() {
 		
-		return "redirect:/plan";
+		return "redirect:/mainPlan";
 	}
 	/*------------------------------------------------addPlan End-----------------------------------------------------*/
 	/*------------------------------------------------modifyPlan Start-----------------------------------------------------*/
 	@GetMapping("/modifyPlan")
 	public String modifyPlan(Model model) {
 		model.addAttribute("title", "계획수정");
+		model.addAttribute("function", "none");
 		return"plan/plan/modifyPlan";
 	}
 	
 	@PostMapping("/modifyPlan")
 	public String modifyPlan() {
 		
-		return"redirect:/plan";
+		return"redirect:/mainPlan";
 	}
 	/*------------------------------------------------modifyPlan End-----------------------------------------------------*/
 	/*------------------------------------------------deleteTotalPlan Start-----------------------------------------------------*/
 	@GetMapping("/deletePlan")
 	public String deletePlan() {
-		return"redirect:/plan";
+		return"redirect:/mainPlan";
 	}
 	/*------------------------------------------------deleteTotalPlan End-----------------------------------------------------*/
 	/*------------------------------------------------학력 계획 관리 Start-----------------------------------------------------*/
@@ -101,6 +105,7 @@ public class PlanController {
 	System.out.println("planEducationalHistory 메서드 실행");
 	System.out.println("==============================================");
 	model.addAttribute("title", "학력 계획 관리");
+	model.addAttribute("function", "plan");
 	return "plan/plan/planEducationalHistory";
 	}
 	/*------------------------------------------------학력 계획 관리 End-----------------------------------------------------*/
@@ -111,6 +116,7 @@ public class PlanController {
 	System.out.println("planProject 메서드 실행");
 	System.out.println("==============================================");
 	model.addAttribute("title", "프로젝트 계획");
+	model.addAttribute("function", "plan");
 	return "plan/plan/planProject";
 	}
 	/*------------------------------------------------프로젝트 계획 관리 End-----------------------------------------------------*/
@@ -121,6 +127,7 @@ public class PlanController {
 	System.out.println("planCertificate 메서드 실행");
 	System.out.println("==============================================");
 	model.addAttribute("title", "자격증 계획");
+	model.addAttribute("function", "plan");
 	return "plan/plan/planCertificate";
 	}
 	/*------------------------------------------------자격증 계획 관리 End-----------------------------------------------------*/
@@ -131,6 +138,7 @@ public class PlanController {
 		System.out.println("planCertifiedLanguage 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "공인어학 계획");
+		model.addAttribute("function", "plan");
 		return "plan/plan/planCertifiedLanguage";
 	}
 	/*------------------------------------------------공인어학 계획 관리 End-----------------------------------------------------*/
@@ -141,6 +149,7 @@ public class PlanController {
 		System.out.println("planTechnologyStack 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "기술스택 계획");
+		model.addAttribute("function", "plan");
 	return "plan/plan/planTechnologyStack";
 	}
 	/*------------------------------------------------기술스택 계획 관리 End-----------------------------------------------------*/
@@ -151,6 +160,7 @@ public class PlanController {
 		System.out.println("planJobTraining 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "직종전문교육과정 계획");
+		model.addAttribute("function", "plan");
 		return "plan/plan/planJobTraining";
 	}
 	/*------------------------------------------------직종전문교육과정 계획 관리 End-----------------------------------------------------*/
@@ -161,6 +171,7 @@ public class PlanController {
 		System.out.println("planInternship 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "인턴십 계획");
+		model.addAttribute("function", "plan");
 		return "plan/plan/planInternship";
 	}
 	/*------------------------------------------------인턴십 계획 관리 End-----------------------------------------------------*/
@@ -171,6 +182,7 @@ public class PlanController {
 		System.out.println("planContest 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "인턴십 계획");
+		model.addAttribute("function", "plan");
 		return "plan/plan/planContest";
 	}
 	/*------------------------------------------------공모전 계획 관리 End-----------------------------------------------------*/
@@ -181,6 +193,7 @@ public class PlanController {
 		System.out.println("planCareer 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "인턴십 계획");
+		model.addAttribute("function", "plan");
 		return "plan/plan/planCareer";
 	}
 	/*------------------------------------------------경력 계획 관리 End-----------------------------------------------------*/
