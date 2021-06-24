@@ -3,6 +3,8 @@ package com.devcdper.plan.controller;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,7 @@ public class ActionPlanController {
 		System.out.println("========================================");		
 		}
 	
-	
+		
 	//실천 계획 관리 화면 연결
 	@GetMapping("/actionPlan")
 		public String actionPlan(Model model) {
@@ -35,19 +37,19 @@ public class ActionPlanController {
 			//log.info("========================================");
 			//log.info("=======actionPlan 메서드 실행=================");
 			model.addAttribute("title", "실천 계획 관리");
-			return "plan/actionPlan";
+			return "plan/actionPlan/actionPlan";
 		}
 	
 	
 	//학력 실천 계획 관리 연결
-	@GetMapping("/actioneducationalHistory")
-		public String actioneducationalHistory (Model model) {
+	@GetMapping("/actionEducationalHistory")
+		public String actionEducationalHistory (Model model) {
 			System.out.println("=================================");
-			System.out.println("======actioneducationalHistory 메서드 실행==========");
+			System.out.println("======actionEducationalHistory 메서드 실행==========");
 			//log.info("========================================");
-			//log.info("=======actioneducationalHistory 메서드 실행=================");
+			//log.info("=======actionEducationalHistory 메서드 실행=================");
 			model.addAttribute("title", "학력 실천 계획 관리");
-			return "plan/actioneducationalHistory";
+			return "plan/actionPlan/actionEducationalHistory";
 		}
 	
 	
@@ -59,7 +61,7 @@ public class ActionPlanController {
 			//log.info("========================================");
 			//log.info("=======actionProject 메서드 실행=================");
 			model.addAttribute("title", "프로젝트 실천 계획 관리");
-			return "plan/actionProject";
+			return "plan/actionPlan/actionProject";
 		}
 	
 		
@@ -71,7 +73,7 @@ public class ActionPlanController {
 			//log.info("========================================");
 			//log.info("=======actionCertificate 메서드 실행=================");
 			model.addAttribute("title", "자격증 실천 계획 관리");
-			return "plan/actionCertificate";
+			return "plan/actionPlan/actionCertificate";
 		}
 		
 		
@@ -83,7 +85,7 @@ public class ActionPlanController {
 			//log.info("========================================");
 			//log.info("=======actionCertifiedLanguage 메서드 실행=================");
 			model.addAttribute("title", "공인어학 실천 계획 관리");
-			return "plan/actionCertifiedLanguage";
+			return "plan/actionPlan/actionCertifiedLanguage";
 		}
 		
 		
@@ -95,7 +97,7 @@ public class ActionPlanController {
 			//log.info("========================================");
 			//log.info("=======actionTechnologyStack 메서드 실행=================");
 			model.addAttribute("title", "기술스택 실천 계획 관리");
-			return "plan/actionTechnologyStack";
+			return "plan/actionPlan/actionTechnologyStack";
 		}	
 		
 		
@@ -107,7 +109,7 @@ public class ActionPlanController {
 		//log.info("========================================");
 		//log.info("=======actionJobTraining 메서드 실행=================");
 		model.addAttribute("title", "직종전문교육과정 실천 계획 관리");
-		return "plan/actionJobTraining";
+		return "plan/actionPlan/actionJobTraining";
 		}
 	
 		
@@ -119,7 +121,7 @@ public class ActionPlanController {
 		//log.info("========================================");
 		//log.info("=======actionInternship 메서드 실행=================");
 		model.addAttribute("title", "인턴십 실천 계획 관리");
-		return "plan/actionInternship";
+		return "plan/actionPlan/actionInternship";
 		}
 	
 	
@@ -131,7 +133,7 @@ public class ActionPlanController {
 		//log.info("========================================");
 		//log.info("=======actionContest 메서드 실행=================");
 		model.addAttribute("title", "공모전 실천 계획 관리");
-		return "plan/actionContest";
+		return "plan/actionPlan/actionContest";
 		}
 		
 	
@@ -143,7 +145,7 @@ public class ActionPlanController {
 		//log.info("========================================");
 		//log.info("=======actionCareer 메서드 실행=================");
 		model.addAttribute("title", "경력 실천 계획 관리");
-		return "plan/actionCareer";
+		return "plan/actionPlan/actionCareer";
 		}	
 		
 	}
