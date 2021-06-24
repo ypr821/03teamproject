@@ -3,6 +3,8 @@ package com.devcdper.plan.controller;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +19,12 @@ public class ActionPlanController {
 	 */	
 	
 	@PostConstruct
-	public void planControllerInit() {
+	public void actionPlanControllerInit() {
 		//log.info("========================================");
-		//log.info("PlanController.java 객체 생성");
+		//log.info("actionPlanController.java 객체 생성");
 		//log.info("========================================");
 		System.out.println("========================================");
-		System.out.println("PlanController.java 객체 생성");
+		System.out.println("actionPlanController.java 객체 생성");
 		System.out.println("========================================");		
 		}
 	

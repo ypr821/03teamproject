@@ -83,46 +83,77 @@
 </head>
 <body>
 	<header>
-		<h1> 프로젝트 실천 등록 화면 입니다. </h1>
  	</header>
-	
-	<div id="container">
-	<label for="title">프로젝트 실천 제목</label>
-	<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-	
-	<label for="content">프로젝트 실천 내용</label>
-	<textarea class="form-control" id="content" placeholder="내용을 입력하세요."></textarea>
-	
-	<label for="startDate">프로젝트 실천 시작일</label>
-	<input type="date" placeholder="시작일을 선택해주세요."/>
-	
-	<label for="startEnd">프로젝트 실천 종료일</label>
-	<input type="date" placeholder="종료일을 선택해주세요."/>
+ 			
+       <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">프로젝트 실천 등록</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="title">프로젝트 실천 제목</label>
+                    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
+                  </div>
+                  <div class="form-group">
+                    <label for="title">프로젝트 실천 작성자</label>
+                    <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요.">
+                  </div>
+                  <div class="form-group">
+                    <label for="content">프로젝트 실천 내용</label>
+                    <input type="text" class="form-control" id="content" placeholder="내용을 입력하세요.">
+                  </div>
+                  <div class="form-group">
+                    <label for="startDate">프로젝트 실천 시작일</label>
+                    <input type="date" class="form-control" id="startDate" name="startDate">
+                  </div>
+                      <div class="form-group">
+                    <label for="startEnd">프로젝트 실천 종료일</label>
+                    <input type="date" class="form-control" id="startEnd" name="startEnd">
+                  </div>
+                  <div class="status">
+                  <label for="status">프로젝트 실천 상태</label>
+					 <div class="status">
+					<label>
+					 <input type="checkbox" name="userChoice" value="Proceeding" checked="checked">
+						진행중
+					</label>
+					<label>
+						<input type="checkbox" name="userChoice" value="stop">
+						중단
+					</label>
+					<label>
+						<input type="checkbox" name="userChoice" value="complete">
+						완료
+					</label>
+					</div>
+                  </div>
+                  </div>
+                 	<div class="card-footer">
+                  <a href="/" role="button" class="btn btn-secondary">취소</a>
+                 <a href="btn-save" role="button" class="btn btn-primary">등록</a>
+                </div>
+                <!-- /.card-body -->
 
-	 
-	<label for="status">프로젝트 실천 상태</label>
-	 <div class="status">
-	<label>
-	 <input type="checkbox" name="userChoice" value="Proceeding" checked="checked">
-		진행중
-	</label>
-	<label>
-		<input type="checkbox" name="userChoice" value="stop">
-		중단
-	</label>
-	<label>
-		<input type="checkbox" name="userChoice" value="complete">
-		완료
-	</label>
-	</div>
-	
-	<label for="startEnd">프로젝트 실천 작성일자</label>
-	<input type="date" placeholder="작성일자를 선택해주세요."/>
-	
-	<a href="/" role="button" class="btn btn-secondary">취소</a>
-	<a href="/" role="button" class="btn btn-primary">등록</a>
-	
-	</div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+            </div>
+            </div>
+            </section>
+            </body>
+            
+
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
