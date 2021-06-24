@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="@{layout/default}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">login title</title>
+	<div class="col-sm-12" th:align="center">
+		<h1 class="m-0">🔑 로그인🔑</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12" th:align="right">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="/">login</a></li>
+			<li class="breadcrumb-item active">login.html</li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+<div class="col-sm-12" th:align="center">
+	<div class="register-box">
+		<div class="card">
+			<div class="card-body register-card-body">
+				<p class="login-box-msg">로그인을 진행하여 주십시오.</p>
+				<form th:action="@{/login}" method="post">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="memberId" placeholder="아이디를 입력하세요">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+				    	</div>
+					</div>
+					<div class="input-group mb-3">
+						<input type="password" class="form-control" name="memberPw" placeholder="패스워드 입력하세요">
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<label th:if="${loginResult != null}" th:text="${loginResult}"></label>
+					<div class="col-4">
+						<button type="submit" class="btn btn-primary btn-block">로그인</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</th:block>
+</html>

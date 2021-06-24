@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devcdper.user_admin.dao.NormalUserMapper">
+
+	<resultMap type="NormalUser" id="normalUserResultMap">
+		<result property="userEmail" 				column="user_email"/>
+		<result property="userPasswrod" 			column="user_password"/>
+		<result property="userName" 				column="user_name"/>
+		<result property="userBirth" 				column="user_birth"/>
+		<result property="userAddr" 				column="user_addr"/>
+		<result property="userAddrDetail" 			column="user_addr_detail"/>
+		<result property="userGender" 				column="user_gender"/>
+		<result property="userMoblie" 				column="user_mobile"/>
+		<result property="userJob" 		 			column="user_job"/>
+		<result property="userIsReceiveMarketing" 	column="user_is_receive_marketing"/>
+		<result property="userJoinMotivation" 		column="user_join_motivation"/>
+		<result property="userJoinPath" 		 	column="user_join_path"/>
+		<result property="userRecommendEmail" 		column="user_recommend_email"/>
+		<result property="userJoinDate" 			column="user_join_date"/>
+		<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
+	</resultMap>
+	
+	<update id="modifyNormalUser" parameterType="NormalUser">
+		UPDATE user
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="userPasswrod != null and userPasswrod != ''.toString()">	
+			user_password= #{userPasswrod}
+\
+			</if>
+			<if test="userName != null and userName != ''.toString()">	
+				,user_name=#{userName}
+			</if>
+			<if test="userBirth != null and userBirth != ''.toString()">	
+				,user_birth=#{userBirth}
+			</if>
+			<if test="userAddr != null and userAddr != ''.toString()">	
+				,user_addr=#{userAddr}
+			</if>
+			<if test="userAddrDetail != null and userAddrDetail != ''.toString()">	
+				,user_addr_detail=#{userAddrDetail}
+			</if>
+			<if test="userGender != null and userGender != ''.toString()">	
+				,user_gender=#{userGender}
+			</if>
+			<if test="userMoblie != null and userMoblie != ''.toString()">	
+				,user_mobile=#{userMoblie}
+			</if>
+			<if test="userJob != null and userJob != ''.toString()">	
+				,user_job=#{userJob}
+			</if>
+			<if test="userIsReceiveMarketing != null and userIsReceiveMarketing != ''.toString()">	
+				,user_is_receive_marketing=#{userIsReceiveMarketing}
+			</if>		
+		</trim>
+		WHERE 
+			user_email = #{userEmail};
+	</update>
+	
+	<select id="getNormalInfoById" parameterType="String" resultMap="normalUserResultMap">
+		SELECT 
+				user_email							
+				, user_password						
+				, user_name							
+				, user_birth						
+				, user_addr							
+				, user_addr_detail					
+				, user_gender						
+				, user_mobile						
+				, user_job							
+				, user_is_receive_marketing			
+				, user_join_motivation				
+				, user_join_path					
+				, user_recommend_email				
+				, user_join_date					
+				, user_withdraw_status				
+			FROM 
+				user AS u
+			WHERE
+				u.user_email = #{userEmail};
+	</select>
+	
+	
+	
+	<insert id="addNormalUser" parameterType="NormalUser">
+			INSERT INTO user
+				(user_email
+				, user_password
+				, user_name
+				, user_birth
+				, user_addr
+				, user_addr_detail
+				, user_gender
+				, user_mobile
+				, user_job
+				, user_is_receive_marketing
+				, user_join_motivation
+				, user_join_path
+				, user_recommend_email
+				, user_join_date
+				, user_withdraw_status
+				)VALUES (
+				 #{userEmail}
+				,#{userPasswrod}
+				,#{userName}
+				,#{userBirth}
+				,#{userAddr}
+				,#{userAddrDetail}
+				,#{userGender}
+				,#{userMoblie}
+				,#{userJob}
+				,#{userIsReceiveMarketing}
+				,#{userJoinMotivation}
+				,#{userJoinPath}
+				,#{userRecommendEmail}
+				,CURDATE()
+				,#{userWithdrawStatus});	
+	</insert>
+	
+	<select id="getNormalUserList" resultType="NormalUser">
+			SELECT 
+				user_email							AS userEmail
+				, user_password						AS userPasswrod
+				, user_name							AS userName
+				, user_birth						AS userBirth
+				, user_addr							AS userAddr
+				, user_addr_detail					AS userAddrDetail
+				, user_gender						AS userGender
+				, user_mobile						AS userMoblie
+				, user_job							AS userJob
+				, user_is_receive_marketing			AS userIsReceiveMarketing
+				, user_join_motivation				AS userJoinMotivation
+				, user_join_path					AS userJoinPath
+				, user_recommend_email				AS userRecommendEmail
+				, user_join_date					AS userJoinDate
+				, user_withdraw_status				AS userWithdrawStatus
+			FROM 
+				user;
+	</select>
+	  
+</mapper>

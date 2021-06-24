@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+	  
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">코치회원조회🌟</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="/">coachList</a></li>
+			<li class="breadcrumb-item active">coachList.html</li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+	<div class="col-sm-12">
+		<div class="card-body table-responsive p-0">
+		    <table id="example2" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<td>코치이메일</td>
+						<td>비밀번호</td>
+						<td>이름</td>
+						<td>생년월일</td>
+						<td>주소</td>
+						<td>상세주소</td>
+						<td>성별</td>
+						<td>전화번호</td>
+						<td>권한</td>
+						<td>직업</td>
+						<td>경력사항</td>
+						<td>기술스택</td>
+						<td>자격증</td>
+						<td>경력증빙서류</td>
+						<td>자격증빙서류</td>
+						<td>가입승인여부</td>
+						<td>승인자이메일</td>
+						<td>수신자동의여부</td>
+						<td>가입동기</td>
+						<td>가입경로</td>
+						<td>추천인이메일</td>
+						<td>가입일자</td>
+						<td>탈퇴상태</td>
+						<td>수정</td>
+						<td>삭제</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="l : ${coachList}">
+						<td th:text="${l.coachUserEmail}"></td>
+						<td th:text="${l.coachPassword}"></td>
+						<td th:text="${l.coachName}"></td>
+						<td th:text="${l.coachBirth}"></td>
+						<td th:text="${l.coachAddr}"></td>
+						<td th:text="${l.coachAddrDetail}"></td>
+						<td th:text="${l.coachGender}"></td>
+						<td th:text="${l.coachMobile}"></td>
+						<td th:text="${l.coachAuthority}"></td>
+						<td th:text="${l.coachJob}"></td>
+						<td th:text="${l.coachProfileCareer}"></td>
+						<td th:text="${l.coachProfileTechStack}"></td>
+						<td th:text="${l.coachCertificate}"></td>
+						<td th:text="${l.coachCareerDocumentaryEvidence}"></td>
+						<td th:text="${l.coachCertificateDocumentaryEvidence}"></td>
+						<td th:text="${l.coachJoinApproval}"></td>
+						<td th:text="${l.coachApproverEmail}"></td>
+						<td th:text="${l.coachIsReceiveMarketing}"></td>
+						<td th:text="${l.coachJoinMotivation}"></td>
+						<td th:text="${l.coachJoinPath}"></td>
+						<td th:text="${l.coachRecommendEmail}"></td>
+						<td th:text="${l.coachJoinDate}"></td>
+						<td th:text="${l.coachWithdrawStatus}"></td>
+						<td>
+							<a th:href="@{/modifyCoach(coachUserEmail=${l.coachUserEmail})}">수정</a>
+						</td>
+						<td>
+							<a th:href="@{/#}">삭제</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
+
