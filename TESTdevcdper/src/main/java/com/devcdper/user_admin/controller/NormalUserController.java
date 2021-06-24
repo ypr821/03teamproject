@@ -1,6 +1,9 @@
 package com.devcdper.user_admin.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.devcdper.user_admin.domain.NormalUser;
 import com.devcdper.user_admin.service.NormalUserService;
@@ -25,6 +29,39 @@ public class NormalUserController {
 	@Autowired
 	public NormalUserController(NormalUserService normalUserService) {
 		this.normalUserService = normalUserService;
+	}
+	
+	@PostMapping("/normalLogin")
+	public String login(@RequestParam(value="userEmail", required = false) String userEmail
+			   ,@RequestParam(value="userPasswrod", required = false) String userPasswrod
+			   ,HttpSession session
+			   ,RedirectAttributes reAttr) {
+		if(userEmail != null && "".equals(userEmail) && userPasswrod != null && "".equals(userPasswrod)) {
+			
+			Map<String, Object> resultMap = normalUserService.loginNomalUser(userEmail, userPasswrod);
+			
+			boolean loginCheck = (boolean) resultMap.get("loginCheck");
+			NormalUser loginMember = (NormalUser) resultMap.get("loginNormalUser");
+			
+			if(loginCheck) {
+				session.setAttribute("NEMAIL", loginMember.getUserEmail());
+				session.setAttribute("NNAME", loginMember.getUserName());
+				
+				return "redirect:/";
+			}
+			reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
+		}
+		return "redirect:/normalLogin";
+	}
+	
+	@GetMapping("/normalLogin")
+	public String login(Model model
+						,@RequestParam(name="loginResult", required = false) String loginResult) {
+		
+		model.addAttribute("title","로그인화면");
+		if(loginResult != null) model.addAttribute("loginResult", loginResult);
+		
+		return "login/normalLogin";
 	}
 	
 	@PostMapping("/modifyNormal")

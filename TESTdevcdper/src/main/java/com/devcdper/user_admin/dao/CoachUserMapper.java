@@ -14,7 +14,7 @@ public interface CoachUserMapper {
 	//코치회원가입
 	public int addCoachUser(CoachUser coachUser);
 	//코치 수정폼
-	public CoachUser getCoachInfoById(String coachUserEmail);
+	public CoachUser getCoachInfoById(String coachEmail);
 	//코치 수정
 //	public int get
 	
