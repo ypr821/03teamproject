@@ -61,14 +61,25 @@
 		      </div>
 		    </form>
 	    </div>
-	    <li class="nav-item d-none d-sm-inline-block">
-			<a th:href="@{/login}" th:if="${session.SID eq null}" class="nav-link">로그인</a>
+	   <li class="nav-item dropdown d-none d-sm-inline-block">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" th:if="${session.SID eq null}">로그인</a>
+			<div class="dropdown-menu">
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/loginNormal}">일반로그인</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/loginCoach}">코치로그인</a>
+	         </div>		
 		</li>
+		
 		<li class="nav-item d-none d-sm-inline-block">
 			<a th:href="@{/logout}" th:unless="${session.SID eq null}" class="nav-link">로그아웃</a>
 		</li>
-		<li class="nav-item d-none d-sm-inline-block">
-			<a th:href="@{/addMember}" th:if="${session.SID == null}" class="nav-link">회원가입</a>
+		
+		<!-- 회원가입 -->
+		<li class="nav-item dropdown d-none d-sm-inline-block">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"  th:if="${session.SID == null}">회원가입</a>
+			<div class="dropdown-menu">
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/addNormal}">일반회원가입</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/addCoach}">코치회원가입</a>
+	         </div>		
 		</li>
     </li>
 

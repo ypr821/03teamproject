@@ -77,14 +77,39 @@
 	      
 	      
 	      
-	      <li class="nav-item">
-	        <a th:href="@{/memberList}"  class="nav-link">
-	          <i class="nav-icon fas fa-user"></i>
-	          <p>
-	            	전체회원조회
-	          </p>
-	        </a>
-	      </li>
+	      <li class="nav-item has-treeview"  >
+            <a href="#" class="nav-link">
+	      	<i class="nav-icon fas fa-user"></i>
+                <p>
+	               	전체회원조회
+	               <i class="right fas fa-angle-left"></i>
+                </p>
+             </a>
+	           <ul class="nav nav-treeview" style="background-color: #2E2E2E;">
+	             
+	             <li class="nav-item">
+	                <a th:href="@{/normalList}" class="nav-link"><!-- th:if="${session.SLEVEL == '1'}" --> 
+	                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
+	                  <i class="nav-icon fas fa-user"></i>
+	                  <p>
+	                  	일반회원전체조회
+	                  </p>
+	                </a>
+	              </li>
+	        	</ul> 
+	           <ul class="nav nav-treeview" style="background-color: #2E2E2E;">
+	             
+	             <li class="nav-item">
+	                <a th:href="@{/coachList}" class="nav-link"><!-- th:if="${session.SLEVEL == '1'}" --> 
+	                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
+	                  <i class="nav-icon fas fa-user"></i>
+	                  <p>
+	                  	코치회원전체조회
+	                  </p>
+	                </a>
+	              </li>
+	        	</ul> 
+	     	 </li>
 	     
           <!-- 계획 관리 Start -->
 	      <li class="nav-item has-treeview"  >

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devcdper.user_admin.dao.CoachUserMapper">
+
+	<resultMap type="CoachUser" id="CoachUserResultMap">
+		<result property="coachUserEmail" 						column="coach_user_email"/>
+		<result property="coachPassword"				 		column="coach_password"/>
+		<result property="coachName" 							column="coach_name"/>
+		<result property="coachBirth" 							column="coach_birth"/>
+		<result property="coachAddr"					 		column="coach_addr"/>
+		<result property="coachAddrDetail" 						column="coach_addr_detail"/>
+		<result property="coachGender" 							column="coach_gender"/>
+		<result property="coachMobile" 							column="coach_mobile"/>
+		<result property="coachAuthority" 						column="coach_authority"/>
+		<result property="coachJob" 							column="coach_job"/>
+		<result property="coachProfileCareer" 					column="coach_profile_career"/>
+		<result property="coachProfileTechStack" 				column="coach_profile_tech_stack"/>
+		<result property="coachCertificate" 					column="coach_certificate"/>
+		<result property="coachCareerDocumentaryEvidence" 		column="coach_career_documentary_evidence"/>
+		<result property="coachCertificateDocumentaryEvidence" 	column="coach_certificate_documentary_evidence"/>
+		<result property="coachJoinApproval" 					column="coach_join_approval"/>
+		<result property="coachApproverEmail" 					column="coach_approver_email"/>
+		<result property="coachIsReceiveMarketing" 				column="coach_is_receive_marketing"/>
+		<result property="coachJoinMotivation" 					column="coach_join_motivation"/>
+		<result property="coachJoinPath" 						column="coach_join_path"/>
+		<result property="coachRecommendEmail" 					column="coach_recommend_email"/>
+		<result property="coachJoinDate" 						column="coach_join_date"/>
+		<result property="coachWithdrawStatus" 					column="coach_withdraw_status"/>
+	</resultMap>
+	
+	<update id="ModifyCoach" parameterType="CoachUser">
+		UPDATE 
+			coach_user
+		SET
+			coach_password=#{coachPassword}
+			,coach_name=#{coachName}
+			,coach_birth=#{coachBirth}
+			,coach_addr=#{coachAddr}
+			,coach_addr_detail=#{coachAddrDetail}
+			,coach_gender=#{coachGender}
+			,coach_mobile=#{coachMobile}
+			,coach_authority=#{coachAuthority}
+			,coach_job=#{coachJob}
+			,coach_profile_career=#{coachProfileCareer}
+			,coach_profile_tech_stack=#{coachProfileTechStack}
+			,coach_certificate=#{coachCertificate}
+			,coach_career_documentary_evidence=#{coachCareerDocumentaryEvidence}
+			,coach_certificate_documentary_evidence=#{coachCertificateDocumentaryEvidence}
+			,coach_is_receive_marketing=#{coachIsReceiveMarketing}
+		WHERE 
+			coach_user_email= #{coachUserEmail};
+		
+	</update>
+	
+	<select id="getCoachInfoById" parameterType="String" resultMap="CoachUserResultMap">
+		SELECT 
+			coach_password
+			, coach_name
+			, coach_birth
+			, coach_addr
+			, coach_addr_detail
+			, coach_gender
+			, coach_mobile
+			, coach_authority
+			, coach_job
+			, coach_profile_career
+			, coach_profile_tech_stack
+			, coach_certificate
+			, coach_career_documentary_evidence
+			, coach_certificate_documentary_evidence
+			, coach_is_receive_marketing
+		FROM 
+			coach_user
+		WHERE 
+			coach_user_email = #{coachUserEmail};
+	</select>
+	
+	
+	<insert id="addCoachUser" parameterType="CoachUser" >
+		INSERT INTO coach_user
+			(coach_user_email
+			, coach_password
+			, coach_name
+			, coach_birth
+			, coach_addr
+			, coach_addr_detail
+			, coach_gender
+			, coach_mobile
+			, coach_authority
+			, coach_job
+			, coach_profile_career
+			, coach_profile_tech_stack
+			, coach_certificate
+			, coach_career_documentary_evidence
+			, coach_certificate_documentary_evidence
+			, coach_join_approval
+			, coach_approver_email
+			, coach_is_receive_marketing
+			, coach_join_motivation
+			, coach_join_path
+			, coach_recommend_email
+			, coach_join_date
+			, coach_withdraw_status)
+		VALUES (
+			#{coachUserEmail}
+			, #{coachPassword}
+			, #{coachName}
+			, #{coachBirth}
+			, #{coachAddr}
+			, #{coachAddrDetail}
+			, #{coachGender}
+			, #{coachMobile}
+			, #{coachAuthority}
+			, #{coachJob}
+			, #{coachProfileCareer}
+			, #{coachProfileTechStack}
+			, #{coachCertificate}
+			, #{coachCareerDocumentaryEvidence}
+			, #{coachCertificateDocumentaryEvidence}
+			, '승인 진행'
+			, #{coachApproverEmail}
+			, #{coachIsReceiveMarketing}
+			, #{coachJoinMotivation}
+			, #{coachJoinPath}
+			, #{coachRecommendEmail}
+			, CURDATE()
+			, 'N');
+	</insert>
+	
+	<select id="getCoachList" resultType="CoachUser">
+		SELECT 
+			coach_user_email							AS coachUserEmail
+			, coach_password							AS coachPassword
+			, coach_name								AS coachName
+			, coach_birth								AS coachBirth
+			, coach_addr								AS coachAddr
+			, coach_addr_detail							AS coachAddrDetail
+			, coach_gender								AS coachGender
+			, coach_mobile								AS coachMobile
+			, coach_authority							AS coachAuthority
+			, coach_job									AS coachJob
+			, coach_profile_career						AS coachProfileCareer
+			, coach_profile_tech_stack					AS coachProfileTechStack
+			, coach_certificate							AS coachCertificate
+			, coach_career_documentary_evidence			AS coachCareerDocumentaryEvidence
+			, coach_certificate_documentary_evidence	AS coachCertificateDocumentaryEvidence
+			, coach_join_approval						AS coachJoinApproval
+			, coach_approver_email						AS coachApproverEmail
+			, coach_is_receive_marketing				AS coachIsReceiveMarketing
+			, coach_join_motivation						AS coachJoinMotivation
+			, coach_join_path							AS coachJoinPath
+			, coach_recommend_email						AS coachRecommendEmail
+			, coach_join_date							AS coachJoinDate
+			, coach_withdraw_status						AS coachWithdrawStatus
+		FROM
+			coach_user
+	</select>
+
+</mapper>

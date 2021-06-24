@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+	  
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">main title</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">DEV-CDPER🌟</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="/">addNormal</a></li>
+			<li class="breadcrumb-item active">addNormal.html</li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+
+<th:block layout:fragment="container">
+	<div class="col-sm-12">
+		<div class="card-body table-responsive p-0">
+			<form id="addNormalForm" th:action="@{/addNormal}" method="post">
+			    <table id="example2" class="table table-bordered table-hover">
+					<tr>
+						<td>아이디</td>
+						<td>
+							<input type="text" name="userEmail" placeholder="회원이메일을 입력해주세요." />
+						</td>			
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td>
+							<input type="text" name="userPasswrod" placeholder="비밀번호를 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td>
+							<input type="text" name="userName" placeholder="회원이름을 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>생년월일</td>
+						<td>
+							<input type="date" name="userBirth" value="xxx" min="yyy" max="zzz">
+						</td>			
+					</tr>
+					<tr>
+						<td>주소</td>
+						<td>
+							<input type="text" name="userAddr" placeholder="주소를 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>상세주소</td>
+						<td>
+							<input type="text" name="userAddrDetail" placeholder="상세주소를 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>성별</td>
+						<td>
+							<label>
+								 <input type="radio" name="userGender" value="남" checked ="checked">남 
+							</label>
+							<label>
+	                  			 <input type="radio" name="userGender" value="여">여
+							</label>
+						</td>			
+					</tr>
+					<tr>
+						<td>연락처</td>
+						<td>
+							 <select name="userMoblie" id="mphonNo1" >
+                                <option value="">선택</option>
+                                
+                                    <option value="010">010</option>
+                                
+                                    <option value="011">011</option>
+                                
+                                    <option value="016">016</option>
+                                
+                                    <option value="017">017</option>
+                                
+                                    <option value="018">018</option>
+                                
+                                    <option value="019">019</option>
+                                
+                            </select>-
+						     <input type="tel" name="userMoblie" size="5" /> - 
+						     <input type="tel" name="userMoblie" size="5" /><br />
+						</td>			
+					</tr>
+					<tr>
+						<td>회원직업</td>
+						<td>
+							<input type="text" name="userJob" placeholder="회원직업 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>수신동의여부</td>
+						<td>
+						<label>
+							<input type="radio" name="userIsReceiveMarketing" value="Y" checked ="checked">Yes 
+						</label>
+						<label>
+                  			<input type="radio" name="userIsReceiveMarketing" value="N">NO
+						</label>
+						</td>			
+					</tr>
+					<tr>
+						<td>가입동기</td>
+						<td>
+							<input type="text" name="userJoinMotivation" placeholder="가입동기를 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>가입경로</td>
+						<td>
+							<input type="text" name="userJoinPath" placeholder="가입경로를 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td>추천인 이메일</td>
+						<td>
+							<input type="text" name="userRecommendEmail" placeholder="추천인 이메일을 입력해주세요."/>
+						</td>			
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: center;">
+							<button type="submit">회원가입</button>
+						</td>			
+					</tr>
+			    </table>
+		   </form>
+		</div>
+	</div>	    
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
+

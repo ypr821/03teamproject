@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+	  
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">전체회원조회🌟</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="/">normalList</a></li>
+			<li class="breadcrumb-item active">normalList.html</li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+<th:block layout:fragment="container">
+	<div class="col-sm-12">
+		<div class="card-body table-responsive p-0">
+		    <table id="example2" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>회원이메일</th>
+						<th>비밀번호</th>
+						<th>이름</th>
+						<th>생년월일</th>
+						<th>주소</th>
+						<th>상세주소</th>
+						<th>성별</th>
+						<th>전화번호</th>
+						<th>직업</th>
+						<th>수신동의여부</th>
+						<th>가입동기</th>
+						<th>가입경로</th>
+						<th>추천인 이메일</th>
+						<th>가입일자</th>
+						<th>탈퇴상태</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="l : ${normalList}">
+						<td th:text="${l.userEmail}"></td>
+						<td th:text="${l.userPasswrod}"></td>
+						<td th:text="${l.userName}"></td>
+						<td th:text="${l.userBirth}"></td>
+						<td th:text="${l.userAddr}"></td>
+						<td th:text="${l.userAddrDetail}"></td>
+						<td th:text="${l.userGender}"></td>
+						<td th:text="${l.userMoblie}"></td>
+						<td th:text="${l.userJob}"></td>
+						<td th:text="${l.userIsReceiveMarketing}"></td>
+						<td th:text="${l.userJoinMotivation}"></td>
+						<td th:text="${l.userJoinPath}"></td>
+						<td th:text="${l.userRecommendEmail}"></td>
+						<td th:text="${l.userJoinDate}"></td>
+						<td th:text="${l.userWithdrawStatus}"></td>
+						<td>
+							<a th:href="@{/modifyNormal(userEmail=${l.userEmail})}">수정</a>
+						</td>
+						<td>
+							<a th:href="@{/#}">삭제</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
+
