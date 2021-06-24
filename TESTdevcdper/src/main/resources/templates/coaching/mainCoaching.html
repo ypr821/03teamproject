@@ -8,22 +8,15 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">main title</title>
 	<div class="col-sm-6">
-		<h1 class="m-0">코칭가이드🌟</h1>
+		<h1 class="m-0">코칭가이드</h1>
 	</div><!-- /.col -->
-	<div class="col-sm-6">
-		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/mentoring}">멘토링관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/consulting}">컨설팅관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/coachAdmin}">코치관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/coachingReview}">후기관리</a></li>
-		</ol>
-	</div><!-- /.col -->
+	<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block><!-- /.col -->
 </th:block>
 <th:block layout:fragment="container">
 	<!-- 정렬 row 클래스 - 코치 프로필 전체시작과 끝에 태그위치시킴 -->
 	<div class="row">
 	
-		<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+		<div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
 	          <div class="card bg-light d-flex flex-fill">
 	             <div class="card-header text-muted border-bottom-0">
 	               	⭐ : 4.5/5.0

@@ -2,268 +2,367 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/default}">
+	
 	<th:block layout:fragment="pageTitle">
 		<title th:text="${title}">main title</title>
 		<div class="col-sm-6">
 			<h1 class="m-0">coachingAdminPage</h1>
-		</div><!-- /.col -->
+		</div>
 		<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block>
-		
-		<!-- /.col -->
 	</th:block>
+	
+	
 	<th:block layout:fragment="container">
-	
-
-		
-		<!-- 정렬 row 클래스 - 코치 프로필 전체시작과 끝에 태그위치시킴 -->
-		<div class="row">
-	          <div class="col-md-3">
-	
-	            <!-- Profile Image -->
-	            <div class="card card-primary card-outline">
-	              <div class="card-body box-profile">
-	                <div class="text-center">
-	                  <img class="profile-user-img img-fluid img-circle" src="../image/홍길동.jpg" alt="User profile picture">
-	                </div>
-	
-	                <h3 class="profile-username text-center">홍길동</h3>
-	
-	                <p class="text-muted text-center">멘토/컨설턴트</p>
-	
-	                <ul class="list-group list-group-unbordered mb-3">
-	                  <li class="list-group-item">
-	                    <b>코칭 진행 횟수 </b> <a class="float-right"> 10 회</a>
-	                  </li>
-	                  <li class="list-group-item">
-	                    <b>코칭 평균 평점</b> <a class="float-right">4.7/5.0</a>
-	                  </li>
-	                  <li class="list-group-item">
-	                    <b>1시간당 평균 : </b> <a class="float-right">15.000원</a>
-	                  </li>               
-	                </ul>
-	             	<a href="#" class="btn btn-sm bg-teal">
-		                <b><i class="fas fa-comments"></i>&nbsp;#문의&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
-		            </a>
-	                <a th:href="@{/coachingRFQ}" class="btn btn-primary btn-block">
-	                	<b><i class="fas fa-user"></i> &nbsp;!견적요청&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>
-	                </a>
-	               
-	              </div>
-	              <!-- /.card-body -->
-	            </div>
-	            <!-- /.card -->
-	
-
-	          </div>
-	          <!-- /.col -->
-	          <div class="col-md-9">
-	            <div class="card">
-	              <!-- card-header -->
-	              <div class="card-header p-2">
-	                <ul class="nav nav-pills">
-	                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">!소개</a></li>
-	                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">#후기</a></li>
-	                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">?</a></li>
-	                </ul>
-	              </div>
-	              <!-- /.card-header -->
-	              
-	              <div class="card-body">
-	                <div class="tab-content">
-	                 
-	                 <!-- 소개 -->
-	                  <div class="tab-pane active" id="activity">
-	                  	
-	                  	 <div class="post clearfix">
-	                      
-	                    	<!-- post 1 -->
-		                      <p>
-		                      	저는 10년차 백엔드 개발자로 근무중입니다.<br>
-		                        Lorem ipsum represents a long-held tradition for designers,
-		                        typographers and the like. Some people hate it and argue for
-		                        its demise, but others ignore the hate as they create awesome
-		                        tools to help create filler text for everyone from bacon lovers
-		                        to Charlie Sheen fans.
-		                      </p>
 		
 
-		                 </div>
-	                    
-	                    <!-- /.post 1 -->
+		<!-- 전체 상태별 수   -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<!-- Default box -->
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Mentoring/Consulting Total State</h3>
 	
-	                    <!-- Post 2-->
-		                   <div class="post">
-					              <div class="card-body">
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool"
+									data-card-widget="collapse" title="Collapse">
+									<i class="fas fa-minus"></i>
+								</button>
 	
-					                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-					
-					                <p class="text-muted">
-					                  <span class="tag tag-danger">UI Design</span>
-					                  <span class="tag tag-success">,Coding</span>
-					                  <span class="tag tag-info">,Javascript</span>
-					                  <span class="tag tag-warning">,PHP</span>
-					                  <span class="tag tag-primary">,Node.js</span>
-					                </p>
-					                <hr>
-					                <strong><ion-icon name="document-text-outline" ></ion-icon> Blog and <ion-icon name="logo-github" ></ion-icon>Github Adress</strong>
-					                <p class="text-muted">
-					                	- Blog: https://ksamrt.tistory.com<br>
-										- GitHub: https://github.com/ksmart
-					                </p>
-					              </div>
-					              <!-- /.card-body -->
-					            <!-- /.card -->
-		                  </div>
-						 <!-- / Post 2-->
-	                  </div>
-	                  <!-- /소개 -->
-	                  
-	                  <div class="tab-pane" id="timeline">
-	                    <!-- The timeline -->
-	                    <div class="timeline timeline-inverse">
-	                      <!-- timeline time label -->
-	                      <div class="time-label">
-	                        <span class="">
-	                          10 Feb. 2021
-	                        </span>
-	                      </div>
-	                      <!-- /.timeline-label -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
-	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 12:05 </span>
-	
-	                          <h3 class="timeline-header"> 글쓴이: 최성구 / 강의명: 실무자가 알려주는 Git - 입문편/평점 ⭐⭐⭐⭐⭐</h3>
-	
-	                          <div class="timeline-body">
-								 <small> 정말  배운점이 많았고 좋았습니다. 멘토링동안 수업방식도 너무 좋았습니다.</small>
-	                          </div>
-	                      
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
-	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-	
-	                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request  평점 ⭐⭐⭐⭐
-	                          </h3>
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
-	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 3days ago</span>
-	
-	                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post 평점 ⭐⭐⭐</h3>
-	
-	                          <div class="timeline-body">
-	                          	 <small> 
-		                            Take me to your leader!
-		                            Switzerland is small and neutral!
-		                            We are more like Germany, ambitious and misunderstood!
+							</div>
+						</div>
+						<div class="card-body">
+							⁕   전체 5   ⁕   견적요청 1   ⁕   견적결과 1   ⁕   신청완료 1   ⁕    이용완료 1  ⁕  서비스기간만료 0   ⁕   취소환불 1
 
-								</small>
-	                          </div>
-	                     
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <!-- timeline time label -->
-	                      <div class="time-label">
-	                        <span class="">
-	                          3 Jan. 2020
-	                        </span>
-	                      </div>
-	                      <!-- /.timeline-label -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
+						</div>
+						<!-- /.card-body -->
 	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 1year ago</span>
-	
-	                          <h3 class="timeline-header"> 글쓴이: 최성구    강의명: 실무자가 알려주는 Git - 입문편</h3>
-	
-	                          <div class="timeline-body">
-								 정말  배운점이 많았고 좋았습니다. 멘토링동안 수업방식도 너무 좋았습니다.
-	                          </div>
+					</div>
+					<!-- /.card -->
+				</div>
+			</div>
+		</div>
+		<!-- / 전체 상태별 수   -->
+	<!-- 카테고리 관리 card -->
+	<div class="card">
+              <div class="card-header">
+                <h3 class="card-title">카테고리 관리</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table table-bordered">
+                  <thead >
+                    <tr>
+                      <th ><small>#</small></th>
+                      <th><small>구분</small></th>
+                      <th><small>카테고리명</small></th>
+                      <th ><small>수정 삭제</small></th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><small>1</small></td>
+                      <td><small>멘토링</small></td>
+                      <td>
+                      	<small>
+                      		1일 github (코드리뷰 및 컨펌피드백)
+                      	</small>
+                      </td>
+                      <td>
+                      	<small>
+    	                  	<a ><button type="button" class="btn btn-block bg-gradient-secondary btn-sm " style="display: inline; width: 45px; height: 30px" ><small>수정</small></button></a>   
+	                      	<a ><button type="button" class="btn btn-block bg-gradient-danger btn-sm " style="display: inline; width: 45px; height: 30px"><small>삭제</small></button></a>   
+	                    </small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><small>2</small></td>
+                      <td><small>멘토링</small></td>
+                      <td>
+                      	<small>
+                      		기술과외
+                      	</small>
+                      </td>
+                      <td>
+                      	<small>
+    	                  	<a ><button type="button" class="btn btn-block bg-gradient-secondary btn-sm " style="display: inline; width: 45px; height: 30px" ><small>수정</small></button></a>   
+	                      	<a ><button type="button" class="btn btn-block bg-gradient-danger btn-sm " style="display: inline; width: 45px; height: 30px"><small>삭제</small></button></a>   
+	                    </small>
+                      </td>
+                    </tr>                    <tr>
+                      <td><small>3</small></td>
+                      <td><small>컨설팅</small></td>
+                      <td>
+                      	<small>
+                      		취업준비 스펙(자격증, 포트폴리오)
+                      	</small>
+                      </td>
+                      <td>
+                      	<small>
+    	                  	<a ><button type="button" class="btn btn-block bg-gradient-secondary btn-sm " style="display: inline; width: 45px; height: 30px" ><small>수정</small></button></a>   
+	                      	<a ><button type="button" class="btn btn-block bg-gradient-danger btn-sm " style="display: inline; width: 45px; height: 30px"><small>삭제</small></button></a>   
+	                    </small>
+                      </td>
+                    </tr>
 
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <div>
-	                        <i class="far fa-clock bg-gray"></i>
-	                      </div>
-	                    </div>
-	                  </div>
-	                  <!-- /.tab-pane -->
+                  </tbody>
+                </table>
+                <div class="card-footer clearfix">
+		            <button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
+	                <ul class="pagination pagination-sm m-0 float-right">
+	                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+	                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+	                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+	                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+	                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+	                </ul>
+              </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+	<!-- /카테고리 관리 card -->
+	<!-- 코치 관리 page 연결 -->
+	<a th:href="@{/coachAdmin}">
+		<button type="button" class="btn btn-block bg-gradient-warning btn-lg" style="width: 80%; margin-bottom: 50px">#코치관리로 이동</button>
+	</a>
 	
-	                  <div class="tab-pane" id="settings">
-	                    <form class="form-horizontal">
-	                      <div class="form-group row">
-	                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-	                        <div class="col-sm-10">
-	                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-	                        <div class="col-sm-10">
-	                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-	                        <div class="col-sm-10">
-	                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-	                        <div class="col-sm-10">
-	                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-	                        <div class="col-sm-10">
-	                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <div class="offset-sm-2 col-sm-10">
-	                          <div class="checkbox">
-	                            <label>
-	                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-	                            </label>
-	                          </div>
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <div class="offset-sm-2 col-sm-10">
-	                          <button type="submit" class="btn btn-danger">Submit</button>
-	                        </div>
-	                      </div>
-	                    </form>
-	                  </div>
-	                  <!-- /.tab-pane -->
-	                </div>
-	                <!-- /.tab-content -->
-	              </div><!-- /.card-body -->
-	            </div>
-	            <!-- /.card -->
-	          </div>
-	          <!-- /.col -->
-	        </div>
+	<!-- /코치 관리 page 연결 -->
+	<!-- 후기 관리 page 연결 -->
+	<a th:href="@{/coachingReview}">
+		<button type="button" class="btn btn-block bg-gradient-warning btn-lg" style="width: 80%">#후기관리로 이동</button>
+	</a>
+	<!-- /후기 관리 page 연결 -->
+	
+	
+	코칭 목록 
+	+ 검색옵션 - 아이디별  
+
+	
+		<br>
+		<form action="enhanced-results.html" data-select2-id="15">
+                <div class="row" data-select2-id="14">
+                    <div class="col-md-10" data-select2-id="13">
+                        <div class="row" data-select2-id="12">
+
+                            <div class="col-3" data-select2-id="19">
+                                <div class="form-group" data-select2-id="18">
+                                    <label>구분:</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="3" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="5">멘토링</option>
+                                        <option data-select2-id="20">컨설팅</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3" data-select2-id="11">
+                                <div class="form-group" data-select2-id="10">
+                                    <label>상태</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="8">견적요청</option>
+                                        <option data-select2-id="16">견적결과</option>
+                                        <option data-select2-id="16">신청완료</option>
+                                        <option data-select2-id="16">이용완료</option>
+                                        <option data-select2-id="16">서비스기간만료</option>
+                                        <option data-select2-id="16">취소환불</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3" data-select2-id="11">
+                                <div class="form-group" data-select2-id="10">
+                                    <label>기간선택</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="8">견적요청</option>
+                                        <option data-select2-id="16">견적결과</option>
+                                        <option data-select2-id="16">신청완료</option>
+                                        <option data-select2-id="16">이용완료</option>
+                                        <option data-select2-id="16">서비스기간만료</option>
+                                        <option data-select2-id="16">취소환불</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="col-3" data-select2-id="11">
+                                <div class="form-group" data-select2-id="10">
+                                    <label>정렬</label>
+                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+                                        <option selected="" data-select2-id="8">최신순</option>
+                                        <option data-select2-id="16">오래된순</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-lg btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		</form>
+	
+		<!-- 관리자 페이지 코칭 내역 목록  -->
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">
+					<ion-icon size="small" name="list-outline"></ion-icon>
+					&emsp; <b>멘토링/컨설팅 전체 목록</b>
+				</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0" style=" overflow-x: auto; overflow-y: auto;">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th style="width: 10px">#</th>
+							<th>구분</th>
+							<th>상태</th>
+							<th>수강생이메일</th>
+							<th>수강생연락처</th>
+							<th>코치이메일</th>
+							<th>코치연락처</th>
+							<th>코칭일정</th>
+							<th>견적요청</th>
+							<th>견적결과</th>
+							<th>후기</th>
+							<th>중단</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1.</td>
+							<td>멘토링</td>
+							<td>견적요청</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<a th:href="coachingRFQResult" class="btn btn-block btn-default btn-xs">등록</a>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+	
+						</tr>
+						<tr>
+							<td>2.</td>
+							<td>멘토링</td>
+							<td>견적결과</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+	
+						</tr>
+						<tr>
+							<td>3.</td>
+							<td>컨설팅</td>
+							<td>신청완료</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+						</tr>
+						<tr>
+							<td>4.</td>
+							<td>컨설팅</td>
+							<td>이용완료</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+						</tr>
+						<tr>
+							<td>5.</td>
+							<td>멘토링</td>
+							<td>취소/환불</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>ksmart@email.com</td>
+							<td>010-0000-0000</td>
+							<td>2021/06/24-2021/07/23</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+			<!-- 코칭 list 페이지 번호  -->
+			<ul class="pagination justify-content-center m-0">
+		              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+		              <li class="page-item"><a class="page-link" href="#">2</a></li>
+		              <li class="page-item"><a class="page-link" href="#">3</a></li>
+		              <li class="page-item"><a class="page-link" href="#">4</a></li>
+		              <li class="page-item"><a class="page-link" href="#">5</a></li>
+		              <li class="page-item"><a class="page-link" href="#">6</a></li>
+		              <li class="page-item"><a class="page-link" href="#">7</a></li>
+		              <li class="page-item"><a class="page-link" href="#">8</a></li>
+		   </ul>
+		</div>
+		<!-- / 관리자 페이지 코칭 내역 목록  -->
 		   
 	</th:block>
 	
