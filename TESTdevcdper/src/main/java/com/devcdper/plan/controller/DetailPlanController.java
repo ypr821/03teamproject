@@ -25,10 +25,9 @@ public class DetailPlanController {
 	}
 	
 	
-	//header에 경력계획관리를 누르면-> left메뉴에서 계획관리 토글이 내려가면서 보여지게끔 해야됨.(?)
-	//그런데 계획 관리가 두개네...메인메뉴랑 서브메뉴이름이 같네? 흐음...
 	
 	
+	/*----------------------------------------- 상세 계획 한눈에보기 Start----------------------------*/
 	//상세 계획 관리 화면 (카테고리 9가지 간단하게 담기-> 상세한건 따로 페이지 이동)
 	@GetMapping("/detailPlan")
 	public String detailPlan(Model model) {
@@ -41,6 +40,9 @@ public class DetailPlanController {
 		model.addAttribute("title","상사계획 관리 화면");
 		return "plan/detailPlan/detailPlan";
 	}
+	/*----------------------------------------- 상세 계획 한눈에보기 End----------------------------*/
+	
+	/*----------------------------------------- 학력 상세 계획 관리 Start----------------------------*/
 	//학력 상세 계획 관리
 	@GetMapping("/planEducationalHistoryDetail")
 	public String planEducationalHistoryDetail(Model model) {
@@ -53,6 +55,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "학력 상세 계획 관리");
 		return "plan/detailPlan/planEducationalHistoryDetail";
 	}
+	/*----------------------------------------- 학력 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 프로젝트 상세 계획 관리 Start----------------------------*/
 	//프로젝트 상세 계획 관리
 	@GetMapping("/planProjectDetail")
 	public String planProjectDetail(Model model) {
@@ -65,6 +70,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "프로젝트 상세 계획");
 		return "plan/detailPlan/planProjectDetail";
 	}
+	/*----------------------------------------- 프로젝트 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 자격증 상세 계획 관리 Start----------------------------*/
 	//자격증 상세 계획 관리
 	@GetMapping("/planCertificateDetail")
 	public String planCertificateDetail(Model model) {
@@ -77,6 +85,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "자격증 상세 계획");
 		return "plan/detailPlan/planCertificateDetail";
 	}
+	/*----------------------------------------- 자격증 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 공인어학 상세 계획 관리Start----------------------------*/
 	//공인어학 상세 계획 관리
 	@GetMapping("/planCertifiedLanguageDetail")
 	public String planCertifiedLanguageDetail(Model model) {
@@ -89,6 +100,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "공인어학 상세 계획");
 		return "plan/detailPlan/planCertifiedLanguageDetail";
 	}
+	/*----------------------------------------- 공인어학 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 기술스택 상세 계획 관리 Start----------------------------*/
 	//기술스택 상세 계획 관리
 	@GetMapping("/planTechnologyStackDetail")
 	public String planTechnologyStackDetail(Model model) {
@@ -101,6 +115,10 @@ public class DetailPlanController {
 		model.addAttribute("title", "기술스택 상세 계획");
 		return "plan/detailPlan/planTechnologyStackDetail";
 	}
+	/*----------------------------------------- 기술스택 상세 계획 관리 Start----------------------------*/
+	
+	
+	/*----------------------------------------- 직종전문교육과정 상세 계획 관리 Start----------------------------*/
 	//직종전문교육과정 상세 계획 관리
 	@GetMapping("/planJobTrainingDetail")
 	public String planJobTrainingDetail(Model model) {
@@ -113,6 +131,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "직종전문교육과정 상세 계획");
 		return "plan/detailPlan/planJobTrainingDetail";
 	}
+	/*----------------------------------------- 직종전문교육과정 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 인턴십 상세 계획 관리 Start----------------------------*/
 	//인턴십 상세 계획 관리
 	@GetMapping("/planInternshipDetail")
 	public String planInternshipDetail(Model model) {
@@ -125,6 +146,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "인턴십 상세 계획");
 		return "plan/detailPlan/planInternshipDetail";
 	}
+	/*----------------------------------------- 인턴십 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 공모전 상세 계획 관리 Start----------------------------*/
 	//공모전 상세 계획 관리
 	@GetMapping("/planContestDetail")
 	public String planContestDetail(Model model) {
@@ -137,6 +161,9 @@ public class DetailPlanController {
 		model.addAttribute("title", "공모전 상세 계획");
 		return "plan/detailPlan/planContestDetail";
 	}
+	/*----------------------------------------- 공모전 상세 계획 관리 End----------------------------*/
+	
+	/*----------------------------------------- 경력 상세 계획 관리 Start----------------------------*/
 	//경력 상세 계획 관리
 	@GetMapping("/planCareerDetail")
 	public String planCareerDetail(Model model) {
@@ -146,10 +173,10 @@ public class DetailPlanController {
 		System.out.println("==============================================");
 		System.out.println("planCareerDetail 메서드 실행");
 		System.out.println("==============================================");
-//		model.addAttribute("title", "경력 상세 계획");
+		model.addAttribute("title", "경력 상세 계획");
 		return "plan/detailPlan/planCareerDetail";
 	}
-	
+	/*----------------------------------------- 경력 상세 계획 관리 End----------------------------*/
 	
 	
 	
