@@ -2,7 +2,7 @@ package com.devcdper.user_admin.domain;
 
 public class CoachUser {
 
-	private String coachUserEmail;
+	private String coachEmail;
 	private String coachPassword;
 	private String coachName;
 	private String coachBirth;
@@ -26,11 +26,11 @@ public class CoachUser {
 	private String coachJoinDate;
 	private String coachWithdrawStatus;
 	
-	public String getCoachUserEmail() {
-		return coachUserEmail;
+	public String getCoachEmail() {
+		return coachEmail;
 	}
-	public void setCoachUserEmail(String coachUserEmail) {
-		this.coachUserEmail = coachUserEmail;
+	public void setCoachUserEmail(String coachEmail) {
+		this.coachEmail = coachEmail;
 	}
 	public String getCoachPassword() {
 		return coachPassword;
@@ -167,7 +167,7 @@ public class CoachUser {
 	
 	@Override
 	public String toString() {
-		return "CoachUser [coachUserEmail=" + coachUserEmail + ", coachPassword=" + coachPassword + ", coachName="
+		return "CoachUser [coachEmail=" + coachEmail + ", coachPassword=" + coachPassword + ", coachName="
 				+ coachName + ", coachBirth=" + coachBirth + ", coachAddr=" + coachAddr + ", coachAddrDetail="
 				+ coachAddrDetail + ", coachGender=" + coachGender + ", coachMobile=" + coachMobile
 				+ ", coachAuthority=" + coachAuthority + ", coachJob=" + coachJob + ", coachProfileCareer="
