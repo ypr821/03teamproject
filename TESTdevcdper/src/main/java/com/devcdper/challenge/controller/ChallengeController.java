@@ -1,5 +1,7 @@
 package com.devcdper.challenge.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ChallengeController {
 	
 
+	@PostConstruct
+	public void ChallengeControllerInit() {
+		//log.info("========================================");
+		//log.info("ChallengeControllerInit.java 객체 생성");
+		//log.info("========================================");
+		System.out.println("========================================");
+		System.out.println("ChallengeController.java 객체 생성");
+		System.out.println("========================================");
+	}
+	
 	
 	@GetMapping("/challengeExploration")
 	public String challengeExploration(Model model) {
@@ -37,6 +49,12 @@ public class ChallengeController {
 	public String challengeCertification(Model model) {
 		model.addAttribute("title", "챌린지 인증하기");
 		return "challenge/challengeCertification";
+	}
+	
+	@GetMapping("/challengeDetailInfo")
+	public String challengeDetailInfo(Model model) {
+		model.addAttribute("title", "챌린지 상세정보");
+		return "challenge/challengeDetailInfo";
 	}
 	
 	

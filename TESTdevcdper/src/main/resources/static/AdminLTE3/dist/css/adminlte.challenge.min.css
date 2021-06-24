@@ -38,9 +38,31 @@ span.input-group-text {
     background: white;
 }
 div#challengeInsertForm {
-    height: 680px;
+    height: 600px;
 }
 a#nextBtn {
     float: right;
+}
+body {
+  background: #eeeded;
+}
+
+.exploationBtnGroup {
+    text-align: center;
+}
+a#participationBtn {
+    color: white;
+}
+a#bookmarkBtn {
+    color: white;
+}
+
+h4#totalBetingPrice {
+    text-align: right;
+}
+
+h4#totalPaymentPrice {
+    text-align: right;
+    color: red;
 }
 /*# sourceMappingURL=adminlte.min.css.map */

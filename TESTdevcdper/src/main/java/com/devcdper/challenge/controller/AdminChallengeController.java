@@ -1,11 +1,24 @@
 package com.devcdper.challenge.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminChallengeController {
+	
+	@PostConstruct
+	public void AdminChallengeControllerInit() {
+		//log.info("========================================");
+		//log.info("AdminChallengeController.java 객체 생성");
+		//log.info("========================================");
+		System.out.println("========================================");
+		System.out.println("AdminChallengeController.java 객체 생성");
+		System.out.println("========================================");
+	}
+	
 	
 	@GetMapping("/mainChallenge")
 	public String mainChallenge(Model model) {
