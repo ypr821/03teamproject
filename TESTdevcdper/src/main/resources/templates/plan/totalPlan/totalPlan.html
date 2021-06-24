@@ -10,205 +10,194 @@
 	<div class="col-sm-6">
 		<ol class="breadcrumb float-sm-right">
 			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/mainCdp}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{#}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{#}">실천계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/mainPlan}">계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
 		</ol>
 	</div><!-- /.col -->
 </th:block>
 <th:block layout:fragment="container">
-	<section class="content">
-
-		<!-- Default box -->
-		<div class="card">
-			<div class="card-header">
-				<h3 class="card-title">
-					통합계획
-				</h3>
-				
-				<div class="card-tools">
-					<a th:href="@{/addTotalPlan}">
-						<button type="button" class="btn btn-outline-primary">
-							등록하기
-						</button>
-					</a> 	
-					<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-						<i class="fas fa-minus"></i>
+	<!-- Default box -->
+	<div class="card">
+		<div class="card-header">
+			<h3 class="card-title">
+				통합계획
+			</h3>
+			
+			<div class="card-tools">
+				<a th:href="@{/addTotalPlan}">
+					<button type="button" class="btn btn-outline-primary">
+						등록하기
 					</button>
-					<!-- 삭제기능 굳이 필요할까??
-					<button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-						<i class="fas fa-times"></i>
-					</button>
-					-->
-				</div>
-    		</div>
-			<div class="card-body p-0">
-				<table class="table table-striped projects">
-					<thead>
-						<tr style="text-align: center;">
-							<th>
-								순번
-							</th>
-							<th>
-								통합계획명
-							</th>
-							<th>
-								계획내용
-							</th>
-							<th>
-								시작일자
-							</th>
-							<th>
-								종료일자
-							</th>
-							<th>
-								진행율
-							</th>
-							<th>
-								상태
-							</th>
-							<th>
-								차수
-							</th>
-							<th>
-								
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr style="text-align: center;">
-							<td>
-								1
-							</td>
-							<td>
-								<a>
-									통합계획 팀프로젝트구현하기
-								</a>
-								<br/>
-								<small>
-									Created 2021.06.19
-								</small>
-							</td>
-							<td>
-								<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
-							</td>
-							<td> 
-								<a>2021.06.20</a>
-							</td>
-							<td>
-								<a>2021.08.06</a>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-									</div>
-								</div>
-								<small>
-									57% Complete
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-danger">
-									중단됨
-								</span>
-							</td>
-							<td>
-								<a>
-									1차
-								</a>
-							</td>
-							<td class="project-actions text-center">
-								<a class="btn btn-primary btn-sm" id="stopTotalPlan">
-									<i class="fas fa-folder">
-									</i>
-									계획보기
-								</a>
-								<a class="btn btn-info btn-sm" id="stopModifyPlan">
-									<i class="fas fa-pencil-alt">
-									</i>
-									수정
-								</a>
-								<a class="btn btn-danger btn-sm" th:href="@{/deleteTotalPlan}">
-									<i class="fas fa-trash">
-									</i>
-									삭제
-								</a>
-							</td>
-						</tr>
-						<tr style="text-align: center;">
-							<td>
-								2
-							</td>
-							<td>
-								<a>
-									통합계획 팀프로젝트구현하기
-								</a>	
-								<br/>
-								<small>
-									Created 2021.06.20
-								</small>
-							</td>
-							<td>
-								<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
-							</td>
-							<td>
-								<a>2021.06.20</a>
-							</td>
-							<td>
-								<a>2021.08.06</a>
-							</td>
-							<td class="project_progress">
-								<div class="progress progress-sm">
-									<div class="progress-bar bg-primary" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-									</div>
-								</div>
-								<small>
-									70% Complete
-								</small>
-							</td>
-							<td class="project-state">
-								<span class="badge badge-primary">
-									진행중
-								</span>
-							</td>
-							<td>
-								<a>
-									2차
-								</a>
-								<br/>
-								<small>
-									멘토링계약으로 인한차수변경
-								</small>
-							</td>
-      						<td class="project-actions text-center">
-								<a class="btn btn-primary btn-sm" th:href="@{/mainCdp}">
-									<i class="fas fa-folder">
-									</i>
-									계획보기
-								</a>
-								<a class="btn btn-info btn-sm" th:href="@{/modifyTotalPlan}">
-									<i class="fas fa-pencil-alt">
-									</i>
-									수정
-								</a>
-								<a class="btn btn-danger btn-sm" th:href="@{/deleteTotalPlan}">
-									<i class="fas fa-trash">
-									</i>
-									삭제
-								</a>
-							</td>
-  						</tr>
-					</tbody>
-				</table>
+				</a> 	
+				<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+					<i class="fas fa-minus"></i>
+				</button>
 			</div>
-		<!-- /.card-body -->
 		</div>
+		<div class="card-body p-0">
+			<table class="table table-striped projects">
+				<thead>
+					<tr style="text-align: center;">
+						<th>
+							순번
+						</th>
+						<th>
+							통합계획명
+						</th>
+						<th>
+							계획내용
+						</th>
+						<th>
+							시작일자
+						</th>
+						<th>
+							종료일자
+						</th>
+						<th>
+							진행율
+						</th>
+						<th>
+							상태
+						</th>
+						<th>
+							차수
+						</th>
+						<th>
+							
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="text-align: center;">
+						<td>
+							1
+						</td>
+						<td>
+							<a>
+								통합계획 팀프로젝트구현하기
+							</a>
+							<br/>
+							<small>
+								Created 2021.06.19
+							</small>
+						</td>
+						<td>
+							<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
+						</td>
+						<td> 
+							<a>2021.06.20</a>
+						</td>
+						<td>
+							<a>2021.08.06</a>
+						</td>
+						<td class="project_progress">
+							<div class="progress progress-sm">
+								<div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+								</div>
+							</div>
+							<small>
+								57% Complete
+							</small>
+						</td>
+						<td class="project-state">
+							<span class="badge badge-danger">
+								중단됨
+							</span>
+						</td>
+						<td>
+							<a>
+								1차
+							</a>
+						</td>
+						<td class="project-actions text-center">
+							<a class="btn btn-primary btn-sm" id="stopTotalPlan">
+								<i class="fas fa-folder">
+								</i>
+								계획보기
+							</a>
+							<a class="btn btn-info btn-sm" id="stopModifyPlan">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							<a class="btn btn-danger btn-sm" th:href="@{/deleteTotalPlan}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+						</td>
+					</tr>
+					<tr style="text-align: center;">
+						<td>
+							2
+						</td>
+						<td>
+							<a>
+								통합계획 팀프로젝트구현하기
+							</a>	
+							<br/>
+							<small>
+								Created 2021.06.20
+							</small>
+						</td>
+						<td>
+							<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
+						</td>
+						<td>
+							<a>2021.06.20</a>
+						</td>
+						<td>
+							<a>2021.08.06</a>
+						</td>
+						<td class="project_progress">
+							<div class="progress progress-sm">
+								<div class="progress-bar bg-primary" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+								</div>
+							</div>
+							<small>
+								70% Complete
+							</small>
+						</td>
+						<td class="project-state">
+							<span class="badge badge-primary">
+								진행중
+							</span>
+						</td>
+						<td>
+							<a>
+								2차
+							</a>
+							<br/>
+							<small>
+								멘토링계약으로 인한차수변경
+							</small>
+						</td>
+  						<td class="project-actions text-center">
+							<a class="btn btn-primary btn-sm" th:href="@{/mainCdp}">
+								<i class="fas fa-folder">
+								</i>
+								계획보기
+							</a>
+							<a class="btn btn-info btn-sm" th:href="@{/modifyTotalPlan}">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							<a class="btn btn-danger btn-sm" th:href="@{/deleteTotalPlan}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<!-- /.card-body -->
+	</div>
 	<!-- /.card -->
-
-	</section>
-	
-
-<!-- 페이지번호 -->
+	<!-- 페이지번호 -->
 	<ul class="pagination justify-content-center m-0">
 		<li class="page-item active"><a class="page-link" href="#">1</a></li>
 		<li class="page-item"><a class="page-link" href="#">2</a></li>
