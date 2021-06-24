@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">main title</title>
+	<script src="js.app/index.js"></script>
+	<div class="col-sm-6">
+		<h1 class="m-0">직종전문교육과정 실천 계획 관리🌟</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/Plan}">계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+		</ol>
+	</div><!-- /.col -->
+	</th:block>
+<th:block layout:fragment="container">
+<style>
+
+	body{
+		margin: 0;
+		padding: 0;
+		background-color: #eee;
+	
+	} 
+	header{
+		margin-top: 50px;
+	}
+	header h1{
+		text-align: center;
+	}
+	
+	
+	#container{
+		width:80%;
+		margin: 0 auto;
+		max-width: 380px;
+		padding: 15px;
+		
+	}
+	
+	#container input{
+		margin-bottom: 10px;
+		padding: 6px;
+		width: calc(100% - 15px);
+		border: 1px solid #BDBDBD;
+		
+	}
+	
+	
+	#container .status input{
+		width: 20px;
+		display: inline;
+		
+	}
+	
+	#container button{
+		padding: 10px;
+		border: 2px solid #BDBDBD;
+		background-color: #045FB4;
+		width: calc(100% - 0px);
+		color: #fff;
+	}
+	
+	#container input, #container button{
+		display: block;
+	}
+	
+	footer{
+		text-align: center;
+		maring-top: 10px;
+		color: #585858;
+	}
+	
+	footer div{
+		margin-bottom: 5px;
+	}
+
+</style>
+</head>
+<body>
+	<header>
+		<h1> 직종전문교육과정 실천 등록 화면 입니다. </h1>
+ 	</header>
+	
+	<div id="container">
+	<label for="title">직종전문교육과정 실천 제목</label>
+	<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+	
+	<label for="content">직종전문교육과정 실천 내용</label>
+	<textarea class="form-control" id="content" placeholder="내용을 입력하세요."></textarea>
+	
+	<label for="startDate">직종전문교육과정 실천 시작일</label>
+	<input type="date" placeholder="시작일을 선택해주세요."/>
+	
+	<label for="startEnd">직종전문교육과정 실천 종료일</label>
+	<input type="date" placeholder="종료일을 선택해주세요."/>
+
+	 
+	<label for="status">직종전문교육과정 실천 상태</label>
+	 <div class="status">
+	<label>
+	 <input type="checkbox" name="userChoice" value="Proceeding" checked="checked">
+		진행중
+	</label>
+	<label>
+		<input type="checkbox" name="userChoice" value="stop">
+		중단
+	</label>
+	<label>
+		<input type="checkbox" name="userChoice" value="complete">
+		완료
+	</label>
+	</div>
+	
+	<label for="startEnd">직종전문교육과정 실천 작성일자</label>
+	<input type="date" placeholder="작성일자를 선택해주세요."/>
+	
+	<a href="/" role="button" class="btn btn-secondary">취소</a>
+	<a href="/" role="button" class="btn btn-primary">등록</a>
+	
+	</div>
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
