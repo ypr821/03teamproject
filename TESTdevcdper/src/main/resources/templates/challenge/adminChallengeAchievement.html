@@ -5,16 +5,36 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">챌린지 달성율 관리</h1>
+		<h1 class="m-0">#챌린지 달성율 관리</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/adminChallenge}">챌린지 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCategory}">챌린지 카테고리 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeParticipation}">챌린지 참여 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCertification}">챌린지 인증 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeReport}">챌린지 신고 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCompensation}">챌린지 보상지급 관리</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 관리
+					</a>
+					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리
+					</a>
+					<a th:href="@{/adminChallengeParticipation}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeParticipation'}"> 챌린지 참여 관리
+					</a>
+					<a th:href="@{/adminChallengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCertification'}"> 챌린지 인증 관리
+					</a>
+					<a th:href="@{/adminChallengeReport}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeReport'}"> 챌린지 신고 관리
+					</a>
+					<a th:href="@{/adminChallengeAchievement}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeAchievement'}"> 챌린지 달성율 관리
+					</a>
+					<a th:href="@{/adminChallengeCompensation}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCompensation'}"> 챌린지 보상지급 관리
+					</a>
+				</div>
+			</div>
+			
 		</ol>
 	</div>
 </th:block>

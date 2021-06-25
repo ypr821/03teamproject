@@ -30,13 +30,16 @@ public class AdminChallengeController {
 	@GetMapping("/adminChallenge")
 	public String adminChallenge(Model model) {
 		model.addAttribute("title", "챌린지 관리");
+		model.addAttribute("radioCheck","adminChallenge");
 		return "challenge/adminChallenge";
 		
 	}
 	
+	
 	@GetMapping("/adminChallengeCategory")
 	public String adminChallengeCategory(Model model) {
 		model.addAttribute("title", "챌린지 카테고리 관리");
+		model.addAttribute("radioCheck","adminChallengeCategory");
 		return "challenge/adminChallengeCategory";
 		
 	}
@@ -44,6 +47,7 @@ public class AdminChallengeController {
 	@GetMapping("/adminChallengeParticipation")
 	public String adminChallengeParticipation(Model model) {
 		model.addAttribute("title", "챌린지 참여 관리");
+		model.addAttribute("radioCheck","adminChallengeParticipation");
 		return "challenge/adminChallengeParticipation";
 		
 	}
@@ -51,6 +55,7 @@ public class AdminChallengeController {
 	@GetMapping("/adminChallengeCertification")
 	public String adminChallengeCertification(Model model) {
 		model.addAttribute("title", "챌린지 인증 관리");
+		model.addAttribute("radioCheck","adminChallengeCertification");
 		return "challenge/adminChallengeCertification";
 		
 	}
@@ -58,6 +63,7 @@ public class AdminChallengeController {
 	@GetMapping("/adminChallengeReport")
 	public String adminChallengeReport(Model model) {
 		model.addAttribute("title", "챌린지 신고 관리");
+		model.addAttribute("radioCheck","adminChallengeReport");
 		return "challenge/adminChallengeReport";
 		
 	}
@@ -65,6 +71,7 @@ public class AdminChallengeController {
 	@GetMapping("/adminChallengeAchievement")
 	public String adminChallengeAchievement(Model model) {
 		model.addAttribute("title", "챌린지 달성율 관리");
+		model.addAttribute("radioCheck","adminChallengeAchievement");
 		return "challenge/adminChallengeAchievement";
 		
 	}
@@ -72,6 +79,7 @@ public class AdminChallengeController {
 	@GetMapping("/adminChallengeCompensation")
 	public String challengeCompensation(Model model) {
 		model.addAttribute("title", "챌린지 보상지급 관리");
+		model.addAttribute("radioCheck","adminChallengeCompensation");
 		return "challenge/adminChallengeCompensation";
 		
 	}

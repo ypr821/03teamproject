@@ -5,16 +5,36 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">챌린지 인증 관리</h1>
+		<h1 class="m-0">!챌린지 인증 관리</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/adminChallenge}">챌린지 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCategory}">챌린지 카테고리 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeParticipation}">챌린지 참여 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeReport}">챌린지 신고 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeAchievement}">챌린지 달성율 관리</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/adminChallengeCompensation}">챌린지 보상지급 관리</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 관리
+					</a>
+					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리
+					</a>
+					<a th:href="@{/adminChallengeParticipation}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeParticipation'}"> 챌린지 참여 관리
+					</a>
+					<a th:href="@{/adminChallengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCertification'}"> 챌린지 인증 관리
+					</a>
+					<a th:href="@{/adminChallengeReport}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeReport'}"> 챌린지 신고 관리
+					</a>
+					<a th:href="@{/adminChallengeAchievement}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeAchievement'}"> 챌린지 달성율 관리
+					</a>
+					<a th:href="@{/adminChallengeCompensation}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCompensation'}"> 챌린지 보상지급 관리
+					</a>
+				</div>
+			</div>
+			
 		</ol>
 	</div>
 </th:block>
@@ -22,11 +42,12 @@
 
 
 <th:block layout:fragment="container">
+
 <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">챌린지 인증 관리</h3>
+                <h3 class="card-title">챌린지 관리</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 200px;">
@@ -40,119 +61,134 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0" style="height: 500;">
-                <table class="table table-head-fixed table-responsive">
-                  <thead class="challenge-head">
-                    <tr>
-                     	<th>챌린지 인증 코드</th>
-						<th>챌린지 카테고리 코드</th>
-						<th>챌린지 코드</th>
-						<th>챌린지 참여 코드</th>
-						<th>참여자 이메일</th>
-						<th>인증방법</th>
-						<th>인증내용</th>
-						<th>인증 첨부파일</th>
-						<th>인증 여부</th>
-						<th>인증 일자</th>
-						<th>삭제</th>
-                    </tr>
-                  </thead>
-                  <tbody class="challenge-body">
-                    <tr>
-	                    <td>challenge_certification_code_01</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증1.JPG</td>
-						<td>2) 인증완료</td>
-						<td>2021년 4월 22일</td>
-						<td>삭제</td>
-                    </tr>
-                    <tr>
-	                    <td>challenge_certification_code_02</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증2.JPG</td>
-						<td>2) 인증완료</td>
-						<td>2021년 4월 23일</td>
-						<td>삭제</td>
-                    </tr>
-                    <tr>
-	                    <td>challenge_certification_code_03</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증3.JPG</td>
-						<td>2) 인증완료</td>
-						<td>2021년 4월 24일</td>
-						<td>삭제</td>
-                    </tr>
-                    <tr>
-	                    <td>challenge_certification_code_04</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증4.JPG</td>
-						<td>2) 인증완료</td>
-						<td>2021년 4월 25일</td>
-						<td>삭제</td>
-                    </tr>
-                    <tr>
-	                    <td>challenge_certification_code_05</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증5.JPG</td>
-						<td>2) 인증완료</td>
-						<td>2021년 4월 26일</td>
-						<td>삭제</td>
-                    </tr>
-                    <tr>
-	                    <td>challenge_certification_code_06</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증6.JPG</td>
-						<td>3) 인증거절</td>
-						<td>2021년 4월 27일</td>
-						<td>삭제</td>
-                    </tr>
-                    <tr>
-	                    <td>challenge_certification_code_07</td>
-						<td>challenge_category_code_02</td>
-						<td>challenge_code_01</td>
-						<td>challenge_participant_code_01</td>
-						<td>tae01@gmail.com</td>
-						<td>사진</td>
-						<td>내일도 화이팅!</td>
-						<td>챌린지 인증7.JPG</td>
-						<td>1) 인증확인중</td>
-						<td>2021년 4월 28일</td>
-						<td>삭제</td>
-                    </tr>
-                   
-                    
-                  </tbody>
-                </table>
-	                <div class="card-footer clearfix">
+             <table class="table table-striped text-nowrap">
+		                  <thead class="challenge-head">
+		                    <tr>
+		                      <th>번호</th>
+		                      	<th>챌린지명</th>
+		                      	<th>참여자 이메일</th>
+								<th>인증방법</th>
+								<th>인증내용</th>
+								<th>인증 첨부파일</th>
+								<th>인증 여부</th>
+								<th>인증 일자</th>
+								<th>진행율</th>
+		                     	<th>상태</th>
+		                     	<th>상세보기</th>
+								<th>삭제</th>
+		                    </tr>
+		                  </thead>
+		                  <!--tbody start  -->
+		                  <tbody class="challenge-body">
+		                    <tr>
+		                    <td>1.</td>
+		                    <td>깃허브 잔디심기</td>
+		                    <td>tae01@gmail.com</td>
+							<td>사진</td>
+							<td>내일도 화이팅!</td>
+							<td>챌린지 인증1.JPG</td>
+							<td>2) 인증완료</td>
+							<td>2021년 4월 22일</td>
+		                      <td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-danger" style="width: 45%"></div>
+							   </div>
+							   <small>
+									45% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-warning">진행예정</span></td>
+							 <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+		                      <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+							</td>
+		                    </tr>
+		                    
+		                    <tr>
+		                    <td>2.</td>
+		                    <td>깃허브 잔디심기</td>
+		                    <td>tae01@gmail.com</td>
+							<td>사진</td>
+							<td>내일도 화이팅!</td>
+							<td>챌린지 인증1.JPG</td>
+							<td>2) 인증완료</td>
+							<td>2021년 4월 22일</td>
+		                      <td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-danger" style="width: 45%"></div>
+							   </div>
+							   <small>
+									45% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-warning">진행예정</span></td>
+							 <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+		                      <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+							</td>
+		                    </tr>
+		                    
+		                    
+		                    <tr>
+		                      <td>3.</td>
+		                      <td>깃허브 잔디심기</td>
+		                     <td>tae01@gmail.com</td>
+							<td>사진</td>
+							<td>내일도 화이팅!</td>
+							<td>챌린지 인증1.JPG</td>
+							<td>2) 인증완료</td>
+							<td>2021년 4월 22일</td>
+		                      <td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-danger" style="width: 45%"></div>
+							   </div>
+							   <small>
+									45% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-warning">진행예정</span></td>
+							 <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+		                      <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+							</td>
+		                    </tr>
+							
+		                    <tr>
+		                      <td>4.</td>
+		                      <td>깃허브 잔디심기</td>
+		                    <td>tae01@gmail.com</td>
+							<td>사진</td>
+							<td>내일도 화이팅!</td>
+							<td>챌린지 인증1.JPG</td>
+							<td>2) 인증완료</td>
+							<td>2021년 4월 22일</td>
+		                      <td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-danger" style="width: 45%"></div>
+							   </div>
+							   <small>
+									45% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-warning">진행예정</span></td>
+							 <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+		                      <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+							</td>
+		                    </tr>
+		                  </tbody>
+		                  <!--tbody end  -->
+	               		 </table>
+              
+                <div class="card-footer clearfix">
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
 		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -162,7 +198,7 @@
 		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
 		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
 		                </ul>
-				   </div>	
+			   </div>	
               </div>
               <!-- /.card-body -->
             </div>
