@@ -13,7 +13,8 @@ public class PlanController {
 	@GetMapping("/totalPlan")
 	public String totalPlan(Model model) {
 		model.addAttribute("title", "통합계획");
-		model.addAttribute("function", "plan");
+		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
+		model.addAttribute("radioCheck", "totalPlan");	//우측상단 경로이동 radioChecked
 		return "plan/totalPlan/totalPlan";
 	}
 	
@@ -62,6 +63,13 @@ public class PlanController {
 	public String mainPlan(Model model) {
 		model.addAttribute("title", "나의 계획 한눈에 보기");
 		model.addAttribute("function", "plan");
+		model.addAttribute("radioCheck", "plan");
+		return "plan/mainPlan";
+	}
+	@GetMapping("/mainCdp")
+	public String mainCdp(Model model) {
+		model.addAttribute("title", "나의 계획 한눈에 보기");
+		model.addAttribute("mainCdp", "mainCdp");
 		return "plan/mainPlan";
 	}
 	/*------------------------------------------------나의 계획 한눈에 보기 End-----------------------------------------------------*/

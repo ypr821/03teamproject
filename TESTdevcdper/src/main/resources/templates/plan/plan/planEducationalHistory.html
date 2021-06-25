@@ -4,15 +4,42 @@
 	  layout:decorator="layout/default">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
-	<div class="col-sm-6">
+	<div class="col-sm-2">
 		<h1 class="m-0">학력 계획</h1>
 	</div><!-- /.col -->
-	<div class="col-sm-6">
+	<div class="col-sm-10">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/minaPlan}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{planEducationalHistory}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'planEducationalHistory'}"> 학력 계획
+					</a>
+					<a th:href="@{/planProject}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'planProject'}"> 프로젝트 계획
+					</a>
+					<a th:href="@{/planCertificate}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planCertificate'}"> 자격증 계획
+					</a>
+					<a th:href="@{/planCertifiedLanguage}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planCertifiedLanguage'}"> 공인어학 계획
+					</a>
+					<a th:href="@{/planTechnologyStack}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planTechnologyStack'}"> 기술스택 계획
+					</a>
+					<a th:href="@{/planJobTraining}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planJobTraining'}"> 직종전문교육과정 계획
+					</a>
+					<a th:href="@{/planInternship}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planInternship'}"> 인턴십 계획
+					</a>
+					<a th:href="@{/planContest}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planContest'}"> 공모전 계획
+					</a>
+					<a th:href="@{/planCareer}" class="btn btn-sm btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'planCareer'}"> 경력 계획
+					</a>
+				</div>
+			</div>
 		</ol>
 	</div><!-- /.col -->
 </th:block>
@@ -21,7 +48,7 @@
 	<div class="card">
 		<div class="card-header">
 			<h3 class="card-title">
-				계획 - 4년 컴공 뿌시기
+				학력 계획
 			</h3>
 			
 			<div class="card-tools">
@@ -35,12 +62,15 @@
 				</button>
 			</div>
 		</div>
-		<div class="card-body p-0">
-			<table class="table table-striped projects" style="overflow: scroll; width: 100%; white-space: nowrap;">
+		<div class="card-body p-0" style="overflow: scroll; min-width: 100%; white-space: nowrap;">
+			<table class="table table-striped projects">
 				<thead>
 					<tr style="text-align: center;">
 						<th>
 							순번
+						</th>
+						<th>
+							계획명
 						</th>
 						<th>
 							계획내용
@@ -83,7 +113,7 @@
 							1
 						</td>
 						<td>
-							<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>컴퓨터공학전공해서취업하자 일단 신청이라도!!</textarea>
+							<textarea class="form-control" cols="30" rows="3" style="resize: none; min-width: max-content;" readonly>컴퓨터공학전공해서취업하자 일단 신청이라도!!</textarea>
 						</td>
 						<td>
 							4년제 대학교

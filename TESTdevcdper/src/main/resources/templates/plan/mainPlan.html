@@ -4,15 +4,28 @@
 	  layout:decorator="layout/default">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
+	<input type="text" th:value="${mainCdp}" id="mainCdp" hidden/>
 	<div class="col-sm-6">
 		<h1 class="m-0">나의 계획 한눈에보기</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-6">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/mainPlan}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/totalPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'totalPlan'}"> 통합계획
+					</a>
+					<a th:href="@{/mainPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'plan'}"> 계획
+					</a>
+					<a th:href="@{/detailPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'detailPlan'}"> 상세계획
+					</a>
+					<a th:href="@{/actionPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'actionPlan'}"> 실천계획
+					</a>
+				</div>
+			</div>
 		</ol>
 	</div><!-- /.col -->
 </th:block>
@@ -184,6 +197,11 @@
 
 </th:block>
 <th:block layout:fragment="pageJavascript">
-
+<script>
+	var mainCdp = $('#mainCdp').val();
+	if(mainCdp == "mainCdp"){
+		alert("경로가 mainCdp로 되어있습니다. 경로수정 하세요.");
+	};
+</script>
 </th:block>
 </html>
