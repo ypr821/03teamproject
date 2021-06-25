@@ -2,15 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:fragment="coachingContentsHeaderBar">
-	<!-- /.col -->
-	<div class="col-sm-6">
+	<div class="col-sm-6" style="white-space: nowrap;">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/mentoring}">!멘토링</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/consulting}">!컨설팅</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/myCoachingClient}">!나의 코칭(일반)</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/myCoachingCoach}">!나의 코칭(코치)</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/coachingAdminPage}">#코칭 관리자페이지</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/mentoring}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mentoring'}">!멘토링
+					</a>
+					<a th:href="@{/consulting}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'consulting'}">!컨설팅
+					</a>
+					<a th:href="@{/myCoachingClient}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'myCoachingClient'}">!나의 코칭(일반)
+					</a>
+					<a th:href="@{/myCoachingCoach}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'myCoachingCoach'}">!나의 코칭(코치)
+					</a>
+					<a th:href="@{/coachingAdminPage}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'coachingAdminPage'}">!코칭 관리자페이지
+					</a>
+				</div>
+			</div>
 		</ol>
-	</div><!-- /.col -->
+	</div>
+	<!-- /.col -->
 </th:block>
 </html>
