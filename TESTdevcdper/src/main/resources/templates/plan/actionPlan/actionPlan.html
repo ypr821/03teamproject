@@ -26,7 +26,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"># 실천계획 한눈에 보기</h3>
+          <h3 class="card-title">실천계획</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -41,47 +41,54 @@
           <table class="table table-striped projects">
               <thead>
                   <tr>
-                      <th style="width: 1%">
-                          #
+                  <tr style="text-align: center;">
+                      <th style="width: 5%">
+                          	순번
                       </th>
                       <th style="width: 20%">
+                          	실천 계획명
+                      </th>
+                      <th style="width: 19%">
                           	실천 계획 내용
                       </th>
-                      <th style="width: 30%">
-                          	작성자
+                      <th>
+                           	시작일
                       </th>
                       <th>
-                           	실천 진행률
+                           	종료일자
+                      </th>
+                      <th style="width: 10%">
+                           	진행율
                       </th>
                       <th style="width: 8%" class="text-center">
-                          	실천 상태
+                          	상태
                       </th>
-                      <th style="width: 20%">
+                      <th style="width: 3">
+                      		차수
                       </th>
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td>
-                          #
+                  <tr style="text-align: center;">
+                     <td>
+                          1
                       </td>
                       <td>
-                          <a>
-                              	랩실에서 하루도 빠짐없이 공부하기
-                          </a>
-                          <br/>
-                          <small>
+                     <a>컴퓨터공학 전공해서 취업하자</a>
+                     <br>
+                      	<small>
                               Created 05.24.2021
                           </small>
                       </td>
                       <td>
-                          <ul class="list-inline">
-                              <li class="list-inline-item">
-            					<img th:src="@{/image/Elmo.jpg}" alt="Elmo" class="img-size-50 mr-3 img-circle">
-            						Elmo
-                              </li>
-                          </ul>
+                      			랩실에서 하루도 빠짐없이 공부하기
                       </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
                       <td class="project_progress">
                           <div class="progress progress-sm">
                               <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
@@ -92,108 +99,56 @@
                           </small>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-success">Success</span>
+                          <span class="badge badge-success">완료</span>
                       </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              	조회
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              	수정
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              	삭제
-                          </a>
+                       <td>
+            				1차
+            				</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{actionEducationalHistory}">
+								<i class="fas fa-folder">
+								</i>
+								실천상세계획보기
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{actionEducationalHistory}">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{/}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+							</td>
+                  <tr style="text-align: center;">
+                     <td>
+                          2
                       </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          #
-                      </td>
-                      <td>
-                          <a>
-                             	중간, 기말고사 2주전부터 전공시험 공부하기
-                          </a>
-                          <br/>
-                          <small>
-                              Created 06.01.2021
+                     <td>
+                     <a>인터넷응용보안공학과 전공성적 all A</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
                           </small>
                       </td>
                       <td>
-                          <ul class="list-inline">
-                              <li class="list-inline-item">
-            					<img th:src="@{/image/avatar.png}" alt="avatar" class="img-size-50 mr-3 img-circle">
-                              </li>
-                              <li class="list-inline-item">
-            					<img th:src="@{/image/avatar.png}" alt="avatar" class="img-size-50 mr-3 img-circle">
-                              </li>
-                          </ul>
+                      			<a>중간, 기말고사 2주전부터 전공시험 공부하기</a>
+                      			<br>
                       </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
                       <td class="project_progress">
                           <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="47" aria-valuemin="0" aria-valuemax="100" style="width: 47%">
-                              </div>
-                          </div>
-                          <small>
-                              47% Complete
-                          </small>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Success</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              	조회
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              	수정
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              	삭제
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          #
-                      </td>
-                      <td>
-                          <a>
-                            	한 학기 최대 수강학점 수강하기
-                          </a>
-                          <br/>
-                          <small>
-                               Created 06.24.2021
-                          </small>
-                      </td>
-                      <td>
-                          <ul class="list-inline">
-                              <li class="list-inline-item">
-            					<img th:src="@{/image/Elmo.jpg}" alt="Elmo" class="img-size-50 mr-3 img-circle">
-                              </li>
-                              <li class="list-inline-item">
-            					<img th:src="@{/image/Elmo.jpg}" alt="Elmo" class="img-size-50 mr-3 img-circle">
-                              </li>
-                              <li class="list-inline-item">
-            					<img th:src="@{/image/Elmo.jpg}" alt="Elmo" class="img-size-50 mr-3 img-circle">
-                              </li>
-                          </ul>
-                      </td>
-                      <td class="project_progress">
-                          <div class="progress progress-sm">
-                              <div class="progress-bar bg-red" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
                               </div>
                           </div>
                           <small>
@@ -201,29 +156,91 @@
                           </small>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-danger">Stop</span>
+                          <span class="badge badge-primary">진행중</span>
                       </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              	조회
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                               	수정
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              	삭제
-                          </a>
-                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
+								<i class="fas fa-folder">
+								</i>
+								실천상세계획보기
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{/}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+							</td>
                   </tr>
-                  <tr>
-                      <td>
+                  </tbody>
+              <tbody>
+                  <tr style="text-align: center;">
+                     <td>
+                          3
                       </td>
+                      <td>
+                     <a>졸업학점 채우기</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td>
+                      			한 학기 최대 수강학점 수강하기
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                              </div>
+                          </div>
+                          <small>
+                              77% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-success">완료</span>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
+								<i class="fas fa-folder">
+								</i>
+								실천상세계획보기
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{/}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+							</td>
                   </tr>
               </tbody>
           </table>
