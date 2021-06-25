@@ -38,6 +38,7 @@ public class DetailPlanController {
 		System.out.println("detailPlan 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title","상사계획 관리 화면");
+		model.addAttribute("radioCheck", "detailPlan");
 		return "plan/detailPlan/detailPlan";
 	}
 	/*----------------------------------------- 상세 계획 한눈에보기 End----------------------------*/
@@ -53,6 +54,7 @@ public class DetailPlanController {
 		System.out.println("planEducationalHistoryDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "학력 상세 계획 관리");
+		model.addAttribute("radioCheck", "planEducationalHistoryDetail");
 		return "plan/detailPlan/planEducationalHistoryDetail";
 	}
 	/*----------------------------------------- 학력 상세 계획 관리 End----------------------------*/
@@ -68,6 +70,7 @@ public class DetailPlanController {
 		System.out.println("planProjectDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "프로젝트 상세 계획");
+		model.addAttribute("radioCheck", "planProjectDetail");
 		return "plan/detailPlan/planProjectDetail";
 	}
 	/*----------------------------------------- 프로젝트 상세 계획 관리 End----------------------------*/
@@ -83,6 +86,7 @@ public class DetailPlanController {
 		System.out.println("planCertificateDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "자격증 상세 계획");
+		model.addAttribute("radioCheck", "planCertificateDetail");
 		return "plan/detailPlan/planCertificateDetail";
 	}
 	/*----------------------------------------- 자격증 상세 계획 관리 End----------------------------*/
@@ -98,6 +102,7 @@ public class DetailPlanController {
 		System.out.println("planCertifiedLanguageDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "공인어학 상세 계획");
+		model.addAttribute("radioCheck", "planCertifiedLanguageDetail");
 		return "plan/detailPlan/planCertifiedLanguageDetail";
 	}
 	/*----------------------------------------- 공인어학 상세 계획 관리 End----------------------------*/
@@ -113,6 +118,7 @@ public class DetailPlanController {
 		System.out.println("planTechnologyStackDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "기술스택 상세 계획");
+		model.addAttribute("radioCheck", "planTechnologyStackDetail");
 		return "plan/detailPlan/planTechnologyStackDetail";
 	}
 	/*----------------------------------------- 기술스택 상세 계획 관리 Start----------------------------*/
@@ -129,6 +135,7 @@ public class DetailPlanController {
 		System.out.println("planJobTrainingDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "직종전문교육과정 상세 계획");
+		model.addAttribute("radioCheck", "planJobTrainingDetail");
 		return "plan/detailPlan/planJobTrainingDetail";
 	}
 	/*----------------------------------------- 직종전문교육과정 상세 계획 관리 End----------------------------*/
@@ -144,6 +151,7 @@ public class DetailPlanController {
 		System.out.println("planInternshipDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "인턴십 상세 계획");
+		model.addAttribute("radioCheck", "planInternshipDetail");
 		return "plan/detailPlan/planInternshipDetail";
 	}
 	/*----------------------------------------- 인턴십 상세 계획 관리 End----------------------------*/
@@ -159,6 +167,7 @@ public class DetailPlanController {
 		System.out.println("planContestDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "공모전 상세 계획");
+		model.addAttribute("radioCheck", "planContestDetail");
 		return "plan/detailPlan/planContestDetail";
 	}
 	/*----------------------------------------- 공모전 상세 계획 관리 End----------------------------*/
@@ -174,6 +183,7 @@ public class DetailPlanController {
 		System.out.println("planCareerDetail 메서드 실행");
 		System.out.println("==============================================");
 		model.addAttribute("title", "경력 상세 계획");
+		model.addAttribute("radioCheck", "planCareerDetail");
 		return "plan/detailPlan/planCareerDetail";
 	}
 	/*----------------------------------------- 경력 상세 계획 관리 End----------------------------*/
