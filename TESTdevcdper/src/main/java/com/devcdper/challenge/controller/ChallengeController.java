@@ -57,6 +57,24 @@ public class ChallengeController {
 		return "challenge/challengeDetailInfo";
 	}
 	
+	@GetMapping("/myChallenge")
+	public String myChallenge(Model model) {
+		model.addAttribute("title", "나의 챌린지");
+		return "challenge/myChallenge";
+	}
+	
+	@GetMapping("/payment")
+	public String payment(Model model) {
+		model.addAttribute("title", "챌린지 결제 관리");
+		return "paymentRefund/payment";
+	}
+	@GetMapping("/refund")
+	public String refund(Model model) {
+		model.addAttribute("title", "챌린지 환불 관리");
+		return "paymentRefund/refund";
+	}
+	
+	
 	
 	
 

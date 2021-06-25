@@ -89,7 +89,7 @@
 		
 		
 		
-		<!-- 챌린지 정보 카드 -->		                    
+		<!-- 챌린지 결제금액 카드 -->		                    
 		<div class="col-12">
           <div class="card">
             <div class="card-header">
@@ -111,30 +111,46 @@
               </div>
             </div>
             <!-- /.card-body -->
-			<!-- 챌린지 정보카드 -->   
+			<!-- 챌린지 결제금액 카드 -->   
 		</div>
 		
-		
-		
-		<div class="btnGroup"></div>
-		<div class="btn btn-primary btn-lg btn-flat ">
-				  <i class="fas fa-star fa-lg mr-2"></i>
-                  	북마크
-       </div>
-		<div class="btn btn-danger btn-lg btn-flat">
-				  <i class="fas fa-sign-in-alt fa-lg mr-2"></i>
-                  	<a th:href="@{/mainChallenge}" id="nextBtn"></a>챌린지 참가하기
-       </div>
-       </form>
+		<!-- 챌린지 결제수단 카드 -->		                    
+		<div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">챌린지 결제수단</h3>
+            </div>
+            
+        <div class="btnGroup">
+			<div class="btn btn-primary btn-lg btn-flat">
+					  <i class="fas fa-credit-card fa-lg mr-2"></i>
+					  <a th:href="@{#}" id="bookmarkBtn">
+					  신용/체크카드</a>
+	     	</div>
+			<div class="btn btn-primary btn-lg btn-flat">
+					  <i class="fas fa-money-bill fa-lg mr-2"></i>
+					  <a th:href="@{#}" id="bookmarkBtn">
+					 계좌이체</a>
+	     	</div>
+     	</div>
+              </div>
+              </div>
+            </form>
+            </div>
+            <!-- /.card-body -->
+			<!-- 챌린지 결제수단 카드 -->   
+		</section>
 		</div>
 		
-			                </section>
-			                
-			                </div>
-			                
+		<div class="btnGroup">
+		<div class="btn btn-danger btn-lg btn-flat" id="participationBtn">
+				  <i class="fas fa-credit-card fa-lg mr-2"></i>
+                  <a th:href="@{#}" id="participationBtn">결제하기</a>
+        </div>
+		</div>
+		</div>
+		
 			               
-			        </div>
-
 </th:block>
 
 <th:block layout:fragment="pageJavascript">

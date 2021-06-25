@@ -1,3 +1,4 @@
+
 /*!
  *   AdminLTE v3.1.0
  *   Author: Colorlib
@@ -65,4 +66,30 @@ h4#totalPaymentPrice {
     text-align: right;
     color: red;
 }
+div#participationBtn {
+    display: inline-block;
+    width: 1200px;
+    text-align: center;
+}
+.btnGroup {
+    text-align: center;
+}
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.card-body.table-responsive.pad {
+    padding: 0px;
+}
+section#challengeExplorationSection {
+    padding: 0px;
+    margin: 0 0 0 0px;
+}
+div#insertBtn {
+    padding: 0 0 5px 0px;
+}
+tbody.myChallengeBody {
+    white-space: nowrap;
+}	
 /*# sourceMappingURL=adminlte.min.css.map */

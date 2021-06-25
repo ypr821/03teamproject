@@ -4,13 +4,28 @@
 	  layout:decorate="@{layout/challengeUserDefault}">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
-<div class="col-sm-6">
-	<h1 class="m-0">챌린지 개설하기🌟</h1>
-</div><!-- /.col -->
+	<div class="col-sm-6">
+		<h1 class="m-0">!챌린지 개설하기</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div>
 </th:block>
+
 <th:block layout:fragment="container">
 
-<section class="content">
+<section class="content" id="challengeExplorationSection">
       <div class="row">
        <!-- ChallengeInsertCard1 Start -->
         <div class="col-md-4">
@@ -174,7 +189,7 @@
     <!-- ChallengeInsert Btn -->   
 	</div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12" id="insertBtn">
           <a th:href="@{/mainChallenge}" class="btn btn-secondary">개설취소</a>
           <a th:href="@{/mainChallenge}" class="btn btn-success" id="nextBtn">개설하기</a>
         </div>
