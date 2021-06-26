@@ -2,25 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <nav th:fragment="header" class="main-header navbar navbar-expand navbar-white navbar-light">
 	<!-- Left navbar links -->
-	<ul class="navbar-nav">
+	<ul class="navbar-nav" id="menu">
 		<li class="nav-item">
 			<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 		</li>
 		<li class="nav-item d-none d-sm-inline-block">
 			<a href="/" class="nav-link"><b>Home</b></a>
 		</li>
-		<li class="nav-item dropdown d-none d-sm-inline-block">
+		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
               	경력개발계획 <span class="caret"></span>
             </a>
             <div class="dropdown-menu">
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/totalPlan}">통합계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/mainPlan}">계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/detailPlan}">상세계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/actionPlan}">실천계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/totalPlan}">#(박승민)통합계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/mainPlan}">!(박승민)계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/detailPlan}">!(류준혁)상세계획</a>
+	              <a class="dropdown-item" tabindex="-1" th:href="@{/actionPlan}">!(김도연)실천계획</a>
             </div>
 		</li>
-		<li class="nav-item dropdown d-none d-sm-inline-block">
+		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/mainCoachings}">
                  <b>코칭</b><span class="caret"></span>
             </a>
@@ -34,7 +34,7 @@
       	</li>
       	<!-- /코칭  - 드롭다운 메뉴 -->	
 		<!-- 챌린지 드롭다운 메뉴 -->	
-		<li class="nav-item dropdown d-none d-sm-inline-block">
+		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/mainChallenge}">두배러 챌린지 <span class="caret"></span>
             </a>
             <div class="dropdown-menu">
@@ -46,7 +46,7 @@
 		</li>
 	</ul>
 	<!-- Right navbar links -->
-	<ul class="navbar-nav ml-auto">
+	<ul class="navbar-nav ml-auto" id="menu">
 	<!-- Navbar Search -->
 	
 	<li class="nav-item">
@@ -68,7 +68,7 @@
 		      </div>
 		    </form>
 	    </div>
-	   <li class="nav-item dropdown d-none d-sm-inline-block">
+	   <li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" th:if="${session.NEMAIL eq null && session.CEMAIL eq null}">로그인</a>
 			<div class="dropdown-menu">
 	              <a class="dropdown-item" tabindex="-1" th:href="@{/normalLogin}">일반로그인</a>
@@ -81,7 +81,7 @@
 		</li>
 		
 		<!-- 회원가입 -->
-		<li class="nav-item dropdown d-none d-sm-inline-block">
+		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"  th:if="${session.NEMAIL == null && session.CEMAIL == null}">회원가입</a>
 			<div class="dropdown-menu">
 	              <a class="dropdown-item" tabindex="-1" th:href="@{/addNormal}">일반회원가입</a>
