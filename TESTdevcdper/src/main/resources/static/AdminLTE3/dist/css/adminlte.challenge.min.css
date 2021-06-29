@@ -103,4 +103,8 @@ i.fa.fa-angle-right {
 .challenge-table-outter {overflow-x: scroll; overflow-y : sc}
 .challenge-table{table-layout: fixed; margin:40px auto 0px auto; white-space: nowrap}
 
+body{
+	font-family: 'Jua', sans-serif;
+}
+
 /*# sourceMappingURL=adminlte.min.css.map */
