@@ -53,7 +53,7 @@
             <a href="#" class="nav-link">
            	 <i class="nav-icon fas fad fa-thumbs-up"></i>
               <p>
-               		 챌린지 메인
+               		 챌린지
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -65,6 +65,13 @@
                 </a>
               </li> -->
               <li class="nav-item">
+                <a th:href="@{/mainChallenge}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 메인</p>
+                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a th:href="@{/challengeExploration}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 탐색하기</p>
@@ -75,6 +82,20 @@
                 <a th:href="@{/challengeInsert}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 개설하기</p>
+                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/challengeCertification}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>챌린지 인증하기</p>
+                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/myChallenge}" class="nav-link">
+                  <i class="nav-icon fas fad fa-thumbs-up"></i>
+                  <p>나의 챌린지</p>
                    <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
@@ -112,4 +133,39 @@
 	</div>
 	<!-- /.sidebar -->
 </aside>
+
+
+<script type="text/javascript">
+$.AdminLTE.tree = function (menu) {
+    var _this = this;
+    var animationSpeed = $.AdminLTE.options.animationSpeed;
+    $(document).off('click', menu + ' li a')
+      .on('click', menu + ' li a', function (e) {
+        //Get the clicked link and the next element
+        var $this = $(this);
+        var checkElement = $this.next();
+
+        //If the menu is not visible open it
+        if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
+          //Get the parent menu
+          var parent = $this.parents('ul').first();
+          //Get the parent li
+          var parent_li = $this.parent("li");
+
+          //Open the target menu and add the menu-open class
+          checkElement.slideDown(animationSpeed, function () {
+            //Add the class active to the parent li
+            checkElement.addClass('menu-open');
+            parent_li.addClass('active');
+            //Fix the layout in case the sidebar stretches over the height of the window
+            _this.layout.fix();
+          });
+        }
+        //if this isn't a link, prevent the page from being redirected
+        if (checkElement.is('.treeview-menu')) {
+          e.preventDefault();
+        }
+      });
+  };
+</script>
 </html>
