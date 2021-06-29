@@ -115,15 +115,15 @@
 		</form>
 	
 		<!-- 코치 페이지  나의 코칭 내역 목록  -->
-		<div class="card">
-			<div class="card-header">
+		<div class="card ">
+			<div class="card-header " >
 				<h3 class="card-title">
 					<ion-icon size="small" name="list-outline"></ion-icon>
 					&emsp; <b>나의 멘토링/컨설팅 목록</b>
 				</h3>
 			</div>
 			<!-- /.card-header -->
-			<div class="card-body p-0 autoScroll">
+			<div class="card-body autoScroll ">
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -163,10 +163,14 @@
 								</button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
+			                  		상세보기
+				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
+									중단
+								</button>
 							</td>
 	
 						</tr>
@@ -193,10 +197,14 @@
 				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
+			                  		상세보기
+				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
+									중단
+								</button>
 							</td>
 	
 						</tr>
@@ -224,10 +232,14 @@
 
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
+			                  		상세보기
+				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
+									중단
+								</button>
 							</td>
 						</tr>
 						<tr>
@@ -253,11 +265,15 @@
 				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
+			                  		상세보기
+				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
-							</td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
+			                  		중단
+				                </button>
+							</td>	
 						</tr>
 						<tr>
 							<td>5.</td>
@@ -283,11 +299,15 @@
 
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
+			                  		상세보기
+				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs">중단</button>
-							</td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
+			                  		중단
+				                </button>
+							</td>	
 						</tr>
 					</tbody>
 				</table>
@@ -343,13 +363,13 @@
 										<p style="display: none;">
 									
 										<!-- 월별 코칭 진행 수 추이  막대 그래프 -->									
-										<div class="card col-10 autoScroll ">
+										<div class="card autoScroll">
 							              <div class="card-header border-0">
 							                <div class="d-flex justify-content-between">
 							                  <h3 class="card-title">월별 코칭 진행완료 횟수  추이</h3>
 							                </div>
 							              </div>
-							              <div class="card-body">
+							              <div class="card-body " style="width: 100%">
 							                <div class="d-flex">
 							                  <p class="d-flex flex-column col-3">
 							                    <span class="text-bold text-lg"> 431 회</span>
@@ -475,216 +495,24 @@
 	
 		<!-- Modal -->
 		<!-- 견적요청 Modal -->
-		<div class="modal fade" id="modal-RFQ" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
-		  <div class="modal-dialog modal-lg" >
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h4 class="modal-title" id="myModalLabel">견적요청 내역</h4>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		      </div>
-		      <div class="modal-body">
-				  <div class="form-group">
-	              	<b>코칭구분</b>&emsp;
-	              	<label id="coachingType">
-	              		<input type="radio" name="coachingType" value="mentoring">
-	              		멘토링
-	              	</label>&nbsp; &nbsp; 
-	              	<label id="coachingType">
-	              		<input type="radio" name="coachingType" value="consulting">
-	              		컨설팅
-	              	</label>
-	              	<br>
-	                <label for="coachingCategory">카테고리 선택</label>
-	                <select id="coachingCategory" class="form-control custom-select">
-	                  <option disabled="">Select one</option>
-	                  <option>On Hold</option>
-	                  <option>Canceled</option>
-	                  <option selected="">Success</option>
-	                </select>
-	              </div>
-	              <div class="form-group">
-	                <label for="coachingStartDate">시작가능일자</label>
-	                <input type="date" id="coachingStartDate" class="form-control" value="AdminLTE">
-	              </div>
-	              
-	              <div class="form-group">
-	                <label for="coachingEndDate">종료 일자</label>
-	                <input type="date" id="coachingEndDate" class="form-control" value="AdminLTE">
-	              </div>
-	             <div class="form-group">
-	                <label>
-	                	진행 요일 선택
-	                </label>
-	                <br>
-	 				<label>
-	                	<input type="checkbox"/> 월        &nbsp; &nbsp;      	
-	                </label>
-	                <label>
-	                	<input type="checkbox"/> 화        &nbsp; &nbsp;  
-	                </label>
-	                <label>
-	                	<input type="checkbox"/> 수        &nbsp; &nbsp;  
-	                </label>	
-	                <label>
-	                	<input type="checkbox"/> 목        &nbsp; &nbsp;    
-	                </label>
-	                <label>
-	                	<input type="checkbox"/> 금        &nbsp;  &nbsp;     
-	                </label>	
-	                <label>
-	                	<input type="checkbox"/> 토        &nbsp;  &nbsp;  
-	                </label>	
-	                <label>
-	                	<input type="checkbox"/> 일       
-	                </label>         	
-	              </div>
-	              
-	              <div class="form-group">
-	                <label for="RFQRequestContents">희망 요청 사항</label>
-	                <textarea id="RFQRequestContents" class="form-control" rows="4" placeholder="희망요청사항을 입력해주세요. 현상황 및 필요한 부분을 상세하게 작성해주시면 좋습니다"></textarea>
-	              </div>
-	              <div class="form-group">
-	                <label for="plan-coaching"> 연결 계획 선택 </label>
-	                <input type="text" id="plan-coaching" class="form-control" value="어떻게 연결시킬지 고민중">
-	              </div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+		<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>"
 		<!-- /견적요청 Modal -->
-		<!-- 견적결과 Modal -->
-		<!-- 해당 멘토아이디 , 사용자 아이디 데이터 넘겨받자 -->
-		<div class="modal fade" id="modal-RFQResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
-		  <div class="modal-dialog modal-lg" >
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h4 class="modal-title" id="myModalLabel">견적결과 내역</h4>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		      </div>
-		      <div class="modal-body">
-		          	<div class="form-group">
-		              	<b>코칭구분</b>&emsp;
-		              	<label id="coachingType">
-		              		<input type="radio" name="coachingType" value="mentoring">
-		              		멘토링
-		              	</label>&nbsp; &nbsp; 
-		              	<label id="coachingType">
-		              		<input type="radio" name="coachingType" value="consulting">
-		              		컨설팅
-		              	</label>
-		              	<br>
-		                <label for="coachingCategory">카테고리 선택</label>
-		                <select id="coachingCategory" class="form-control custom-select">
-		                  <option disabled="">Select one</option>
-		                  <option>On Hold</option>
-		                  <option>Canceled</option>
-		                  <option selected="">Success</option>
-		                </select>
-		                <button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> + 추가 </button>
-		             </div>
-		             <div class="form-group">
-		                <label for="coachingStartDate">시작 일자</label>
-		                <input type="date" id="coachingStartDate" class="form-control" value="AdminLTE">
-		             </div>
-		              
-		             <div class="form-group">
-		                <label for="coachingEndDate">종료 일자</label>
-		                <input type="date" id="coachingEndDate" class="form-control" value="AdminLTE">
-		             </div>
-		              
-		             <div class="form-group">
-		                <label>
-		                	진행 요일 선택
-		                </label>
-		                <br>
-		                <label>
-		                	<input type="checkbox"/> 월        &nbsp;&nbsp;   	
-		                </label>
-		                <label>
-		                	<input type="checkbox"/> 화        &nbsp;&nbsp;	
-		                </label>
-		                <label>
-		                	<input type="checkbox"/> 수        &nbsp;&nbsp;
-		                </label>	
-		                <label>
-		                	<input type="checkbox"/> 목        &nbsp;&nbsp;  
-		                </label>
-		                <label>
-		                	<input type="checkbox"/> 금        &nbsp;&nbsp;
-		                </label>	
-		                <label>
-		                	<input type="checkbox"/> 토        &nbsp;&nbsp;
-		                </label>	
-		                <label>
-		                	<input type="checkbox"/> 일       
-		                </label>     	
-		             </div>
-		             <div class="form-group">
-				            <label for="hourPerOneTime">1회당 진행 시간</label>
-			                <select id="hourPerOneTime" class="form-control custom-select" >
-			                  <option disabled="" selected="">1회당 진행 시간 선택</option>
-			                  <option>1시간</option>
-			                  <option>2시간</option>
-			                  <option>3시간</option>
-			                  <option>4시간</option>
-			                  <option>5시간</option>
-			                  <option>6시간</option>
-			                  <option>7시간</option>
-			                  <option>8시간</option>
-			                  <option>9시간</option>
-			                  <option>10시간</option>
-			                </select>
-			         </div>
-			         <div class="form-group">
-		                <label for="pricePerHour"> 1시간당 코칭 금액 </label>
-		                <input type="text" id="pricePerHour" class="form-control" value="1시간당 코칭 금액">
-		             </div>
-		             <div class="form-group">
-		                <label for="pricePerOneTime"> 1회 코칭 금액 </label>
-		                <input type="text" id="pricePerOneTime" class="form-control" value="1회 코칭 금액">
-		             </div>
-		             <div class="form-group">
-		                <label for="totalCoachingPrice"> 코칭 기간 총 금액 </label>
-		                <input type="text" id="totalCoachingPrice" class="form-control" value="코칭 기간 총 금액">
-		             </div>
-		             <div class="form-group">
-				            <label for="coachingMethod">진행방법 선택</label>
-			                <select id="coachingMethod" class="form-control custom-select" >
-			                  <option disabled="" selected="">온/오프라인 선택</option>
-			                  <option>온라인</option>
-			                  <option>오프라인</option>
-			                </select>
-		             </div>
-		             <div class="form-group">
-		                <label for="RFQResultContents" >합의 및 목표 사항</label>
-		                <textarea id="RFQResultContents" class="form-control" rows="4" placeholder="수강생과 합의후 코칭 목표 및  진행할 내용등을 입력해주세요"></textarea>
-		             </div>
-		             <div class="form-group">
-		                <label for="plan-coaching"> 연결 계획 선택 </label>
-		                <input type="text" id="plan-coaching" class="form-control" value="어떻게 연결시킬지 고민중">
-		                <br>
-		                <div class="row">
-		                	 &emsp;&emsp;&emsp;
-			                <a th:href="@{/myCoachingCoach}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm" style="height: 30px; margin-top: 8px ">등록</a>
-			                 &nbsp; &emsp;&emsp;
-			                <a th:href="@{/myCoachingCoach}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">수정</a>
-			                 &nbsp; &emsp;&emsp;
-			                 <a th:href="@{/myCoachingCoach}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">수정요청</a>
-			                 &nbsp; &emsp;&emsp;
-			                <a th:href="@{/myCoachingCoach}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">확인</a>
-		                </div>
-		            </div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<!-- /견적결과 Modal -->
+		
+		<!-- 견적결과 상세보기  Modal  -->			
+		<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>"
+		<!-- /견적결과 상세보기  Modal  -->			
+
+		<!-- 후기 상세보기  Modal  -->			
+		<th:block th:replace="/coaching/coachingModal/modal-Review  ::  modal-Review"></th:block>
+		<!-- /후기 상세보기  Modal -->
+		
+		<!-- 중단  Modal  -->
+		<th:block th:replace="/coaching/coachingModal/modal-coachingStop  ::  modal-coachingStop"></th:block> 
+		<!-- /중단  Modal  -->
+		
+		<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+		<th:block th:replace="/coaching/coachingModal/modal-coaching-totalPlan  ::  modal-coaching-totalPlan"></th:block> 
+		<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
@@ -696,15 +524,36 @@
 				  $('#myInput').focus()
 				})
 		});
-
+		
 		<!-- 견적결과 Modal -->
 		$(function(){
 			$('#modal-RFQResult').on('shown.bs.modal', function () {
 				  $('#myInput').focus()
 				})
 		});
-
-	
+		<!-- 후기 상세보기  Modal -->
+		$(function(){
+			$('#modal-Review').on('shown.bs.modal', function () {
+				  $('#myInput').focus()
+				})
+		});
+		
+		/*  중단 경고 메시지 */
+		$(function(){
+			$('#coaching-stopModalBtn').click(function(){
+				alert('코칭을 중단하시겠습니까')
+			})
+			
+		});
+		
+		<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+		$(function(){
+			$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
+				  $('#myInput').focus()
+				})
+		});
+		<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+		
 	</script>
 
 <!-- 그래프 script단 -->

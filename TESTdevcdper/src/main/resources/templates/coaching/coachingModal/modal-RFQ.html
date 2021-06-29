@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<!-- 견적요청 Modal -->
+	<th:block th:fragment="modal-RFQ">
+		<div class="modal fade" id="modal-RFQ" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		  <div class="modal-dialog modal-lg" >
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title" id="myModalLabel">견적요청 내역</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body">
+		      	  <!-- 코칭구분, 카테고리  -->
+				  <div class="form-group">
+	              	<b>코칭구분</b>&emsp;
+	              	<label id="coachingType">
+	              		<input type="radio" name="coachingType" value="mentoring">
+	              		멘토링
+	              	</label>&nbsp; &nbsp; 
+	              	<label id="coachingType">
+	              		<input type="radio" name="coachingType" value="consulting">
+	              		컨설팅
+	              	</label>
+	              	<br>
+	              	
+	              	<!-- 코칭 카테고리  -->
+	                <label for="coachingCategory">카테고리 선택</label>
+	                <select id="coachingCategory" class="form-control custom-select">
+	                  <!-- 멘토링카테고리 -->
+	                  <option>학력</option>
+	                  <option>프로젝트</option>
+	                  <option>자격증</option>
+	                  <option>공인어학(외국어능력)</option>
+	                  <option>기술스택</option>
+	                  <option>직종전문교육과정</option>
+	                  <option>인턴쉽</option>
+	                  <option>공모전</option>
+	                  
+	                  <!-- 컨설팅카테고리 -->
+	                  <option>진로설정·취업전략</option>
+	                  <option>취업준비 스펙(자격증, 포트폴리오)</option>
+	                  <option>기업·직무 분석</option>
+	                  <option>자기소개서 + 이력서</option>
+	                  <option>면접</option>
+	                  <option>인적성검사 대비</option>
+	                  <option>대기업 취업준비</option>
+	                  <option>공기업 취업준비·NCS</option>
+	                  <option>경력관리</option>
+	                  <option>경력기술서</option>
+	                  <option>경력분석·이전직</option>
+	                </select>
+	              </div>
+	              <!--/ 코칭구분, 카테고리  -->
+
+	     
+	              <div class="form-group">
+	                <label for="coachingStartDate">시작가능일자</label>
+	                <input type="date" id="coachingStartDate" class="form-control" value="AdminLTE">
+	              </div>
+	              
+	              <div class="form-group">
+	                <label for="coachingEndDate">종료 일자</label>
+	                <input type="date" id="coachingEndDate" class="form-control" value="AdminLTE">
+	              </div>
+	              
+	             <div class="form-group">
+	                <label>
+	                	진행 요일 선택
+	                </label>
+	                <br>
+	 				<label>
+	                	<input type="checkbox"/> 월        &nbsp; &nbsp;      	
+	                </label>
+	                <label>
+	                	<input type="checkbox"/> 화        &nbsp; &nbsp;  
+	                </label>
+	                <label>
+	                	<input type="checkbox"/> 수        &nbsp; &nbsp;  
+	                </label>	
+	                <label>
+	                	<input type="checkbox"/> 목        &nbsp; &nbsp;    
+	                </label>
+	                <label>
+	                	<input type="checkbox"/> 금        &nbsp;  &nbsp;     
+	                </label>	
+	                <label>
+	                	<input type="checkbox"/> 토        &nbsp;  &nbsp;  
+	                </label>	
+	                <label>
+	                	<input type="checkbox"/> 일       
+	                </label>         	
+	              </div>
+
+	              
+	              <!-- 계획 함께 짜기, 함께 짤 통합 계획 선택  -->
+		          <div class="form-group">
+		          		<label for="plan-coaching"> 코치님과 내 계획짜기 </label>
+		              	 &nbsp; &nbsp;
+		              	 <div class="row">
+						 	<button type="button" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>            
+		             	    &nbsp; &nbsp;
+		            		 <input type="text" id="pricePerHour" class="form-control col-9" value="선택한 통합계획">
+		              	 </div>
+		          </div>
+		          <!-- /계획 함께 짜기, 함께 짤 통합 계획 선택  -->
+		          
+		          <!-- 내 계획과 연결 하기 -->
+		          <div class="form-group">
+		                <label for="plan-coaching">내 계획과 연결 하기 </label>
+		            	<div class="row">
+						 	<button type="button" id="addCoachingCategory" class="btn btn-block btn-secondary btn-sm col-2">계획 선택</button>             
+		             	    &nbsp; &nbsp;
+		            		 <input type="text" id="pricePerHour" class="form-control col-9" value="선택한 내 계획">
+		              	 </div>
+		          </div>
+		          <!-- /내 계획과 연결 하기 -->
+		          
+		          	              
+	              <div class="form-group">
+	                <label for="RFQRequestContents">희망 요청 사항</label>
+	                <textarea id="RFQRequestContents" class="form-control" rows="4" placeholder="희망요청사항을 입력해주세요. 현 상황 및 필요한 부분을 상세하게 작성해주시면 좋습니다"></textarea>
+	              </div>
+
+	              <a th:href="@{/myCoachingClient}">
+	             	 <button type="button" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
+	              </a>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</th:block>
+	<!-- /견적요청 Modal -->
+</html>
