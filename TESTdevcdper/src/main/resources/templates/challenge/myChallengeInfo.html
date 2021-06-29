@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeUserDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">챌린지</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
+					</a>
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
+					</a>
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
+					</a>
+					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div>
+</th:block>
+
+
+
+	<th:block layout:fragment="container">
+			
+	
+		
+
+		 <div class="col-md-9">
+            <div class="card">
+              <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                  <li class="nav-item"><a class="nav-link" href="#challengeDetailInfo" data-toggle="tab">챌린지</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#challengeCertification" data-toggle="tab">인증</a></li>
+                </ul>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                
+                
+                <!-- tab1 -->
+                  <div class="tab-pane" id="challengeDetailInfo">
+                    <!-- Post -->
+                    <div class="post">
+                   		<div class="card-body">
+            <div class="col-12 col-sm-6 d-flex align-items-stretch flex-column">
+	          <div class="card bg-light d-flex flex-fill">
+	             <div class="card-header text-muted border-bottom-0">
+	             </div>
+	             <div class="card-body pt-0">
+	               <div class="row">
+	                 <div class="col-12">
+	                   <h2 class="lead"><b>참여할 챌린지 이미지</b></h2>
+	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
+	                 </div>
+	               </div>
+	             </div>
+	           </div>
+	    	 </div>
+              <div class="form-group">
+                <label for="inputName">챌린지명</label>
+                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="1일 1깃허브">
+              </div>
+              <div class="form-group">
+                <label for="inputName">챌린지 기간</label>
+                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="2021년 4월 22일 ~ 2021년 5월 6일">
+              </div>
+              <div class="form-group">
+                <label for="inputName">챌린지 인증빈도</label>
+                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="월~일 매일 인증하기">
+              </div>
+               <div class="form-group">
+                 <label for="inputBeting">챌린지 참가인원</label>
+               <div class="input-group mb-3">
+                 <input type="text" class="form-control" readonly="readonly" style="background-color: white" value="3">
+	                  <div class="input-group-prepend">
+	                  	<span class="input-group-text">명</span>
+	                  </div>
+               </div>
+               <div class="form-group">
+                        <label for="inputBeting">챌린지 베팅금액</label>
+               <div class="input-group mb-3">
+                 	  <div class="input-group-prepend">
+	                  	<span class="input-group-text">총</span>
+	                  </div>
+               <input type="text" class="form-control" readonly="readonly" style="background-color: white" value="200,000">
+	                  <div class="input-group-prepend">
+	                  	<span class="input-group-text">원</span>
+	                  </div>
+                </div>
+			  </div>
+             </div>
+           </div>
+         </div>
+         <!-- /.post -->
+       </div>
+       <!-- /.tab-pane -->
+                  
+           <!-- tab2 -->
+           <div class="tab-pane active" id="challengeCertification">
+           
+           
+           <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+					  <b>챌린지 인증</b>
+				</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table table-striped">
+                   <thead class="challenge-head">
+		                    <tr>
+		                      <th>번호</th>
+								<th>제목</th>
+								<th>이메일</th>
+								<th>작성일</th>
+								<th>조회수</th>
+		                    </tr>
+		           </thead>
+                  <tbody class="myChallengeBody">
+						<tr>
+							<td>1.</td>
+							<td>인증합니다.</td>
+							<td>tae01@gmail.com</td>
+							<td>2021년 4월 22일</td>
+							<td>10</td>
+						</tr>
+						<tr>
+							<td>2.</td>
+							<td>인증합니다.</td>
+							<td>tae01@gmail.com</td>
+							<td>2021년 4월 23일</td>
+							<td>7</td>
+						</tr>
+						<tr>
+							<td>3.</td>
+							<td>인증합니다.</td>
+							<td>tae01@gmail.com</td>
+							<td>2021년 4월 24일</td>
+							<td>24</td>
+						</tr>
+					</tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+                         <a th:href="@{/challengeCertificationInsert}"><button type="button" class="btn btn-primary" style="float: right">인증 등록하기</button></a>         
+            </div>
+
+           <div>
+         </div>      
+						
+                    
+			<!-- /.card-body -->
+			<!-- 코치 list 페이지번호  -->
+			<div class="card-footer clearfix">
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                </ul>
+			   </div>	
+                    
+                    
+                    
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          
+          <div class="tab-pane" id="chat">
+          
+          </div>
+             				 
+	</th:block>
+	
+	<th:block layout:fragment="pageJavascript">
+	
+	</th:block>
+</html>
+

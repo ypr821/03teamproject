@@ -7,12 +7,13 @@
 	<div class="col-sm-6">
 		<h1 class="m-0">#챌린지 달성율 관리</h1>
 	</div><!-- /.col -->
+	<br><br>
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
 					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 관리
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 개설 관리
 					</a>
 					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리
@@ -42,6 +43,223 @@
 
 
 <th:block layout:fragment="container">
+
+<div class="row">
+         <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                <ion-icon size="small" name="list-outline"></ion-icon>
+					&emsp; 챌린지 달성율 관리</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <div class="card-body table-responsive p-0">
+         <table class="table table-striped text-nowrap">
+              <thead>
+                  <tr>
+                      <th>
+                          	번호
+                      </th>
+                      <th>
+                         	챌린지명
+                      </th>
+                      <th>
+                         	챌린지 참여자 이메일
+                      </th>
+                      <th>
+                          	챌린지 성공횟수
+                      </th>
+                      <th>
+                          	챌린지 총횟수
+                      </th>
+                      <th>
+                          	달성율 한눈에 보기
+                      </th>
+                      <th style="width: 8%" class="text-center">
+                         	달성율 업데이트일자
+                      </th>
+                      <th>
+                          	삭제
+                      </th>
+                      <th>
+                          	보상지급
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>
+                          1.
+                      </td>
+                      <td>
+                          <a>
+                              	깃허브 잔디심기
+                          </a>
+                      </td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">보상지급</button>
+					  </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          2.
+                      </td>
+                      <td>
+                          <a>
+                              	깃허브 잔디심기
+                          </a>
+                      </td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+					  <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">보상지급</button>
+					  </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          3.
+                      </td>
+                      <td>
+                          <a>
+                              	깃허브 잔디심기
+                          </a>
+                      </td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+					  <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">보상지급</button>
+					  </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          4.
+                      </td>
+                      <td>
+                          <a>
+                              	깃허브 잔디심기
+                          </a>
+                      </td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+					  <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">보상지급</button>
+					  </td>
+                  </tr>
+                  <tr>
+                      <td>
+                          5.
+                      </td>
+                      <td>
+                          <a>
+                              	깃허브 잔디심기
+                          </a>
+                      </td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+					  <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">보상지급</button>
+					  </td>
+                  </tr>
+                          
+              </tbody>
+         </table>
+			</div>
+			<!-- /.card-body -->
+			<!-- 코치 list 페이지번호  -->
+			<div class="card-footer clearfix">
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                </ul>
+			   </div>	
+		</div>
+		</div>
+		</div>		
+
 </th:block>
 
 <th:block layout:fragment="pageJavascript">

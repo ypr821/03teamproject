@@ -38,7 +38,7 @@
 		
          <div class="card">
            <div class="card-header">
-             <h3 class="card-title">챌린지 현황</h3>
+             <h3 class="card-title">참가중 챌린지</h3>
 
              <div class="card-tools">
                <button type="button" class="btn btn-tool col-sm-12" data-card-widget="collapse" title="Collapse" >
@@ -47,7 +47,7 @@
           
              </div>
            </div>
-           <div class="card-body">
+            <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
                         <button type="button" class="btn btn-info"><a th:href="@{/myChallengeParticipationList}" style="color: white;">1<br>참가중</a></button>
                         <button type="button" class="btn btn-info"><a th:href="@{/myChallengeCompleteList}" style="color: white;">1<br>완료</a></button>
@@ -123,7 +123,7 @@
               <div class="card-header">
                 <h3 class="card-title">
 					<ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; <b>나의 챌린지 전체보기</b>
+					&emsp; <b>참가중 챌린지 전체보기</b>
 				</h3>
 
                 <div class="card-tools">
@@ -152,36 +152,6 @@
 		                    </tr>
                   </thead>
                   <tbody>
-                   	<tr>
-							<td>1.</td>
-							<td>1일 1깃허브</td>
-							<td>기술스택</td>
-							<td>공개</td>
-							<td>#깃허브 #잔디 #경력 #개발</td>
-							<td>3명</td>
-							<td>10,000원</td>
-							<td>
-								2021년 4월 22일~2021년 5월 6일
-							</td>
-							<td>
-							   <div class="progress progress-sm">
-							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
-							   </div>
-							   <small>
-									50% Complete
-								</small>
-							</td>
-							<td><span class="badge bg-primary">개설</span></td>
-		                      <td>
-			                    <a th:href="@{/myChallengeInfo}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											챌린지 정보
-										</button>
-								</a>
-							</td>
-						</tr>
 						<tr>
 							<td>1.</td>
 							<td>1일 1깃허브</td>
@@ -202,38 +172,8 @@
 								</small>
 							</td>
 							<td><span class="badge bg-warning">참가중</span></td>
-		                      <td>
-			                    <a th:href="@{/myChallengeInfo}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											챌린지 정보
-										</button>
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1.</td>
-							<td>1일 1깃허브</td>
-							<td>기술스택</td>
-							<td>공개</td>
-							<td>#깃허브 #잔디 #경력 #개발</td>
-							<td>3명</td>
-							<td>10,000원</td>
-							<td>
-								2021년 4월 22일~2021년 5월 6일
-							</td>
-							<td>
-							   <div class="progress progress-sm">
-							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
-							   </div>
-							   <small>
-									50% Complete
-								</small>
-							</td>
-							<td><span class="badge bg-danger">완료</span></td>
 		                     <td>
-			                    <a th:href="@{/myChallengeInfo}">
+		                      <a th:href="@{/myChallengeInfo}">
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
 											<i class="fas fa-folder">
 											</i>
@@ -242,7 +182,6 @@
 								</a>
 							</td>
 						</tr>
-						
 					</tbody>
 				</table>
 			</div>
