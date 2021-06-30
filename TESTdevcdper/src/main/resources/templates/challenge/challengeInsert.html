@@ -11,11 +11,20 @@
 		<ol class="breadcrumb float-sm-right">
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
 					</a>
 					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
+					</a>
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
+					</a>
+					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
 					</a>
 				</div>
 			</div>
@@ -32,11 +41,11 @@
           <div class="card card-default" id="challengeInsertForm">
             <div class="card-body">
               <div class="form-group">
-                <label for="inputTitle">챌린지명</label>
-                <input type="text" id="inputName" placeholder="챌린지명을 입력해주세요."  class="form-control">
+                <label for="challengeName">챌린지명</label>
+                <input type="text" id="challengeName" placeholder="챌린지명을 입력해주세요."  class="form-control">
               </div>
               <div class="form-group">
-                         <label for="inputName">챌린지 카테고리</label>
+                         <label for="challengeCategory">챌린지 카테고리</label>
                         <select class="custom-select">
                           <option>학력</option>
                           <option>프로젝트</option>
@@ -51,30 +60,30 @@
                         </select>
 			</div>
               <div class="form-group">
-              <label for="inputTag">챌린지 태그</label>
+              <label for="challengeTag">챌린지 태그</label>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="최대 10자">
+                  <input type="text" id="firstChallengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="최대 10자">
+                  <input type="text" id="SecondChallengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="최대 10자">
+                  <input type="text" id="ThirdChallengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="최대 10자">
+                  <input type="text" id="FourthChallengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               </div>
 
@@ -92,28 +101,28 @@
             <div class="card-body">
             
               <div class="form-group">
-                <label for="inputScope">챌린지 공개범위</label>
-               	<select class="custom-select">
+                <label for="challengeScope">챌린지 공개범위</label>
+               	<select class="custom-select" id="challengeScope">
                  <option>공개</option>
                  <option>비공개</option>
                	</select>
 			 </div>
               <div class="form-group">
-                <label for="inputPassword">참여비밀번호</label>
+                <label for="challengePassword">참여비밀번호</label>
               <div class="form-group">
-                <input type="password" id="inputProjectLeader" placeholder="참여비밀번호를 입력해주세요." class="form-control">
+                <input type="password" id="challengePassword" placeholder="참여비밀번호를 입력해주세요." class="form-control">
               </div>
               </div>
             
               <div class="form-group">
-                <label for="inputMaxPeople">최대 인원수</label>
-                <input type="text" id="inputPeople" placeholder="최대 인원수를 입력해주세요." class="form-control">
+                <label for="challengeMaxPeople">최대 인원수</label>
+                <input type="text" id="challengeMaxPeople" placeholder="최대 인원수를 입력해주세요." class="form-control">
               </div>
               
               <div class="form-group">
-                        <label for="inputBeting">챌린지 베팅금액</label>
+                        <label for="challengeBetPrice">챌린지 베팅금액</label>
                  <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="베팅 금액을 입력하세요.">
+                  <input type="text" id="challengeBetPrice" class="form-control" placeholder="베팅 금액을 입력하세요.">
 	                  <div class="input-group-prepend">
 	                    <span class="input-group-text">만원</span>
 	                  </div>
@@ -121,14 +130,14 @@
 			</div>
 			 <div class="form-group">
                         <label for="inputCertificate">챌린지 인증방법</label>
-                        <select class="custom-select">
+                        <select class="custom-select" id="challengeCertificationMethods">
                           <option>사진</option>
                           <option>영상</option>
                         </select>
 			 </div>
 			<div class="form-group">
-                <label for="inputDescription">챌린지 인증내용</label>
-                <textarea id="inputDescription" class="form-control" rows="3"></textarea>
+                <label for="challengeCertificationContents">챌린지 인증내용</label>
+                <textarea id="challengeCertificationContents" class="form-control" rows="3"></textarea>
               </div>
              
             </div>
@@ -158,25 +167,25 @@
                         </select>
 			 </div>
 			  <div class="form-group">
-                <label for="inputMaxCount">하루 인증 가능 횟수</label>
-                <input type="text" id="inputMaxCount" placeholder="하루 인증 가능 횟수를 입력해주세요."  class="form-control">
+                <label for="challengeOneDayCertificationCount">하루 인증 가능 횟수</label>
+                <input type="text" id="challengeOneDayCertificationCount" placeholder="하루 인증 가능 횟수를 입력해주세요."  class="form-control">
               </div>
              
               <div class="form-group">
-                <label for="inputName">챌린지 인증가능시간</label>
-                <input type="text" id="inputName" placeholder="챌린지 인증가능시간을 선택해주세요."  class="form-control">
+                <label for="challengeCertificationTime">챌린지 인증가능시간</label>
+                <input type="text" id="challengeCertificationTime" placeholder="챌린지 인증가능시간을 선택해주세요."  class="form-control">
               	<!-- <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr form-control"> -->
               </div>
               
               <div class="form-group">
-                <label for="inputName">챌린지 시작일</label>
-                <label for="inputName"> : 챌린지 시작일을 선택해주세요.</label>
-                <input type="date" id="startDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요." value="AdminLTE">
+                <label for="challengeStartDate">챌린지 시작일</label>
+                <label for="challengeStartDate"> : 챌린지 시작일을 선택해주세요.</label>
+                <input type="date" id="challengeStartDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
               </div>
               <div class="form-group">
-                <label for="inputName">챌린지 종료일</label>
-                <label for="inputName"> : 챌린지 종료일을 선택해주세요.</label>
-                <input type="date" id="startDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요." value="AdminLTE">
+                <label for="challengeEndDate">챌린지 종료일</label>
+                <label for="challengeEndDate"> : 챌린지 종료일을 선택해주세요.</label>
+                <input type="date" id="challengeEndDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
               </div>
               
             </div>
@@ -191,7 +200,7 @@
       <div class="row">
         <div class="col-12" id="insertBtn">
           <a th:href="@{/mainChallenge}" class="btn btn-secondary">개설취소</a>
-          <a th:href="@{/mainChallenge}" class="btn btn-success" id="nextBtn">개설하기</a>
+          <a th:href="@{/myChallenge}" class="btn btn-success" id="nextBtn">개설하기</a>
         </div>
 	</div>
     <!-- ChallengeInsert Btn -->  
