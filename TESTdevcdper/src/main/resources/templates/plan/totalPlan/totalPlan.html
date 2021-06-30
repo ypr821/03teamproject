@@ -47,18 +47,18 @@
 				</button>
 			</div>
 		</div>
-		<div class="card-body p-0">
-			<table class="table table-striped projects">
+		<div class="card-body p-0" style="overflow: scroll; white-space: nowrap;">
+			<table class="table table-striped planTable">
 				<thead>
-					<tr style="text-align: center;">
+					<tr>
 						<th>
 							순번
 						</th>
 						<th>
-							통합계획명
+							통합계획제목
 						</th>
 						<th>
-							계획내용
+							통합계획내용
 						</th>
 						<th>
 							시작일자
@@ -73,43 +73,51 @@
 							상태
 						</th>
 						<th>
+							구분
+						</th>
+						<th>
 							차수
 						</th>
 						<th>
-							
+							차수변경사유
+						</th>
+						<th>
+						
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="text-align: center;">
+					<tr>
 						<td>
 							1
 						</td>
 						<td>
 							<a>
-								통합계획 팀프로젝트구현하기
+								백엔드 개발자 취업 준비
 							</a>
 							<br/>
 							<small>
-								Created 2021.06.19
+								등록일 : 2021.04.21
 							</small>
 						</td>
 						<td>
-							<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
+							<button type="button" class="btn btn-default btn-sm planContents">
+								계획내용보기
+							</button>
 						</td>
 						<td> 
-							<a>2021.06.20</a>
+							<a>2021.04.22</a>
 						</td>
 						<td>
-							<a>2021.08.06</a>
+							<a>2028.02.10</a>
 						</td>
 						<td class="project_progress">
 							<div class="progress progress-sm">
-								<div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+								<div class="progress-bar bg-green" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="100" style="width: 13%">
 								</div>
 							</div>
 							<small>
-								57% Complete
+								13% Complete
 							</small>
 						</td>
 						<td class="project-state">
@@ -118,49 +126,128 @@
 							</span>
 						</td>
 						<td>
+							도움받기
+						</td>
+						<td>
 							<a>
 								1차
 							</a>
 						</td>
+						<td>
+							<button type="button" class="btn btn-default btn-sm planDegree">
+								<i class="far fa-comment-alt"></i>
+							</button>
+						</td>
 						<td class="project-actions text-center">
-							<a class="btn btn-primary btn-sm" id="stopTotalPlan">
+							<a class="btn btn-default btn-xs mainPlan" th:href="@{/mainPlan}" data-status="stop">
 								<i class="fas fa-folder">
 								</i>
 								계획보기
 							</a>
-							<a class="btn btn-info btn-sm" id="stopModifyPlan">
+							<a class="btn btn-default btn-xs modifyTotalPlan" th:href="@{/modifyTotalPlan}" data-status="stop">
 								<i class="fas fa-pencil-alt">
 								</i>
 								수정
 							</a>
-							<a class="btn btn-danger btn-sm" th:href="@{/deleteTotalPlan}">
+							<a class="btn btn-default btn-xs" th:href="@{/deleteTotalPlan}">
 								<i class="fas fa-trash">
 								</i>
 								삭제
 							</a>
 						</td>
 					</tr>
-					<tr style="text-align: center;">
+					<tr>
 						<td>
 							2
 						</td>
 						<td>
 							<a>
-								통합계획 팀프로젝트구현하기
-							</a>	
+								백엔드 취업 후 1~3년차
+							</a>
 							<br/>
 							<small>
-								Created 2021.06.20
+								등록일 : 2021.03.01
 							</small>
 						</td>
 						<td>
-							<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
+							<button type="button" class="btn btn-default btn-sm planContents">
+								계획내용보기
+							</button>
+						</td>
+						<td> 
+							<a>2021.03.02</a>
 						</td>
 						<td>
-							<a>2021.06.20</a>
+							<a>2023.02.10</a>
+						</td>
+						<td class="project_progress">
+							<div class="progress progress-sm">
+								<div class="progress-bar bg-green" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+								</div>
+							</div>
+							<small>
+								30% Complete
+							</small>
+						</td>
+						<td class="project-state">
+							<span class="badge badge-primary">
+								진행중
+							</span>
 						</td>
 						<td>
-							<a>2021.08.06</a>
+							도움받기
+						</td>
+						<td>
+							<a>
+								2차
+							</a>
+						</td>
+						<td>
+							<button type="button" class="btn btn-default btn-sm planDegree">
+								<i class="far fa-comment-alt"></i>
+							</button>
+						</td>
+						<td class="project-actions text-center">
+							<a class="btn btn-default btn-xs mainPlan" th:href="@{/mainPlan}" data-status="">
+								<i class="fas fa-folder">
+								</i>
+								계획보기
+							</a>
+							<a class="btn btn-default btn-xs modifyTotalPlan" th:href="@{/modifyTotalPlan}" data-status="">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							<a class="btn btn-default btn-xs" th:href="@{/deleteTotalPlan}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							3
+						</td>
+						<td>
+							<a>
+								배달의 민족 취업하기
+							</a>	
+							<br/>
+							<small>
+								등록일 : 2020.03.02
+							</small>
+						</td>
+						<td>
+							<button type="button" class="btn btn-default btn-sm planContents">
+								계획내용보기
+							</button>
+						</td>
+						<td>
+							<a>2020.03.02</a>
+						</td>
+						<td>
+							<a>2022.10.04</a>
 						</td>
 						<td class="project_progress">
 							<div class="progress progress-sm">
@@ -177,26 +264,31 @@
 							</span>
 						</td>
 						<td>
+							혼자할게요
+						</td>
+						<td>
 							<a>
-								2차
+								1차
 							</a>
 							<br/>
-							<small>
-								멘토링계약으로 인한차수변경
-							</small>
+						</td>
+						<td>
+							<button type="button" class="btn btn-default btn-sm planDegree">
+								<i class="far fa-comment-alt"></i>
+							</button>
 						</td>
   						<td class="project-actions text-center">
-							<a class="btn btn-primary btn-sm" th:href="@{/mainPlan}">
+							<a class="btn btn-default btn-xs mainPlan" th:href="@{/mainPlan}" data-status="">
 								<i class="fas fa-folder">
 								</i>
 								계획보기
 							</a>
-							<a class="btn btn-info btn-sm" th:href="@{/modifyTotalPlan}">
+							<a class="btn btn-default btn-xs modifyTotalPlan" th:href="@{/modifyTotalPlan}" data-status="">
 								<i class="fas fa-pencil-alt">
 								</i>
 								수정
 							</a>
-							<a class="btn btn-danger btn-sm" th:href="@{/deleteTotalPlan}">
+							<a class="btn btn-default btn-xs" th:href="@{/deleteTotalPlan}">
 								<i class="fas fa-trash">
 								</i>
 								삭제
@@ -209,7 +301,8 @@
 	<!-- /.card-body -->
 	</div>
 	<!-- /.card -->
-	<!-- 페이지번호 -->
+	
+	<!-- Paging 영역 시작 -->
 	<ul class="pagination justify-content-center m-0">
 		<li class="page-item active"><a class="page-link" href="#">1</a></li>
 		<li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -220,14 +313,65 @@
 		<li class="page-item"><a class="page-link" href="#">7</a></li>
 		<li class="page-item"><a class="page-link" href="#">8</a></li>
 	</ul>
+	<!-- Paging 영역 시작 -->
+	
+	<!-- Modal 영역 시작-->
+	<!-- planModalContents -->
+	<th:block th:replace="/fragments/planModal/planModalContents :: planModalContents"></th:block>
+	<!-- planModalDegree -->
+	<th:block th:replace="/fragments/planModal/planModalDegree :: planModalDegree"></th:block>
+	<!-- Modal 영역 끝 -->
 </th:block>
 <th:block layout:fragment="pageJavascript">
-	<script>
-		$('#stopTotalPlan').click(function(){
-			alert('중단된 계획은 계획보기를 할 수 없습니다.');
-		});
-		$('#stopModifyPlan').click(function(){
-			alert('중단된 계획은 수정할 수 없습니다.');
+	<script type="text/javascript" th:inline="javascript">
+		$(document).ready(function(){
+			
+			/* thmeleaf parameter 영역 */
+			/* <![CDATA[ */
+			/* var list = [[${status}]]; */
+			/* ]]> */
+			
+			/* parameter 영역 */
+			var table = $('.planTable');
+			var mainPlan = table.find('.mainPlan');
+			var modifyTotalPlan = table.find('.modifyTotalPlan');
+			var planContents = $('.planContents');
+			var planDegree = $('.planDegree');
+			
+			/* alert 영역 */
+			mainPlan.click(function(){
+				if($(this).attr('data-status') == 'stop'){
+					alert('중단된 계획은 계획보기를 할 수 없습니다.');
+					$(this).attr('href','#');
+				};
+			});
+			modifyTotalPlan.click(function(){
+				if($(this).attr('data-status') == 'stop'){
+					alert('중단된 계획은 수정할 수 없습니다.');
+					$(this).attr('href','#');
+				};
+			});
+			
+			/* Modal 영역 */
+			planContents.click(function(){
+				$("#myModal").modal();
+			});
+			planDegree.click(function(){
+				$("#myModal2").modal();
+			});
+			
+			/* 테이블 CSS 영역 */
+			table.find('td').css({
+				'vertical-align' : 'middle'
+				,'text-align' : 'center'
+			});
+			table.find('th').css({
+				'text-align' : 'center'
+			});
+			table.find('small').css({
+				'color' : '#969696'
+			});
+			
 		});
 	</script>
 </th:block>

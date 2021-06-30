@@ -29,7 +29,7 @@ tbody.challenge-body {
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: auto;
-}
+} 
 section.content {
     margin: 10px;
     padding: 10px;
@@ -81,7 +81,7 @@ div#participationBtn {
 }
 .card-body.table-responsive.pad {
     padding: 0px;
-}
+} 
 section#challengeExplorationSection {
     padding: 0px;
     margin: 0 0 0 0px;
@@ -89,7 +89,22 @@ section#challengeExplorationSection {
 div#insertBtn {
     padding: 0 0 5px 0px;
 }
-tbody.myChallengeBody {
+/* tbody.myChallengeBody {
     white-space: nowrap;
-}	
+}	 */
+img.mainChallengeImg {
+    width: 500px;
+    float: right;
+}
+i.fa.fa-angle-right {
+    /* text-align: right; */
+    float: right;
+}
+.challenge-table-outter {overflow-x: scroll; overflow-y : sc}
+.challenge-table{table-layout: fixed; margin:40px auto 0px auto; white-space: nowrap}
+
+body{
+	font-family: 'Jua', sans-serif;
+}
+
 /*# sourceMappingURL=adminlte.min.css.map */
