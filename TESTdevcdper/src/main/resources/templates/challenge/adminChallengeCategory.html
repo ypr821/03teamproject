@@ -7,13 +7,12 @@
 	<div class="col-sm-6">
 		<h1 class="m-0">!챌린지 카테고리 관리</h1>
 	</div><!-- /.col -->
-	<br><br>
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
 					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 개설 관리
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 관리
 					</a>
 					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리

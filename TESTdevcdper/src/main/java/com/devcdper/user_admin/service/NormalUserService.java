@@ -21,25 +21,26 @@ public class NormalUserService {
 	@PostConstruct
 	public void normalUserServiceInit() {
 		System.out.println("========================================");
-		System.out.println("MemberService 객체 생성");
+		System.out.println("NormalUserService 객체 생성");
 		System.out.println("========================================");
 	}
 	
-	public Map<String, Object> loginNomalUser(String userEmail, String userPasswrod){
+	public Map<String, Object> loginNomalUser(String userEmail, String userPassword){
 		
 		boolean loginCheck = false;
+		System.out.println(userEmail + userPassword);
+		Map<String, Object> normalUserInfoMap = new HashMap<String, Object>();
 		
-		Map<String, Object> nomalUserInfoMap = new HashMap<String, Object>();
-		
-		NormalUser nomalUser = normalUserMapper.getNormalInfoById(userEmail);
-		
-		if(nomalUser != null && userPasswrod.equals(nomalUser.getUserPasswrod())) {
+		NormalUser normalUser = normalUserMapper.getNormalInfoById(userEmail);
+//		System.out.println(nomalUser);
+		if(normalUser != null && userPassword.equals(normalUser.getUserPassword())) {
+			System.out.println("hi@");
 			loginCheck = true;
-			nomalUserInfoMap.put("loginNomalUser", nomalUser);
+			normalUserInfoMap.put("loginNormalUser", normalUser);
 		}
-		nomalUserInfoMap.put("loginCheck", loginCheck);
+		normalUserInfoMap.put("loginCheck", loginCheck);
 		
-		return nomalUserInfoMap;
+		return normalUserInfoMap;
 	}
 	
 	//회원 리스트

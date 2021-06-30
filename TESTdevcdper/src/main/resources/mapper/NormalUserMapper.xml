@@ -6,7 +6,7 @@
 
 	<resultMap type="NormalUser" id="normalUserResultMap">
 		<result property="userEmail" 				column="user_email"/>
-		<result property="userPasswrod" 			column="user_password"/>
+		<result property="userPassword" 			column="user_password"/>
 		<result property="userName" 				column="user_name"/>
 		<result property="userBirth" 				column="user_birth"/>
 		<result property="userAddr" 				column="user_addr"/>
@@ -25,9 +25,8 @@
 	<update id="modifyNormalUser" parameterType="NormalUser">
 		UPDATE user
 		<trim prefix="SET" prefixOverrides=",">
-			<if test="userPasswrod != null and userPasswrod != ''.toString()">	
-			user_password= #{userPasswrod}
-\
+			<if test="userPassword != null and userPassword != ''.toString()">	
+			user_password= #{userPassword}
 			</if>
 			<if test="userName != null and userName != ''.toString()">	
 				,user_name=#{userName}
@@ -102,7 +101,7 @@
 				, user_withdraw_status
 				)VALUES (
 				 #{userEmail}
-				,#{userPasswrod}
+				,#{userPassword}
 				,#{userName}
 				,#{userBirth}
 				,#{userAddr}
@@ -121,7 +120,7 @@
 	<select id="getNormalUserList" resultType="NormalUser">
 			SELECT 
 				user_email							AS userEmail
-				, user_password						AS userPasswrod
+				, user_password						AS userPassword
 				, user_name							AS userName
 				, user_birth						AS userBirth
 				, user_addr							AS userAddr

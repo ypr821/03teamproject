@@ -23,14 +23,13 @@ public class AdminChallengeController {
 	@GetMapping("/mainChallenge")
 	public String mainChallenge(Model model) {
 		model.addAttribute("title", "두배러 챌린지 메인");
-		model.addAttribute("radioCheck","mainChallenge");
 		return "challenge/mainChallenge";
 		
 	}
 	
 	@GetMapping("/adminChallenge")
 	public String adminChallenge(Model model) {
-		model.addAttribute("title", "챌린지 개설 관리");
+		model.addAttribute("title", "챌린지 관리");
 		model.addAttribute("radioCheck","adminChallenge");
 		return "challenge/adminChallenge";
 		

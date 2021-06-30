@@ -29,37 +29,38 @@ public class CoachUserController {
 		this.coachUserService = coachUserService;
 	}
 	
+	
 	@PostMapping("/coachLogin")
-	public String login(@RequestParam(value="coachEmail", required = false) String coachEmail
-			   ,@RequestParam(value="coachPasswrod", required = false) String coachPasswrod
+	public String coachLogin(@RequestParam(value="coachEmail", required = false) String coachEmail
+			   ,@RequestParam(value="coachPassword", required = false) String coachPassword
 			   ,HttpSession session
 			   ,RedirectAttributes reAttr) {
-		if(coachEmail != null && "".equals(coachEmail) && coachPasswrod != null && "".equals(coachPasswrod)) {
-			
-			Map<String, Object> resultMap = coachUserService.loginCoachUser(coachEmail, coachPasswrod);
-			
+		System.out.println(coachEmail+ coachPassword);
+		if(coachEmail != null && !"".equals(coachEmail) && coachPassword != null && !"".equals(coachPassword)) {
+			Map<String, Object> resultMap = coachUserService.loginCoachUser(coachEmail, coachPassword);
+
 			boolean loginCheck = (boolean) resultMap.get("loginCheck");
-			CoachUser loginCoach = (CoachUser) resultMap.get("loginNormalUser");
+			System.out.println(loginCheck);
+			CoachUser coachLogin = (CoachUser) resultMap.get("loginCoachUser");
+			System.out.println(resultMap);
 			
 			if(loginCheck) {
-				session.setAttribute("CEMAIL", loginCoach.getCoachEmail());
-				session.setAttribute("CNAME", loginCoach.getCoachName());
-				
+				session.setAttribute("NEMAIL",	coachLogin.getCoachEmail());
+				session.setAttribute("CNAME", 	coachLogin.getCoachName());
+				session.setAttribute("ULEVEL", 	coachLogin.getCoachAuthority());
 				return "redirect:/";
 			}
-			reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
 		}
-		return "redirect:/coachLogin";
+		reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
+
+		return "redirect:/login";
 	}
 	
-	@GetMapping("/coachLogin")
-	public String login(Model model
-						,@RequestParam(name="loginResult", required = false) String loginResult) {
+	@PostMapping("/modifyCoach")
+	public String modifyCoachUser(CoachUser coachUser) {
+		coachUserService.modifyCoachUser(coachUser);
 		
-		model.addAttribute("title","로그인화면");
-		if(loginResult != null) model.addAttribute("loginResult", loginResult);
-		
-		return "login/coachLogin";
+		return  "redirect:/modifyCoach";
 	}
 	
 	@GetMapping("/modifyCoach")
@@ -78,16 +79,16 @@ public class CoachUserController {
 	}
 	
 	@PostMapping("/addCoach")
-	public String addCoach(CoachUser coachUser) {
+	public String addCoachUser(CoachUser coachUser) {
 		
 		log.info("화면에서 입력받은 값 coachUser : {}", coachUser);
-		coachUserService.addCoahUser(coachUser);
+		coachUserService.addCoachUser(coachUser);
 		
 		return "redirect:/coachList";
 	}
 	
 	@GetMapping("/addCoach")
-	public String addCoach(Model model) {
+	public String addCoachUser(Model model) {
 		
 		model.addAttribute("title", "코치회원 가입폼");
 		

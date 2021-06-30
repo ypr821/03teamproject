@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+	  
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">main title</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">DEV-CDPER🌟</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item"><a href="/">myPage</a></li>
+			<li class="breadcrumb-item active">myPage.html</li>
+		</ol>
+	</div><!-- /.col -->
+</th:block>
+
+<th:block layout:fragment="container">
+	<div>
+		myPage
+	</div>
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
+

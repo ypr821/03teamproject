@@ -19,11 +19,19 @@
 <th:block layout:fragment="container">
 	<section class="content">
 		<!-- Default box -->
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">
+					통합계획등록
+				</h3>
+    		</div>
+			
+			<!-- card-body -->
+			<!-- Content Wrapper. Contains page content -->
+			<div class="card-body" style="margin-left: unset; background-color: #F2F2F2;">
 				<form th:action="@{/addTotalPlan}" method="POST">
 					<div class="container-fluid" th:align="center">
 						<div class="col-md-6" style="text-align: left;">
-						
-						
 							<div class="card card-primary">
 								<div class="card-header">
 									<h3 class="card-title">통합계획정보입력</h3>
@@ -62,18 +70,20 @@
 								<!-- /.card-body -->
 							</div>
 							<!-- /.card -->
-							<div class="row">
-								<div class="col-12">
-									<a th:href="@{/totalPlan}" class="btn btn-danger">취소</a>
-									<button type="submit" class="btn btn-primary float-right">통합계획 생성하기</button>
-								</div>
-							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<a th:href="@{/totalPlan}" class="btn btn-danger">취소</a>
+							<button type="submit" class="btn btn-primary float-right">통합계획 생성하기</button>
 						</div>
 					</div>
 				</form>
 				<!-- /.content -->
+			</div>
 			<!-- /.content-wrapper -->
 			<!-- /.card-body -->
+		</div>
 		<!-- /.card -->
 	</section>
 </th:block>

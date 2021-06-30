@@ -32,7 +32,6 @@ public class CoachingController {
 		//log.info("========================================");
 		//log.info("=======myCoachingCoach 메서드 실행=================");
 		model.addAttribute("title", "코칭관리자페이지 ");
-		model.addAttribute("radioCheck", "coachingAdminPage");
 		return "coaching/coachingAdminPage";
 	}
 	//코치  프로필 화면
@@ -53,7 +52,6 @@ public class CoachingController {
 		//log.info("========================================");
 		//log.info("=======myCoachingCoach 메서드 실행=================");
 		model.addAttribute("title", "나의 코칭 화면");
-		model.addAttribute("radioCheck", "myCoachingCoach");
 		return "coaching/myCoachingCoach";
 	}
 	//코칭서비스 사용자 페이지 화면
@@ -64,7 +62,6 @@ public class CoachingController {
 		//log.info("========================================");
 		//log.info("=======myCoachingClient 메서드 실행=================");
 		model.addAttribute("title", "나의 코칭 화면");
-		model.addAttribute("radioCheck", "myCoachingClient");
 		return "coaching/myCoachingClient";
 	}
 	//코칭 견적결과 등록 화면
@@ -98,7 +95,6 @@ public class CoachingController {
 		//log.info("========================================");
 		//log.info("=======coachAdmin 메서드 실행=================");
 		model.addAttribute("title", "멘토링 관리 화면");
-		model.addAttribute("radioCheck", "mentoring");
 		return "coaching/mentoring";
 	}
 	
@@ -110,7 +106,6 @@ public class CoachingController {
 		//log.info("========================================");
 		//log.info("=======coachAdmin 메서드 실행=================");
 		model.addAttribute("title", "컨설팅 관리 화면");
-		model.addAttribute("radioCheck", "consulting");
 		return "coaching/consulting";
 	}
 	

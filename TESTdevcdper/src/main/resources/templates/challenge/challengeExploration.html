@@ -11,20 +11,11 @@
 		<ol class="breadcrumb float-sm-right">
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
-					</a>
-					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
-					</a>
 					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
 					</a>
-					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
-					</a>
-					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
 					</a>
 				</div>
 			</div>
@@ -75,7 +66,7 @@
 			                        </div>
 			                        <div class="form-group">
 			                            <div class="input-group input-group-lg">
-			                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="어떤 챌린지를 찾으시나요?">
+			                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
 			                                <div class="input-group-append">
 			                                    <button type="submit" class="btn btn-lg btn-default">
 			                                        <i class="fa fa-search"></i>
@@ -315,7 +306,11 @@
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
-	
+	<script>
+    $(function () {
+      $('.select2').select2()
+    });
+	</script>
 
 </th:block>
 </html>

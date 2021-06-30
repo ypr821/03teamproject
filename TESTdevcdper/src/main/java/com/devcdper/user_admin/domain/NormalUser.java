@@ -3,7 +3,7 @@ package com.devcdper.user_admin.domain;
 public class NormalUser {
 
 	private String userEmail;
-	private String userPasswrod;
+	private String userPassword;
 	private String userName;
 	private String userBirth;
 	private String userAddr;
@@ -24,11 +24,11 @@ public class NormalUser {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getUserPasswrod() {
-		return userPasswrod;
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setUserPasswrod(String userPasswrod) {
-		this.userPasswrod = userPasswrod;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 	public String getUserName() {
 		return userName;
@@ -111,7 +111,7 @@ public class NormalUser {
 	
 	@Override
 	public String toString() {
-		return "AdminNormal [userEmail=" + userEmail + ", userPasswrod=" + userPasswrod + ", userName=" + userName
+		return "AdminNormal [userEmail=" + userEmail + ", userPassword=" + userPassword + ", userName=" + userName
 				+ ", userBirth=" + userBirth + ", userAddr=" + userAddr + ", userAddrDetail=" + userAddrDetail
 				+ ", userGender=" + userGender + ", userMoblie=" + userMoblie + ", userJob=" + userJob
 				+ ", userIsReceiveMarketing=" + userIsReceiveMarketing + ", userJoinMotivation=" + userJoinMotivation

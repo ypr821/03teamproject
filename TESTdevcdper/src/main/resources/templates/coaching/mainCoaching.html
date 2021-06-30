@@ -1,56 +1,54 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/default}">
 <th:block layout:fragment="pageTitle">
-	<title th:text="${title}">코칭 메인 페이지</title>
-	<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-	    			</div>
-	    			<!-- /.row -->
-				</div>
-				<!-- /.container-fluid -->
-	</div>
-	<div class="row container hero-warp">
-		<div class="mainChallengeFirst col-12 col-lg-6">
-			<h6 class="cap">코칭 == 멘토링 || 컨설팅</h6>
-			<h1 class="title"><span>코칭과 함께</span><br><span>시작하는 커리어 성장</span></h1> 
-			<h4 class="sub-title">저희는 멘토링과 컨설팅을 일컬어 코칭이라고 부르며 멘토와 컨설턴트를 통칭하여 코치라고 합니다.</h4> 
-			<a href="/mentoring" class="btn btn-primary btn-start"><span>멘토링 시작하기</span></a>
-			&emsp;&emsp;
-			<a href="/consulting" class="btn btn-primary btn-start"><span>컨설팅 시작하기</span></a>
-		</div> 
-		<div class="col-12 col-lg-6 img-hero">
-			<img src="../image/mentoringImg.jpg" class="mainChallengeImg" style="height: 100%; width: 90%">
-		</div>
-	</div>
+	<title th:text="${title}">main title</title>
+	<div class="col-sm-6">
+		<h1 class="m-0">코칭가이드</h1>
+	</div><!-- /.col -->
+	<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block><!-- /.col -->
 </th:block>
 <th:block layout:fragment="container">
-	<h2>
-		멘토링 
-    </h2>
-	<h4>
-		IT업계 선배들 혹은 동료들에게서 인사이트를 얻어보세요.<br>
-		더 빨리, 더 멀리 갈 수 있어요. 
-	</h4>
+	<!-- 정렬 row 클래스 - 코치 프로필 전체시작과 끝에 태그위치시킴 -->
+	<div class="row">
 	
-	<br><br>
-	<h2>컨설팅</h2>
-	<h4>
-		전문 컨설턴트의 도움으로 취업, 이직, 진학 등의 목표에 다가가세요.<br>
-	</h4>
-	<br><br>
-	<h2>코칭 이용방법</h2>
-	
-	
-	
-	
+		<div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
+	          <div class="card bg-light d-flex flex-fill">
+	             <div class="card-header text-muted border-bottom-0">
+	               	⭐ : 4.5/5.0
+	             </div>
+	             <div class="card-body pt-0">
+	               <div class="row">
+	                 <div class="col-7">
+	                   <h2 class="lead"><b>홍길동 멘토</b></h2>
+	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
+	                   <p class="text-muted text-sm">소개:  <b>java,mysql기술과외해드립니다. 질의응답도 가능합니다 java,mysql기술과외해드립니다. 질의응답도 가능합니다</b></p>       
+	                 </div>
+	                 <div class="col-5 text-center">
+	                   <img src="..//image/홍길동.jpg"  alt="user-avatar" class="img-circle img-fluid"><br><br><br><br>
+	                   	진행한 멘토링횟수 : n 번
+	                   <a href="#" class="btn btn-block btn-outline-secondary btn-xs">프로필</a>
+	                 </div>
+	               </div>
+	             </div>
+	             <div class="card-footer">
+	               <div class="text-right">
+	                 <a href="#" class="btn btn-sm bg-teal">
+	                   <i class="fas fa-comments"></i>
+	                 </a>
+	                 <a href="#" class="btn btn-sm btn-primary">
+	                   <i class="fas fa-user"></i> 견적 요청
+	                 </a>
+	               </div>
+	             </div>
+	           </div>
+	           
+	     </div>	 
+	</div>
 </th:block>
 
 <th:block layout:fragment="pageJavascript">

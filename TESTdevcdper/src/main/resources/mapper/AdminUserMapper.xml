@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devcdper.user_admin.dao.AdminUserMapper">
+	<resultMap type="AdminUser" id="AdminUserResultMap">
+		<result property="adminEmail"				column="admin_email"/>
+		<result property="adminPassword"			column="admin_password"/>
+		<result property="adminName"				column="admin_name"/>
+		<result property="adminLevel"				column="admin_level"/>
+		<result property="adminMobile"				column="admin_mobile"/>
+		<result property="adminJoinDate"			column="admin_join_date"/>
+	</resultMap>
+	
+	<select id="getAdminUserList" resultType="AdminUser">
+		SELECT 
+			admin_email				AS adminEmail
+			, admin_password		AS adminPassword
+			, admin_name			AS adminName
+			, admin_level			AS adminLevel
+			, admin_mobile			AS adminMobile
+			, admin_join_date		AS adminJoinDate
+		FROM 
+			admin;					
+	</select>
+
+</mapper>

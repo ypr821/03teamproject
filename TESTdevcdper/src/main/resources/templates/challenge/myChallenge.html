@@ -11,20 +11,11 @@
 		<ol class="breadcrumb float-sm-right">
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
-					</a>
-					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
-					</a>
 					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
 					</a>
-					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
-					</a>
-					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
 					</a>
 				</div>
 			</div>
@@ -36,6 +27,10 @@
 
 	<th:block layout:fragment="container">
 		
+		<br>
+	    <!-- State box  -->
+
+         <!-- Default box -->
          <div class="card">
            <div class="card-header">
              <h3 class="card-title">챌린지 현황</h3>
@@ -49,9 +44,9 @@
            </div>
            <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
-                        <button type="button" class="btn btn-info"><a th:href="@{/myChallengeParticipationList}" style="color: white;">1<br>참가중</a></button>
-                        <button type="button" class="btn btn-info"><a th:href="@{/myChallengeCompleteList}" style="color: white;">1<br>완료</a></button>
-                        <button type="button" class="btn btn-info"><a th:href="@{/myChallengeInsertList}" style="color: white;">1<br>개설</a></button>
+                        <button type="button" class="btn btn-info">0<br>참가중</button>
+                        <button type="button" class="btn btn-info">0<br>완료</button>
+                        <button type="button" class="btn btn-info">1<br>개설</button>
                       </div>
            </div>
            <!-- /.card-body -->
@@ -117,27 +112,25 @@
          
          
          
-         <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
+         
+         
+         
+         
+
+
+		<!-- 서비스 사용자 페이지  나의 코칭 내역 목록  -->
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">
 					<ion-icon size="small" name="list-outline"></ion-icon>
 					&emsp; <b>나의 챌린지 전체보기</b>
 				</h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="input-group-append">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-striped text-nowrap">
-                  <thead>
-                     <tr>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0">
+				<table class="table table-striped table-responsive">
+					<thead class="challenge-head">
+		                    <tr>
 		                      <th>번호</th>
 								<th>챌린지명</th>
 								<th>카테고리</th>
@@ -150,38 +143,8 @@
 		                     	<th>상태</th>
 		                     	<th>상세보기</th>
 		                    </tr>
-                  </thead>
-                  <tbody>
-                   	<tr>
-							<td>1.</td>
-							<td>1일 1깃허브</td>
-							<td>기술스택</td>
-							<td>공개</td>
-							<td>#깃허브 #잔디 #경력 #개발</td>
-							<td>3명</td>
-							<td>10,000원</td>
-							<td>
-								2021년 4월 22일~2021년 5월 6일
-							</td>
-							<td>
-							   <div class="progress progress-sm">
-							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
-							   </div>
-							   <small>
-									50% Complete
-								</small>
-							</td>
-							<td><span class="badge bg-primary">개설</span></td>
-		                      <td>
-			                    <a th:href="@{/myChallengeInfo}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											챌린지 정보
-										</button>
-								</a>
-							</td>
-						</tr>
+		                  </thead>
+					<tbody class="myChallengeBody">
 						<tr>
 							<td>1.</td>
 							<td>1일 1깃허브</td>
@@ -201,45 +164,81 @@
 									50% Complete
 								</small>
 							</td>
-							<td><span class="badge bg-warning">참가중</span></td>
-		                      <td>
-			                    <a th:href="@{/myChallengeInfo}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											챌린지 정보
-										</button>
-								</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1.</td>
-							<td>1일 1깃허브</td>
-							<td>기술스택</td>
-							<td>공개</td>
-							<td>#깃허브 #잔디 #경력 #개발</td>
-							<td>3명</td>
-							<td>10,000원</td>
-							<td>
-								2021년 4월 22일~2021년 5월 6일
-							</td>
-							<td>
-							   <div class="progress progress-sm">
-							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
-							   </div>
-							   <small>
-									50% Complete
-								</small>
-							</td>
-							<td><span class="badge bg-danger">완료</span></td>
+							<td><span class="badge bg-primary">참가중</span></td>
 		                     <td>
-			                    <a th:href="@{/myChallengeInfo}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											챌린지 정보
-										</button>
-								</a>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>1일 1깃허브</td>
+							<td>기술스택</td>
+							<td>공개</td>
+							<td>#깃허브 #잔디 #경력 #개발</td>
+							<td>3명</td>
+							<td>10,000원</td>
+							<td>
+								2021년 4월 22일~2021년 5월 6일
+							</td>
+							<td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
+							   </div>
+							   <small>
+									50% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-primary">참가중</span></td>
+		                     <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>1일 1깃허브</td>
+							<td>기술스택</td>
+							<td>공개</td>
+							<td>#깃허브 #잔디 #경력 #개발</td>
+							<td>3명</td>
+							<td>10,000원</td>
+							<td>
+								2021년 4월 22일~2021년 5월 6일
+							</td>
+							<td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
+							   </div>
+							   <small>
+									50% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-primary">참가중</span></td>
+		                     <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
+							</td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td>1일 1깃허브</td>
+							<td>기술스택</td>
+							<td>공개</td>
+							<td>#깃허브 #잔디 #경력 #개발</td>
+							<td>3명</td>
+							<td>10,000원</td>
+							<td>
+								2021년 4월 22일~2021년 5월 6일
+							</td>
+							<td>
+							   <div class="progress progress-sm">
+							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
+							   </div>
+							   <small>
+									50% Complete
+								</small>
+							</td>
+							<td><span class="badge bg-primary">참가중</span></td>
+		                     <td>
+								<button type="button" class="btn btn-block btn-default btn-xs">상세보기</button>
 							</td>
 						</tr>
 						
@@ -260,10 +259,11 @@
 		                </ul>
 			   </div>	
 		</div>
-		</div>
-		</div>
-	</th:block>
+		<!-- / 서비스 사용자 페이지  나의 코칭 내역 목록  -->
 	
+		
+		   
+	</th:block>
 	
 	<th:block layout:fragment="pageJavascript">
 	

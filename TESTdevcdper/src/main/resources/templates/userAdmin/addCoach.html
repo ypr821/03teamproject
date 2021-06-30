@@ -1,182 +1,248 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/default}">
-	  
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/addDefault}">
+
 <th:block layout:fragment="pageTitle">
-	<title th:text="${title}">main title</title>
-	<div class="col-sm-6">
-		<h1 class="m-0">DEV-CDPER🌟</h1>
-	</div><!-- /.col -->
-	<div class="col-sm-6">
+	<title th:text="${title}">login title</title>
+	<div></div>
+	<div class="col-sm-12" th:align="center">
+		<h1 class="m-0">🌟코치회원가입🌟</h1>
+	</div>
+	<div class="col-sm-12" th:align="right">
 		<ol class="breadcrumb float-sm-right">
 			<li class="breadcrumb-item"><a href="/">addCoach</a></li>
 			<li class="breadcrumb-item active">addCoach.html</li>
 		</ol>
-	</div><!-- /.col -->
+	</div>
 </th:block>
 
 <th:block layout:fragment="container">
-	<div class="col-sm-12">
-		<div class="card-body table-responsive p-0">
-			<form id="addNormalForm" th:action="@{/addCoach}" method="post">
-			    <table id="example2" class="table table-bordered table-hover">
-					<tr>
-						<td>아이디</td>
-						<td>
-							<input type="text" name="coachUserEmail" placeholder="회원이메일을 입력해주세요." />
-						</td>			
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td>
-							<input type="text" name="coachPassword" placeholder="비밀번호를 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>
-							<input type="text" name="coachName" placeholder="회원이름을 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>생년월일</td>
-						<td>
-							<input type="date" name="coachBirth" value="xxx" min="yyy" max="zzz">
-						</td>			
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>
-							<input type="text" name="coachAddr" placeholder="주소를 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>상세주소</td>
-						<td>
-							<input type="text" name="coachAddrDetail" placeholder="상세주소를 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>성별</td>
-						<td>
-							<label>
-								 <input type="radio" name="coachGender" value="남" checked ="checked">남 
-							</label>
-							<label>
-	                  			 <input type="radio" name="coachGender" value="여">여
-							</label>
-						</td>			
-					</tr>
-					<tr>
-						<td>연락처</td>
-						<td>
-							 <select name="coachMobile">
-                                <option value="">선택</option>
-                                
-                                    <option value="010">010</option>
-                                
-                                    <option value="011">011</option>
-                                
-                                    <option value="016">016</option>
-                                
-                                    <option value="017">017</option>
-                                
-                                    <option value="018">018</option>
-                                
-                                    <option value="019">019</option>
-                                
-                            </select>-
-						     <input type="tel" name="coachMobile" size="5" /> - 
-						     <input type="tel" name="coachMobile" size="5" /><br />
-						</td>			
-					</tr>
-					<tr>
-						<td>코치권한</td>
-						<td>
-							<select name="coachAuthority">
-                                <option value="">선택</option>
-                                
-                                    <option value="컨설턴트">컨설턴트</option>
-                                
-                                    <option value="멘토">멘토</option>
-                             </select>       
-						</td>			
-					</tr>
-					<tr>
-						<td>코치직업</td>
-						<td>
-							<input type="text" name="coachJob" placeholder="회원직업 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>코치경력사항</td>
-						<td>
-							<input type="text" name="coachProfileCareer" placeholder="코치의 경력사항을 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>코치경력사항</td>
-						<td>
-							<input type="text" name="coachProfileTechStack" placeholder="코치의 기술스택을 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>자격증</td>
-						<td>
-							<input type="text" name="coachCertificate" placeholder="코치의 자격증 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>경력인증</td>
-						<td>
-							<input type="file" name="coachCareerDocumentaryEvidence"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>자격증인증</td>
-						<td>
-							<input type="file" name="coachCertificateDocumentaryEvidence"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>수신동의여부</td>
-						<td>
-						<label>
-							<input type="radio" name="coachIsReceiveMarketing" value="Y" checked ="checked">Yes 
-						</label>
-						<label>
-                  			<input type="radio" name="coachIsReceiveMarketing" value="N">NO
-						</label>
-						</td>			
-					</tr>
-					<tr>
-						<td>가입동기</td>
-						<td>
-							<input type="text" name="coachJoinMotivation" placeholder="가입동기를 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>가입경로</td>
-						<td>
-							<input type="text" name="coachJoinPath" placeholder="가입경로를 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td>추천인 이메일</td>
-						<td>
-							<input type="text" name="coachRecommendEmail" placeholder="추천인 이메일을 입력해주세요."/>
-						</td>			
-					</tr>
-					<tr>
-						<td colspan="2" style="text-align: center;">
-							<button type="submit">회원가입</button>
-						</td>			
-					</tr>
-			    </table>
-		   </form>
+	<div class="content">
+		<!-- /.container-fluid -->
+		<div class="container-fluid">
+			<section class="content">
+				<div class="row">
+					<!-- ChallengeInsertCard1 Start -->
+					<div class="col-md">
+						<div class="card card-default" id="addNormalForm">
+							<div class="card-body">
+								<div class="register-box">
+									<div class="card card-outline card-primary">
+										<div class="card-header text-center">
+											<b><font style="vertical-align: inherit;"> <font
+													style="vertical-align: inherit;"><h2>회원가입</h2></font>
+											</font> </b>
+										</div>
+										<div class="card-body">
+											<form id="addCoachForm" th:action="@{/addCoach}"
+												method="post">
+												<div class="input-group mb-3">
+													<input type="email" class="form-control"
+														name="coachEmail" placeholder="회원이메일을 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-user"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="password" class="form-control"
+														name="coachPassword" placeholder="비밀번호를 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" name="coachName"
+														placeholder="회원이름을 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="date" class="form-control" name="coachBirth"
+														value="xxx" min="yyy" max="zzz">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" name="coachAddr"
+														placeholder="주소를 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachAddrDetail" placeholder="상세주소를 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													성별 : &emsp; <label> <input type="radio"
+														name="coachGender" value="남" checked="checked">남자
+													</label> &emsp;&emsp; <label> <input type="radio"
+														name="coachGender" value="여">여자
+													</label>
+												</div>
+												<div class="input-group mb-3">
+													<input class="form-control" type="tel" name="coachMobile"
+														size="5" placeholder="010" /> - <input
+														class="form-control" type="tel" name="coachMobile"
+														size="5" placeholder="0000" /> - <input
+														class="form-control" type="tel" name="coachMobile"
+														size="5" placeholder="0000" />
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<select class="form-control" name="coachAuthority">
+														<option value="">::코치권한::</option>
+														<option value="컨설턴트">컨설턴트</option>
+														<option value="멘토">멘토</option>
+													</select>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" name="coachJob"
+														placeholder="회원직업 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachProfileCareer" placeholder="코치의 경력사항을 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachProfileTechStack"
+														placeholder="코치의 기술스택을 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachCertificate" placeholder="코치의 자격증 입력해주세요.">
+													<div class="input-group-text">
+														<span class="fas fa-lock"></span>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="file" class="form-control"
+														name="coachCareerDocumentaryEvidence">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="file" class="form-control"
+														name="coachCertificateDocumentaryEvidence">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachJoinMotivation" placeholder="가입동기를 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachJoinPath" placeholder="가입경로를 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachRecommendEmail" placeholder="추천인 이메일을 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-8">
+														<div class="icheck-primary">
+															<input type="checkbox" name="coachIsReceiveMarketing"
+																value="Y" checked="checked"> <label
+																for="userIsReceiveMarketing"> <font
+																style="vertical-align: inherit;"> <font
+																	style="vertical-align: inherit;">수신 동의 여부 </font>
+															</font>
+															</label>
+														</div>
+													</div>
+													<!-- /.col -->
+													<div class="col-4">
+														<button type="submit" class="btn btn-primary btn-block">
+															<font style="vertical-align: inherit;"> <font
+																style="vertical-align: inherit;">회원가입</font></font>
+														</button>
+													</div>
+													<!-- /.col -->
+												</div>
+											</form>
+											<a th:href="@{login}" class="text-center"><font
+												style="vertical-align: inherit;"><font
+													style="vertical-align: inherit;">이미 회원가입이 되어있습니다.</font></font></a>
+										</div>
+										<!-- /.form-box -->
+									</div>
+									<!-- /.card -->
+								</div>
+
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+
+			</section>
+
+
+
 		</div>
-	</div>	    
+		<!-- /.container-fluid -->
+	</div>
 </th:block>
 
 <th:block layout:fragment="pageJavascript">

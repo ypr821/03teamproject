@@ -6,13 +6,13 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">코치회원조회🌟</h1>
+		<h1 class="m-0">관리자 조회🌟</h1>
 	</div>
 	<!-- /.col -->
 	<div class="col-sm-6">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a href="/">coachList</a></li>
-			<li class="breadcrumb-item active">coachList.html</li>
+			<li class="breadcrumb-item"><a href="/">adminList</a></li>
+			<li class="breadcrumb-item active">adminList.html</li>
 		</ol>
 	</div>
 	<!-- /.col -->
@@ -39,7 +39,6 @@
 												<option>성별로 검색하기</option>
 												<option>전화번호로 검색하기</option>
 												<option>직업으로 검색하기</option>
-												<option>가입승인여부로 검색하기</option>
 												<option>수신동의여부로 검색하기</option>
 												<option>가입일자로 검색하기</option>
 												<option>탈퇴상태로 검색하기</option>
@@ -85,8 +84,6 @@
 					</form>
 				</div>
 			</section>
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
@@ -94,72 +91,36 @@
 					<h3 class="card-title">
 						<ion-icon size="small" name="list-outline" role="img"
 							class="md icon-small hydrated" aria-label="list outline"></ion-icon>
-						<b>코치회원 전체검색</b>
+						&emsp; 관리자 전체검색
 					</h3>
 				</div>
 				<!-- /.card-header -->
-				<div class="card-body p-0">
-					<table class="table table-striped table-responsive"
-						style="overflow: scroll; width: 100%; white-space: nowrap;">
-						<thead class="coachlList-head">
+				<div class="card-body table-responsive p-0">
+					<table class="table table-striped text-nowrap">
+						<thead class="adminList-head">
 							<tr>
-								<th>코치이메일</th>
+								<th>관리자 이메일</th>
 								<th>비밀번호</th>
 								<th>이름</th>
-								<th>생년월일</th>
-								<th>주소</th>
-								<th>상세주소</th>
-								<th>성별</th>
-								<th>전화번호</th>
 								<th>권한</th>
-								<th>직업</th>
-								<th>경력사항</th>
-								<th>기술스택</th>
-								<th>자격증</th>
-								<th>경력증빙서류</th>
-								<th>자격증빙서류</th>
-								<th>가입승인여부</th>
-								<th>승인자이메일</th>
-								<th>수신자동의여부</th>
-								<th>가입동기</th>
-								<th>가입경로</th>
-								<th>추천인이메일</th>
-								<th>가입일자</th>
-								<th>탈퇴상태</th>
+								<th>전화번호</th>
+								<th>등록일자</th>
 								<th>수정</th>
 								<th>삭제</th>
 							</tr>
 						</thead>
-						<tbody class="coachlList-body">
-							<tr th:each="l : ${coachList}">
-								<td th:text="${l.coachEmail}"></td>
-								<td th:text="${l.coachPassword}"></td>
-								<td th:text="${l.coachName}"></td>
-								<td th:text="${l.coachBirth}"></td>
-								<td th:text="${l.coachAddr}"></td>
-								<td th:text="${l.coachAddrDetail}"></td>
-								<td th:text="${l.coachGender}"></td>
-								<td th:text="${l.coachMobile}"></td>
-								<td th:text="${l.coachAuthority}"></td>
-								<td th:text="${l.coachJob}"></td>
-								<td th:text="${l.coachProfileCareer}"></td>
-								<td th:text="${l.coachProfileTechStack}"></td>
-								<td th:text="${l.coachCertificate}"></td>
-								<td th:text="${l.coachCareerDocumentaryEvidence}"></td>
-								<td th:text="${l.coachCertificateDocumentaryEvidence}"></td>
-								<td th:text="${l.coachJoinApproval}"></td>
-								<td th:text="${l.coachApproverEmail}"></td>
-								<td th:text="${l.coachIsReceiveMarketing}"></td>
-								<td th:text="${l.coachJoinMotivation}"></td>
-								<td th:text="${l.coachJoinPath}"></td>
-								<td th:text="${l.coachRecommendEmail}"></td>
-								<td th:text="${l.coachJoinDate}"></td>
-								<td th:text="${l.coachWithdrawStatus}"></td>
-								<td><a
-									th:href="@{/modifyCoach(coachUserEmail=${l.coachEmail})}">수정</a>
-								</td>
+						<tbody class="adminUser-body">
+							<tr th:each="l : ${adminList}">
+								<td th:text="${l.adminEmail}"></td>
+								<td th:text="${l.adminPassword}"></td>
+								<td th:text="${l.adminName}"></td>
+								<td th:text="${l.adminLevel}"></td>
+								<td th:text="${l.adminMobile}"></td>
+								<td th:text="${l.adminJoinDate}"></td>
+								<td><a th:href="@{/#}">수정</a></td>
 								<td><a th:href="@{/#}">삭제</a></td>
 							</tr>
+
 						</tbody>
 					</table>
 				</div>
@@ -180,12 +141,16 @@
 			<!-- /.card -->
 		</div>
 	</div>
+		</div>
+	</div>
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
 
 </th:block>
 </html>
+
+
 
 
 

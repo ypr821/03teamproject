@@ -68,26 +68,42 @@
 		      </div>
 		    </form>
 	    </div>
-	   <li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
-			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" th:if="${session.NEMAIL eq null && session.CEMAIL eq null}">로그인</a>
-			<div class="dropdown-menu">
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/normalLogin}">일반로그인</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/coachLogin}">코치로그인</a>
-	         </div>		
+	    
+	   <li class="nav-item d-none d-sm-inline-block">
+			<a th:href="@{/login}" class="nav-link" th:if="${session.ULEVEL eq null}">
+				<b>로그인</b>
+				<span style="font-size: 10px;" class="badge badge-primary">!</span>
+			</a>
 		</li>
-		
+
+		<!-- MyPage -->
 		<li class="nav-item d-none d-sm-inline-block">
-			<a th:href="@{/logout}" th:unless="${session.SID eq null}" class="nav-link">로그아웃</a>
+			<a th:href="@{/myPage}" th:unless="${session.ULEVEL eq null}" class="nav-link">MyPage
+			<span style="font-size: 10px;" class="badge badge-primary">#</span>
+			</a>
+			
 		</li>
 		
+		<!-- 로그아웃 -->
+		<li class="nav-item d-none d-sm-inline-block">
+			<a th:href="@{/logout}" th:unless="${session.ULEVEL eq null}" class="nav-link">로그아웃</a>
+		</li>
+
 		<!-- 회원가입 -->
 		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
-			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"  th:if="${session.NEMAIL == null && session.CEMAIL == null}">회원가입</a>
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" th:if="${session.ULEVEL eq null}">회원가입
+			<span style="font-size: 10px;" class="badge badge-primary">!</span>
+			</a>
 			<div class="dropdown-menu">
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/addNormal}">일반회원가입</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/addCoach}">코치회원가입</a>
-	         </div>		
+				<a class="dropdown-item" tabindex="-1" th:href="@{/addNormal}">일반회원가입
+				<span style="font-size: 10px;" class="badge badge-primary">!</span>
+				</a>
+				<a class="dropdown-item" tabindex="-1" th:href="@{/addCoach}">코치회원가입
+				<span style="font-size: 10px;" class="badge badge-primary">!</span>
+				</a>
+			</div>
 		</li>
+		
     </li>
 
     <!-- Messages Dropdown Menu -->
