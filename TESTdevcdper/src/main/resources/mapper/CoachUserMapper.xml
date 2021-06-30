@@ -5,7 +5,7 @@
 <mapper namespace="com.devcdper.user_admin.dao.CoachUserMapper">
 
 	<resultMap type="CoachUser" id="CoachUserResultMap">
-		<result property="coachUserEmail" 						column="coach_user_email"/>
+		<result property="coachEmail" 							column="coach_user_email"/>
 		<result property="coachPassword"				 		column="coach_password"/>
 		<result property="coachName" 							column="coach_name"/>
 		<result property="coachBirth" 							column="coach_birth"/>
@@ -30,33 +30,64 @@
 		<result property="coachWithdrawStatus" 					column="coach_withdraw_status"/>
 	</resultMap>
 	
-	<update id="ModifyCoach" parameterType="CoachUser">
-		UPDATE 
-			coach_user
-		SET
+	<update id="modifyCoachUser" parameterType="CoachUser">
+		UPDATE coach_user
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="coachPassword != null and coachPassword != ''.toString()">	
 			coach_password=#{coachPassword}
-			,coach_name=#{coachName}
-			,coach_birth=#{coachBirth}
-			,coach_addr=#{coachAddr}
-			,coach_addr_detail=#{coachAddrDetail}
-			,coach_gender=#{coachGender}
-			,coach_mobile=#{coachMobile}
-			,coach_authority=#{coachAuthority}
-			,coach_job=#{coachJob}
-			,coach_profile_career=#{coachProfileCareer}
-			,coach_profile_tech_stack=#{coachProfileTechStack}
-			,coach_certificate=#{coachCertificate}
-			,coach_career_documentary_evidence=#{coachCareerDocumentaryEvidence}
-			,coach_certificate_documentary_evidence=#{coachCertificateDocumentaryEvidence}
-			,coach_is_receive_marketing=#{coachIsReceiveMarketing}
+			</if>
+			<if test="coachName != null and coachName != ''.toString()">	
+				,coach_name=#{coachName}
+			</if>
+			<if test="coachBirth != null and coachBirth != ''.toString()">	
+				,coach_birth=#{coachBirth}
+			</if>
+			<if test="coachAddr != null and coachAddr != ''.toString()">	
+				,coach_addr=#{coachAddr}
+			</if>
+			<if test="coachAddrDetail != null and coachAddrDetail != ''.toString()">	
+				,coach_addr_detail=#{coachAddrDetail}
+			</if>
+			<if test="coachGender != null and coachGender != ''.toString()">	
+				,coach_gender=#{coachGender}
+			</if>
+			<if test="coachMobile != null and coachMobile != ''.toString()">	
+				,coach_mobile=#{coachMobile}
+			</if>
+			<if test="coachAuthority != null and coachAuthority != ''.toString()">	
+				,coach_authority=#{coachAuthority}
+			</if>
+			<if test="coachJob != null and coachJob != ''.toString()">	
+				,coach_job=#{coachJob}
+			</if>
+			<if test="coachProfileCareer != null and coachProfileCareer != ''.toString()">	
+				,coach_profile_career=#{coachProfileCareer}
+			</if>
+			<if test="coachProfileTechStack != null and coachProfileTechStack != ''.toString()">	
+				,coach_profile_tech_stack=#{coachProfileTechStack}
+			</if>
+			<if test="coachCertificate != null and coachCertificate != ''.toString()">	
+				,coach_certificate=#{coachCertificate}
+			</if>
+			<if test="coachCareerDocumentaryEvidence != null and coachCareerDocumentaryEvidence != ''.toString()">	
+				,coach_career_documentary_evidence=#{coachCareerDocumentaryEvidence}
+			</if>
+			<if test="coachCertificateDocumentaryEvidence != null and coachCertificateDocumentaryEvidence != ''.toString()">	
+				,coach_certificate_documentary_evidence=#{coachCertificateDocumentaryEvidence}
+			</if>
+			<if test="coachIsReceiveMarketing != null and coachIsReceiveMarketing != ''.toString()">	
+				,coach_is_receive_marketing=#{coachIsReceiveMarketing}
+			</if>
+		</trim>
 		WHERE 
-			coach_user_email= #{coachUserEmail};
+			coach_user_email= #{coachEmail};
 		
 	</update>
 	
 	<select id="getCoachInfoById" parameterType="String" resultMap="CoachUserResultMap">
 		SELECT 
-			coach_password
+			coach_user_email
+			,coach_password
 			, coach_name
 			, coach_birth
 			, coach_addr
@@ -74,7 +105,7 @@
 		FROM 
 			coach_user
 		WHERE 
-			coach_user_email = #{coachUserEmail};
+			coach_user_email = #{coachEmail};
 	</select>
 	
 	
@@ -104,7 +135,7 @@
 			, coach_join_date
 			, coach_withdraw_status)
 		VALUES (
-			#{coachUserEmail}
+			#{coachEmail}
 			, #{coachPassword}
 			, #{coachName}
 			, #{coachBirth}
@@ -131,7 +162,7 @@
 	
 	<select id="getCoachList" resultType="CoachUser">
 		SELECT 
-			coach_user_email							AS coachUserEmail
+			coach_user_email							AS coachEmail
 			, coach_password							AS coachPassword
 			, coach_name								AS coachName
 			, coach_birth								AS coachBirth

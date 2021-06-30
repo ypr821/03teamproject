@@ -31,42 +31,69 @@ public class NormalUserController {
 		this.normalUserService = normalUserService;
 	}
 	
-	@PostMapping("/normalLogin")
-	public String login(@RequestParam(value="userEmail", required = false) String userEmail
-			   ,@RequestParam(value="userPasswrod", required = false) String userPasswrod
+	@GetMapping("myPage")
+	public String myPage(Model model) {
+		
+		model.addAttribute("title","마이페이지");
+		return "userAdmin/myPage";
+	}
+	
+	@GetMapping("/normalPassword")
+	public String normalPassword(Model model) {
+		
+		model.addAttribute("title","회원패스워드찾기");
+		
+		return "userAdmin/normalPassword";
+	}
+	
+	@GetMapping("/logout")  //아직안됨...
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	@PostMapping("/normalLogin") //아직안됨...
+	public String normalLogin(@RequestParam(value="userEmail", required = false) String userEmail
+			   ,@RequestParam(value="userPassword", required = false) String userPassword
 			   ,HttpSession session
 			   ,RedirectAttributes reAttr) {
-		if(userEmail != null && "".equals(userEmail) && userPasswrod != null && "".equals(userPasswrod)) {
-			
-			Map<String, Object> resultMap = normalUserService.loginNomalUser(userEmail, userPasswrod);
+		if(userEmail != null && !"".equals(userEmail) && userPassword != null && !"".equals(userPassword)) {
+			System.out.println(userEmail +"" +userPassword);
+			Map<String, Object> resultMap = normalUserService.loginNomalUser(userEmail, userPassword);
 			
 			boolean loginCheck = (boolean) resultMap.get("loginCheck");
-			NormalUser loginMember = (NormalUser) resultMap.get("loginNormalUser");
+			NormalUser normalLogin = (NormalUser) resultMap.get("loginNormalUser");
+			System.out.println(resultMap);
 			
 			if(loginCheck) {
-				session.setAttribute("NEMAIL", loginMember.getUserEmail());
-				session.setAttribute("NNAME", loginMember.getUserName());
+				session.setAttribute("NEMAIL", 	normalLogin.getUserEmail());
+				session.setAttribute("NNAME", 	normalLogin.getUserName());
+				session.setAttribute("ULEVEL", 	"일반사용자");
 				
 				return "redirect:/";
 			}
-			reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
 		}
-		return "redirect:/normalLogin";
+		reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
+		
+		return "redirect:/login";
 	}
 	
-	@GetMapping("/normalLogin")
-	public String login(Model model
+	@GetMapping("/login")
+	public String normalLogin(Model model
 						,@RequestParam(name="loginResult", required = false) String loginResult) {
 		
 		model.addAttribute("title","로그인화면");
 		if(loginResult != null) model.addAttribute("loginResult", loginResult);
 		
-		return "login/normalLogin";
+		return "login/login";
 	}
 	
 	@PostMapping("/modifyNormal")
 	public String modifyNormal(NormalUser normalUser) {
 		log.info("화면에서 입력받은 값(회원수정) normalUser: {}", normalUser);
+		
 		normalUserService.modifyNormalUser(normalUser);
 		return "redirect:/normalList";
 	}

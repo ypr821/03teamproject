@@ -1,50 +1,217 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="@{layout/default}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/loginDefault}">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">login title</title>
+	<div></div>
 	<div class="col-sm-12" th:align="center">
 		<h1 class="m-0">🔑 로그인🔑</h1>
-	</div><!-- /.col -->
+	</div>
 	<div class="col-sm-12" th:align="right">
 		<ol class="breadcrumb float-sm-right">
 			<li class="breadcrumb-item"><a href="/">login</a></li>
 			<li class="breadcrumb-item active">login.html</li>
 		</ol>
-	</div><!-- /.col -->
+	</div>
 </th:block>
 <th:block layout:fragment="container">
-<div class="col-sm-12" th:align="center">
-	<div class="register-box">
-		<div class="card">
-			<div class="card-body register-card-body">
-				<p class="login-box-msg">로그인을 진행하여 주십시오.</p>
-				<form th:action="@{/login}" method="post">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" name="memberId" placeholder="아이디를 입력하세요">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user"></span>
+
+	<section class="content">
+		<div class="row">
+			<!-- ChallengeInsertCard1 Start -->
+			<div class="col-md">
+				<div class="card card-default" id="loginForm">
+					<div class="card-body">
+
+						<!-- @@@@@@@@@@@@@@@@@@@@  관리자 시작  @@@@@@@@@@@@@@@@@ -->
+						<div class="login-box">
+							<div class="login-logo">
+								<h2>관리자</h2>
 							</div>
-				    	</div>
-					</div>
-					<div class="input-group mb-3">
-						<input type="password" class="form-control" name="memberPw" placeholder="패스워드 입력하세요">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
+							<!-- /.login-logo -->
+							<div class="card">
+								<div class="card-body login-card-body">
+									<p class="login-box-msg">Sign in to start your session</p>
+									<form th:action="@{/login}" method="post">
+										<div class="input-group mb-3">
+											<input type="email" class="form-control" placeholder="adminEmail" value="you01@ksmart.or.kr">
+											<div class="input-group-append">
+												<div class="input-group-text">
+													<span class="fas fa-envelope"></span>
+												</div>
+											</div>
+										</div>
+										<div class="input-group mb-3">
+											<input type="password" class="form-control" placeholder="adminPassword" value="apw001">
+											<div class="input-group-append">
+												<div class="input-group-text">
+													<span class="fas fa-lock"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-8">
+												<div class="icheck-primary">
+													<input type="checkbox" id="remember"> <label
+														for="remember"> Remember Me </label>
+												</div>
+											</div>
+											<!-- /.col -->
+											<div class="col-4">
+												<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+											</div>
+										</div>
+										<label th:if="${loginResult !=null}" th:text="${loginResult}"></label>
+									</form>
+
+
+									<p class="mb-1">
+										<a href="forgot-password.html">패스워드 찾기</a>
+									</p>
+									<p class="mb-0">
+										<a href="register.html" class="text-center">관리자 회원가입</a>
+									</p>
+								</div>
 							</div>
 						</div>
+						<!-- @@@@@@@@@@@@@@@@@@@@  관리자 끝  @@@@@@@@@@@@@@@@@ -->
+
+						<!-- @@@@@@@@@@@@@@@@@@@@  일반회원 시작  @@@@@@@@@@@@@@@@@ -->
+						<div class="login-box">
+							<div class="login-logo">
+								<h2>일반회원</h2>
+							</div>
+							<!-- /.login-logo -->
+							<div class="card">
+								<div class="card-body login-card-body">
+									<p class="login-box-msg">Sign in to start your session</p>
+
+									<form th:action="@{/normalLogin}" method="post">
+										<div class="input-group mb-3">
+											<input type="email" class="form-control" name="userEmail" value="park01@hanmail.net">
+											<div class="input-group-append">
+												<div class="input-group-text">
+													<span class="fas fa-envelope"></span>
+												</div>
+											</div>
+										</div>
+										<div class="input-group mb-3">
+											<input type="password" class="form-control"
+												placeholder="Password" name="userPassword" value="pw001">
+											<div class="input-group-append">
+												<div class="input-group-text">
+													<span class="fas fa-lock"></span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-8">
+												<div class="icheck-primary">
+													<input type="checkbox" id="remember"> 
+													<label for="remember"> Remember Me </label>
+												</div>
+											</div>
+											<!-- /.col -->
+											<div class="col-4">
+												<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+											</div>
+											<!-- /.col -->
+										</div>
+										<label th:if="${loginResult !=null}" th:text="${loginResult}"></label>
+									</form>
+
+									<div class="social-auth-links text-center mb-3">
+										<p>- OR -</p>
+										<a href="#" class="btn btn-block btn-primary"> <i
+											class="fab fa-facebook mr-2"></i> Sign in using Facebook
+										</a> <a href="#" class="btn btn-block btn-danger"> <i
+											class="fab fa-google-plus mr-2"></i> Sign in using Google+
+										</a>
+									</div>
+
+									<p class="mb-1">
+										<a th:href="@{normalPassword}">회원 패스워드 찾기</a>
+									</p>
+									<p class="mb-0">
+										<a th:href=@{/addNormal} class="text-center">일반 회원가입</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- @@@@@@@@@@@@@@@@@@@@  일반회원 끝  @@@@@@@@@@@@@@@@@ -->
+
+						<!-- @@@@@@@@@@@@@@@@@@@@  코치회원 시작  @@@@@@@@@@@@@@@@@ -->
+						<div class="login-box">
+							<div class="login-logo">
+								<h2>코치회원</h2>
+							</div>
+							<div class="card">
+								<div class="card-body login-card-body">
+									<p class="login-box-msg">Sign in to start your session</p>
+
+									<form th:action="@{/coachLogin}" method="post">
+										<div class="input-group mb-3">
+											<input type="email" class="form-control" name="coachEmail" value="coach_hong@gmail.com">
+											<div class="input-group-append">
+												<div class="input-group-text">
+													<span class="fas fa-envelope"></span>
+												</div>
+											</div>
+										</div>
+										<div class="input-group mb-3">
+											<input type="password" class="form-control" name="coachPassword" value="pw007"> 
+											<div class="input-group-append">
+												<div class="input-group-text">
+													<span class="fas fa-lock"></span>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-8">
+												<div class="icheck-primary">
+													<input type="checkbox" id="remember" > 
+													<label for="remember">Remember Me </label>
+												</div>
+											</div>
+											<div class="col-4">
+												<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+											</div>
+										</div>
+										<label th:if="${loginResult !=null}" th:text="${loginResult}"></label>
+									</form>
+									
+									<div class="social-auth-links text-center mb-3">
+										<p>- OR -</p>
+										<a href="#" class="btn btn-block btn-primary"> <i
+											class="fab fa-facebook mr-2"></i> Sign in using Facebook
+										</a> <a href="#" class="btn btn-block btn-danger"> <i
+											class="fab fa-google-plus mr-2"></i> Sign in using Google+
+										</a>
+									</div>
+
+									<p class="mb-1">
+										<a href="forgot-password.html">I forgot my password</a>
+									</p>
+									<p class="mb-0">
+										<a th:href="@{/addCoach}" class="text-center">코치 회원가입</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- @@@@@@@@@@@@@@@@@@@@  코치회원 끝   @@@@@@@@@@@@@@@@ -->
+
 					</div>
-					<label th:if="${loginResult != null}" th:text="${loginResult}"></label>
-					<div class="col-4">
-						<button type="submit" class="btn btn-primary btn-block">로그인</button>
-					</div>
-				</form>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
 			</div>
+
 		</div>
-	</div>
-</div>
+
+	</section>
+
+
 </th:block>
 </html>

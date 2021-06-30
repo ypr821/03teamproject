@@ -9,6 +9,7 @@ import com.devcdper.user_admin.domain.CoachUser;
 @Mapper
 public interface CoachUserMapper {
 	
+	
 	//코치전체리스트
 	public List<CoachUser> getCoachList();
 	//코치회원가입
@@ -16,6 +17,5 @@ public interface CoachUserMapper {
 	//코치 수정폼
 	public CoachUser getCoachInfoById(String coachEmail);
 	//코치 수정
-//	public int get
-	
+	public int modifyCoachUser(CoachUser coachUser);
 }

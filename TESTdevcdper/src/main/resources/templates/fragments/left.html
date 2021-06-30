@@ -1,570 +1,480 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<aside th:fragment="left" class="main-sidebar sidebar-dark-primary elevation-4">
+<aside th:fragment="left"
+	class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
-	<a th:href="@{/}" class="brand-link">
-	  <img th:src="@{/AdminLTE3/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-	  <span class="brand-text font-weight-light">DEV-CDPER</span>
+	<a th:href="@{/}" class="brand-link"> <img
+		th:src="@{/AdminLTE3/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo"
+		class="brand-image img-circle elevation-3" style="opacity: .8">
+		<span class="brand-text font-weight-light">DEV-CDPER</span>
 	</a>
 	<!-- Sidebar -->
 	<div class="sidebar">
-	  <!-- Sidebar user panel (optional) -->
-	  <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:unless="${session.SID eq null}">
-	    <div class="image">
-	      <img th:src="@{/AdminLTE3/dist/img/psm2.jpg}" class="img-circle elevation-2" alt="User Image">
-	    </div>
-	    <div th:href="@{/}" class="brand-link">
-	      <a href="#" class="d-block">[[${session.SLEVELNAME}]] [[${session.SNAME}]]</a>
-	      <a>Mypage</a>
-	    </div>
-	    <br/>
-	   <!--  <button type="button" class="btn btn-block btn-outline-primary btn-sm">Mypage</button> -->
-	 
-	  </div>
-	  <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${session.SID eq null}">
-	    <div class="image">
-	      <img th:src="@{/AdminLTE3/dist/img/usernull.jpg}" class="img-circle elevation-2" alt="User Image">
-	    </div>
-	    <div class="info">
-	      <a th:href="@{/login}" class="d-block">로그인을 해주세요.</a>
-	    </div>
-	  </div>
 	
-	  <!-- SidebarSearch Form -->
-	  <div class="form-inline">
-	    <div class="input-group" data-widget="sidebar-search">
-	      <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-	      <div class="input-group-append">
-	        <button class="btn btn-sidebar">
-	          <i class="fas fa-search fa-fw"></i>
-	        </button>
-	      </div>
-	    </div>
-	  </div>
-	
-	  <!-- Sidebar Menu -->
-	  <nav class="mt-2">
-	    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="font-size: 14px;">
-	      <!-- Add icons to the links using the .nav-icon class
-	           with font-awesome or any other icon font library -->
-	       <li class="nav-item" th:if="${function == null}">
-	        <a href="devcdper/introduce.html" th:if="${session.SLEVEL == null}" class="nav-link">
-	          <i class="nav-icon fas fad fa-scroll"></i>
-	          <p>
-	            	DEV-CDPER 소개
-	          </p>
-	        </a>
-	      </li>
-	       <li class="nav-item" th:if="${function == null}">
-	        <a href="devcdper/guide.html" th:if="${session.SLEVEL == null}" class="nav-link">
-	          <i class="nav-icon fas fad fa-scroll"></i>
-	          <p>
-	            	DEV-CDPER 가이드
-	          </p>
-	        </a>
-	      </li>
-	      <li class="nav-item has-treeview" th:if="${function == null}">
-            <a href="#" class="nav-link">
-	      	<i class="nav-icon fas fa-user"></i>
-                <p>
-	               	전체회원조회
-	               <i class="right fas fa-angle-left"></i>
-                </p>
-             </a>
-	           <ul class="nav nav-treeview" style="background-color: #2E2E2E;">
-	             
-	             <li class="nav-item">
-	                <a th:href="@{/normalList}" class="nav-link"><!-- th:if="${session.SLEVEL == '1'}" --> 
-	                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
-	                  <i class="nav-icon fas fa-user"></i>
-	                  <p>
-	                  	일반회원전체조회
-	                  </p>
-	                </a>
-	              </li>
-	        	</ul> 
-	           <ul class="nav nav-treeview" style="background-color: #2E2E2E;">
-	             
-	             <li class="nav-item">
-	                <a th:href="@{/coachList}" class="nav-link"><!-- th:if="${session.SLEVEL == '1'}" --> 
-	                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
-	                  <i class="nav-icon fas fa-user"></i>
-	                  <p>
-	                  	코치회원전체조회
-	                  </p>
-	                </a>
-	              </li>
-	        	</ul> 
-	     	 </li>
-	     <!-- 최종 스펙 관리 -->
-	       <li class="nav-item" th:if="${function == null}">
-	        <a th:href="@{/lastSpac}" class="nav-link" >
-	          <i class="nav-icon far fa-file-alt"></i>
-	          <p>
-	            	최종 스펙 관리
-	          </p>
-	        </a>
-	      </li>
-	      <!-- 경력 관리서 관리 -->
-	       <li class="nav-item" th:if="${function == null}">
-	        <a th:href="@{/careerManagement}" class="nav-link" >
-	           <i class="nav-icon far fa-file-alt"></i>
-	          <p>
-	            	경력 관리서 관리
-	          </p>
-	        </a>
-	      </li>
-          <!-- 전체 계획 관리 Start -->
-	      <li class="nav-item has-treeview" th:if="${function == null}">
-            <a href="#" class="nav-link">
-               <i class="nav-icon fas fa-tasks "></i>
-              <p>
-              		계획 관리
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview"  style="background-color: #2E2E2E;">
-              <li class="nav-item">
-                <a th:href="@{/totalPlan}" class="nav-link">
-                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>통합 계획 관리(박승민)
-                  	<span style="font-size: 10px;" class="badge badge-primary">#</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/mainPlan}" class="nav-link">
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>계획 관리(박승민)</p>
-                    <span style="font-size: 10px;" class="badge badge-primary">#</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/detailPlan}" class="nav-link">
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>상세 계획 관리(류준혁)</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">#</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/actionPlan}" class="nav-link">
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>실천 계획 관리(김도연)</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">#</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!--전체 계획 관리 종료-->
-          
-          
-          <!-- 계획 전용 left Start -->
-              <li class="nav-item" th:if="${function == 'plan'}">
-                <a th:href="@{/totalPlan}" class="nav-link">
-                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>통합 계획 관리(박승민)
-                  	<span style="font-size: 10px;" class="badge badge-primary">#</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item" th:if="${function == 'plan'}">
-                <a th:href="@{/mainPlan}" class="nav-link">
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>계획 관리(박승민)</p>
-                    <span style="font-size: 10px;" class="badge badge-primary">#</span>
-                    <i class="right fas fa-angle-left"></i>
-                </a>
-                <!-- 계획관리 하위메뉴 시작 -->
-                 <ul class="nav nav-treeview" style="background-color: #151515;">
-	                <li class="nav-item">
-	                <a th:href="@{/mainPlan}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>나의 계획 한눈에보기
-	                  	<span style="font-size: 10px;" class="badge badge-primary">#</span>
-	                  </p>
-	                  
-	                </a>
-	                <li class="nav-item">
-	                <a th:href="@{/planEducationalHistory}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>학력 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                  
-	                </a>
-	                
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planProject}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>프로젝트 계획
-	                    <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planCertificate}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>자격증 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planCertifiedLanguage}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>공인어학 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planTechnologyStack}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>기술스택 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planJobTraining}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>직종전문교육과정 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planInternship}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>인턴십 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planContest}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>공모전 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planCareer}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>경력 계획
-	                  	<span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                  </p>
-	                </a>
-	              </li>
-                 </ul>
-              </li>
-              <!-- 승민 계획 관리 하위메뉴 END -->
-              <li class="nav-item" th:if="${function == 'plan'}">
-                <a th:href="@{/detailPlan}" class="nav-link">
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>상세 계획 관리(류준혁)</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">#</span>
-                  <i class="right fas fa-angle-left"></i>
-                </a>
-                <!-- 상세계획관리 하위메뉴 시작  -->
-                <ul class="nav nav-treeview" style="background-color: #151515;">
-                  <li class="nav-item">
-	                <a th:href="@{/detailPlan}" class="nav-link"><!--href="plan/detailPlan.html" 대신 th로  -->
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>상세 계획 한눈에 보여주기
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-                
-	              <li class="nav-item">
-	                <a th:href="@{/planEducationalHistoryDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>학력 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planProjectDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>프로젝트 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planCertificateDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>자격증 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planCertifiedLanguageDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>공인어학 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planTechnologyStackDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>기술스택 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planJobTrainingDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>직종전문교육과정 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planInternshipDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>인턴십 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planContestDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>공모전 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/planCareerDetail}" class="nav-link">
-	                  <i class="nav-icon far fa-file-alt"></i>
-	                  <p>경력 상세 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-              	</ul>
-              </li>
-              <!-- 상세계획관리 하위메뉴 종료  -->
-              </li>
-              <li class="nav-item" th:if="${function == 'plan'}">
-                <a th:href="@{/actionPlan}" class="nav-link">
-                  <i class="nav-icon fas fa-tasks "></i>
-                  <p>실천 계획 관리(김도연)</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">#</span>
-                  <i class="right fas fa-angle-left"></i>
-                </a>
-                <!-- 실천계획관리 하위메뉴 시작 -->
-                <ul class="nav nav-treeview" style="background-color: #151515;">
-                  <li class="nav-item">
-	                <a th:href="@{/actionEducationalHistory}" class="nav-link">
-	                 <!--  <i class="nav-icon far fa-file-alt"></i> -->
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>학력 실천 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-                	</a>
-              	  </li>
-	              <li class="nav-item">
-	                <a th:href="@{/actionProject}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>프로젝트 실천 계획
-	                  </p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/actionCertificate}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>자격증 실천 계획</p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/actionCertifiedLanguage}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>공인어학 실천 계획</p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	              <li class="nav-item">
-	                <a th:href="@{/actionTechnologyStack}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>기술스택 실천 계획</p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-              	  <li class="nav-item">
-	                <a th:href="@{/actionJobTraining}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>직종전문교육과정 실천 계획</p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	          	  <li class="nav-item">
-	                <a th:href="@{/actionInternship}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>인턴십 실천 계획</p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	          	  <li class="nav-item">
-	                <a th:href="@{/actionContest}" class="nav-link">
-	                  <i class="nav-icon fas fa-tasks "></i>
-	                  <p>공모전 실천 계획</p>
-	                  <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	                </a>
-	              </li>
-	           	  <li class="nav-item">
-	               <a th:href="@{/actionCareer}" class="nav-link">
-	                 <i class="nav-icon fas fa-tasks "></i>
-	                 <p>경력 실천 계획</p>
-	                 <span style="font-size: 10px;" class="badge badge-danger">!</span>
-	               </a>
-	             </li>
-                </ul>          
-	        <!-- 실천 계획 관리 하위메뉴 종료 -->
-              </li>
-          <!--계획 전용 left 관리 종료-->
-	      
-	       <!-- 코칭 관리 -->
-	      <li class="nav-item has-treeview" th:if="${function == null}">
-            <a th:href="@{/mainCoaching}" class="nav-link">
-              <i class="nav-icon fab fa-dev"></i>
-              <p>
-               		 !코칭 관리
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/mentoring}" class="nav-link">
-                  <i class="nav-icon fab fa-dev"></i>
-                  <p>!멘토링 관리</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/consulting}" class="nav-link">
-                 <i class="nav-icon fab fa-dev"></i>
-                  <p>!컨설팅 관리</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/coachAdmin}" class="nav-link">
-                  <i class="nav-icon fab fa-dev"></i>
-                  <p>#코치 관리</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/coachingReview}" class="nav-link">
-                  <i class="nav-icon fab fa-dev"></i>
-                  <p>#리뷰 관리</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          
-            <!-- 챌린지 관리 -->
-	      <li class="nav-item has-treeview" th:if="${function == null}">
-            <a href="#" class="nav-link">
-           	 <i class="nav-icon fas fad fa-thumbs-up"></i>
-              <p>
-               		 챌린지 관리
-                <i class="right fas fa-angle-left"></i>
-                
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/adminChallenge}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 관리</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/adminChallengeCategory}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 카테고리 관리</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/adminChallengeParticipation}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 참여 관리</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/adminChallengeCertification}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 인증 관리</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/adminChallengeReport}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 신고 관리</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/adminChallengeAchievement}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 달성율 관리</p>
-                   <span style="font-size: 10px;" class="badge badge-primary"># 양슬기</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/adminChallengeCompensation}" class="nav-link">
-                  <i class="nav-icon fas fad fa-thumbs-up"></i>
-                  <p>챌린지 보상지급 관리</p>
-                   <span style="font-size: 10px;" class="badge badge-primary"># 양슬기</span>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-	         <!-- 결제 및 환불 관리 -->
-	      <li class="nav-item has-treeview" th:if="${function == null}">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-credit-card"></i>
-              <p>
-               		# 결제 및 환불 관리
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="paymentRefund/payment.html" class="nav-link">
-                  <i class="nav-icon fas fa-credit-card"></i>
-                  <p>#결제 관리</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="paymentRefund/refund.html" class="nav-link">
-                  <i class="nav-icon fas fa-credit-card"></i>
-                  <p>#환불 관리</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+		<!-- 비회원 프로필 -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
+			th:if="${session.NEMAIL eq null}">
+			<div class="image">
+				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
+					class="img-circle elevation-2" alt="User Image">
+			</div>
+			<div class="info">
+				<a th:href="@{/login}" class="d-block">로그인을 해주세요.</a>
+			</div>
+		</div>
 
-	    </ul>
-	  </nav>
-	  <!-- /.sidebar-menu -->
+		<!-- 로그인후 프로필 -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
+			th:if="${session.NEMAIL ne null}">
+			<div class="image">
+				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
+					class="img-circle elevation-2" alt="User Image">
+			</div>
+			<div class="info">
+				<a th:href="@{/myPage}" class="d-block"> <span>[[${session.NEMAIL}]]</span>
+					<span style="font-size: 10px;" class="badge badge-primary">#</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- SidebarSearch Form -->
+		<div class="form-inline">
+			<div class="input-group" data-widget="sidebar-search">
+				<input class="form-control form-control-sidebar" type="search"
+					placeholder="Search" aria-label="Search">
+				<div class="input-group-append">
+					<button class="btn btn-sidebar">
+						<i class="fas fa-search fa-fw"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Sidebar Menu -->
+		<nav class="mt-2">
+			<ul class="nav nav-pills nav-sidebar flex-column"
+				data-widget="treeview" role="menu" data-accordion="false"
+				style="font-size: 14px;">
+				<!-- Add icons to the links using the .nav-icon class
+	           with font-awesome or any other icon font library -->
+				<li class="nav-item" th:if="${function == null}"><a
+					href="devcdper/introduce.html" th:if="${session.SLEVEL == null}"
+					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
+						<p>DEV-CDPER 소개</p>
+				</a></li>
+				<li class="nav-item" th:if="${function == null}"><a
+					href="devcdper/guide.html" th:if="${session.SLEVEL == null}"
+					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
+						<p>DEV-CDPER 가이드</p>
+				</a></li>
+				
+				
+			<li class="nav-item has-treeview" th:if="${function == null}">
+					<a href="#" class="nav-link"> <i class="nav-icon fas fa-user"></i>
+						<p>
+							전체회원조회 <i class="right fas fa-angle-left"></i>
+						<span style="font-size: 10px;" class="badge badge-primary">!</span>
+						</p>
+				</a>
+
+					<ul class="nav nav-treeview" style="background-color: #2E2E2E;">
+						<li class="nav-item adminList">
+						<a th:href="@{/adminList}"
+							class="nav-link"> <!-- th:if="${session.SLEVEL == '1'}" --> <!--  <i class="nav-icon far fa-file-alt"></i> -->
+								<i class="nav-icon fas fa-user"></i>
+								<p>관리자전체조회</p>
+						<span style="font-size: 10px;" class="badge badge-primary">!</span>
+						</a>
+						</li>
+					</ul>
+
+					<ul class="nav nav-treeview" style="background-color: #2E2E2E;">
+						<li class="nav-item normalList">
+						<a th:href="@{/normalList}"
+							class="nav-link"> <!-- th:if="${session.SLEVEL == '1'}" --> <!--  <i class="nav-icon far fa-file-alt"></i> -->
+								<i class="nav-icon fas fa-user"></i>
+								<p>일반회원전체조회</p>
+						<span style="font-size: 10px;" class="badge badge-primary">!</span>
+						</a>
+						</li>
+					</ul>
+
+					<ul class="nav nav-treeview" style="background-color: #2E2E2E;">
+						<li class="nav-item coachList"><a th:href="@{/coachList}"
+							class="nav-link"> <!-- th:if="${session.SLEVEL == '1'}" --> <!--  <i class="nav-icon far fa-file-alt"></i> -->
+								<i class="nav-icon fas fa-user"></i>
+								<p>코치회원전체조회</p>
+						<span style="font-size: 10px;" class="badge badge-primary">!</span>
+						</a>
+						</li>
+					</ul>
+
+				</li>
+				
+				<!-- 최종 스펙 관리 -->
+				<li class="nav-item" th:if="${function == null}"><a
+					th:href="@{/lastSpac}" class="nav-link"> <i
+						class="nav-icon far fa-file-alt"></i>
+						<p>최종 스펙 관리</p>
+				</a></li>
+				<!-- 경력 관리서 관리 -->
+				<li class="nav-item" th:if="${function == null}"><a
+					th:href="@{/careerManagement}" class="nav-link"> <i
+						class="nav-icon far fa-file-alt"></i>
+						<p>경력 관리서 관리</p>
+				</a></li>
+				<!-- 전체 계획 관리 Start -->
+				<li class="nav-item has-treeview" th:if="${function == null}">
+					<a href="#" class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+						<p>
+							계획 관리 <i class="right fas fa-angle-left"></i>
+						</p>
+				</a>
+					<ul class="nav nav-treeview" style="background-color: #2E2E2E;">
+						<li class="nav-item"><a th:href="@{/totalPlan}"
+							class="nav-link"> <!--  <i class="nav-icon far fa-file-alt"></i> -->
+								<i class="nav-icon fas fa-tasks "></i>
+								<p>
+									통합 계획 관리(박승민) <span style="font-size: 10px;"
+										class="badge badge-primary">#</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/mainPlan}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>계획 관리(박승민)</p> <span style="font-size: 10px;"
+								class="badge badge-primary">#</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/detailPlan}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>상세 계획 관리(류준혁)</p> <span style="font-size: 10px;"
+								class="badge badge-primary">#</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionPlan}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>실천 계획 관리(김도연)</p> <span style="font-size: 10px;"
+								class="badge badge-primary">#</span>
+						</a></li>
+					</ul>
+				</li>
+				<!--전체 계획 관리 종료-->
+
+
+				<!-- 계획 전용 left Start -->
+				<li class="nav-item" th:if="${function == 'plan'}"><a
+					th:href="@{/totalPlan}" class="nav-link"> <!--  <i class="nav-icon far fa-file-alt"></i> -->
+						<i class="nav-icon fas fa-tasks "></i>
+						<p>
+							통합 계획 관리(박승민) <span style="font-size: 10px;"
+								class="badge badge-primary">#</span>
+						</p>
+				</a></li>
+				<li class="nav-item" th:if="${function == 'plan'}"><a
+					th:href="@{/mainPlan}" class="nav-link"> <i
+						class="nav-icon fas fa-tasks "></i>
+						<p>계획 관리(박승민)</p> <span style="font-size: 10px;"
+						class="badge badge-primary">#</span> <i
+						class="right fas fa-angle-left"></i>
+				</a> <!-- 계획관리 하위메뉴 시작 -->
+					<ul class="nav nav-treeview" style="background-color: #151515;">
+						<li class="nav-item"><a th:href="@{/mainPlan}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									나의 계획 한눈에보기 <span style="font-size: 10px;"
+										class="badge badge-primary">#</span>
+								</p>
+
+						</a>
+						<li class="nav-item"><a th:href="@{/planEducationalHistory}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									학력 계획 <span style="font-size: 10px;" class="badge badge-danger">!</span>
+								</p>
+
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planProject}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									프로젝트 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planCertificate}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									자격증 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planCertifiedLanguage}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									공인어학 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planTechnologyStack}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									기술스택 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planJobTraining}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									직종전문교육과정 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planInternship}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									인턴십 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planContest}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									공모전 계획 <span style="font-size: 10px;"
+										class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planCareer}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>
+									경력 계획 <span style="font-size: 10px;" class="badge badge-danger">!</span>
+								</p>
+						</a></li>
+					</ul></li>
+				<!-- 승민 계획 관리 하위메뉴 END -->
+				<li class="nav-item" th:if="${function == 'plan'}"><a
+					th:href="@{/detailPlan}" class="nav-link"> <i
+						class="nav-icon fas fa-tasks "></i>
+						<p>상세 계획 관리(류준혁)</p> <span style="font-size: 10px;"
+						class="badge badge-primary">#</span> <i
+						class="right fas fa-angle-left"></i>
+				</a> <!-- 상세계획관리 하위메뉴 시작  -->
+					<ul class="nav nav-treeview" style="background-color: #151515;">
+						<li class="nav-item"><a th:href="@{/detailPlan}"
+							class="nav-link">
+								<!--href="plan/detailPlan.html" 대신 th로  --> <i
+								class="nav-icon far fa-file-alt"></i>
+								<p>상세 계획 한눈에 보여주기</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+
+						<li class="nav-item"><a
+							th:href="@{/planEducationalHistoryDetail}" class="nav-link">
+								<i class="nav-icon far fa-file-alt"></i>
+								<p>학력 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planProjectDetail}"
+							class="nav-link"> <i class="nav-icon far fa-file-alt"></i>
+								<p>프로젝트 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planCertificateDetail}"
+							class="nav-link"> <i class="nav-icon far fa-file-alt"></i>
+								<p>자격증 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a
+							th:href="@{/planCertifiedLanguageDetail}" class="nav-link"> <i
+								class="nav-icon far fa-file-alt"></i>
+								<p>공인어학 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a
+							th:href="@{/planTechnologyStackDetail}" class="nav-link"> <i
+								class="nav-icon far fa-file-alt"></i>
+								<p>기술스택 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planJobTrainingDetail}"
+							class="nav-link"> <i class="nav-icon far fa-file-alt"></i>
+								<p>직종전문교육과정 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planInternshipDetail}"
+							class="nav-link"> <i class="nav-icon far fa-file-alt"></i>
+								<p>인턴십 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planContestDetail}"
+							class="nav-link"> <i class="nav-icon far fa-file-alt"></i>
+								<p>공모전 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/planCareerDetail}"
+							class="nav-link"> <i class="nav-icon far fa-file-alt"></i>
+								<p>경력 상세 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+					</ul></li>
+				<!-- 상세계획관리 하위메뉴 종료  -->
+				</li>
+				<li class="nav-item" th:if="${function == 'plan'}"><a
+					th:href="@{/actionPlan}" class="nav-link"> <i
+						class="nav-icon fas fa-tasks "></i>
+						<p>실천 계획 관리(김도연)</p> <span style="font-size: 10px;"
+						class="badge badge-primary">#</span> <i
+						class="right fas fa-angle-left"></i>
+				</a> <!-- 실천계획관리 하위메뉴 시작 -->
+					<ul class="nav nav-treeview" style="background-color: #151515;">
+						<li class="nav-item"><a
+							th:href="@{/actionEducationalHistory}" class="nav-link"> <!--  <i class="nav-icon far fa-file-alt"></i> -->
+								<i class="nav-icon fas fa-tasks "></i>
+								<p>학력 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionProject}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>프로젝트 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionCertificate}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>자격증 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionCertifiedLanguage}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>공인어학 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionTechnologyStack}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>기술스택 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionJobTraining}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>직종전문교육과정 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionInternship}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>인턴십 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionContest}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>공모전 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/actionCareer}"
+							class="nav-link"> <i class="nav-icon fas fa-tasks "></i>
+								<p>경력 실천 계획</p> <span style="font-size: 10px;"
+								class="badge badge-danger">!</span>
+						</a></li>
+					</ul> <!-- 실천 계획 관리 하위메뉴 종료 --></li>
+				<!--계획 전용 left 관리 종료-->
+
+				<!-- 코칭 관리 -->
+				<li class="nav-item has-treeview" th:if="${function == null}">
+					<a th:href="@{/mainCoaching}" class="nav-link"> <i
+						class="nav-icon fab fa-dev"></i>
+						<p>
+							!코칭 관리 <i class="right fas fa-angle-left"></i>
+						</p>
+				</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item"><a th:href="@{/mentoring}"
+							class="nav-link"> <i class="nav-icon fab fa-dev"></i>
+								<p>!멘토링 관리</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/consulting}"
+							class="nav-link"> <i class="nav-icon fab fa-dev"></i>
+								<p>!컨설팅 관리</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/coachAdmin}"
+							class="nav-link"> <i class="nav-icon fab fa-dev"></i>
+								<p>#코치 관리</p>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/coachingReview}"
+							class="nav-link"> <i class="nav-icon fab fa-dev"></i>
+								<p>#리뷰 관리</p>
+						</a></li>
+					</ul>
+				</li>
+
+				<!-- 챌린지 관리 -->
+				<li class="nav-item has-treeview" th:if="${function == null}">
+					<a href="#" class="nav-link"> <i
+						class="nav-icon fas fad fa-thumbs-up"></i>
+						<p>
+							챌린지 관리 <i class="right fas fa-angle-left"></i>
+
+						</p>
+				</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item"><a th:href="@{/adminChallenge}"
+							class="nav-link"> <i class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary">! 양슬기</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/adminChallengeCategory}"
+							class="nav-link"> <i class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 카테고리 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary">! 양슬기</span>
+						</a></li>
+						<li class="nav-item"><a
+							th:href="@{/adminChallengeParticipation}" class="nav-link"> <i
+								class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 참여 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary">! 양슬기</span>
+						</a></li>
+						<li class="nav-item"><a
+							th:href="@{/adminChallengeCertification}" class="nav-link"> <i
+								class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 인증 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary">! 양슬기</span>
+						</a></li>
+						<li class="nav-item"><a th:href="@{/adminChallengeReport}"
+							class="nav-link"> <i class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 신고 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary">! 양슬기</span>
+						</a></li>
+						<li class="nav-item"><a
+							th:href="@{/adminChallengeAchievement}" class="nav-link"> <i
+								class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 달성율 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary"># 양슬기</span>
+						</a></li>
+						<li class="nav-item"><a
+							th:href="@{/adminChallengeCompensation}" class="nav-link"> <i
+								class="nav-icon fas fad fa-thumbs-up"></i>
+								<p>챌린지 보상지급 관리</p> <span style="font-size: 10px;"
+								class="badge badge-primary"># 양슬기</span>
+						</a></li>
+
+					</ul>
+				</li>
+				<!-- 결제 및 환불 관리 -->
+				<li class="nav-item has-treeview" th:if="${function == null}">
+					<a href="#" class="nav-link"> <i
+						class="nav-icon fas fa-credit-card"></i>
+						<p>
+							# 결제 및 환불 관리 <i class="right fas fa-angle-left"></i>
+						</p>
+				</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item"><a href="paymentRefund/payment.html"
+							class="nav-link"> <i class="nav-icon fas fa-credit-card"></i>
+								<p>#결제 관리</p>
+						</a></li>
+						<li class="nav-item"><a href="paymentRefund/refund.html"
+							class="nav-link"> <i class="nav-icon fas fa-credit-card"></i>
+								<p>#환불 관리</p>
+						</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</nav>
+		<!-- /.sidebar-menu -->
 	</div>
 	<!-- /.sidebar -->
 </aside>

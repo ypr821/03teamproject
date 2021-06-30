@@ -9,27 +9,34 @@
 
 	<!-- Sidebar -->
 	<div class="sidebar">
-	  <!-- Sidebar user panel (optional) -->
-	  <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:unless="${session.SID eq null}">
-	    <div class="image">
-	      <img th:src="@{/AdminLTE3/dist/img/psm2.jpg}" class="img-circle elevation-2" alt="User Image">
-	    </div>
-	    <div th:href="@{/}" class="brand-link">
-	      <a href="#" class="d-block">[[${session.SLEVELNAME}]] [[${session.SNAME}]] </a>
-	      <a>Mypage</a>
-	    </div>
-	    <br/>
-	   <!--  <button type="button" class="btn btn-block btn-outline-primary btn-sm">Mypage</button> -->
-	 
-	  </div>
-	  <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${session.SID eq null}">
-	    <div class="image">
-	      <img th:src="@{/AdminLTE3/dist/img/usernull.jpg}" class="img-circle elevation-2" alt="User Image">
-	    </div>
-	    <div class="info">
-	      <a th:href="@{/login}" class="d-block">로그인을 해주세요.</a>
-	    </div>
-	  </div>
+	
+	 <!-- 비회원 프로필 -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
+			th:if="${session.NEMAIL eq null}">
+			<div class="image">
+				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
+					class="img-circle elevation-2" alt="User Image">
+			</div>
+			<div class="info">
+				<a th:href="@{/login}" class="d-block">로그인을 해주세요.
+				<span style="font-size: 10px;" class="badge badge-primary">!</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- 로그인후 프로필 -->
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
+			th:if="${session.NEMAIL ne null}">
+			<div class="image">
+				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
+					class="img-circle elevation-2" alt="User Image">
+			</div>
+			<div class="info">
+				<a th:href="@{/myPage}" class="d-block"> <span>[[${session.NEMAIL}]]</span>
+				<span style="font-size: 10px;" class="badge badge-primary">#</span>
+				</a>
+			</div>
+		</div>
 	
 	  <!-- SidebarSearch Form -->
 	  <div class="form-inline">
