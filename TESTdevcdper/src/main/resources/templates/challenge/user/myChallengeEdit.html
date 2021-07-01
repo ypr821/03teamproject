@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeUserDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">!챌린지 설정</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
+					</a>
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
+					</a>
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
+					</a>
+					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallengeEdit'}"> 나의 챌린지
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div>
+</th:block>
+
+<th:block layout:fragment="container">
+
+<div class="card card-default">
+			<div class="card-body">
+				<button type="button" class="btn btn-default btn-block challengeModalNameModify" data-toggle="modal" data-target="#modal-ChallengeModalNameModify" style="text-align: center;">챌린지명 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalDateModify" data-toggle="modal" data-target="#modal-ChallengeModalDateModify" style="text-align: center;">챌린지 날짜 변경</button>
+				<!-- <button type="button" class="btn btn-default btn-block challengeModalMainImageModify" data-toggle="modal" data-target="#" style="text-align: center;">대표이미지 변경</button> -->
+				<button type="button" class="btn btn-default btn-block challengeModalCertificationMethodsModify" data-toggle="modal" data-target="#modal-ChallengeModalCertificationMethodsModify" style="text-align: center;">인증방법 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalIntroduceModify" data-toggle="modal" data-target="#modal-ChallengeModalIntroduceModify" style="text-align: center;">챌린지 소개 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalTagModify" data-toggle="modal" data-target="#modal-ChallengeModalTagModify" style="text-align: center;">챌린지 태그 변경</button>
+				<button type="button" class="btn btn-danger btn-block" th:onclick="|location.href='@{/myChallenge}'|" style="text-align: center;">챌린지 삭제</button>
+   		</div>
+   	</div>
+   	
+	<!-- challenge Modal 영역 시작-->
+	<!-- 챌린지명 변경 Modal - challengeModalNameModify -->
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalNameModify :: challengeModalNameModify"></th:block>   	
+   	
+	<!-- 챌린지 날짜 변경 Modal - challengeModalDateModify -->
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalDateModify :: challengeModalDateModify"></th:block>   	
+   	
+	<!-- 챌린지 인증방법 변경 Modal - challengeModalCertificationMethodsModify -->
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalCertificationMethodsModify :: challengeModalCertificationMethodsModify"></th:block>   	
+   	
+	<!-- 챌린지 소개 변경 Modal - challengeModalIntroduceModify -->
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalIntroduceModify :: challengeModalIntroduceModify"></th:block>   	
+   	
+	<!-- 챌린지 태그 변경 Modal - challengeModalTagModify -->
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalTagModify :: challengeModalTagModify"></th:block>   	
+   	
+   	
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+<script type="text/javascript" th:inline="javascript">
+		
+		
+		var challengeModalNameModify = $('.challengeModalNameModify');
+		var challengeModalDateModify = $('.challengeModalDateModify');
+		var challengeModalCertificationMethodsModify = $('.challengeModalCertificationMethodsModify');
+		var challengeModalIntroduceModify = $('.challengeModalIntroduceModify');
+		var challengeModalTagModify = $('.challengeModalTagModify');
+		
+		<!-- 챌린지명 변경 Modal - challengeModalNameModify -->
+		$(function(){
+			challengeModalNameModify.click(function(){
+			$("#modal-ChallengeModalNameModify").modal('show');
+		});
+			
+		<!-- 챌린지 날짜 변경 Modal - challengeModalDateModify -->
+		$(function(){
+			challengeModalDateModify.click(function(){
+			$("#modal-ChallengeModalDateModify").modal('show');
+		});
+			
+		<!-- 챌린지 인증방법 변경 Modal - challengeModalCertificationMethodsModify -->
+		$(function(){
+			challengeModalCertificationMethodsModify.click(function(){
+			$("#modal-ChallengeModalCertificationMethodsModify").modal('show');
+		});
+			
+		<!-- 챌린지 소개 변경 Modal - challengeModalIntroduceModify -->
+		$(function(){
+			challengeModalIntroduceModify.click(function(){
+			$("#modal-ChallengeModalIntroduceModify").modal('show');
+		});
+			
+		<!-- 챌린지 태그 변경 Modal - challengeModalTagModify -->
+		$(function(){
+			challengeModalTagModify.click(function(){
+			$("#modal-ChallengeModalTagModify").modal('show');
+		});
+	});
+		
+</script>
+</th:block>
+</html>

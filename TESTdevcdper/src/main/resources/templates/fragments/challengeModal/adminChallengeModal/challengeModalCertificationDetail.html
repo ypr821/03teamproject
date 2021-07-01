@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="challengeModalCertificationDetail" class="challengeModalContents">
+	<!-- modal -->
+	<div class="modal fade" id="modal-ChallengeModalCertificationDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		<div class="modal-dialog modal-lg" >
+			  <div class="modal-content">
+				<div class="modal-header">
+				 <h3 class="modal-title" id="myModalLabel">챌린지 인증정보 상세보기</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+				<div class="modal-body">
+			  <div class="form-group">
+                <label for="challengeName">챌린지명</label>
+                <input type="text" id="challengeName" class="form-control" readonly="readonly" style="background-color: white" value="1일 1깃허브">
+              </div>
+			  <div class="form-group">
+                <label for="challengeCategory">챌린지 카테고리</label>
+                <input type="text" id="challengeCategory" class="form-control" readonly="readonly" style="background-color: white" value="프로젝트">
+              </div>
+              <div class="form-group">
+                <label for="challengeOpener">챌린지 개설자</label>
+                <input type="text" id="challengeOpener" class="form-control" readonly="readonly" style="background-color: white" value="park01@hanmail.net">
+              </div>
+              <div class="form-group">
+                <label for="challengeParticipant">챌린지 참여자</label>
+                <input type="text" id="challengeParticipant" class="form-control" readonly="readonly" style="background-color: white" value="tae01@gmail.com">
+              </div>
+              <div class="form-group">
+                <label for="challengeCertificationMethods">챌린지 인증방법</label>
+                <input type="text" id="challengeCertificationMethods" class="form-control" readonly="readonly" style="background-color: white" value="사진">
+              </div>
+              <div class="form-group">
+                <label for="challengeCertificationContents">챌린지 인증내용</label>
+                <input type="text" id="challengeCertificationContents" class="form-control" readonly="readonly" style="background-color: white" value="내일도 화이팅!">
+              </div>
+              
+               <!-- 내 계획과 연결 하기 -->
+		          <div class="form-group">
+		                <label for="challengeCertificationAttachedFile">챌린지 첨부파일</label>
+		            	<div class="row">
+		            		 <input type="text" id="challengeCertificationAttachedFile" class="form-control col-9" readonly="readonly" style="background-color: white" value="챌린지 인증1.JPG">
+						 	<button type="button" id="challengeCertificationAttachedFileBtn" class="btn btn-block btn-secondary btn-sm">첨부파일 확인</button>             
+		             	    &nbsp; 
+		              	 </div>
+		          </div>
+		          <!-- /내 계획과 연결 하기 -->
+              
+              <div class="form-group">
+                <label for="challengeCertificationStatus">챌린지 인증여부</label>
+                <input type="text" id="challengeCertificationStatus" class="form-control" readonly="readonly" style="background-color: white" value="인증완료">
+              </div>
+              <div class="form-group">
+                <label for="challengeCertificationDate">챌린지 인증일자</label>
+                <input type="text" id="challengeCertificationDate" class="form-control" readonly="readonly" style="background-color: white" value="2021년 4월 22일">
+              </div>
+                </div>
+                </div>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				    </div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	<!-- /.modal -->
+</th:block>
+</html>

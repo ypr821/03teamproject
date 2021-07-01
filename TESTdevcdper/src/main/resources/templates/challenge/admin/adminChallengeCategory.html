@@ -43,6 +43,70 @@
 
 
 <th:block layout:fragment="container">
+
+
+<div class="card card-default">
+			<div class="card-body">
+			    <section class="content" id="challengeExplorationSection">
+			        <div class="container-fluid">
+			            <h2 class="text-center display-5">챌린지 카테고리 조회</h2>
+			            <form action="enhanced-results.html">
+			                <div class="row">
+			                
+			                
+                             <div class="col-md-10 offset-md-1">
+                                 <div class="row">
+                                     <div class="col-6">
+                                         <div class="form-group">
+                                             <label>정렬기준1 : 날짜</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>최신순</option>
+			                                        <option>오래된순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-6">
+                                         <div class="form-group">
+                                             <label>정렬기준2 : 문자</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>오름차순</option>
+			                                        <option>내림차순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                 
+                                 </div>
+                                 <div class="form-group">
+                                     <div class="input-group input-group-lg">
+                                        <div class="col-3">
+                                            <div class="form-group">
+			                                    <label>검색옵션</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>카테고리명</option>
+			  										<option>카테고리 번호</option>
+												</select>
+			                                </div>
+                                        </div>
+                                         <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="검색어를 입력해주세요" value="">
+                                         <div class="input-group-append">
+                                             <button type="button" class="btn btn-lg btn-default btn-sm" th:onclick="|location.href='@{#}'|" style="height : 49px;margin-top : 25px;">
+                                                 <i class="fa fa-search"></i>
+                                             </button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+             </section>
+            </div>
+       </div>
+
+
 <div>
 <button type="button" class="btn btn-block bg-gradient-danger btn-lg categoryadd">카테고리 추가하기</button>
 <button type="button" class="btn btn-block bg-gradient-danger btn-lg categorymodify">카테고리 수정하기</button>
@@ -57,7 +121,7 @@
       <div class="icon">
         <i class="fas fa-graduation-cap"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planEducationalHistory}" class="small-box-footer">
         	회원 학력 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -74,7 +138,7 @@
       <div class="icon">
 	      <i class="fas fa-file-code"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planProject}" class="small-box-footer">
         	회원 프로젝트 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -91,7 +155,7 @@
       <div class="icon">
         <i class="fas fa-certificate"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planCertificate}" class="small-box-footer">
         	회원 자격증 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -108,7 +172,7 @@
       <div class="icon">
         <i class="fas fa-atlas"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planCertifiedLanguage}" class="small-box-footer">
         	회원 공인어학(외국어능력) 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -125,7 +189,7 @@
       <div class="icon">
 	      <i class="fab fa-dev"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planTechnologyStack}" class="small-box-footer">
         	회원 기술스택 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -142,7 +206,7 @@
       <div class="icon">
         <i class="fas fa-university"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planJobTraining}" class="small-box-footer">
         	회원 직종전문교육과정 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -159,7 +223,7 @@
       <div class="icon">
 	      <i class="fas fa-briefcase"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planInternship}" class="small-box-footer">
         	회원 인턴십 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -176,7 +240,7 @@
       <div class="icon">
       	<i class="fas fa-pen-alt"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planContest}" class="small-box-footer">
         	회원 공모전 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">
@@ -193,7 +257,7 @@
       <div class="icon">
       	<i class="fas fa-user-tie"></i>
       </div>
-      <a href="#" class="small-box-footer">
+      <a th:href="@{/planCareer}" class="small-box-footer">
         	회원 경력 계획 목록   <i class="fas fa-arrow-circle-right"></i>
       </a>
       <a href="#" class="small-box-footer">

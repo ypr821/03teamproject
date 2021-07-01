@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeAdminDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">!챌린지 달성율 관리</h1>
+	</div><!-- /.col -->
+	<br><br>
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 개설 관리
+					</a>
+					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리
+					</a>
+					<a th:href="@{/adminChallengeParticipation}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeParticipation'}"> 챌린지 참여 관리
+					</a>
+					<a th:href="@{/adminChallengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCertification'}"> 챌린지 인증 관리
+					</a>
+					<a th:href="@{/adminChallengeReport}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeReport'}"> 챌린지 신고 관리
+					</a>
+					<a th:href="@{/adminChallengeAchievement}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeAchievement'}"> 챌린지 달성율 관리
+					</a>
+					<a th:href="@{/adminChallengeCompensation}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCompensation'}"> 챌린지 보상지급 관리
+					</a>
+				</div>
+			</div>
+			
+		</ol>
+	</div>
+</th:block>
+
+
+
+<th:block layout:fragment="container">
+
+<div class="card card-default">
+			<div class="card-body">
+			    <section class="content" id="challengeExplorationSection">
+			        <div class="container-fluid">
+			            <h2 class="text-center display-5">챌린지 달성율 내역 조회</h2>
+			            <form action="enhanced-results.html">
+			                <div class="row">
+			                
+			                
+                             <div class="col-md-10 offset-md-1">
+                                 <div class="row">
+                                 	<div class="col-2">
+			                                <div class="form-group">
+			                                    <label>성공횟수</label>
+			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+							                          <option selected="selected">전체</option>
+							                          <option>0~10회</option>
+							                          <option>10~20회</option>
+							                          <option>20~30회</option>
+							                          <option>30~40회</option>
+							                          <option>40~50회</option>
+							                          <option>50회 이상</option>
+                                   				 </select>
+			                                </div>
+			                            </div>
+                                 	<div class="col-2">
+			                                <div class="form-group">
+			                                    <label>총횟수</label>
+			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+							                          <option selected="selected">전체</option>
+							                          <option>0~10회</option>
+							                          <option>10~20회</option>
+							                          <option>20~30회</option>
+							                          <option>30~40회</option>
+							                          <option>40~50회</option>
+							                          <option>50회 이상</option>
+                                   				 </select>
+			                                </div>
+			                            </div>
+			                            <div class="col-2" data-select2-id="11">
+			                                <div class="form-group" data-select2-id="10">
+			                                    <label>달성율</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			                                        <option>0~10%</option>
+			                                        <option>10~20%</option>
+			                                        <option>20~30%</option>
+			                                        <option>30~40%</option>
+			                                        <option>40~50%</option>
+			                                        <option>50~60%</option>
+			                                        <option>60~70%</option>
+			                                        <option>70~80%</option>
+			                                        <option>80~90%</option>
+			                                        <option>90~100%</option>
+			                                    </select>
+			                                </div>
+			                            </div>
+			                            
+                                     <div class="col-2">
+                                         <div class="form-group">
+                                             <label>기간선택</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+                                                 <option selected="selected">전체</option>
+                                                 <option>지난 1일</option>
+                                                 <option>지난 1주</option>
+                                                 <option>지난 1개월</option>
+                                                 <option>지난 1년</option>
+                                    </select>
+                                         </div>
+                                     </div>
+                                     <div class="col-2">
+                                         <div class="form-group">
+                                             <label>정렬기준1 : 날짜</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>최신순</option>
+			                                        <option>오래된순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-2">
+                                         <div class="form-group">
+                                             <label>정렬기준2 : 문자</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>오름차순</option>
+			                                        <option>내림차순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                 
+                                 </div>
+                                 <div class="form-group">
+                                     <div class="input-group input-group-lg">
+                                        <div class="col-3">
+                                            <div class="form-group">
+			                                    <label>검색옵션</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected" data-select2-id="8">전체</option>
+			  										<option>챌린지명</option>
+			  										<option>챌린지 카테고리</option>
+			  										<option>개설자 이메일</option>
+			  										<option>참여자 이메일</option>
+			  										<option>내용</option>
+			  										<option>챌린지명+내용</option>
+			  										<option>태그</option>
+												</select>
+			                                </div>
+                                        </div>
+                                        <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="검색어를 입력해주세요" value="">
+                                         <div class="input-group-append">
+                                             <button type="button" class="btn btn-lg btn-default btn-sm" th:onclick="|location.href='@{#}'|" style="height : 49px;margin-top : 25px;">
+                                                 <i class="fa fa-search"></i>
+                                             </button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+             </section>
+            </div>
+       </div>
+       <!-- /검색-->
+
+<div class="row">
+         <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                <ion-icon size="small" name="list-outline"></ion-icon>
+					&emsp; 챌린지 달성율 관리</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <div class="input-group-append">
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <div class="card-body table-responsive p-0">
+         <table class="table table-striped text-nowrap">
+              <thead>
+                  <tr>
+                      <th>번호</th>
+                      <th>챌린지명</th>
+                      <th>챌린지 참여자 이메일</th>
+                      <th>챌린지 성공횟수</th>
+                      <th>챌린지 총횟수</th>
+                      <th>챌린지 달성율</th>
+                      <th style="width: 8%" class="text-center">
+                       	달성율 업데이트일자
+                      </th>
+                      <th>달성율정보</th>
+                      <th>삭제</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>1.</td>
+                      <td>깃허브 잔디심기</td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                     <td>
+						<button type="button" class="btn btn-block btn-default btn-xs challengeModalAchievementDetail" data-toggle="modal" data-target="#modal-ChallengeModalAchievementDetail">상세보기</button>
+					</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+                  </tr>
+                  <tr>
+                      <td>2.</td>
+                      <td>깃허브 잔디심기</td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs challengeModalAchievementDetail" data-toggle="modal" data-target="#modal-ChallengeModalAchievementDetail">상세보기</button>
+					  </td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+                  </tr>
+                  <tr>
+                      <td>3.</td>
+                      <td>깃허브 잔디심기</td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+					  <td>
+						<button type="button" class="btn btn-block btn-default btn-xs challengeModalAchievementDetail" data-toggle="modal" data-target="#modal-ChallengeModalAchievementDetail">상세보기</button>
+					  </td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+                  </tr>
+                  <tr>
+                     <td>4.</td>
+                      <td>깃허브 잔디심기</td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs challengeModalAchievementDetail" data-toggle="modal" data-target="#modal-ChallengeModalAchievementDetail">상세보기</button>
+					  </td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+                  </tr>
+                  <tr>
+                     <td>5.</td>
+                      <td>깃허브 잔디심기</td>
+                      <td>tae01@gmail.com</td>
+                      <td>5회</td>
+                      <td>7회</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                              </div>
+                          </div>
+                          <small>
+                              57% Complete
+                          </small>
+                      </td>
+                      <td>2021년 04월 28일</td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs challengeModalAchievementDetail" data-toggle="modal" data-target="#modal-ChallengeModalAchievementDetail">상세보기</button>
+					  </td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+					  </td>
+                  </tr>
+                          
+              </tbody>
+         </table>
+			</div>
+			<!-- /.card-body -->
+			<!-- 코치 list 페이지번호  -->
+			<div class="card-footer clearfix">
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                </ul>
+			   </div>	
+		</div>
+		</div>
+		</div>		
+
+<!-- challenge Modal 영역 시작-->
+	<!-- 챌린지 달성율정보 상세보기 Modal - challengeModalAchievementDetail -->
+	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalAchievementDetail :: challengeModalAchievementDetail"></th:block>
+	<!-- challenge Modal 영역 끝 -->
+
+</th:block>
+
+
+<th:block layout:fragment="pageJavascript">
+<script type="text/javascript" th:inline="javascript">
+	<!-- 챌린지 달성율정보 상세보기 Modal - challengeModalAchievementDetail -->
+		
+		var challengeModalAchievementDetail = $('.challengeModalAchievementDetail');
+		
+		/* Modal 영역 */
+		$(function(){
+			challengeModalAchievementDetail.click(function(){
+			$("#modal-ChallengeModalAchievementDetail").modal();
+		});
+				
+	});
+</script>
+</th:block>
+
+</th:block>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="challengeModalAchievementDetail" class="challengeModalContents">
+	<!-- modal -->
+	<div class="modal fade" id="modal-ChallengeModalAchievementDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		<div class="modal-dialog modal-lg" >
+			  <div class="modal-content">
+				<div class="modal-header">
+				 <h3 class="modal-title" id="myModalLabel">챌린지 달성율정보 상세보기</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+				<div class="modal-body">
+			  <div class="form-group">
+                <label for="challengeName">챌린지명</label>
+                <input type="text" id="challengeName" class="form-control" readonly="readonly" style="background-color: white" value="깃허브 잔디심기">
+              </div>
+			  <div class="form-group">
+                <label for="challengeCategory">챌린지 카테고리</label>
+                <input type="text" id="challengeCategory" class="form-control" readonly="readonly" style="background-color: white" value="프로젝트">
+              </div>
+              <div class="form-group">
+                <label for="challengeOpener">챌린지 개설자</label>
+                <input type="text" id="challengeOpener" class="form-control" readonly="readonly" style="background-color: white" value="park01@hanmail.net">
+              </div>
+               <div class="form-group">
+                <label for="challengeParticipant">챌린지 참여자</label>
+                <input type="text" id="challengeParticipant" class="form-control" readonly="readonly" style="background-color: white" value="tae01@gmail.com">
+              </div>
+              <div class="form-group">
+                <label for="challengeAchievementSuccesCount">챌린지 달성율 성공횟수</label>
+                <input type="text" id="challengeAchievementSuccesCount" class="form-control" readonly="readonly" style="background-color: white" value="5회">
+              </div>
+              <div class="form-group">
+                <label for="challengeAchievementTotalCount">챌린지 달성율 총횟수</label>
+                <input type="text" id="challengeAchievementTotalCount" class="form-control" readonly="readonly" style="background-color: white" value="7회">
+              </div>
+              <div class="form-group">
+                <label for="challengeAchievementTotal">챌린지 달성율</label>
+                <p>차트나 그래프를 넣자</p>
+              </div>
+              <div class="form-group">
+                <label for="challengeAchievementUpdateDate">챌린지 달성율 업데이트일자</label>
+                <input type="text" id="challengeAchievementUpdateDate" class="form-control" readonly="readonly" style="background-color: white" value="2021년 04월 28일">
+              </div>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				    </div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	<!-- /.modal -->
+	</div>
+	</div>
+</th:block>
+</html>
