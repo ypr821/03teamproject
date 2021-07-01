@@ -116,14 +116,9 @@
 		
 		
 		<div class="btnGroup">
-		<div class="btn btn-primary btn-lg btn-flat">
-				  <i class="fas fa-star fa-lg mr-2"></i>
-				  <a th:href="@{#}" id="bookmarkBtn">
-				  북마크</a>
-     	</div>
-		<div class="btn btn-danger btn-lg btn-flat">
+		<div th:onclick="|location.href='@{/challengeParticipation}'|" class="btn btn-danger btn-lg btn-flat participationBtn col-10" style="float: left">
 				  <i class="fas fa-sign-in-alt fa-lg mr-2"></i>
-                  <a th:href="@{/challengeParticipation}" id="participationBtn">챌린지 참여하기</a>
+                  챌린지 참여하기
         </div>
 		</div>
 		</div>

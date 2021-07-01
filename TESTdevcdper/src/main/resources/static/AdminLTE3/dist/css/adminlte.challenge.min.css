@@ -16,20 +16,6 @@ button.btn.btn-block.bg-gradient-danger.btn-lg.categoryadd {
 button.btn.btn-block.bg-gradient-danger.btn-lg.categorymodify {
     margin: 5px;
 }
-thead.challenge-head {
-    padding: 5px 0;
-    line-height: 1.5;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: auto;
-}
-tbody.challenge-body {
-    padding: 5px 0;
-    line-height: 1.5;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: auto;
-} 
 section.content {
     margin: 10px;
     padding: 10px;
@@ -74,11 +60,6 @@ div#participationBtn {
 .btnGroup {
     text-align: center;
 }
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
 .card-body.table-responsive.pad {
     padding: 0px;
 } 
@@ -100,11 +81,17 @@ i.fa.fa-angle-right {
     /* text-align: right; */
     float: right;
 }
-.challenge-table-outter {overflow-x: scroll; overflow-y : sc}
-.challenge-table{table-layout: fixed; margin:40px auto 0px auto; white-space: nowrap}
-
 body{
 	font-family: 'Jua', sans-serif;
+}
+button#challengeCertificationAttachedFileBtn {
+    width: 185px;
+}
+.table td, .table th {
+    padding: .50rem;
+    /* vertical-align: top; */
+    border-top: 1px solid #dee2e6;
+    text-align: center;
 }
 
 /*# sourceMappingURL=adminlte.min.css.map */

@@ -32,7 +32,7 @@ public class AdminChallengeController {
 	public String adminChallenge(Model model) {
 		model.addAttribute("title", "챌린지 개설 관리");
 		model.addAttribute("radioCheck","adminChallenge");
-		return "challenge/adminChallenge";
+		return "challenge/admin/adminChallenge";
 		
 	}
 	
@@ -41,7 +41,7 @@ public class AdminChallengeController {
 	public String adminChallengeCategory(Model model) {
 		model.addAttribute("title", "챌린지 카테고리 관리");
 		model.addAttribute("radioCheck","adminChallengeCategory");
-		return "challenge/adminChallengeCategory";
+		return "challenge/admin/adminChallengeCategory";
 		
 	}
 	
@@ -49,7 +49,7 @@ public class AdminChallengeController {
 	public String adminChallengeParticipation(Model model) {
 		model.addAttribute("title", "챌린지 참여 관리");
 		model.addAttribute("radioCheck","adminChallengeParticipation");
-		return "challenge/adminChallengeParticipation";
+		return "challenge/admin/adminChallengeParticipation";
 		
 	}
 	
@@ -57,7 +57,7 @@ public class AdminChallengeController {
 	public String adminChallengeCertification(Model model) {
 		model.addAttribute("title", "챌린지 인증 관리");
 		model.addAttribute("radioCheck","adminChallengeCertification");
-		return "challenge/adminChallengeCertification";
+		return "challenge/admin/adminChallengeCertification";
 		
 	}
 	
@@ -65,7 +65,7 @@ public class AdminChallengeController {
 	public String adminChallengeReport(Model model) {
 		model.addAttribute("title", "챌린지 신고 관리");
 		model.addAttribute("radioCheck","adminChallengeReport");
-		return "challenge/adminChallengeReport";
+		return "challenge/admin/adminChallengeReport";
 		
 	}
 	
@@ -73,7 +73,7 @@ public class AdminChallengeController {
 	public String adminChallengeAchievement(Model model) {
 		model.addAttribute("title", "챌린지 달성율 관리");
 		model.addAttribute("radioCheck","adminChallengeAchievement");
-		return "challenge/adminChallengeAchievement";
+		return "challenge/admin/adminChallengeAchievement";
 		
 	}
 	
@@ -81,7 +81,7 @@ public class AdminChallengeController {
 	public String challengeCompensation(Model model) {
 		model.addAttribute("title", "챌린지 보상지급 관리");
 		model.addAttribute("radioCheck","adminChallengeCompensation");
-		return "challenge/adminChallengeCompensation";
+		return "challenge/admin/adminChallengeCompensation";
 		
 	}
 

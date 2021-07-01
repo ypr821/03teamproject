@@ -5,7 +5,7 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">나의 챌린지</h1>
+		<h1 class="m-0">!나의 챌린지</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
@@ -41,79 +41,134 @@
              <h3 class="card-title">챌린지 현황</h3>
 
              <div class="card-tools">
-               <button type="button" class="btn btn-tool col-sm-12" data-card-widget="collapse" title="Collapse" >
-                 <i class="fas fa-minus"></i>
+               <button type="button" class="btn btn-tool col-sm-12" >
+                 <i class="fas fa-cog"></i>
                </button>
-          
              </div>
            </div>
            <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
-                        <button type="button" class="btn btn-info"><a th:href="@{/myChallengeParticipationList}" style="color: white;">1<br>참가중</a></button>
-                        <button type="button" class="btn btn-info"><a th:href="@{/myChallengeCompleteList}" style="color: white;">1<br>완료</a></button>
-                        <button type="button" class="btn btn-info"><a th:href="@{/myChallengeInsertList}" style="color: white;">1<br>개설</a></button>
-                      </div>
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참여중</button>
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeCompleteList}'|" style="color: white;">1<br>완료</button>
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeInsertList}'|" style="color: white;">1<br>개설</button>
+                    </div>
            </div>
            <!-- /.card-body -->
 
          </div>
          <!-- /.card -->
          
+         
+         
          <div class="card card-default">
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
 			        <div class="container-fluid">
+			            <h2 class="text-center display-5">나의 챌린지 조회</h2>
 			            <form action="enhanced-results.html">
 			                <div class="row">
-			                    <div class="col-md-10 offset-md-1">
-			                        <div class="row">
-			                            <div class="col-6">
+			                
+			                
+                             <div class="col-md-10 offset-md-1">
+                                 <div class="row">
+                                 	<div class="col-3">
 			                                <div class="form-group">
-			                                    <label>검색 타입</label>
+			                                    <label>인증빈도</label>
+			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+							                          <option selected="selected">전체</option>
+							                          <option>월~일 매일 인증하기</option>
+							                          <option>월~금 매일 인증하기</option>
+							                          <option>토~일 매일 인증하기</option>
+							                          <option>주 6일 인증하기</option>
+							                          <option>주 5일 인증하기</option>
+							                          <option>주 4일 인증하기</option>
+							                          <option>주 3일 인증하기</option>
+							                          <option>주 2일 인증하기</option>
+							                          <option>주 1일 인증하기</option>
+                                   				 </select>
+			                                </div>
+			                            </div>
+			                            <div class="col-2">
+			                                <div class="form-group" data-select2-id="10">
+			                                    <label>상태</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                      	<option selected="selected">전체</option>
+			                                        <option>참여중</option>
+			                                        <option>완료</option>
+			                                        <option>개설</option>
+			                                    </select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>챌린지 기간</label>
+			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+							                          <option selected="selected">전체</option>
+							                          <option selected="selected">1주</option>
+							                          <option data-select2-id="16">2주</option>
+							                          <option data-select2-id="16">3주</option>
+							                          <option data-select2-id="16">1개월</option>
+							                          <option data-select2-id="16">2개월</option>
+							                          <option data-select2-id="16">3개월</option>
+							                          <option data-select2-id="16">기간설정</option>
+                                   				 </select>
+			                                </div>
+			                            </div>
+                                     
+                                     
+                                    <div class="col-2">
+                                         <div class="form-group">
+                                             <label>정렬기준1 : 날짜</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>최신순</option>
+			                                        <option>오래된순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-2">
+                                         <div class="form-group">
+                                             <label>정렬기준2 : 문자</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>오름차순</option>
+			                                        <option>내림차순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                 
+                                 </div>
+                                 <div class="form-group">
+                                     <div class="input-group input-group-lg">
+                                        <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>검색조건</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
 			  										<option>챌린지명으로 검색하기</option>
+			  										<option>내용으로 검색하기</option>
+			  										<option>챌린지명+내용으로 검색하기</option>
 			  										<option>카테고리로 검색하기</option>
 			  										<option>태그로 검색하기</option>
-			  										<option>기간으로 검색하기</option>
 												</select>
 			                                </div>
 			                            </div>
-			                            <div class="col-3">
-			                                <div class="form-group">
-			                                    <label>정렬 순서</label>
-			                                    <select class="js-example-placeholder-single js-states form-control">
-			  										<option selected="" data-select2-id="5">오름차순</option>
-			                                        <option>내림차순</option>
-												</select>
-			                                </div>
-			                            </div>
-			                            <div class="col-3">
-			                                <div class="form-group">
-			                                    <label>정렬 기준</label>
-			                                    <select class="js-example-placeholder-single js-states form-control">
-			  										<option selected="" data-select2-id="8">제목</option>
-			                                        <option>기간</option>
-												</select>
-			                                </div>
-			                            </div>
-			                        </div>
-			                        <div class="form-group">
-			                            <div class="input-group input-group-lg">
-			                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
-			                                <div class="input-group-append">
-			                                    <button type="submit" class="btn btn-lg btn-default">
-			                                        <i class="fa fa-search"></i>
-			                                    </button>
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </div>
-			            </form>
-			        </div>
-    			</section>
-   			</div>
-    	</div>
+                                         <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="Type your keywords here" value="검색어를 입력해주세요">
+                                         <div class="input-group-append">
+                                             <button type="button" class="btn btn-lg btn-default btn-sm" th:onclick="|location.href='@{#}'|" style="height : 49px;margin-top : 25px;">
+                                                 <i class="fa fa-search"></i>
+                                             </button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+             </section>
+            </div>
+       </div>
+       <!-- /검색-->
          
          
          
@@ -201,7 +256,7 @@
 									50% Complete
 								</small>
 							</td>
-							<td><span class="badge bg-warning">참가중</span></td>
+							<td><span class="badge bg-warning">참여중</span></td>
 		                      <td>
 			                    <a th:href="@{/myChallengeInfo}">
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >

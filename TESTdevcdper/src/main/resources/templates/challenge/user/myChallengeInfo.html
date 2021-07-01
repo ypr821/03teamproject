@@ -24,7 +24,7 @@
 						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
 					</a>
 					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallengeInfo'}"> 나의 챌린지
 					</a>
 				</div>
 			</div>
@@ -35,11 +35,8 @@
 
 
 	<th:block layout:fragment="container">
-			
-	
-		
 
-		 <div class="col-md-9">
+		 <div class="col-md-12">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
@@ -49,7 +46,6 @@
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                
                 
                 <!-- tab1 -->
                   <div class="tab-pane" id="challengeDetailInfo">

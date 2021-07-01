@@ -25,76 +25,85 @@ public class ChallengeController {
 	public String challengeExploration(Model model) {
 		model.addAttribute("title", "챌린지 탐색하기");
 		model.addAttribute("radioCheck","challengeExploration");
-		return "challenge/challengeExploration";
+		return "challenge/user/challengeExploration";
 	}
 	
 	@GetMapping("/challengeInsert")
 	public String challengeInsert(Model model) {
 		model.addAttribute("title", "챌린지 개설하기");
 		model.addAttribute("radioCheck","challengeInsert");
-		return "challenge/challengeInsert";
-	}
-	
-	@GetMapping("/challengeInsertNext")
-	public String challengeInsertNext(Model model) {
-		model.addAttribute("title", "챌린지 개설하기");
-		return "challenge/challengeInsertNext";
+		return "challenge/user/challengeInsert";
 	}
 	
 	@GetMapping("/challengeParticipation")
 	public String challengeParticipation(Model model) {
 		model.addAttribute("title", "챌린지 참여하기");
 		model.addAttribute("radioCheck","challengeParticipation");
-		return "challenge/challengeParticipation";
+		return "challenge/user/challengeParticipation";
 	}
 	
 	@GetMapping("/challengeCertification")
 	public String challengeCertification(Model model) {
 		model.addAttribute("title", "챌린지 인증하기");
 		model.addAttribute("radioCheck","challengeCertification");
-		return "challenge/challengeCertification";
+		return "challenge/user/challengeCertification";
 	}
 	
 	
 	@GetMapping("/challengeCertificationInsert")
 	public String challengeCertificationInsert(Model model) {
 		model.addAttribute("title", "챌린지 인증 등록");
-		return "challenge/challengeCertificationInsert";
+		model.addAttribute("radioCheck","challengeCertificationInsert");
+		return "challenge/user/challengeCertificationInsert";
 	}
 	
 	@GetMapping("/challengeDetailInfo")
 	public String challengeDetailInfo(Model model) {
 		model.addAttribute("title", "챌린지 상세정보");
-		return "challenge/challengeDetailInfo";
+		model.addAttribute("radioCheck","challengeDetailInfo");
+		return "challenge/user/challengeDetailInfo";
 	}
 	
 	@GetMapping("/myChallenge")
 	public String myChallenge(Model model) {
 		model.addAttribute("title", "나의 챌린지");
 		model.addAttribute("radioCheck","myChallenge");
-		return "challenge/myChallenge";
+		return "challenge/user/myChallenge";
 	}
 	
 	@GetMapping("/myChallengeInfo")
 	public String myChallengeInfo(Model model) {
 		model.addAttribute("title", "챌린지 정보 및 인증");
-		return "challenge/myChallengeInfo";
+		model.addAttribute("radioCheck","myChallengeInfo");
+		return "challenge/user/myChallengeInfo";
 	}
 	
 	@GetMapping("/myChallengeInsertList")
 	public String myChallengeInsertList(Model model) {
 		model.addAttribute("title", "개설한 챌린지 목록");
-		return "challenge/myChallengeInsertList";
+		model.addAttribute("radioCheck","myChallengeInsertList");
+		return "challenge/user/myChallengeInsertList";
 	}
+	
 	@GetMapping("/myChallengeParticipationList")
 	public String myChallengeParticipationList(Model model) {
 		model.addAttribute("title", "참여중인 챌린지 목록");
-		return "challenge/myChallengeParticipationList";
+		model.addAttribute("radioCheck","myChallengeParticipationList");
+		return "challenge/user/myChallengeParticipationList";
 	}
+	
 	@GetMapping("/myChallengeCompleteList")
 	public String myChallengeCompleteList(Model model) {
 		model.addAttribute("title", "완료된 챌린지 목록");
-		return "challenge/myChallengeCompleteList";
+		model.addAttribute("radioCheck","myChallengeCompleteList");
+		return "challenge/user/myChallengeCompleteList";
+	}
+	
+	@GetMapping("/myChallengeEdit")
+	public String myChallengeEdit(Model model) {
+		model.addAttribute("title", "챌린지 설정");
+		model.addAttribute("radioCheck","myChallengeEdit");
+		return "challenge/user/myChallengeEdit";
 	}
 	
 	@GetMapping("/payment")
@@ -108,10 +117,6 @@ public class ChallengeController {
 		model.addAttribute("title", "챌린지 환불 관리");
 		return "paymentRefund/refund";
 	}
-	
-	
-	
-	
 	
 
 }
