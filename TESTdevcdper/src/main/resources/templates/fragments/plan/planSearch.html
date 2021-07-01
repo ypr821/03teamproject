@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="planSearch">
+	<!-- 검색 -->
+	<div class="card card-default">
+		<div class="card-body">
+			<section class="content" id="">
+				<div class="container-fluid">
+					<form action="coachingAdminPage">
+						<div class="row">
+							<div class="col-md-10 offset-md-1">
+								<div class="row">
+									<div class="col-3">
+										<div class="form-group">
+											<label>구분</label>
+											<select class="js-example-placeholder-single js-states form-control">
+												<option>전체</option>
+												<option>도움받기</option>
+												<option>혼자하기</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-3">
+										<div class="form-group">
+											<label>상태</label>
+											<select class="js-example-placeholder-single js-states form-control">
+												<option selected="">전체</option>
+												<option>진행예정</option>
+												<option>진행중</option>
+												<option>중단</option>
+												<option>완료</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-3">
+										<div class="form-group">
+											<label>기간선택</label>
+											<select class="js-example-placeholder-single js-states form-control">
+												<option selected="">전체</option>
+												<option>지난 1일</option>
+												<option>지난 1주</option>
+												<option>지난 1개월</option>
+												<option>지난 1년</option>
+												<!-- <option>기간 설정</option> -->
+											</select>
+										</div>
+									</div>
+									<div class="col-1">
+										<div class="form-group">
+											<label for="planDegree">차수</label>
+											<input type="number" id="planDegree" class="js-example-placeholder-single js-states form-control" placeholder="0"/>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="form-group">
+											<label>정렬</label>
+											<select class="js-example-placeholder-single js-states form-control">
+												<option selected="" data-select2-id="8">최신순</option>
+												<option>오래된순</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-2">
+										<div class="form-group">
+											<label>검색옵션</label>
+											<select class="js-example-placeholder-single js-states form-control">
+												<option selected="">전체</option>
+												<option>제목</option>
+												<option>내용</option>
+												<option>제목+내용</option>
+												<option>아이디(관리자)</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-9" style="padding-right: 0px;">
+										<div class="form-group">
+											<label for="planSearch">검색</label>
+											<input type="search" id="planSearch" class="form-control form-control-lg" style="padding: 6px 12px; height: 37.99px;"
+												placeholder="검색어를 입력해주세요"/>
+										</div>
+									</div>
+									<div class="col-1" style="padding-left: 0px;">
+										<div class="form-group">
+											<button class="btn btn-lg btn-default btn-sm" style="padding: 6px 12px; margin-top: 32px; height: 37.99px;">
+												<i class="fa fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+	<!-- /검색-->
+</th:block>
+</html>

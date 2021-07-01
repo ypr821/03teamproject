@@ -1,9 +1,11 @@
 package com.devcdper.plan.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PlanController {
@@ -14,16 +16,17 @@ public class PlanController {
 	public String totalPlan(Model model) {
 		model.addAttribute("title", "통합계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("radioCheck", "totalPlan");	//우측상단 경로이동 radioChecked
 		return "plan/totalPlan/totalPlan";
 	}
-	
 	/*------------------------------------------------통합계획등록 Start-----------------------------------------------------*/
 	@GetMapping("/addTotalPlan")
-	public String addTotalPlan(Model model) {
+	public String addTotalPlan(Model model
+							 , @RequestParam(name="planName", required = false)String planName) {
+		System.out.println(planName + " <<- planName");
+		model.addAttribute("planName", planName);
 		model.addAttribute("title", "통합계획등록");
 		model.addAttribute("function", "none");
-		return "plan/totalPlan/addTotalPlan";
+		return "fragments/plan/addTotalPlan";
 	}
 	@PostMapping("/addTotalPlan")
 	public String addTotalPlan() {
@@ -36,7 +39,7 @@ public class PlanController {
 	public String modifyTotalPlan(Model model) {
 		model.addAttribute("title", "통합계획수정");
 		model.addAttribute("function", "none");
-		return"plan/totalPlan/modifyTotalPlan";
+		return"fragments/plan/modifyTotalPlan";
 	}
 	
 	@PostMapping("/modifyTotalPlan")
@@ -63,7 +66,6 @@ public class PlanController {
 	public String mainPlan(Model model) {
 		model.addAttribute("title", "나의 계획 한눈에 보기");
 		model.addAttribute("function", "plan");
-		model.addAttribute("radioCheck", "plan");
 		return "plan/mainPlan";
 	}
 	@GetMapping("/mainCdp")
@@ -116,6 +118,23 @@ public class PlanController {
 	model.addAttribute("function", "plan");
 	return "plan/plan/planEducationalHistory";
 	}
+	
+	/*
+	@ResponseBody
+	@PostMapping("/planEducationalHistory")
+	public String planEducationalHistory(@RequestParam(name="firstSelect", required = false)String firstSelect, RedirectAttributes reAttr) {
+		 Map<String,Object> map = new HashMap<String,Object>();
+		
+		
+		 if(firstSelect != null && firstSelect.equals("계획")){
+		 System.out.println("계획 조건문통과"); map.put("planEducationalHistory",
+		 "planEducationalHistory"); }else if(firstSelect != null &&
+		 firstSelect.equals("상세계획")){ System.out.println("상세계획 조건문통과"); }else
+		 if(firstSelect != null && firstSelect.equals("실천계획")){
+		 System.out.println("실천계획 조건문통과"); };
+		 reAttr.addAttribute("planMap", map); 
+		return "redirect:/planEducationalHistory";
+	}*/
 	/*------------------------------------------------학력 계획 관리 End-----------------------------------------------------*/
 	/*------------------------------------------------프로젝트 계획 관리 Start-----------------------------------------------------*/
 	@GetMapping("/planProject")

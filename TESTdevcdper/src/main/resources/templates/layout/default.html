@@ -33,7 +33,10 @@
 	<!--헤더 메뉴 호버기능-->
 	<!--구글 폰트 전체 적용-->
 	<style>
-		#menu #dropLi:hover .dropdown-menu {
+		#dropLi:hover .dropdown-menu {
+			display: block;
+		}
+		.dropLi:hover .dropdown-menu {
 			display: block;
 		}
 		body {
@@ -103,8 +106,22 @@
 	<!-- chart js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
-	<!-- ionicon -->
+	<!--planSelect js-->
+	<script type="text/javascript" th:src="@{/AdminLTE3/dist/js/plan/planSelect.js}"></script>
 	
+	<script type="text/javascript">
+		$(function(){
+			/* <![CDATA[ */
+			var className = "[[${className}]]"
+			var pathName = "[[${pathName}]]"
+			/* ]]> */
+			console.log(className);
+			$(className).parents('li').addClass('menu-open');
+			$(className).css({
+					'background-color' : '#323232'
+			});
+		});
+	</script>
 	<th:block layout:fragment="pageJavascript"></th:block>
 </body>
 </html>

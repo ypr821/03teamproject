@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/default}">
+	  layout:decorator="layout/default">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
 	<div class="col-sm-6">
-		<h1 class="m-0">통합계획등록</h1>
-	</div><!-- /.col -->
-	<div class="col-sm-6">
-		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/mainPlan}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
-		</ol>
+		<h1 class="m-0">통합계획수정</h1>
 	</div><!-- /.col -->
 </th:block>
 <th:block layout:fragment="container">
 	<section class="content">
 		<!-- Default box -->
-				<form th:action="@{/addTotalPlan}" method="POST">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">
+					통합계획수정
+				</h3>
+    		</div>
+			
+			<!-- card-body -->
+			<!-- Content Wrapper. Contains page content -->
+			<div class="card-body" style="margin-left: unset; background-color: #F2F2F2;">
+				<form th:action="@{/modifyTotalPlan}" method="POST">
 					<div class="container-fluid" th:align="center">
 						<div class="col-md-6" style="text-align: left;">
-						
-						
 							<div class="card card-primary">
 								<div class="card-header">
-									<h3 class="card-title">통합계획정보입력</h3>
+									<h3 class="card-title">통합계획정보수정</h3>
 								</div>
 								<div class="card-body">
 									<div class="form-group">
@@ -62,18 +62,20 @@
 								<!-- /.card-body -->
 							</div>
 							<!-- /.card -->
-							<div class="row">
-								<div class="col-12">
-									<a th:href="@{/totalPlan}" class="btn btn-danger">취소</a>
-									<button type="submit" class="btn btn-primary float-right">통합계획 생성하기</button>
-								</div>
-							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<a th:href="@{/totalPlan}" class="btn btn-danger">취소</a>
+							<button type="submit" class="btn btn-primary float-right">수정완료</button>
 						</div>
 					</div>
 				</form>
 				<!-- /.content -->
+			</div>
 			<!-- /.content-wrapper -->
 			<!-- /.card-body -->
+		</div>
 		<!-- /.card -->
 	</section>
 </th:block>
