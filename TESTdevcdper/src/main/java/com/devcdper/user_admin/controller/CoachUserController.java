@@ -29,6 +29,25 @@ public class CoachUserController {
 		this.coachUserService = coachUserService;
 	}
 	
+	@PostMapping("/coachForgotEmail")
+	public String normalForgotEmail() {
+		
+		return "";
+	}
+	
+	@PostMapping("/coachForgotPassword")
+	public String normalForgotPassword() {
+		
+		return "";
+	}
+	
+	@GetMapping("/coachForgotPassword")
+	public String normalPassword(Model model) {
+		
+		model.addAttribute("title","회원패스워드찾기");
+		
+		return "userAdmin/coachForgotPassword";
+	}
 	
 	@PostMapping("/coachLogin")
 	public String coachLogin(@RequestParam(value="coachEmail", required = false) String coachEmail
@@ -47,11 +66,12 @@ public class CoachUserController {
 			if(loginCheck) {
 				session.setAttribute("NEMAIL",	coachLogin.getCoachEmail());
 				session.setAttribute("CNAME", 	coachLogin.getCoachName());
-				session.setAttribute("ULEVEL", 	coachLogin.getCoachAuthority());
+				session.setAttribute("ULEVEL", 	"코치회원");
+				session.setAttribute("CLEVEL", 	coachLogin.getCoachAuthority());
 				return "redirect:/";
 			}
 		}
-		reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
+		reAttr.addAttribute("loginResultCoach", "등록된 회원이 없습니다.");
 
 		return "redirect:/login";
 	}

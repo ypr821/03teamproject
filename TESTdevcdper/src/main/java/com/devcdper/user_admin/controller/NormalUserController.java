@@ -38,12 +38,24 @@ public class NormalUserController {
 		return "userAdmin/myPage";
 	}
 	
-	@GetMapping("/normalPassword")
+	@PostMapping("/normalForgotEmail")
+	public String normalForgotEmail() {
+		
+		return "redirect:/normalForgotPassword";
+	}
+	@PostMapping("/normalForgotPassword")
+	public String normalForgotPassword() {
+		
+		return "redirect:/normalForgotPassword";
+	}
+	
+	
+	@GetMapping("/normalForgotPassword")
 	public String normalPassword(Model model) {
 		
 		model.addAttribute("title","회원패스워드찾기");
 		
-		return "userAdmin/normalPassword";
+		return "userAdmin/normalForgotPassword";
 	}
 	
 	@GetMapping("/logout")  //아직안됨...
@@ -75,7 +87,7 @@ public class NormalUserController {
 				return "redirect:/";
 			}
 		}
-		reAttr.addAttribute("loginResult", "등록된 회원이 없습니다.");
+		reAttr.addAttribute("loginResultNormal", "등록된 회원이 없습니다.");
 		
 		return "redirect:/login";
 	}

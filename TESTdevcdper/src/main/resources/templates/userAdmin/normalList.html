@@ -19,62 +19,93 @@
 </th:block>
 <th:block layout:fragment="container">
 
+	<!-- 검색 -->
 	<div class="card card-default">
 		<div class="card-body">
-			<section class="content" id="normalUser-Search">
+			<section class="content" id="">
 				<div class="container-fluid">
-					<form th:action="@{normalList}">
-						<!--아직  -->
+					<form action="coachingAdminPage">
 						<div class="row">
 							<div class="col-md-10 offset-md-1">
 								<div class="row">
-									<div class="col-6">
+									
+									<div class="col-3">
 										<div class="form-group">
-											<label>검색 타입</label> <select
-												class="js-example-placeholder-single js-states form-control"
-												control-id="ControlID-1">
-												<option>이메일로 검색하기</option>
-												<option>이름으로 검색하기</option>
-												<option>생년월일로 검색하기</option>
-												<option>주소로 검색하기</option>
-												<option>성별로 검색하기</option>
-												<option>전화번호로 검색하기</option>
-												<option>직업으로 검색하기</option>
-												<option>수신동의여부로 검색하기</option>
-												<option>가입일자로 검색하기</option>
-												<option>탈퇴상태로 검색하기</option>
+											<label>상태</label> <select
+												class="js-example-placeholder-single js-states form-control">
+												<option selected="">전체</option>
+												<option>견적요청</option>
+												<option>견적결과</option>
+												<option>신청완료</option>
+												<option>이용완료</option>
+												<option>서비스기간만료</option>
+												<option>취소환불</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-3">
 										<div class="form-group">
-											<label>정렬 순서</label> <select
-												class="js-example-placeholder-single js-states form-control"
-												control-id="ControlID-2">
-												<option selected="" data-select2-id="5">오름차순</option>
+											<label>기간선택</label> <select
+												class="js-example-placeholder-single js-states form-control">
+												<option selected="">전체</option>
+												<option>지난 1일</option>
+												<option>지난 1주</option>
+												<option>지난 1개월</option>
+												<option>지난 1년</option>
+												<option>기간 설정</option>
+											</select>
+										</div>
+									</div>
+										<div class="col-2">
+										<div class="form-group">
+											<label>정렬기준1 : 날짜</label> <select
+												class="js-example-placeholder-single js-states form-control">
+												<option selected="" data-select2-id="8">최신순</option>
+												<option>오래된순</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-2">
+										<div class="form-group">
+											<label>정렬기준2 : 문자</label> <select
+												class="js-example-placeholder-single js-states form-control">
+												<option selected="" data-select2-id="8">오름차순</option>
 												<option>내림차순</option>
 											</select>
 										</div>
 									</div>
-									<div class="col-3">
+									<div class="col-2">
 										<div class="form-group">
-											<label>정렬 기준</label> <select
-												class="js-example-placeholder-single js-states form-control"
-												control-id="ControlID-3">
-												<option selected="" data-select2-id="8">제목</option>
-												<option>기간</option>
+											<label>탈퇴여부</label> <select
+												class="js-example-placeholder-single js-states form-control">
+												<option selected="" data-select2-id="8">회원</option>
+												<option>탈퇴</option>
 											</select>
 										</div>
 									</div>
+
 								</div>
 								<div class="form-group">
 									<div class="input-group input-group-lg">
+										<div class="col-3">
+											<div class="form-group">
+												<label>검색옵션</label> <select
+													class="js-example-placeholder-single js-states form-control">
+													<option selected="">전체</option>
+													<option>아이디</option>
+													<option>등록일자</option>
+													<!-- <option>내용</option>
+                                                       <option>제목</option>
+                                                       <option>제목+내용</option> -->
+												</select>
+											</div>
+										</div>
 										<input type="search" class="form-control form-control-lg"
-											placeholder="Type your keywords here" value="Lorem ipsum"
-											control-id="ControlID-4">
+											style="margin-top: 25px;"
+											placeholder="Type your keywords here" value="검색어를 입력해주세요">
 										<div class="input-group-append">
-											<button type="submit" class="btn btn-lg btn-default"
-												control-id="ControlID-5">
+											<button class="btn btn-lg btn-default btn-sm"
+												style="height: 49px; margin-top: 25px;">
 												<i class="fa fa-search"></i>
 											</button>
 										</div>
@@ -87,6 +118,7 @@
 			</section>
 		</div>
 	</div>
+	<!-- /검색-->
 
 	<div class="row">
 		<div class="col-12">

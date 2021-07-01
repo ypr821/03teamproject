@@ -6,6 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title th:text="${title}">main title</title>
 	
+	<!-- 구글 폰트 추가 시작 -->
+		<!-- Noto Serlf KR -->
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet">
+		<!-- font-family: 'Noto Serif KR', serif; -->
+		
+		<!-- Jua -->
+		<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+		<!-- font-family: 'Jua', sans-serif; -->
+	<!-- 구글 폰트 추가 끝 -->
 	
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,12 +29,16 @@
 	<link rel="stylesheet" th:href="@{/AdminLTE3/dist/css/adminlte.login.min.css}">
 	<!-- Jquery, Ajax -->
 	<script th:src="@{/js/jquery-3.6.0.min.js}" type="text/javascript"></script>
+	<!--헤더 메뉴 호버기능-->
+	<!--구글 폰트 전체 적용-->
 	<style>
 		#menu #dropLi:hover .dropdown-menu {
 			display: block;
 		}
+		body {
+			font-family: 'Jua', sans-serif;
+		}
 	</style>
-	
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
