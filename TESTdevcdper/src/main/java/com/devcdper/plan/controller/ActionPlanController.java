@@ -3,9 +3,12 @@ package com.devcdper.plan.controller;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ActionPlanController {
@@ -36,6 +39,7 @@ public class ActionPlanController {
 			//log.info("=======actionPlan 메서드 실행=================");
 			model.addAttribute("title", "실천 계획 관리");
 			model.addAttribute("function", "plan");			//기능별 left 메뉴노출
+			model.addAttribute("radioCheck", "actionPlan");
 			return "plan/actionPlan/actionPlan";
 		}
 	
@@ -155,5 +159,62 @@ public class ActionPlanController {
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
 		return "plan/actionPlan/actionCareer";
 		}	
+	
+	
+	//실천 계획 등록
+		@GetMapping("/actionPlanAdd")
+		public String actionPlanAdd (Model model) {
+			System.out.println("=================================");
+			System.out.println("======actionPlanAdd 메서드 실행==========");
+			//log.info("========================================");
+			//log.info("=======actionPlanAdd 메서드 실행=================");
+			model.addAttribute("title", "실천 계획 등록");
+			model.addAttribute("function", "none");			//기능별 left 메뉴노출
+			return "plan/actionPlan/actionPlanAdd";
+		}	
+	
+		@PostMapping("/actionPlanAdd")
+		public String actionPlanAdd() {
+			
+			return "redirect:/actionPlan";
+		}
+	
 		
+	//실천 계획 수정
+	@GetMapping("/actionPlanModify")
+	public String actionPlanModify (Model model) {
+		System.out.println("=================================");
+		System.out.println("======actionPlanModify 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======actionPlanModify 메서드 실행=================");
+		model.addAttribute("title", "실천 계획 수정");
+		model.addAttribute("function", "none");			//기능별 left 메뉴노출
+		return "plan/actionPlan/actionPlanModify";
+	}	
+	
+	@PostMapping("/actionPlanModify")
+	public String actionPlanModify() {
+		
+		return "redirect:/actionPlan";
 	}
+	
+	
+	//실천 계획 삭제
+		@GetMapping("/actionPlanDelete")
+		public String actionPlanDelete (Model model) {
+			System.out.println("=================================");
+			System.out.println("======actionPlanDelete 메서드 실행==========");
+			//log.info("========================================");
+			//log.info("=======actionPlanDelete 메서드 실행=================");
+			model.addAttribute("title", "실천 계획 수정");
+			model.addAttribute("function", "none");			//기능별 left 메뉴노출
+			return "plan/actionPlan/actionPlanDelete";
+		}	
+		
+		@PostMapping("/actionPlanDelete")
+		public String actionPlanDelete() {
+			
+			return "redirect:/actionPlan";
+		}
+		
+}

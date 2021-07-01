@@ -3,155 +3,299 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/default}">
 <th:block layout:fragment="pageTitle">
-	<title th:text="${title}">main title</title>
-	<script src="js.app/index.js"></script>
+	<title th:text="${title}">Insert title here</title>
 	<div class="col-sm-6">
-		<h1 class="m-0">인턴십 실천 계획 관리🌟</h1>
+		<h1 class="m-0 koreafont">인턴십 실천 계획</h1>
 	</div><!-- /.col -->
-	<div class="col-sm-6">
+	
+	
+	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/Plan}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/actionEducationalHistory}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'actionEducationalHistory'}"> 학력 실천계획
+					</a>
+					<a th:href="@{/actionProject}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'actionProject'}"> 프로젝트 실천계획
+					</a>
+					<a th:href="@{/actionCertificate}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'actionCertificate'}"> 자격증 실천계획
+					</a>
+					<a th:href="@{/actionCertifiedLanguage}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a4" autocomplete="off" th:checked="${radioCheck == 'actionCertifiedLanguage'}"> 공인어학 실천계획
+					</a>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/actionTechnologyStack}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a5" autocomplete="off" th:checked="${radioCheck == 'actionTechnologyStack'}"> 기술스택 실천계획
+					</a>
+					<a th:href="@{/actionJobTraining}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a6" autocomplete="off" th:checked="${radioCheck == 'actionJobTraining'}"> 직종전문교육과정 실천계획
+					</a>
+					<a th:href="@{/actionInternship}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a7" autocomplete="off" th:checked="${radioCheck == 'actionInternship'}"> 인턴십 실천계획
+					</a>
+					<a th:href="@{/actionContest}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a8" autocomplete="off" th:checked="${radioCheck == 'actionContest'}"> 공모전 실천계획
+					</a>
+					<a th:href="@{/actionCareer}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a9" autocomplete="off" th:checked="${radioCheck == 'actionCareer'}"> 경력 실천계획
+					</a>
+				</div>
+			</div>
 		</ol>
-	</div><!-- /.col -->
-	</th:block>
+	</div><!-- ./col -->
+</th:block>
 <th:block layout:fragment="container">
-<style>
-
-	body{
-		margin: 0;
-		padding: 0;
-		background-color: #eee;
-	
-	} 
-	header{
-		margin-top: 50px;
-	}
-	header h1{
-		text-align: center;
-	}
-	
-	
-	#container{
-		width:80%;
-		margin: 0 auto;
-		max-width: 380px;
-		padding: 15px;
-		
-	}
-	
-	#container input{
-		margin-bottom: 10px;
-		padding: 6px;
-		width: calc(100% - 15px);
-		border: 1px solid #BDBDBD;
-		
-	}
-	
-	
-	#container .status input{
-		width: 20px;
-		display: inline;
-		
-	}
-	
-	#container button{
-		padding: 10px;
-		border: 2px solid #BDBDBD;
-		background-color: #045FB4;
-		width: calc(100% - 0px);
-		color: #fff;
-	}
-	
-	#container input, #container button{
-		display: block;
-	}
-	
-	footer{
-		text-align: center;
-		maring-top: 10px;
-		color: #585858;
-	}
-	
-	footer div{
-		margin-bottom: 5px;
-	}
-
-</style>
-</head>
-<body>
-	<header>
- 	</header>
- 			
-       <!-- Main content -->
+  <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">인턴십 실천 등록</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="title">인턴십 실천 제목</label>
-                    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
-                  </div>
-                  <div class="form-group">
-                    <label for="title">인턴십 실천 작성자</label>
-                    <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요.">
-                  </div>
-                  <div class="form-group">
-                    <label for="content">인턴십 실천 내용</label>
-                    <input type="text" class="form-control" id="content" placeholder="내용을 입력하세요.">
-                  </div>
-                  <div class="form-group">
-                    <label for="startDate">인턴십 실천 시작일</label>
-                    <input type="date" class="form-control" id="startDate" name="startDate">
-                  </div>
-                      <div class="form-group">
-                    <label for="startEnd">인턴십 실천 종료일</label>
-                    <input type="date" class="form-control" id="startEnd" name="startEnd">
-                  </div>
-                  <div class="status">
-                  <label for="status">인턴십 실천 상태</label>
-					 <div class="status">
-					<label>
-					 <input type="checkbox" name="userChoice" value="Proceeding" checked="checked">
-						진행중
-					</label>
-					<label>
-						<input type="checkbox" name="userChoice" value="stop">
-						중단
-					</label>
-					<label>
-						<input type="checkbox" name="userChoice" value="complete">
-						완료
-					</label>
-					</div>
-                  </div>
-                  </div>
-                 	<div class="card-footer">
-                  <a href="/" role="button" class="btn btn-secondary">취소</a>
-                 <a href="btn-save" role="button" class="btn btn-primary">등록</a>
-                </div>
-                <!-- /.card-body -->
 
-              </form>
-            </div>
-            <!-- /.card -->
-            </div>
-            </div>
-            </div>
-            </section>
-            </body>
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">인턴십 실천계획</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+        <div class="card-body p-0" style="overflow: scroll; min-width: 100%; white-space: nowrap;">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                  <tr style="text-align: center;">
+                      <th style="width: 5%">
+                          	순번
+                      </th>
+                      <th style="width: 18%">
+                          	실천 계획 명
+                      </th>
+                      <th style="width: 19%">
+                          	실천 계획 내용
+                      </th>
+                      <th>
+                           	시작일
+                      </th>
+                      <th>
+                           	종료일자
+                      </th>
+                      <th style="width: 30%">
+                           	진행율
+                      </th>
+                      <th style="width: 8%" class="text-center">
+                          	상태
+                      </th>
+                      
+                      <th style="width: 3">
+                      		차수
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr style="text-align: center;">
+                     <td>
+                          1
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>컴퓨터공학 전공해서 취업하자</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	랩실에서 하루도 빠짐없이 공부하기
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                              </div>
+                          </div>
+                          <small>
+                              77% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-success">완료</span>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanAdd}">
+								<i class="fas fa-pencil-alt">
+								</i>
+								등록
+							</a>
+							</td>
+                     			 <td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+                  <tr style="text-align: center;">
+                     <td>
+                          2
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>인터넷응용보안공학과 전공성적 all A</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      			<a>중간, 기말고사 2주전부터 전공시험 공부하기</a>
+                      			<br>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                              </div>
+                          </div>
+                          <small>
+                              50% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-primary">진행중</span>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<a class="btn btn-default btn-sm" th:href="@{/actionEducationalHistory}">
+								<i class="fas fa-folder">
+								</i>
+								실천상세계획보기
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" th:href="@{/modifyActionPlan}">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{/}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+							</td>
+                  </tr>
+                  </tbody>
+              <tbody>
+                  <tr style="text-align: center;">
+                     <td>
+                          3
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>졸업학점 채우기</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      			한 학기 최대 수강학점 수강하기
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-red" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
+                              </div>
+                          </div>
+                          <small>
+                              55% Stop
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-danger">중단</span>
+                          <br>
+                      	<small>
+                              	학점 미달
+                          </small>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
+								<i class="fas fa-folder">
+								</i>
+								실천상세계획보기
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
+								<i class="fas fa-pencil-alt">
+								</i>
+								수정
+							</a>
+							</td>
+								<td>
+								<a class="btn btn-default btn-sm" a th:href="@{/}">
+								<i class="fas fa-trash">
+								</i>
+								삭제
+							</a>
+							</td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  <!-- /.content-wrapper -->
+   <!-- 실천 한눈에보기 list 페이지번호  -->
+              <ul class="pagination justify-content-center m-0">
+				<li class="page-item active"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">4</a></li>
+				<li class="page-item"><a class="page-link" href="#">5</a></li>
+				<li class="page-item"><a class="page-link" href="#">6</a></li>
+				<li class="page-item"><a class="page-link" href="#">7</a></li>
+				<li class="page-item"><a class="page-link" href="#">8</a></li>
+			</ul>
             
 
 </th:block>

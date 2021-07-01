@@ -3,160 +3,362 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/default}">
 <th:block layout:fragment="pageTitle">
-	<title th:text="${title}">main title</title>
-	<script src="js.app/index.js"></script>
+	<title th:text="${title}">Insert title here</title>
 	<div class="col-sm-6">
-		<h1 class="m-0">프로젝트 실천 계획 관리🌟</h1>
+		<h1 class="m-0 koreafont">프로젝트 실천 계획 관리</h1>
 	</div><!-- /.col -->
-	<div class="col-sm-6">
+	
+<!-- 	<th:block th:replace="/fragments/planTopSelect :: planTopSelect"></th:block> -->
+	
+	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/Plan}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/actionEducationalHistory}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'actionEducationalHistory'}"> 학력 실천계획
+					</a>
+					<a th:href="@{/actionProject}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'actionProject'}"> 프로젝트 실천계획
+					</a>
+					<a th:href="@{/actionCertificate}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'actionCertificate'}"> 자격증 실천계획
+					</a>
+					<a th:href="@{/actionCertifiedLanguage}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a4" autocomplete="off" th:checked="${radioCheck == 'actionCertifiedLanguage'}"> 공인어학 실천계획
+					</a>
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/actionTechnologyStack}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a5" autocomplete="off" th:checked="${radioCheck == 'actionTechnologyStack'}"> 기술스택 실천계획
+					</a>
+					<a th:href="@{/actionJobTraining}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a6" autocomplete="off" th:checked="${radioCheck == 'actionJobTraining'}"> 직종전문교육과정 실천계획
+					</a>
+					<a th:href="@{/actionInternship}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a7" autocomplete="off" th:checked="${radioCheck == 'actionInternship'}"> 인턴십 실천계획
+					</a>
+					<a th:href="@{/actionContest}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a8" autocomplete="off" th:checked="${radioCheck == 'actionContest'}"> 공모전 실천계획
+					</a>
+					<a th:href="@{/actionCareer}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a9" autocomplete="off" th:checked="${radioCheck == 'actionCareer'}"> 경력 실천계획
+					</a>
+				</div>
+			</div>
 		</ol>
-	</div><!-- /.col -->
-	</th:block>
+	</div><!-- ./col -->
+</th:block>
 <th:block layout:fragment="container">
-<style>
 
-	body{
-		margin: 0;
-		padding: 0;
-		background-color: #eee;
-	
-	} 
-	header{
-		margin-top: 50px;
-	}
-	header h1{
-		text-align: center;
-	}
-	
-	
-	#container{
-		width:80%;
-		margin: 0 auto;
-		max-width: 380px;
-		padding: 15px;
-		
-	}
-	
-	#container input{
-		margin-bottom: 10px;
-		padding: 6px;
-		width: calc(100% - 15px);
-		border: 1px solid #BDBDBD;
-		
-	}
-	
-	
-	#container .status input{
-		width: 20px;
-		display: inline;
-		
-	}
-	
-	#container button{
-		padding: 10px;
-		border: 2px solid #BDBDBD;
-		background-color: #045FB4;
-		width: calc(100% - 0px);
-		color: #fff;
-	}
-	
-	#container input, #container button{
-		display: block;
-	}
-	
-	footer{
-		text-align: center;
-		maring-top: 10px;
-		color: #585858;
-	}
-	
-	footer div{
-		margin-bottom: 5px;
-	}
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">프로젝트 실천 계획</h3>
 
-</style>
-</head>
-<body>
-	<header>
- 	</header>
- 			
-       <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">프로젝트 실천 등록</h3>
+          <div class="card-tools">
+				<a th:href="@{/actionPlanAdd}">
+					<button type="button" class="btn btn-outline-primary">
+						등록하기
+					</button>
+					</a>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body p-0">
+        <div class="card-body p-0" style="overflow: scroll; min-width: 100%; white-space: nowrap;">
+          <table class="table table-striped projects">
+              <thead>
+              
+                  <tr>
+                  <tr style="text-align: center;">
+                      <th style="width: 5%">
+                          	순번
+                      </th>
+                      <th style="width: 18%">
+                          	실천 계획 명
+                      </th>
+                      <th style="width: 19%">
+                          	실천 계획 내용
+                      </th>
+                      <th>
+                           	시작일
+                      </th>
+                      <th>
+                           	종료일자
+                      </th>
+                      <th style="width: 15%">
+                           	진행율
+                      </th>
+                      <th style="width: 8%" class="text-center">
+                          	상태
+                      </th>
+                      
+                      <th style="width: 3">
+                      		차수
+                      </th>
+                  </tr>
+              </thead>
+               <tr style="text-align: center;">
+                     <td>
+                          1
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>경력관리를 위한 기능구현</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      		<a th:href="@{/actionProject}">                     	
+                      			테이블 설계 및 상세데이터 입력
+                      			<br>
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                              </div>
+                          </div>
+                          <small>
+                              0% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-warning">진행예정</span>
+                      </td>
+                       <td>
+            				3차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+                  </tr>
+                  <tr style="text-align: center;">
+                     <td>
+                          2
+                      </td>
+                      
+                      <td style="font-size: 14px;">
+                     <a>캠핑 플랫폼 통합구현</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	    <a th:href="@{/actionProject}">                     	                      	
+                      			캠핑장 플랫폼 로그인 기능 구현
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-red" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                              </div>
+                          </div>
+                          <small>
+                              65% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-danger">중단</span>
+                          <br>
+                           <small>
+                              	현재 계획 중단
+                          </small>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							
+                  </tr>
+                   <tr style="text-align: center;">
+                     <td>
+                          3
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>자바 기본문법을 활용한 계산기만들기</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                           <a th:href="@{/actionProject}">                     	                     
+                      			자바계산기 코드 작성
+                      			<br>
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                              </div>
+                          </div>
+                          <small>
+                              0% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-warning">진행예정</span>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							<tbody>
+                  
+          </table>
+        </div>
+        </div>
+    <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
               </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="title">프로젝트 실천 제목</label>
-                    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
-                  </div>
-                  <div class="form-group">
-                    <label for="title">프로젝트 실천 작성자</label>
-                    <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요.">
-                  </div>
-                  <div class="form-group">
-                    <label for="content">프로젝트 실천 내용</label>
-                    <input type="text" class="form-control" id="content" placeholder="내용을 입력하세요.">
-                  </div>
-                  <div class="form-group">
-                    <label for="startDate">프로젝트 실천 시작일</label>
-                    <input type="date" class="form-control" id="startDate" name="startDate">
-                  </div>
-                      <div class="form-group">
-                    <label for="startEnd">프로젝트 실천 종료일</label>
-                    <input type="date" class="form-control" id="startEnd" name="startEnd">
-                  </div>
-                  <div class="status">
-                  <label for="status">프로젝트 실천 상태</label>
-					 <div class="status">
-					<label>
-					 <input type="checkbox" name="userChoice" value="Proceeding" checked="checked">
-						진행중
-					</label>
-					<label>
-						<input type="checkbox" name="userChoice" value="stop">
-						중단
-					</label>
-					<label>
-						<input type="checkbox" name="userChoice" value="complete">
-						완료
-					</label>
-					</div>
-                  </div>
-                  </div>
-                 	<div class="card-footer">
-                  <a href="/" role="button" class="btn btn-secondary">취소</a>
-                 <a href="btn-save" role="button" class="btn btn-primary">등록</a>
-                </div>
-                <!-- /.card-body -->
-
-              </form>
-            </div>
             <!-- /.card -->
-            </div>
-            </div>
-            </div>
-            </section>
-            </body>
+			
+	<!-- Modal -->
+		<!-- 상세보기 Modal -->
+		<div class="modal fade" id="modal-actionPlan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		  <div class="modal-dialog modal-lg" >
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title" id="myModalLabel">실천 상세 보기</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body">
+              <div class="form-group">
+                 <label for="actionPlanTitle">실천 제목</label>
+                <input type="text" id="actionPlanTitle" class="form-control" placeholder="컴퓨터공학 전공해서 취업하자.">
+              </div>
+              <div class="form-group">
+                 <label for="userEmail">회원 이메일</label>
+                <input type="text" id="userEmail" class="form-control" placeholder="kim01@naver.com">
+              </div>
+              <div class="form-group">
+                <label for="actionPlanContent">실천 내용</label>
+                <textarea id="actionPlanContent" class="form-control" rows="4" placeholder="랩실에서 하루도 빠짐없이 공부하기"></textarea>
+              </div>
+              <div class="form-group">
+                    <label for="actionPlanStartDate">실천 시작일</label>
+                    <input type="date" class="form-control" id="actionPlanStartDate" name="actionPlanStartDate">
+                  </div>
+                <div class="form-group">
+                    <label for="actionPlanEndDate">실천 종료일</label>
+                    <input type="date" class="form-control" id="actionPlanEndDate" name="actionPlanEndDate">
+                  </div>    
+              <div class="form-group">
+                <label for="actionPlanStatus">실천 상태</label>
+                <select id="actionPlanStatus" class="form-control custom-select">
+                  <option selected disabled>상태를 선택하세요.</option>
+                  <option>진행중</option>
+                  <option>중단</option>
+                  <option>완료</option>
+                </select>
+                 </div>
+                <div class="form-group">
+                    <label for="actionPlanCreateDate">실천 작성일자</label>
+                    <input type="date" class="form-control" id="actionPlanCreateDate" name="actionPlanCreateDate">
+                  </div>    
+             </div>
+                 <div class="card-footer">
+                 <a href="/actionPlan" role="button" class="btn btn-primary float-right"  th:href="@{/actionPlanModify}"  onclick="button_modify();">수정</a>
+ 			</div>
+                <!-- /.card-body -->
+         	 </div>
+       		</div>
+          </div>
+          </div>
+  <!-- /.content-wrapper -->
+  
+  
             
 
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
+
+ <script>
+    
+    function button_event(){
+    if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+        document.form.submit();
+    }else{   //취소
+        return;
+    }
+    }
+    
+    function button_modify(){
+    if (confirm("수정 하시겠습니까?") == true){    //확인
+        document.form.submit();
+    }else{   //취소
+        return;
+    }
+    }
+    //-->
+    </script>
 
 </th:block>
 </html>
