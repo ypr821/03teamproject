@@ -3,50 +3,63 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/default}">
 <th:block layout:fragment="pageTitle">
-	<title th:text="${title}">main title</title>
-	<script src="js.app/index.js"></script>
+	<title th:text="${title}">Insert title here</title>
 	<div class="col-sm-6">
-		<h1 class="m-0">실천 계획 관리🌟</h1>
+		<h1 class="m-0 koreafont">실천 계획</h1>
 	</div><!-- /.col -->
+	
+	
 	<div class="col-sm-6">
 		<ol class="breadcrumb float-sm-right">
-			<li class="breadcrumb-item"><a th:href="@{/totalPlan}">통합계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/Plan}">계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/detailPlan}">상세계획</a></li>
-			<li class="breadcrumb-item"><a th:href="@{/actionPlan}">실천계획</a></li>
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/totalPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'totalPlan'}"> 통합계획
+					</a>
+					<a th:href="@{/mainPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'plan'}"> 계획
+					</a>
+					<a th:href="@{/detailPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'detailPlan'}"> 상세계획
+					</a>
+					<a th:href="@{/actionPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'actionPlan'}"> 실천계획
+					</a>
+				</div>
+			</div>
 		</ol>
-	</div><!-- /.col -->
-	</th:block>
+	</div><!-- ./col -->
+</th:block>
 <th:block layout:fragment="container">
-</head>
-<body>
-    <!-- Main content -->
-    <section class="content">
 
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">실천계획</h3>
+          <h3 class="card-title">실천 계획</h3>
 
           <div class="card-tools">
+				<a th:href="@{/actionPlanAdd}">
+					<button type="button" class="btn btn-outline-primary">
+						등록하기
+					</button>
+					</a>
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
             </button>
           </div>
         </div>
         <div class="card-body p-0">
+        <div class="card-body p-0" style="overflow: scroll; min-width: 100%; white-space: nowrap;">
           <table class="table table-striped projects">
               <thead>
+              
                   <tr>
                   <tr style="text-align: center;">
                       <th style="width: 5%">
                           	순번
                       </th>
-                      <th style="width: 20%">
-                          	실천 계획명
+                      <th style="width: 18%">
+                          	실천 계획 명
                       </th>
                       <th style="width: 19%">
                           	실천 계획 내용
@@ -57,12 +70,13 @@
                       <th>
                            	종료일자
                       </th>
-                      <th style="width: 10%">
+                      <th style="width: 15%">
                            	진행율
                       </th>
                       <th style="width: 8%" class="text-center">
                           	상태
                       </th>
+                      
                       <th style="width: 3">
                       		차수
                       </th>
@@ -73,15 +87,16 @@
                      <td>
                           1
                       </td>
-                      <td>
-                     <a>컴퓨터공학 전공해서 취업하자</a>
+                      <td style="font-size: 14px;">
+                     <a>1학년 성적 all A를 위해</a>
                      <br>
                       	<small>
                               Created 05.24.2021
                           </small>
                       </td>
-                      <td>
-                      			랩실에서 하루도 빠짐없이 공부하기
+                      <td style="font-size: 13px;">
+                    	<a th:href="@{/actionEducationalHistory}">                     	
+                      	랩실에서 하루도 빠짐없이 공부하기
                       </td>
                       <td>
             			2021.06.01
@@ -91,11 +106,11 @@
             				</td>
                       <td class="project_progress">
                           <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                               </div>
                           </div>
                           <small>
-                              77% Complete
+                              100% Complete
                           </small>
                       </td>
                       <td class="project-state">
@@ -104,41 +119,34 @@
                        <td>
             				1차
             				</td>
-								<td>
-								<a class="btn btn-default btn-sm" a th:href="@{actionEducationalHistory}">
-								<i class="fas fa-folder">
+                     			 <td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
 								</i>
-								실천상세계획보기
-							</a>
+									상세계획보기
+								</button>
 							</td>
 								<td>
-								<a class="btn btn-default btn-sm" a th:href="@{actionEducationalHistory}">
-								<i class="fas fa-pencil-alt">
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
 								</i>
-								수정
-							</a>
-							</td>
-								<td>
-								<a class="btn btn-default btn-sm" a th:href="@{/}">
-								<i class="fas fa-trash">
-								</i>
-								삭제
-							</a>
+									삭제
+								</a>
 							</td>
                   <tr style="text-align: center;">
                      <td>
                           2
                       </td>
-                     <td>
-                     <a>인터넷응용보안공학과 전공성적 all A</a>
+                      <td style="font-size: 14px;">
+                     <a>보안전공성적 all A를 향해</a>
                      <br>
                       	<small>
                               Created 05.24.2021
                           </small>
                       </td>
-                      <td>
-                      			<a>중간, 기말고사 2주전부터 전공시험 공부하기</a>
-                      			<br>
+                      <td style="font-size: 13px;">
+                      		<a th:href="@{/actionEducationalHistory}">                     	
+                      			중간, 기말고사 2주전부터 전공시험 공부하기
                       </td>
                       <td>
             			2021.06.01
@@ -159,28 +167,21 @@
                           <span class="badge badge-primary">진행중</span>
                       </td>
                        <td>
-            				1차
+            				2차
             				</td>
             				<td>
-								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
-								<i class="fas fa-folder">
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
 								</i>
-								실천상세계획보기
-							</a>
+									상세계획보기
+								</button>
 							</td>
 								<td>
-								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
-								<i class="fas fa-pencil-alt">
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
 								</i>
-								수정
-							</a>
-							</td>
-								<td>
-								<a class="btn btn-default btn-sm" a th:href="@{/}">
-								<i class="fas fa-trash">
-								</i>
-								삭제
-							</a>
+									삭제
+								</a>
 							</td>
                   </tr>
                   </tbody>
@@ -189,14 +190,15 @@
                      <td>
                           3
                       </td>
-                      <td>
-                     <a>졸업학점 채우기</a>
+                      <td style="font-size: 14px;">
+                     <a>졸업학점 채우기 위한 실천</a>
                      <br>
                       	<small>
                               Created 05.24.2021
                           </small>
                       </td>
-                      <td>
+                      <td style="font-size: 13px;">
+                         <a th:href="@{/actionEducationalHistory}">                     	
                       			한 학기 최대 수강학점 수강하기
                       </td>
                       <td>
@@ -207,7 +209,225 @@
             				</td>
                       <td class="project_progress">
                           <div class="progress progress-sm">
-                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
+                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                              </div>
+                          </div>
+                          <small>
+                              60% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-primary">진행중</span>
+                          <br>
+                      </td>
+                       <td>
+            				2차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							
+                  </tr>
+               <tr style="text-align: center;">
+                     <td>
+                          4
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>경력관리를 위한 기능구현</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      		<a th:href="@{/actionProject}">                     	
+                      			테이블 설계 및 상세데이터 입력
+                      			<br>
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                              </div>
+                          </div>
+                          <small>
+                              0% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-warning">진행예정</span>
+                      </td>
+                       <td>
+            				3차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+                  </tr>
+                  <tbody>
+                  <tr style="text-align: center;">
+                     <td>
+                          5
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>캠핑 플랫폼 통합구현</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	    <a th:href="@{/actionProject}">                     	                      	
+                      			캠핑장 플랫폼 로그인 기능 구현
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-red" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                              </div>
+                          </div>
+                          <small>
+                              65% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-danger">중단</span>
+                          <br>
+                           <small>
+                              	프로젝트 변경
+                          </small>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							
+                  </tr>
+                   <tr style="text-align: center;">
+                     <td>
+                          6
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>자바 기본문법을 활용한 계산기만들기</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                           <a th:href="@{/actionProject}">                     	                     
+                      			자바계산기 코드 작성
+                      			<br>
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                              </div>
+                          </div>
+                          <small>
+                              0% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-warning">진행예정</span>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							<tbody>
+                  <tr style="text-align: center;">
+                     <td>
+                          7
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>정보처리기사 필기 준비</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	    <a th:href="@{/actionCertificate}">                     	                      	
+                      			정보처리기사 2020년 1, 2회 기출문제 풀기
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%">
                               </div>
                           </div>
                           <small>
@@ -215,48 +435,289 @@
                           </small>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-success">완료</span>
+                          <span class="badge badge-primary">진행중</span>
+                          <br>
+                           <small>
+                              	프로젝트 변경
+                          </small>
                       </td>
                        <td>
             				1차
             				</td>
             				<td>
-								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
-								<i class="fas fa-folder">
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
 								</i>
-								실천상세계획보기
-							</a>
+									상세계획보기
+								</button>
 							</td>
 								<td>
-								<a class="btn btn-default btn-sm" href="/deleteTotalPlan">
-								<i class="fas fa-pencil-alt">
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
 								</i>
-								수정
-							</a>
+									삭제
+								</a>
 							</td>
-								<td>
-								<a class="btn btn-default btn-sm" a th:href="@{/}">
-								<i class="fas fa-trash">
-								</i>
-								삭제
-							</a>
-							</td>
+							
                   </tr>
-              </tbody>
+                  <tr style="text-align: center;">
+                     <td>
+                          8
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>정보보안기사 실기 준비</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	    <a th:href="@{/actionCertificate}">                     	                      	
+                      			정보보안기사 인터넷강의 1~2강 듣기
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                              </div>
+                          </div>
+                          <small>
+                              0% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-warning">진행예정</span>
+                          <br>
+                      </td>
+                       <td>
+            				2차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							
+                  </tr>
+                  <tr style="text-align: center;">
+                     <td>
+                          9
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>정보보안기사 실기 준비</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	    <a th:href="@{/actionCertificate}">                     	                      	
+                      			정보보안기사 인터넷강의 3~5강 듣기
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                              </div>
+                          </div>
+                          <small>
+                              45% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-warning">진행예정</span>
+                          <br>
+                      </td>
+                       <td>
+            				1차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							
+                  </tr>
+                  <tr style="text-align: center;">
+                     <td>
+                          10
+                      </td>
+                      <td style="font-size: 14px;">
+                     <a>java 기술 관련 공부</a>
+                     <br>
+                      	<small>
+                              Created 05.24.2021
+                          </small>
+                      </td>
+                      <td style="font-size: 13px;">
+                      	    <a th:href="@{/actionTechnologyStack}">                     	                      	
+                      			그림으로 배우는 java programming 완독
+                      			</a>
+                      </td>
+                      <td>
+            			2021.06.01
+            				</td>
+            		<td>
+            			2021.06.30
+            				</td>
+                      <td class="project_progress">
+                          <div class="progress progress-sm">
+                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                              </div>
+                          </div>
+                          <small>
+                              100% Complete
+                          </small>
+                      </td>
+                      <td class="project-state">
+                          <span class="badge badge-success">완료</span>
+                          <br>
+                      </td>
+                       <td>
+            				3차
+            				</td>
+            				<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-actionPlan">
+									<i class="fas fa-folder">
+								</i>
+									상세계획보기
+								</button>
+							</td>
+								<td>
+								<a class="btn btn-block btn-default btn-xs" th:href="@{/actionPlanDelete}"  onclick="button_event();">
+									<i class="fas fa-trash">
+								</i>
+									삭제
+								</a>
+							</td>
+							
+                  </tr>
+                  
           </table>
         </div>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-
-    </section>
-    <!-- /.content -->
+        </div>
+    <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+              </div>
+            <!-- /.card -->
+			
+	<!-- Modal -->
+		<!-- 상세보기 Modal -->
+		<div class="modal fade" id="modal-actionPlan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		  <div class="modal-dialog modal-lg" >
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title" id="myModalLabel">실천 상세 보기</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body">
+              <div class="form-group">
+                 <label for="actionPlanTitle">실천 제목</label>
+                <input type="text" id="actionPlanTitle" class="form-control" placeholder="컴퓨터공학 전공해서 취업하자.">
+              </div>
+              <div class="form-group">
+                 <label for="userEmail">회원 이메일</label>
+                <input type="text" id="userEmail" class="form-control" placeholder="kim01@naver.com">
+              </div>
+              <div class="form-group">
+                <label for="actionPlanContent">실천 내용</label>
+                <textarea id="actionPlanContent" class="form-control" rows="4" placeholder="랩실에서 하루도 빠짐없이 공부하기"></textarea>
+              </div>
+              <div class="form-group">
+                    <label for="actionPlanStartDate">실천 시작일</label>
+                    <input type="date" class="form-control" id="actionPlanStartDate" name="actionPlanStartDate">
+                  </div>
+                <div class="form-group">
+                    <label for="actionPlanEndDate">실천 종료일</label>
+                    <input type="date" class="form-control" id="actionPlanEndDate" name="actionPlanEndDate">
+                  </div>    
+              <div class="form-group">
+                <label for="actionPlanStatus">실천 상태</label>
+                <select id="actionPlanStatus" class="form-control custom-select">
+                  <option selected disabled>상태를 선택하세요.</option>
+                  <option>진행중</option>
+                  <option>중단</option>
+                  <option>완료</option>
+                </select>
+                 </div>
+                <div class="form-group">
+                    <label for="actionPlanCreateDate">실천 작성일자</label>
+                    <input type="date" class="form-control" id="actionPlanCreateDate" name="actionPlanCreateDate">
+                  </div>    
+             </div>
+                 <div class="card-footer">
+                 <a href="/actionPlan" role="button" class="btn btn-primary float-right"  th:href="@{/actionPlanModify}"  onclick="button_modify();">수정</a>
+ 			</div>
+                <!-- /.card-body -->
+         	 </div>
+       		</div>
+          </div>
+          </div>
   <!-- /.content-wrapper -->
+  
+  
             
 
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
+
+ <script>
+    
+    function button_event(){
+    if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+        document.form.submit();
+    }else{   //취소
+        return;
+    }
+    }
+    
+    function button_modify(){
+    if (confirm("수정 하시겠습니까?") == true){    //확인
+        document.form.submit();
+    }else{   //취소
+        return;
+    }
+    }
+    //-->
+    </script>
 
 </th:block>
 </html>

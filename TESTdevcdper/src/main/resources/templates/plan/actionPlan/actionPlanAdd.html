@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}">Insert title here</title>
+	<div class="col-sm-6">
+		<h1 class="m-0 koreafont">실천 계획 등록</h1>
+	</div><!-- /.col -->
+	
+	
+	<div class="col-sm-6">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/totalPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'totalPlan'}"> 통합계획
+					</a>
+					<a th:href="@{/mainPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'plan'}"> 계획
+					</a>
+					<a th:href="@{/detailPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'detailPlan'}"> 상세계획
+					</a>
+					<a th:href="@{/actionPlan}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'actionPlan'}"> 실천계획
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div><!-- ./col -->
+</th:block>
+<th:block layout:fragment="container">
+</head>
+<body>
+ 			
+      <!-- Main content -->
+   <div class="card-body" style="margin-left: unset; background-color: #F2F2F2;">
+	<form action="/actionPlanAdd" method="POST">
+		<div class="container-fluid" align="center">
+		<div class="col-md-6" style="text-align: left;">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">실천 계획 등록</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                 <label for="actionEducationalHistoryTitle">실천 제목</label>
+                <input type="text" id="actionEducationalHistoryTitle" class="form-control" placeholder="제목을 입력하세요.">
+              </div>
+              <div class="form-group">
+                 <label for="userEmail">회원 이메일</label>
+                <input type="text" id="userEmail" class="form-control" placeholder="이메일을 입력하세요.">
+              </div>
+              <div class="form-group">
+                <label for="actionEducationalHistoryContent">실천 내용</label>
+                <textarea id="actionEducationalHistoryContent" class="form-control" rows="4" placeholder="내용을 입력하세요."></textarea>
+              </div>
+              <div class="form-group">
+                    <label for="actionEducationalHistoryStartDate">실천 시작일</label>
+                    <input type="date" class="form-control" id="actionEducationalHistoryStartDate" name="actionEducationalHistoryStartDate">
+                  </div>
+                <div class="form-group">
+                    <label for="actionEducationalHistoryEndDate">실천 종료일</label>
+                    <input type="date" class="form-control" id="actionEducationalHistoryEndDate" name="actionEducationalHistoryEndDate">
+                  </div>    
+              <div class="form-group">
+                <label for="actionEducationalHistoryStatus">실천 상태</label>
+                <select id="actionEducationalHistoryStatus" class="form-control custom-select">
+                  <option selected disabled>상태를 선택하세요.</option>
+                  <option>진행중</option>
+                  <option>중단</option>
+                  <option>완료</option>
+                </select>
+                </div>
+                 <div class="form-group">
+                    <label for="actionEducationalHistoryCreateDate">실천 작성일자</label>
+                    <input type="date" class="form-control" id="actionEducationalHistoryCreateDate" name="actionEducationalHistoryCreateDate">
+                  </div>
+             </div>
+                 <div class="card-footer">
+                  <a href="/actionPlan" role="button" class="btn btn-secondary">취소</a>
+                  <a href="/actionPlan" role="button" class="btn btn-primary float-right">등록</a>
+                </div>
+                <!-- /.card-body -->
+         	 </div>
+       		</div>
+          </div>
+      </form>
+    </div>
+ </body>
+ <!-- /.card -->
+ 
+    <!-- /.content -->
+  <!-- /.content-wrapper -->
+            
+
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+
+</th:block>
+</html>
