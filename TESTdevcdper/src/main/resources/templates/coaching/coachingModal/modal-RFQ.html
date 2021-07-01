@@ -27,6 +27,7 @@
 	              	<!-- 코칭 카테고리  -->
 	                <label for="coachingCategory">카테고리 선택</label>
 	                <select id="coachingCategory" class="form-control custom-select">
+	                  <option>카테고리선택</option>
 	                  <!-- 멘토링카테고리 -->
 	                  <option>학력</option>
 	                  <option>프로젝트</option>
@@ -95,23 +96,23 @@
 	              
 	              <!-- 계획 함께 짜기, 함께 짤 통합 계획 선택  -->
 		          <div class="form-group">
-		          		<label for="plan-coaching"> 코치님과 내 계획짜기 </label>
+		          		<label for="totalPlanCoaching"> 코치님과 내 계획짜기 </label>
 		              	 &nbsp; &nbsp;
 		              	 <div class="row">
 						 	<button type="button" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>            
 		             	    &nbsp; &nbsp;
-		            		 <input type="text" id="pricePerHour" class="form-control col-9" value="선택한 통합계획">
+		            		 <input type="text" id="totalPlanCoaching" class="form-control col-9" value="선택한 통합계획">
 		              	 </div>
 		          </div>
 		          <!-- /계획 함께 짜기, 함께 짤 통합 계획 선택  -->
 		          
 		          <!-- 내 계획과 연결 하기 -->
 		          <div class="form-group">
-		                <label for="plan-coaching">내 계획과 연결 하기 </label>
+		                <label for="planCoaching">내 계획과 연결 하기 </label>
 		            	<div class="row">
 						 	<button type="button" id="addCoachingCategory" class="btn btn-block btn-secondary btn-sm col-2">계획 선택</button>             
 		             	    &nbsp; &nbsp;
-		            		 <input type="text" id="pricePerHour" class="form-control col-9" value="선택한 내 계획">
+		            		 <input type="text" id="planCoaching" class="form-control col-9" value="선택한 내 계획">
 		              	 </div>
 		          </div>
 		          <!-- /내 계획과 연결 하기 -->
