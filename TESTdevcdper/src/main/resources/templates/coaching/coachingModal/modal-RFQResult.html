@@ -29,6 +29,7 @@
 	                <label for="coachingCategory">카테고리 선택</label>
 	                <select id="coachingCategory" class="form-control custom-select">
 	                  <option >Select one</option>
+	                  <option>카테고리선택</option>
 	                  <!-- 멘토링카테고리 -->
 	                  <option>학력</option>
 	                  <option>프로젝트</option>
@@ -135,23 +136,23 @@
 		          
 		          <!-- 계획 함께 짜기, 함께 짤 통합 계획 선택  -->
 		          <div class="form-group">
-		          		<label for="plan-coaching"> 코치님과 내 계획짜기 </label>
+		          		<label for="totalPlanCoachingRFQResult"> 코치님과 내 계획짜기 </label>
 		              	 &nbsp; &nbsp;
 		              	 <div class="row">
 			  		 	 <button type="button" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>             
 		             	    &nbsp; &nbsp;
-		            		 <input type="text" id="pricePerHour" class="form-control col-9" value="선택한 통합계획">
+		            		 <input type="text" id="totalPlanCoachingRFQResult" class="form-control col-9" value="선택한 통합계획">
 		              	 </div>
 		          </div>
 		          <!-- /계획 함께 짜기, 함께 짤 통합 계획 선택  -->
 		          
 		          <!-- 내 계획과 연결 하기 -->
 		          <div class="form-group">
-		                <label for="plan-coaching">내 계획과 연결 하기 </label>
+		                <label for="planCoachingRFQResult">내 계획과 연결 하기 </label>
 		            	<div class="row">
-						 	<button type="button" id="addCoachingCategory" class="btn btn-block btn-secondary btn-sm col-2">계획 선택</button>             
+						 	<button type="button" id="planCoachingRFQResultBtn" class="btn btn-block btn-secondary btn-sm col-2">계획 선택</button>             
 		             	    &nbsp; &nbsp;
-		            		 <input type="text" id="pricePerHour" class="form-control col-9" value="선택한 내 계획">
+		            		 <input type="text" id="planCoachingRFQResult" class="form-control col-9" value="선택한 내 계획">
 		              	 </div>
 		          </div>
 		          <!-- /내 계획과 연결 하기 -->
@@ -170,7 +171,7 @@
 			                 &nbsp; &emsp;&emsp;
 			                 <a th:href="@{/myCoachingClient}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">수정요청</a>
 			                 &nbsp; &emsp;&emsp;
-			                <a th:href="@{/myCoachingClient}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">코칭 신청</a>
+			                <a th:href="@{/coachingApplyAndPayment}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">코칭 신청</a>
 		          		 </div>
 		         </div>
 		      </div>

@@ -44,184 +44,199 @@
 			</div>
 		</div>
 		<!-- / 전체 상태별 수   -->
-	<!-- 카테고리 관리 card -->
-	<div class="card">
-              <div class="card-header">
-                <h3 class="card-title">카테고리 관리</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body autoScroll">
-                <table class="table table-striped">
-                  <thead >
-                    <tr>
-                      <th >#</th>
-                      <th>구분</th>
-                      <th>카테고리명</th>
-                      <th>수정</th>
-                      <th>삭제</th>
-                    
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><small>1</small></td>
-                      <td><small>멘토링</small></td>
-                      <td>
-                      	<small>
-                      		1일 github (코드리뷰 및 컨펌피드백)
-                      	</small>
-                      </td>
-                      <td>
-                      	
-    	                  	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;" >수정</button></a>   
-	                  </td>
-	                  <td>
-	                      	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;">삭제</button></a>   
+		<!-- 카테고리 관리 card -->
+		<div class="card">
+	              <div class="card-header">
+	                <h3 class="card-title">카테고리 관리</h3>
+	              </div>
+	              <!-- /.card-header -->
+	              <div class="card-body autoScroll">
+	                <table class="table table-striped">
+	                  <thead >
+	                    <tr>
+	                      <th >#</th>
+	                      <th>구분</th>
+	                      <th>카테고리명</th>
+	                      <th>수정</th>
+	                      <th>삭제</th>
 	                    
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><small>2</small></td>
-                      <td><small>멘토링</small></td>
-                      <td>
-                      	<small>
-                      		기술과외
-                      	</small>
-                      </td>
-                      <td>
-                      	
-    	                  	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;" >수정</button></a>   
-	                  </td>
-	                  <td>
-	                      	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;">삭제</button></a>   
-	                    
-                      </td>
-                    </tr>                    <tr>
-                      <td><small>3</small></td>
-                      <td><small>컨설팅</small></td>
-                      <td>
-                      	<small>
-                      		취업준비 스펙(자격증, 포트폴리오)
-                      	</small>
-                      </td>
-                      <td>
-                      	
-    	                  	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;" >수정</button></a>   
-	                  </td>
-	                  <td>
-	                      	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;">삭제</button></a>   
-	                    
-                      </td>
-                    </tr>
-
-                  </tbody>
-                </table>
-                <div class="card-footer clearfix">
-		            <button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
-	                <ul class="pagination pagination-sm m-0 float-right">
-	                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-	                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-	                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-	                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-	                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-	                  <li class="page-item"><a class="page-link" href="#">»</a></li>
-	                </ul>
-              </div>
-              </div>
-              <!-- /.card-body -->
-    </div>
-	<!-- /카테고리 관리 card -->
-	<!-- 코치 관리 page 연결 -->
-	<a th:href="@{/coachAdmin}">
-		<button type="button" class="btn btn-block bg-gradient-warning btn-lg" style="width: 80%; margin-bottom: 50px">#코치관리로 이동</button>
-	</a>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                    <tr>
+	                      <td><small>1</small></td>
+	                      <td><small>멘토링</small></td>
+	                      <td>
+	                      	<small>
+	                      		1일 github (코드리뷰 및 컨펌피드백)
+	                      	</small>
+	                      </td>
+	                      <td>
+	                      	
+	    	                  	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;" >수정</button></a>   
+		                  </td>
+		                  <td>
+		                      	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;">삭제</button></a>   
+		                    
+	                      </td>
+	                    </tr>
+	                    <tr>
+	                      <td><small>2</small></td>
+	                      <td><small>멘토링</small></td>
+	                      <td>
+	                      	<small>
+	                      		기술과외
+	                      	</small>
+	                      </td>
+	                      <td>
+	                      	
+	    	                  	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;" >수정</button></a>   
+		                  </td>
+		                  <td>
+		                      	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;">삭제</button></a>   
+		                    
+	                      </td>
+	                    </tr>                    <tr>
+	                      <td><small>3</small></td>
+	                      <td><small>컨설팅</small></td>
+	                      <td>
+	                      	<small>
+	                      		취업준비 스펙(자격증, 포트폴리오)
+	                      	</small>
+	                      </td>
+	                      <td>
+	                      	
+	    	                  	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;" >수정</button></a>   
+		                  </td>
+		                  <td>
+		                      	<a ><button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 50px;">삭제</button></a>   
+		                    
+	                      </td>
+	                    </tr>
 	
-	<!-- /코치 관리 page 연결 -->
-	<!-- 후기 관리 page 연결 -->
-	<a th:href="@{/coachingReview}">
-		<button type="button" class="btn btn-block bg-gradient-warning btn-lg" style="width: 80%">#후기관리로 이동</button>
-	</a>
-	<!-- /후기 관리 page 연결 -->
-	
-	
-		+ 검색옵션 - 아이디별  
+	                  </tbody>
+	                </table>
+	                <div class="card-footer clearfix">
+			            <button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                </ul>
+	              </div>
+	              </div>
+	              <!-- /.card-body -->
+	    </div>
+		<!-- /카테고리 관리 card -->
+		
+		<!-- 코치 관리 page 연결 -->
+		<a th:href="@{/coachAdmin}">
+			<button type="button" class="btn btn-block bg-gradient-warning btn-lg" style="width: 80%; margin-bottom: 50px">#코치관리로 이동</button>
+		</a>
+		
+		<!-- /코치 관리 page 연결 -->
+		<!-- 후기 관리 page 연결 -->
+		<a th:href="@{/coachingReview}">
+			<button type="button" class="btn btn-block bg-gradient-warning btn-lg" style="width: 80%">#후기관리로 이동</button>
+		</a>
+		<!-- /후기 관리 page 연결 -->
 		<br>
-		<form action="enhanced-results.html" data-select2-id="15">
-                <div class="row" data-select2-id="14">
-                    <div class="col-md-10" data-select2-id="13">
-                        <div class="row" data-select2-id="12">
-
-                            <div class="col-3" data-select2-id="19">
-                                <div class="form-group" data-select2-id="18">
-                                    <label>구분</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="3" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="5">멘토링</option>
-                                        <option data-select2-id="20">컨설팅</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3" data-select2-id="11">
-                                <div class="form-group" data-select2-id="10">
-                                    <label>상태</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="8">견적요청</option>
-                                        <option data-select2-id="16">견적결과</option>
-                                        <option data-select2-id="16">신청완료</option>
-                                        <option data-select2-id="16">이용완료</option>
-                                        <option data-select2-id="16">서비스기간만료</option>
-                                        <option data-select2-id="16">취소환불</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3" data-select2-id="11">
-                                <div class="form-group" data-select2-id="10">
-                                    <label>기간선택</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="8">모든날짜</option>
-                                        <option data-select2-id="16">지난 1일</option>
-                                        <option data-select2-id="16">지난 1주</option>
-                                        <option data-select2-id="16">지난 1개월</option>
-                                        <option data-select2-id="16">지난 1년</option>
-                                        <option data-select2-id="16">기간 설정</option>
-                                    </select>
-                                </div>
-                            </div>
-                             <div class="col-3" data-select2-id="11">
-                                <div class="form-group" data-select2-id="10">
-                                    <label>정렬</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="8">최신순</option>
-                                        <option data-select2-id="16">오래된순</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-3">
-                                    <label>검색옵션</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="8">검색옵션</option>
-                                        <option data-select2-id="16">아이디</option>
-                                        <option data-select2-id="16">등록일자</option>
-                                        <option data-select2-id="16">내용</option>
-                                        <option data-select2-id="16">제목</option>
-                                        <option data-select2-id="16">제목+내용</option>
-                                    </select>
-                            </div>
-                            <div class="input-group input-group-lg col-8">
-                                <input type="search" class="form-control form-control-lg" style="height: 55px"  placeholder="Type your keywords here" value="Lorem ipsum">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-		</form>
+	
+		<br>
+		<!-- 검색 -->
+		<div class="card card-default">
+			<div class="card-body">
+			    <section class="content" id="">
+			        <div class="container-fluid">
+			            <form action="coachingAdminPage">
+			                <div class="row">
+			                    <div class="col-md-10 offset-md-1">
+			                        <div class="row">
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>구분</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option>전체</option>
+			  										<option>멘토링</option>
+			  										<option>컨설팅</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>상태</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" >전체</option>
+			  										<option>견적요청</option>
+			                                        <option>견적결과</option>
+			                                        <option>신청완료</option>
+			                                        <option>이용완료</option>
+			                                        <option>서비스기간만료</option>
+			                                        <option>취소환불</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>기간선택</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                        <option selected="">전체</option>
+			                                        <option>지난 1일</option>
+			                                        <option>지난 1주</option>
+			                                        <option>지난 1개월</option>
+			                                        <option>지난 1년</option>
+			                                        <!-- <option>기간 설정</option> -->
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>정렬</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" data-select2-id="8">등록일자 최신순</option>
+			                                        <option>등록일자 오래된순</option>
+			                                        <option>코칭일정 최신순</option>
+			                                        <option>코칭일정 오래된순</option>
+												</select>
+			                                </div>
+			                            </div>
+			                        
+			                        </div>
+			                        <div class="form-group">
+			                            <div class="input-group input-group-lg">
+			                            	<div class="col-2">
+				                                <div class="form-group">
+				                                    <label>검색옵션</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+				  										 <option selected="">전체</option>
+					                                        <option>아이디</option>
+					                                        <option>등록일자</option>
+					                                      <!-- <option>내용</option>
+					                                        <option>제목</option>
+					                                        <option>제목+내용</option> -->
+													</select>
+				                                </div>
+				                            </div>
+			                                <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="Type your keywords here" value="검색어를 입력해주세요">
+			                                <div class="input-group-append">
+			                                    <button  class="btn btn-lg btn-default btn-sm" style="height : 49px;margin-top : 25px;">
+			                                        <i class="fa fa-search"></i>
+			                                    </button>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </form>
+			        </div>
+    			</section>
+   			</div>
+    	</div>
+    	<!-- /검색-->
 	
 		<!-- 관리자 페이지 코칭 내역 목록  -->
 		<div class="card">
@@ -248,6 +263,7 @@
 							<th>견적결과</th>
 							<th>후기</th>
 							<th>중단</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -284,6 +300,11 @@
 							<td>
 								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
 			                  		중단
+				                </button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs ">
+			                  		삭제
 				                </button>
 							</td>
 	
@@ -323,6 +344,11 @@
 			                  		중단
 				                </button>
 							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs ">
+			                  		삭제
+				                </button>
+							</td>
 	
 						</tr>
 						<tr>
@@ -360,6 +386,11 @@
 			                  		중단
 				                </button>
 							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs ">
+			                  		삭제
+				                </button>
+							</td>							
 						</tr>
 						<tr>
 							<td>4.</td>
@@ -396,6 +427,11 @@
 			                  		중단
 				                </button>
 							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs ">
+			                  		삭제
+				                </button>
+							</td>
 						</tr>
 						<tr>
 							<td>5.</td>
@@ -430,6 +466,11 @@
 			                  		중단
 				                </button>
 							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs ">
+			                  		삭제
+				                </button>
+							</td>							
 						</tr>
 					</tbody>
 				</table>
@@ -448,16 +489,175 @@
 	           </ul>
 			</div>
 		</div>
-		
 		<!-- / 관리자 페이지 코칭 내역 목록  -->
+		
+		<!-- 코칭 서비스 실적 목록  -->
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<!-- card-header -->
+					<div class="card-header">
+						
+						<h3 class="card-title"><ion-icon name="bar-chart-outline"></ion-icon>
+						&emsp;<b>코칭 서비스 실적 조회</b></h3>
+					</div>
+					<!-- ./card-header -->
+					
+					<div class="card-body autoScroll">
+						<table class="table table-bordered table-hover ">
+						
+							<thead>
+								<tr>
+									<th >#</th>
+									<th class="col-12">항목</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								<!--  나의 코칭 진행 수  추이   -->
+								<tr data-widget="expandable-table" aria-expanded="false" >
+									<td>1</td>
+									<td> 진행완료한 코칭  </td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">
+									
+										<!-- 월별 코칭 진행 수 추이  막대 그래프 -->									
+										<div class="card autoScroll">
+							              <div class="card-header border-0">
+							                <div class="d-flex justify-content-between">
+							                  <h3 class="card-title">월별 코칭 진행완료 횟수  추이</h3>
+							                </div>
+							              </div>
+							              <div class="card-body " style="width: 100%">
+							                <div class="d-flex">
+							                  <p class="d-flex flex-column col-3">
+							                    <span class="text-bold text-lg"> 431 회</span>
+							                    <span>총 누적 횟수 </span>
+							                  </p>
+							                  <p class="d-flex flex-column col-3">
+							                    <span class="text-bold text-lg"> 301 회 </span>
+							                    <span>올해 누적 횟수</span>
+							                  </p>
+							                 &nbsp;
+							                  <p class="d-flex flex-column col-3">
+							                    <span class="text-bold text-lg"> 5개 </span>
+							                    <span>진행중인 코칭 수</span>
+							                  </p>
+							                  &nbsp;
+							                  <p class="ml-auto d-flex flex-column text-right col-3">
+							                    <span class="text-success ml-auto d-flex flex-column text-right">
+							                      <i class="fas fa-arrow-up"></i> 33.1%
+							                    </span>
+							                    <span class="text-muted">Since last month</span>
+							                  </p>
+							                </div>
+							                <!-- /.d-flex -->
+							
+							                <div class="position-relative mb-4">
+								                <div class="chartjs-size-monitor">
+									                <div class="chartjs-size-monitor-expand">
+									               		 <div class=""></div>
+									                </div>
+									                <div class="chartjs-size-monitor-shrink">
+									                	<div class=""></div>
+									                </div>
+								                </div>
+								                  <canvas id="sales-chart" height="200" style="display: block; height: 200px; width: 323px;" width="484" class="chartjs-render-monitor"></canvas>
+							                </div>
+	
+							              </div>
+							            </div>
+										<!-- /월별 코칭 진행수  추이 그래프 -->
+									</td>
+								</tr>
+								<!-- / 나의 코칭 진행수  추이   -->
+								
+								<!-- 코칭 서비스 전체 이용 금액 합산 추이   -->
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>2</td>
+									<td>코칭 서비스 전체 이용 금액 합산 조회</td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">Lorem Ipsum is simply dummy text
+											of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when
+											an unknown printer took a galley of type and scrambled it to
+											make a type specimen book. It has survived not only five
+											centuries, but also the leap into electronic typesetting,
+											remaining essentially unchanged. It was popularised in the
+											1960s with the release of Letraset sheets containing Lorem
+											Ipsum passages, and more recently with desktop publishing
+											software like Aldus PageMaker including versions of Lorem
+											Ipsum.</p>
+									</td>
+								</tr>
+								<!-- / 코칭 서비스 전체 이용 금액 합산 추이  -->
+								
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>3</td>
+									<td>코칭 서비스 운영 수익</td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">Lorem Ipsum is simply dummy text
+											of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when
+											an unknown printer took a galley of type and scrambled it to
+											make a type specimen book. It has survived not only five
+											centuries, but also the leap into electronic typesetting,
+											remaining essentially unchanged. It was popularised in the
+											1960s with the release of Letraset sheets containing Lorem
+											Ipsum passages, and more recently with desktop publishing
+											software like Aldus PageMaker including versions of Lorem
+											Ipsum.</p>
+									</td>
+								</tr>
+								
+								<tr data-widget="expandable-table" aria-expanded="false">
+									<td>3</td>
+									<td>코칭 서비스 환불 총 금액 조회</td>
+									
+								</tr>
+								<tr class="expandable-body d-none">
+									<td colspan="5">
+										<p style="display: none;">Lorem Ipsum is simply dummy text
+											of the printing and typesetting industry. Lorem Ipsum has been
+											the industry's standard dummy text ever since the 1500s, when
+											an unknown printer took a galley of type and scrambled it to
+											make a type specimen book. It has survived not only five
+											centuries, but also the leap into electronic typesetting,
+											remaining essentially unchanged. It was popularised in the
+											1960s with the release of Letraset sheets containing Lorem
+											Ipsum passages, and more recently with desktop publishing
+											software like Aldus PageMaker including versions of Lorem
+											Ipsum.</p>
+									</td>
+								</tr>
+						
+							</tbody>
+						</table>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</div>
+		</div>
+		<!-- /코칭 서비스 실적 목록  -->
+	
 		
 		<!-- Modal -->
 		<!-- 견적요청 Modal -->
-		<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>"
+		<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>
 		<!-- /견적요청 Modal -->
 		
 		<!-- 견적결과 상세보기  Modal  -->			
-		<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>"
+		<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>
 		<!-- /견적결과 상세보기  Modal  -->			
 
 		<!-- 후기 상세보기  Modal  -->			
@@ -505,9 +705,6 @@
 			})
 			
 		});
-		
-		
-		
 		<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
 		$(function(){
 			$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
@@ -515,8 +712,52 @@
 				})
 		});
 		<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
-	
-			
+		
+		</script>
+		<!-- / 모달 script단 -->
+		
+		
+		
+		<!-- 그래프 script단 -->
+		<script>
+			var ctx = document.getElementById('sales-chart').getContext('2d');
+			var salesChart = new Chart(ctx, {
+			    type: 'bar',
+			    data: {
+			        labels: ['1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+			        datasets: [{
+			            label: 'last year',
+			            data: [0,0,1,2,5,10,15,10,17,20,30,20],
+			            backgroundColor: [
+			                'rgba(129, 144, 154)'
+			                
+			            ],
+			            borderColor: [
+			                'rgba(129, 144, 154)'
+			            ],
+			            borderWidth: 1
+			        },{
+			            label: 'this year',
+			            data: [20,30,20,25,30,20,10,26,30,40,20,30],
+			            backgroundColor: [
+			                'rgba(28, 156, 238)',
+			                
+			            ],
+			            borderColor: [
+			            	 'rgba(28, 156, 238)'
+			            ],
+			            borderWidth: 1
+			        }]
+			    },
+			    options: {
+			    	
+			        scales: {
+			            y: {
+			                beginAtZero: true
+			            }
+			        }
+			    }
+			});
 		</script>
 	
 	</th:block>

@@ -41,10 +41,29 @@
               	<br>
                 <label for="coachingCategory">카테고리 선택</label>
                 <select id="coachingCategory" class="form-control custom-select">
-                  <option disabled="">Select one</option>
-                  <option>On Hold</option>
-                  <option>Canceled</option>
-                  <option selected="">Success</option>
+                  <option>카테고리선택</option>
+                  <!-- 멘토링카테고리 -->
+                  <option>학력</option>
+                  <option>프로젝트</option>
+                  <option>자격증</option>
+                  <option>공인어학(외국어능력)</option>
+                  <option>기술스택</option>
+                  <option>직종전문교육과정</option>
+                  <option>인턴쉽</option>
+                  <option>공모전</option>
+                  
+                  <!-- 컨설팅카테고리 -->
+                  <option>진로설정·취업전략</option>
+                  <option>취업준비 스펙(자격증, 포트폴리오)</option>
+                  <option>기업·직무 분석</option>
+                  <option>자기소개서 + 이력서</option>
+                  <option>면접</option>
+                  <option>인적성검사 대비</option>
+                  <option>대기업 취업준비</option>
+                  <option>공기업 취업준비·NCS</option>
+                  <option>경력관리</option>
+                  <option>경력기술서</option>
+                  <option>경력분석·이전직</option>
                 </select>
                 <button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> + 추가 </button>
               </div>
@@ -86,7 +105,7 @@
                 </label>     	
 		
               </div>
-               <div class="form-group">
+              <div class="form-group">
 		            <label for="hourPerOneTime">1회당 진행 시간</label>
 	                <select id="hourPerOneTime" class="form-control custom-select" >
 	                  <option disabled="" selected="">1회당 진행 시간 선택</option>
@@ -101,8 +120,8 @@
 	                  <option>9시간</option>
 	                  <option>10시간</option>
 	                </select>
-	           </div>
-	           <div class="form-group">
+	          </div>
+	          <div class="form-group">
                 <label for="pricePerHour"> 1시간당 코칭 금액 </label>
                 <input type="text" id="pricePerHour" class="form-control" value="1시간당 코칭 금액">
               </div>

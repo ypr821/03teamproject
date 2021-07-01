@@ -1,6 +1,7 @@
 package com.devcdper.coaching.controller;
 
 import javax.annotation.PostConstruct;
+import javax.websocket.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,18 @@ public class CoachingController {
 		System.out.println("CoachingController.java 객체 생성");
 		System.out.println("========================================");
 		
+	}
+	
+	//코칭 일반회원 신청 및 결제 화면
+	@GetMapping("/coachingApplyAndPayment")
+	public String coachingApplyAndPayment(Model model) {
+		System.out.println("=========================================");
+		System.out.println("======coachingApplyAndPayment 메서드 실행==========");
+		//log.info("========================================");
+		//log.info("=======coachingApplyAndPayment 메서드 실행=================");
+		model.addAttribute("title", "코칭 신청 및 결제 페이지 ");
+		model.addAttribute("radioCheck", "myCoachingClient");
+		return "coaching/coachingApplyAndPayment";
 	}
 	
 	//코칭 관리자 화면
@@ -65,6 +78,11 @@ public class CoachingController {
 		//log.info("=======myCoachingClient 메서드 실행=================");
 		model.addAttribute("title", "나의 코칭 화면");
 		model.addAttribute("radioCheck", "myCoachingClient");
+		
+		//가정 - 세션 아이디 park01@hanmail.net 권한 일반 전달
+		
+		
+		
 		return "coaching/myCoachingClient";
 	}
 	//코칭 견적결과 등록 화면

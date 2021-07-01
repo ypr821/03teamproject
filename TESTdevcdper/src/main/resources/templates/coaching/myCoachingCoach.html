@@ -49,70 +49,99 @@
 			<a th:href="@{/coachProfile}" class="btn btn-block btn-secondary btn-sm">나의 프로필 관리</a>
 		</div>
 		<br>
-		<form action="enhanced-results.html" data-select2-id="15">
-                <div class="row" data-select2-id="14">
-                    <div class="col-md-10" data-select2-id="13">
-                        <div class="row" data-select2-id="12">
+		
+		<!-- 검색 -->
+		<div class="card card-default">
+			<div class="card-body">
+			    <section class="content" id="">
+			        <div class="container-fluid">
+			            <form action="coachingAdminPage">
+			                <div class="row">
+			                    <div class="col-md-10 offset-md-1">
+			                        <div class="row">
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>구분</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option>전체</option>
+			  										<option>멘토링</option>
+			  										<option>컨설팅</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>상태</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" >전체</option>
+			  										<option>견적요청</option>
+			                                        <option>견적결과</option>
+			                                        <option>신청완료</option>
+			                                        <option>이용완료</option>
+			                                        <option>서비스기간만료</option>
+			                                        <option>취소환불</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>기간선택</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                        <option selected="">전체</option>
+			                                        <option>지난 1일</option>
+			                                        <option>지난 1주</option>
+			                                        <option>지난 1개월</option>
+			                                        <option>지난 1년</option>
+			                                        <!-- <option>기간 설정</option> -->
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>정렬</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" data-select2-id="8">등록일자 최신순</option>
+			                                        <option>등록일자 오래된순</option>
+			                                        <option>코칭일정 최신순</option>
+			                                        <option>코칭일정 오래된순</option>
+												</select>
+			                                </div>
+			                            </div>
+			                        
+			                        </div>
+			                        <div class="form-group">
+			                            <div class="input-group input-group-lg">
+			                            	<div class="col-2">
+				                                <div class="form-group">
+				                                    <label>검색옵션</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+				  										 <option selected="">전체</option>
+					                                        <option>수강생 아이디</option>
+					                                        <option>등록일자</option>
+					                                      <!-- <option>내용</option>
+					                                        <option>제목</option>
+					                                        <option>제목+내용</option> -->
+													</select>
+				                                </div>
+				                            </div>
+			                                <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="Type your keywords here" value="검색어를 입력해주세요">
+			                                <div class="input-group-append">
+			                                    <button  class="btn btn-lg btn-default btn-sm" style="height : 49px;margin-top : 25px;">
+			                                        <i class="fa fa-search"></i>
+			                                    </button>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </form>
+			        </div>
+    			</section>
+   			</div>
+    	</div>
+    	<!-- /검색-->
+	
 
-                            <div class="col-3" data-select2-id="19">
-                                <div class="form-group" data-select2-id="18">
-                                    <label>구분:</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="3" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="5">멘토링</option>
-                                        <option data-select2-id="20">컨설팅</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3" data-select2-id="11">
-                                <div class="form-group" data-select2-id="10">
-                                    <label>상태</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="8">견적요청</option>
-                                        <option data-select2-id="16">견적결과</option>
-                                        <option data-select2-id="16">신청완료</option>
-                                        <option data-select2-id="16">이용완료</option>
-                                        <option data-select2-id="16">서비스기간만료</option>
-                                        <option data-select2-id="16">취소환불</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3" data-select2-id="11">
-                                <div class="form-group" data-select2-id="10">
-                                    <label>기간선택</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-										<option selected="" data-select2-id="8">모든날짜</option>
-                                        <option data-select2-id="16">지난 1일</option>
-                                        <option data-select2-id="16">지난 1주</option>
-                                        <option data-select2-id="16">지난 1개월</option>
-                                        <option data-select2-id="16">지난 1년</option>
-                                        <option data-select2-id="16">기간 설정</option>
-                                    </select>
-                                </div>
-                            </div>
-                             <div class="col-3" data-select2-id="11">
-                                <div class="form-group" data-select2-id="10">
-                                    <label>정렬</label>
-                                    <select class="select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-                                        <option selected="" data-select2-id="8">최신순</option>
-                                        <option data-select2-id="16">오래된순</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" value="Lorem ipsum">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-		</form>
 	
 		<!-- 코치 페이지  나의 코칭 내역 목록  -->
 		<div class="card ">

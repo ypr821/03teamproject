@@ -1,10 +1,349 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-코치관리
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+	
+	<th:block layout:fragment="pageTitle">
+		<title th:text="${title}">코치 관리</title>
+		<div class="col-sm-6">
+			<h1 class="m-0">코치 관리</h1>
+		</div>
+		<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block>
+	</th:block>
+	
+	<th:block layout:fragment="container">
+			<!-- 검색 -->
+			<div class="card card-default">
+				<div class="card-body">
+				    <section class="content" id="">
+				        <div class="container-fluid">
+				            <form action="coachingAdminPage">
+				                <div class="row">
+				                    <div class="col-md-10 offset-md-1">
+				                        <div class="row">
+				                            <div class="col-3">
+				                                <div class="form-group">
+				                                    <label>구분</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+				  										<option>전체</option>
+				  										<option>멘토링</option>
+				  										<option>컨설팅</option>
+													</select>
+				                                </div>
+				                            </div>
+				                            <div class="col-3" >
+				                                <div class="form-group">
+				                                    <label>평균 달점별</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+										                  <option selected="">전체</option>
+				                                 		  <option disabled="">🌕🌕🌕🌕🌕5.0/5.0</option>
+										                  <option>🌕🌕🌕🌕🌗4.5/5.0</option>
+										                  <option>🌕🌕🌕🌕🌑4.0/5.0</option>
+										                  <option>🌕🌕🌕🌗🌑3.5/5.0</option>
+										                  <option>🌕🌕🌕🌑🌑3.0/5.0</option>
+										                  <option>🌕🌕🌗🌑🌑2.5/5.0</option>
+										                  <option>🌕🌕🌑🌑🌑2.0/5.0</option>
+										                  <option>🌕🌗🌑🌑🌑1.5/5.0</option>
+										                  <option>🌕🌑🌑🌑🌑1.0/5.0</option>
+										                  <option>🌗🌑🌑🌑🌑0.5/5.0</option>
+										                  <option>🌑🌑🌑🌑🌑0.0/5.0</option>
+				                                    </select>
+				                                </div>
+				                            </div>
+				                            <div class="col-3">
+				                                <div class="form-group">
+				                                    <label>기간선택</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+				                                        <option selected="">전체</option>
+				                                        <option>지난 1일</option>
+				                                        <option>지난 1주</option>
+				                                        <option>지난 1개월</option>
+				                                        <option>지난 1년</option>
+				                                        <!-- <option>기간 설정</option> -->
+													</select>
+				                                </div>
+				                            </div>
+				                            <div class="col-3">
+				                                <div class="form-group">
+				                                    <label>정렬</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+				  										<option selected="" data-select2-id="8">최신순</option>
+				                                        <option>오래된순</option>
+				                                        <option>총수익 많은 순</option>
+				                                        <option>총수익 적은 순</option>
+				                                        <option>코칭횟수 많은 순</option>
+				                                        <option>코칭횟수 적은 순</option>
+													</select>
+				                                </div>
+				                            </div>
+				                        
+				                        </div>
+				                        <div class="form-group">
+				                            <div class="input-group input-group-lg">
+				                            	<div class="col-3">
+					                                <div class="form-group">
+					                                    <label>검색옵션</label>
+					                                    <select class="js-example-placeholder-single js-states form-control">
+					  										 <option selected="">전체</option>
+						                                        <option>코치 아이디</option>
+						                                        <option>등록일자</option>
+						                                      	
+														</select>
+					                                </div>
+					                            </div>
+				                                <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="Type your keywords here" value="검색어를 입력해주세요">
+				                                <div class="input-group-append">
+				                                    <button  class="btn btn-lg btn-default btn-sm" style="height : 49px;margin-top : 25px;">
+				                                        <i class="fa fa-search"></i>
+				                                    </button>
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				            </form>
+				        </div>
+	    			</section>
+	   			</div>
+	    	</div>
+	    	<!-- /검색-->
+		
+			<!-- 코칭 관리자 페이지  코치 목록  -->
+			<div class="card ">
+				<div class="card-header " >
+					<h3 class="card-title">
+						<ion-icon size="small" name="list-outline"></ion-icon>
+						&emsp; <b>코칭 목록</b>
+					</h3>
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body autoScroll ">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th style="width: 10px">#</th>
+								<th>구분</th>
+								<th>코치이메일</th>
+								<th>코치연락처</th>
+								<th>코치이름</th>
+								<th>평균달점</th>
+								<th>총 코칭횟수</th>
+								<th>총 코칭수익</th>
+								<th>실적</th>
+								<th>가입일자</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1.</td>
+								<td>멘토링</td>
+								<td>ksmart@email.com</td>
+								<td>010-0000-0000</td>
+								<td>유01</td>
+								<td>
+									🌕🌕🌕🌑🌑3.0
+								</td>
+								<td>
+									20
+								</td>
+								<td>
+									3000000원
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modalCoachPerformance">
+				                  		상세보기
+					                </button>
+								</td>
+								<td>
+									2021/06/23
+								</td>
+		
+							</tr>
+							<tr>
+								<td>2.</td>
+								<td>멘토링</td>
+								<td>ksmart@email.com</td>
+								<td>010-0000-0000</td>
+								<td>유02</td>
+								<td>
+									🌕🌕🌕🌑🌑3.0
+								</td>
+								<td>
+									10
+								</td>
+								<td>
+									2000000원
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modalCoachPerformance">
+				                  		상세보기
+					                </button>
+								</td>
+								<td>
+									2021/06/30
+								</td>
+		
+		
+							</tr>
+							<tr>
+								<td>3.</td>
+								<td>컨설팅</td>
+								<td>ksmart@email.com</td>
+								<td>010-0000-0000</td>
+								<td>유03</td>
+								<td>
+									🌕🌕🌕🌑🌑3.0
+								</td>
+								<td>
+									10
+								</td>
+								<td>
+									2000000원
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modalCoachPerformance">
+				                  		상세보기
+					                </button>
+								</td>
+								<td>
+									2021/06/30
+								</td>
+							</tr>
+							<tr>
+								<td>4.</td>
+								<td>컨설팅</td>
+								<td>ksmart@email.com</td>
+								<td>010-0000-0000</td>
+								<td>유04</td>
+								<td>
+									🌕🌕🌕🌑🌑3.0
+								</td>
+								<td>
+									1
+								</td>
+								<td>
+									100000원
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modalCoachPerformance">
+				                  		상세보기
+					                </button>
+								</td>
+								<td>
+									2021/06/29
+								</td>
+							</tr>
+							<tr>
+								<td>5.</td>
+								<td>멘토링</td>
+								<td>ksmart@email.com</td>
+								<td>010-0000-0000</td>
+								<td>유05</td>
+								<td>
+									🌕🌕🌕🌑🌑3.0
+								</td>
+								<td>
+									20
+								</td>
+								<td>
+									3000000원
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modalCoachPerformance">
+				                  		상세보기
+					                </button>
+								</td>
+								<td>
+									2021/06/23
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.card-body -->
+				<div class="card-footer clearfix">
+				<!-- 코치 list 페이지번호  -->
+			   		<ul class="pagination pagination-sm m-0 float-right">
+		                 <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                 <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                 <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                 <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                 <li class="page-item"><a class="page-link" href="#">»</a></li>
+		           </ul>
+		 	  </div>
+			</div>
+			<!-- / 코칭 관리자 페이지  코치 목록  -->
+			
+			
+
+		
+			<!-- Modal -->
+			<!-- 견적요청 Modal -->
+			<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>"
+			<!-- /견적요청 Modal -->
+			
+			<!-- 견적결과 상세보기  Modal  -->			
+			<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>"
+			<!-- /견적결과 상세보기  Modal  -->			
+	
+			<!-- 후기 상세보기  Modal  -->			
+			<th:block th:replace="/coaching/coachingModal/modal-Review  ::  modal-Review"></th:block>
+			<!-- /후기 상세보기  Modal -->
+			
+			<!-- 중단  Modal  -->
+			<th:block th:replace="/coaching/coachingModal/modal-coachingStop  ::  modal-coachingStop"></th:block> 
+			<!-- /중단  Modal  -->
+			
+			<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+			<th:block th:replace="/coaching/coachingModal/modal-coaching-totalPlan  ::  modal-coaching-totalPlan"></th:block> 
+			<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+	</th:block>
+
+	<th:block layout:fragment="pageJavascript">
+	<!-- 모달 script단 -->
+		<script>
+			<!-- 견적요청 Modal -->
+			$(function(){
+				$('#modal-RFQ').on('shown.bs.modal', function () {
+					  $('#myInput').focus()
+					})
+			});
+			
+			<!-- 견적결과 Modal -->
+			$(function(){
+				$('#modal-RFQResult').on('shown.bs.modal', function () {
+					  $('#myInput').focus()
+					})
+			});
+			<!-- 후기 상세보기  Modal -->
+			$(function(){
+				$('#modal-Review').on('shown.bs.modal', function () {
+					  $('#myInput').focus()
+					})
+			});
+			
+			/*  중단 경고 메시지 */
+			$(function(){
+				$('#coaching-stopModalBtn').click(function(){
+					alert('코칭을 중단하시겠습니까')
+				})
+				
+			});
+			
+			<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+			$(function(){
+				$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
+					  $('#myInput').focus()
+					})
+			});
+			<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+			
+		</script>
+	
+	
+	</th:block>
 </html>
+
+
