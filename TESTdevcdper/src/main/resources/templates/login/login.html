@@ -35,7 +35,8 @@
 									<p class="login-box-msg">Sign in to start your session</p>
 									<form th:action="@{/login}" method="post">
 										<div class="input-group mb-3">
-											<input type="email" class="form-control" placeholder="adminEmail" value="you01@ksmart.or.kr">
+											<input type="email" class="form-control"
+												placeholder="adminEmail" value="you01@ksmart.or.kr">
 											<div class="input-group-append">
 												<div class="input-group-text">
 													<span class="fas fa-envelope"></span>
@@ -43,7 +44,8 @@
 											</div>
 										</div>
 										<div class="input-group mb-3">
-											<input type="password" class="form-control" placeholder="adminPassword" value="apw001">
+											<input type="password" class="form-control"
+												placeholder="adminPassword" value="apw001">
 											<div class="input-group-append">
 												<div class="input-group-text">
 													<span class="fas fa-lock"></span>
@@ -59,18 +61,22 @@
 											</div>
 											<!-- /.col -->
 											<div class="col-4">
-												<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+												<button type="submit" class="btn btn-primary btn-block">Sign
+													in</button>
 											</div>
 										</div>
-										<label th:if="${loginResult !=null}" th:text="${loginResult}"></label>
+										<label th:if="${loginResultAdmin !=null}" th:text="${loginResult}"></label>
 									</form>
-
-
-									<p class="mb-1">
-										<a href="forgot-password.html">패스워드 찾기</a>
-									</p>
+									<div class="social-auth-links text-center mb-3">
+										<p>- OR -</p>
+									</div>
+									
 									<p class="mb-0">
-										<a href="register.html" class="text-center">관리자 회원가입</a>
+										<a th:href="@{/#}" class="text-center">관리자 회원가입</a>
+									</p>
+									
+									<p class="mb-1">
+										<a th:href="@{adminForgotPassword}">이메일 및 패스워드 찾기</a>
 									</p>
 								</div>
 							</div>
@@ -89,7 +95,8 @@
 
 									<form th:action="@{/normalLogin}" method="post">
 										<div class="input-group mb-3">
-											<input type="email" class="form-control" name="userEmail" value="park01@hanmail.net">
+											<input type="email" class="form-control" name="userEmail"
+												value="park01@hanmail.net">
 											<div class="input-group-append">
 												<div class="input-group-text">
 													<span class="fas fa-envelope"></span>
@@ -108,17 +115,18 @@
 										<div class="row">
 											<div class="col-8">
 												<div class="icheck-primary">
-													<input type="checkbox" id="remember"> 
-													<label for="remember"> Remember Me </label>
+													<input type="checkbox" id="remember"> <label
+														for="remember"> Remember Me </label>
 												</div>
 											</div>
 											<!-- /.col -->
 											<div class="col-4">
-												<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+												<button type="submit" class="btn btn-primary btn-block">Sign
+													in</button>
 											</div>
 											<!-- /.col -->
 										</div>
-										<label th:if="${loginResult !=null}" th:text="${loginResult}"></label>
+										<label th:if="${loginResultNormal !=null}" th:text="${loginResult}"></label>
 									</form>
 
 									<div class="social-auth-links text-center mb-3">
@@ -129,12 +137,13 @@
 											class="fab fa-google-plus mr-2"></i> Sign in using Google+
 										</a>
 									</div>
-
-									<p class="mb-1">
-										<a th:href="@{normalPassword}">회원 패스워드 찾기</a>
-									</p>
+									
 									<p class="mb-0">
 										<a th:href=@{/addNormal} class="text-center">일반 회원가입</a>
+									</p>
+									
+									<p class="mb-1">
+										<a th:href="@{/normalForgotPassword}">이메일 및 패스워드 찾기</a>
 									</p>
 								</div>
 							</div>
@@ -152,7 +161,8 @@
 
 									<form th:action="@{/coachLogin}" method="post">
 										<div class="input-group mb-3">
-											<input type="email" class="form-control" name="coachEmail" value="coach_hong@gmail.com">
+											<input type="email" class="form-control" name="coachEmail"
+												value="coach_hong@gmail.com">
 											<div class="input-group-append">
 												<div class="input-group-text">
 													<span class="fas fa-envelope"></span>
@@ -160,7 +170,8 @@
 											</div>
 										</div>
 										<div class="input-group mb-3">
-											<input type="password" class="form-control" name="coachPassword" value="pw007"> 
+											<input type="password" class="form-control"
+												name="coachPassword" value="pw007">
 											<div class="input-group-append">
 												<div class="input-group-text">
 													<span class="fas fa-lock"></span>
@@ -171,17 +182,16 @@
 										<div class="row">
 											<div class="col-8">
 												<div class="icheck-primary">
-													<input type="checkbox" id="remember" > 
-													<label for="remember">Remember Me </label>
+													<input type="checkbox" id="remember"> <label
+														for="remember">Remember Me </label>
 												</div>
 											</div>
 											<div class="col-4">
 												<button type="submit" class="btn btn-primary btn-block">Sign in</button>
 											</div>
 										</div>
-										<label th:if="${loginResult !=null}" th:text="${loginResult}"></label>
+										<label th:if="@{loginResultCoach !=null}" th:text="${loginResult}"></label>
 									</form>
-									
 									<div class="social-auth-links text-center mb-3">
 										<p>- OR -</p>
 										<a href="#" class="btn btn-block btn-primary"> <i
@@ -190,13 +200,13 @@
 											class="fab fa-google-plus mr-2"></i> Sign in using Google+
 										</a>
 									</div>
-
-									<p class="mb-1">
-										<a href="forgot-password.html">I forgot my password</a>
-									</p>
 									<p class="mb-0">
 										<a th:href="@{/addCoach}" class="text-center">코치 회원가입</a>
 									</p>
+									<p class="mb-1">
+										<a th:href="@{/coachForgotPassword}">이메일 및 패스워드 찾기</a>
+									</p>
+
 								</div>
 							</div>
 						</div>

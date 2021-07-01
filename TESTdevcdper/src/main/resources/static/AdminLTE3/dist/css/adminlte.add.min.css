@@ -14,6 +14,29 @@
     margin: auto;
     width: 600px;
 }
+/*
+.container-fluid { 
+    display : inline-fluid ;
+    matgin-left: 10%;
+}
+.register-box {
+    display: inline-block;
+    margin: auto;
+    width: 800px;
+}*/
+
+/*
+.register-box {
+    display: inline-block;
+}
+.login-box {
+    margin: 30px;
+}
+*/
+.login-card-body {
+    height: 490px;
+}
+/*
 /*.container-fluid {
     display: inline-flex;
     margin-left: 10%;
