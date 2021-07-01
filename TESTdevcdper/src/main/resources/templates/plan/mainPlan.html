@@ -1,297 +1,280 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
-	<input type="text" th:value="${mainCdp}" id="mainCdp" hidden/>
+	<input type="text" th:value="${mainCdp}" id="mainCdp" hidden />
 	<div class="col-sm-6">
 		<h1 class="m-0">나의 계획 한눈에보기</h1>
 	</div><!-- /.col -->
-	<div class="col-sm-6">
-		<ol class="breadcrumb float-sm-right">
-			<div class="card-body table-responsive pad">
-				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					<a th:href="@{/totalPlan}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'totalPlan'}"> 통합계획
-					</a>
-					<a th:href="@{/mainPlan}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'plan'}"> 계획
-					</a>
-					<a th:href="@{/detailPlan}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'detailPlan'}"> 상세계획
-					</a>
-					<a th:href="@{/actionPlan}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'actionPlan'}"> 실천계획
-					</a>
-				</div>
-			</div>
-		</ol>
-	</div><!-- /.col -->
+	<!-- 우측 상단 경로바 -->
+	<th:block th:replace="/fragments/plan/planTopSelect :: planTopSelect"></th:block>
 </th:block>
 <th:block layout:fragment="container">
 	<section class="content">
-	<div class="container-fluid"  th:align="center">
-		<!-- Default box -->
-		<div class="card col-md-8">
-			<div class="card-header">
-                <h3 class="card-title">나의 계획 한눈에보기</h3>
+		<div class="container-fluid" th:align="center">
+			<!-- Default box -->
+			<div class="card col-md-8">
+				<div class="card-header">
+					<h3 class="card-title">나의 계획 한눈에보기</h3>
 
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="통합계획검색">
+					<div class="card-tools">
+						<div class="input-group input-group-sm" style="width: 150px;">
+							<input type="text" name="table_search" class="form-control float-right"
+								placeholder="통합계획검색">
 
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-			<div class="card-body table-responsive p-0">
-				<table class="table table-hover text-nowrap">
-		            <thead style="text-align: center;">
-		                <tr>
-		                    <th style="text-align: left;" class="col-2">통합계획명</th>
-	                        <th class="col-8">통합계획 팀프로젝트구현하기</th>
-	                        <th class="col-2">차수</th>
-		                </tr>
-		                <tr>
-		                    <th style="text-align: left;">
-		                    	<strong>
-		                    		기간
-		                    	</strong>
-		                    </th>
-	                        <th>
-								<a>2021.06.20 ~ </a>
-								<a>2021.08.06</a>
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-default">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body table-responsive p-0">
+					<table class="table table-hover text-nowrap">
+						<thead style="text-align: center;">
+							<tr>
+								<th style="text-align: left;" class="col-2">통합계획명</th>
+								<th class="col-8">통합계획 팀프로젝트구현하기</th>
+								<th class="col-2">차수</th>
+							</tr>
+							<tr>
+								<th style="text-align: left;">
+									<strong>
+										기간
+									</strong>
+								</th>
+								<th>
+									<a>2021.06.20 ~ </a>
+									<a>2021.08.06</a>
+									</td>
+								</th>
+								<th>2차</th>
+							</tr>
+						</thead>
+						<tbody class="col-9">
+							<tr>
+								<th>학력 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planEducationalHistory}">
+											<li>컴퓨터공학전공해서 취업하자</li>
+										</a>
+										<a th:href="@{/planEducationalHistory}">
+											<li>컴퓨터공학과 석사학위 취득</li>
+										</a>
+										<a th:href="@{/planEducationalHistory}">
+											<li>보안공학과를 통해서 보안쪽을 공부하자</li>
+										</a>
+										<a th:href="@{/planEducationalHistory}">
+											<li>독학학위제로 학위마련해서 정처기 따자</li>
+										</a>
+									</ul>
 								</td>
-	                        </th>
-	                        <th>2차</th>
-		                </tr>
-		            </thead>
-		            <tbody class="col-9">
-		                <tr>
-		                    <th>학력 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planEducationalHistory}">
-										<li>컴퓨터공학전공해서 취업하자</li>
-		                        	</a>
-		                        	<a th:href="@{/planEducationalHistory}">
-										<li>컴퓨터공학과 석사학위 취득</li>
-		                        	</a>
-		                        	<a th:href="@{/planEducationalHistory}">
-										<li>보안공학과를 통해서 보안쪽을 공부하자</li>
-		                        	</a>
-		                        	<a th:href="@{/planEducationalHistory}">
-										<li>독학학위제로 학위마련해서 정처기 따자</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                    <td>
-		                    	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                    </td>
-		                </tr>
-		                <tr>
-		                    <th>프로젝트 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planProject}">
-										<li>무료 캠핑장 정보를 얻을 수 있는 플랫폼</li>
-		                        	</a>
-		                        	<a th:href="@{/planProject}">
-										<li>드론을 활용해서 얻은 데이터로 정밀농업실현</li>
-		                        	</a>
-		                        	<a th:href="@{/planProject}">
-										<li>자바 기본문법을 활용한 계산기 만들기</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     		<li>2차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>자격증 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planCertificate}">
-										<li>취업에 정처기가 필수</li>
-										<li>정보보안기사취득해서 취업하고싶다.</li>
-										<li>네트워크관리사 2급 따자</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>공인어학 계획</th>
-		                    <td>
-		                        <ul>
-			                        <a th:href="@{/planCertifiedLanguage}">
-										<li>토익 스피킹 170점 달성이 목표</li>
-										<li>대기업입사를 위한 오픽 준비</li>
-			                        </a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>기술스택 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planTechnologyStack}">
-										<li>프로젝트를 완성하기 위한 JAVA 공부</li>
-		                        	</a>
-		                        	<a th:href="@{/planTechnologyStack}">
-										<li>프로젝트를 완성하기 위한 JAVASCRIPT 공부</li>
-		                        	</a>
-		                        	<a th:href="@{/planTechnologyStack}">
-										<li>DB전문 기술자가 되기위한 준비</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
- 		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>직종전문교육과정 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planJobTraining}">
-										<li>백앤드 개발자가 되기위한 과정</li>
-		                        	</a>
-		                        	<a th:href="@{/planJobTraining}">
-										<li>데이터 사이언티스트 취업에 꼭 필요한 핵심을 배울 수 있다.</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>인턴십 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planInternship}">
-										<li>당근마켓 정규직전환을 목표</li>
-		                        	</a>
-		                        	<a th:href="@{/planInternship}">
-										<li>업무경험으로 실무취약점 보완</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>공모전 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planContest}">
-										<li>KOPIS 빅데이터 분석 공모전</li>
-		                        	</a>
-		                        	<a th:href="@{/planContest}">
-										<li>2021 AI 블록체인 기술사업화 아이디어 경진대회</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>2차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		                <tr>
-		                    <th>경력 계획</th>
-		                    <td>
-		                        <ul>
-		                        	<a th:href="@{/planCareer}">
-										<li>우아한 형제들에 백엔드 개발자로 입사 목표</li>
-		                        	</a>
-		                        	<a th:href="@{/planCareer}">
-										<li>사내 시스템관련 어플리케이션 개발</li>
-		                        	</a>
-		                        	<a th:href="@{/planCareer}">
-										<li>카카오 근무</li>
-		                        	</a>
-								</ul>
-		                    </td>
-		                     <td>
-		                     	<ul>
-		                     		<li>1차</li>
-		                     		<li>1차</li>
-		                     	</ul>
-		                     </td>
-		                </tr>
-		            </tbody>
-		        </table>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>프로젝트 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planProject}">
+											<li>무료 캠핑장 정보를 얻을 수 있는 플랫폼</li>
+										</a>
+										<a th:href="@{/planProject}">
+											<li>드론을 활용해서 얻은 데이터로 정밀농업실현</li>
+										</a>
+										<a th:href="@{/planProject}">
+											<li>자바 기본문법을 활용한 계산기 만들기</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+										<li>2차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>자격증 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planCertificate}">
+											<li>취업에 정처기가 필수</li>
+											<li>정보보안기사취득해서 취업하고싶다.</li>
+											<li>네트워크관리사 2급 따자</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>공인어학 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planCertifiedLanguage}">
+											<li>토익 스피킹 170점 달성이 목표</li>
+											<li>대기업입사를 위한 오픽 준비</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>기술스택 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planTechnologyStack}">
+											<li>프로젝트를 완성하기 위한 JAVA 공부</li>
+										</a>
+										<a th:href="@{/planTechnologyStack}">
+											<li>프로젝트를 완성하기 위한 JAVASCRIPT 공부</li>
+										</a>
+										<a th:href="@{/planTechnologyStack}">
+											<li>DB전문 기술자가 되기위한 준비</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>직종전문교육과정 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planJobTraining}">
+											<li>백앤드 개발자가 되기위한 과정</li>
+										</a>
+										<a th:href="@{/planJobTraining}">
+											<li>데이터 사이언티스트 취업에 꼭 필요한 핵심을 배울 수 있다.</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>인턴십 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planInternship}">
+											<li>당근마켓 정규직전환을 목표</li>
+										</a>
+										<a th:href="@{/planInternship}">
+											<li>업무경험으로 실무취약점 보완</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>공모전 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planContest}">
+											<li>KOPIS 빅데이터 분석 공모전</li>
+										</a>
+										<a th:href="@{/planContest}">
+											<li>2021 AI 블록체인 기술사업화 아이디어 경진대회</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>2차</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th>경력 계획</th>
+								<td>
+									<ul>
+										<a th:href="@{/planCareer}">
+											<li>우아한 형제들에 백엔드 개발자로 입사 목표</li>
+										</a>
+										<a th:href="@{/planCareer}">
+											<li>사내 시스템관련 어플리케이션 개발</li>
+										</a>
+										<a th:href="@{/planCareer}">
+											<li>카카오 근무</li>
+										</a>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li>1차</li>
+										<li>1차</li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.card-body -->
 			</div>
-		<!-- /.card-body -->
+			<!-- /.card -->
 		</div>
-	<!-- /.card -->
-	</div>
 	</section>
-	
+
 
 
 </th:block>
 <th:block layout:fragment="pageJavascript">
-<script>
-	$(function(){
-		var mainCdp = $('#mainCdp').val();
-		if(mainCdp == "mainCdp"){
-			alert("경로가 mainCdp로 되어있습니다. 경로수정 하세요.");
-		};
-		$('table').find('li').css({
-			'list-style' : 'none'
-			,'text-align' : 'center'
-			,'padding-left' : '0px'
-		})
-		$('table').find('ul').css({
-			'padding-left' : '0px'
-		})
-		$('table').find('th').css({
-			'vertical-align' : 'middle'
-		})
-	});
-</script>
+	<script>
+		$(function () {
+			var mainCdp = $('#mainCdp').val();
+			if (mainCdp == "mainCdp") {
+				alert("경로가 mainCdp로 되어있습니다. 경로수정 하세요.");
+			};
+			$('table').find('li').css({
+				'list-style': 'none'
+				, 'text-align': 'center'
+				, 'padding-left': '0px'
+			})
+			$('table').find('ul').css({
+				'padding-left': '0px'
+			})
+			$('table').find('th').css({
+				'vertical-align': 'middle'
+			})
+		});
+	</script>
 </th:block>
+
 </html>
