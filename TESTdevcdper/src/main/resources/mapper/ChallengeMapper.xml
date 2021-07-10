@@ -7,7 +7,7 @@
   <!-- Admin 관련 Mapper -->
   
 <mapper namespace="com.devcdper.challenge.dao.ChallengeMapper">
-	<resultMap type="Challenge" id="ChallengeResultMap">
+	<resultMap type="com.devcdper.challenge.domain.Challenge" id="ChallengeResultMap">
 		<result property="challengeCode"					column="challenge_code"/>
 		<result property="challengeCategoryCode"			column="challenge_category_code"/>
 		<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
@@ -27,7 +27,7 @@
 		<result property="challengeStartDate"				column="challenge_start_date"/>
 		<result property="challengeEndDate"					column="challenge_end_date"/>
 		<result property="challengeRegisterDate"			column="challenge_register_date"/>
-		<association property="normalUser" javaType="normalUser">
+		<association property="normalUser" javaType="com.devcdper.user_admin.domain.NormalUser">
 			<result property="userEmail" 				column="user_email"/>
 			<result property="userPassword" 			column="user_password"/>
 			<result property="userName" 				column="user_name"/>
@@ -44,14 +44,14 @@
 			<result property="userJoinDate" 			column="user_join_date"/>
 			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 		</association>
-		<association property="challengeCategory" javaType="challengeCategory">
+		<association property="challengeCategory" javaType="com.devcdper.challenge.domain.ChallengeCategory">
 			<result property="challengeCategoryCode" 		column="challenge_category_code"></result>
 			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
 		</association>
 	</resultMap>
 	
 		<!-- 챌린지 개설하기 -->
-		<insert id="addChallenge" parameterType="Challenge">
+		<insert id="addChallenge" parameterType="com.devcdper.challenge.domain.Challenge">
 		INSERT INTO challenge
 		(			challenge_code
 				  , challenge_category_code
@@ -188,7 +188,7 @@
 	<!-- User 관련 Mapper -->
 	<!-- ChallengeParticipation 관련 -->
 	
-	<resultMap type="ChallengeParticipation" id="ChallengeParticipationResultMap">
+	<resultMap type="com.devcdper.challenge.domain.ChallengeParticipation" id="ChallengeParticipationResultMap">
 		<result property="challengeParticipantCode"			column="challenge_participation_code"/>
 		<result property="challengeCategoryCode"			column="challenge_category_code"/>
 		<result property="challengeCode"					column="challenge_code"/>
@@ -198,7 +198,7 @@
 		<result property="challengeParticipationDate"		column="challenge_participation_date"/>
 		<result property="challengeServiceStartDate"		column="challenge_service_start_date"/>
 		<result property="challengeServiceEndDate"			column="challenge_service_end_date"/>
-		<association property="normalUser" javaType="normalUser">
+		<association property="normalUser" javaType="com.devcdper.user_admin.domain.NormalUser">
 			<result property="userEmail" 				column="user_email"/>
 			<result property="userPassword" 			column="user_password"/>
 			<result property="userName" 				column="user_name"/>
@@ -215,11 +215,11 @@
 			<result property="userJoinDate" 			column="user_join_date"/>
 			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 		</association>
-		<association property="challengeCategory" javaType="challengeCategory">
+		<association property="challengeCategory" javaType="com.devcdper.challenge.domain.ChallengeCategory">
 			<result property="challengeCategoryCode" 		column="challenge_category_code"></result>
 			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
 		</association>
-		<association property="challenge" javaType="Challenge">
+		<association property="challenge" javaType="com.devcdper.challenge.domain.Challenge">
 			<result property="challengeCode"					column="challenge_code"/>
 			<result property="challengeCategoryCode"			column="challenge_category_code"/>
 			<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
@@ -281,7 +281,7 @@
 	
 	
 	<!-- ChallengeCertification 관련 -->
-	<resultMap type="ChallengeCertification" id="ChallengeCertificationResultMap">
+	<resultMap type="com.devcdper.challenge.domain.ChallengeCertification" id="ChallengeCertificationResultMap">
 		<result property="challengeCertificationCode"			column="challenge_certification_code"/>
 		<result property="challengeCategoryCode"				column="challenge_category_code"/>
 		<result property="challengeCode"						column="challenge_code"/>
@@ -293,7 +293,7 @@
 		<result property="challengeCertificationAttachedFile"	column="challenge_certification_attached_file"/>
 		<result property="challengeCertificationStatus"			column="challenge_certification_status"/>
 		<result property="challengeCertificationDate"			column="challenge_certification_date"/>
-		<association property="normalUser" 				javaType="normalUser">
+		<association property="normalUser" 				javaType="com.devcdper.user_admin.domain.NormalUser">
 			<result property="userEmail" 				column="user_email"/>
 			<result property="userPassword" 			column="user_password"/>
 			<result property="userName" 				column="user_name"/>
@@ -310,11 +310,11 @@
 			<result property="userJoinDate" 			column="user_join_date"/>
 			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 		</association>
-		<association property="challengeCategory" 		javaType="challengeCategory">
+		<association property="challengeCategory" 		javaType="com.devcdper.challenge.domain.ChallengeCategory">
 			<result property="challengeCategoryCode" 	column="challenge_category_code"></result>
 			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
 		</association>
-		<association property="challenge" javaType="challenge">
+		<association property="challenge" javaType="com.devcdper.challenge.domain.Challenge">
 			<result property="challengeCode"					column="challenge_code"/>
 			<result property="challengeCategoryCode"			column="challenge_category_code"/>
 			<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
@@ -334,7 +334,7 @@
 			<result property="challengeEndDate"					column="challenge_end_date"/>
 			<result property="challengeRegisterDate"			column="challenge_register_date"/>
 		</association>
-		<association property="challengeParticipation" 		javaType="challengeParticipation">
+		<association property="challengeParticipation" 		javaType="com.devcdper.challenge.domain.ChallengeParticipation">
 			<result property="challengeParticipantCode"			column="challenge_participation_code"/>
 			<result property="challengeCategoryCode"			column="challenge_category_code"/>
 			<result property="challengeCode"					column="challenge_code"/>
@@ -351,7 +351,7 @@
 	
 	
 	<!-- 챌린지 인증하기 -->
-	<insert id="addChallengeCertification" parameterType="ChallengeCertification">
+	<insert id="addChallengeCertification" parameterType="com.devcdper.challenge.domain.ChallengeCertification">
 	INSERT INTO challenge_certification
 	(
 		challenge_certification_code
@@ -418,7 +418,7 @@
 	
 	
 	<!-- ChallengeCategory 관련 -->
-	<resultMap type="ChallengeCategory" id="ChallengeCategoryResultMap">
+	<resultMap type="com.devcdper.challenge.domain.ChallengeCategory" id="ChallengeCategoryResultMap">
 		<result property="challengeCategoryCode" 	column="challenge_category_code"></result>
 		<result property="challengeCategoryName" 	column="challenge_category_name"></result>
 	</resultMap>
@@ -428,7 +428,7 @@
 	
 	
 	<!-- ChallengeAchievementRate 관련 -->
-	<resultMap type="ChallengeAchievementRate" id="ChallengeAchievementRateResultMap">
+	<resultMap type="com.devcdper.challenge.domain.ChallengeAchievementRate" id="ChallengeAchievementRateResultMap">
 		<result property="challengeAchievementRateCode"			column="challenge_achievement_rate_code"/>
 		<result property="challengeCategoryCode"				column="challenge_category_code"/>
 		<result property="challengeCode"						column="challenge_code"/>
@@ -437,7 +437,7 @@
 		<result property="challengeAchievementRateSuccesCount"			column="challenge_achievement_rate_succes_count"/>
 		<result property="challengeAchievementRateTotalTimes"			column="challenge_achievement_rate_total_times"/>
 		<result property="challengeAchievementRateUpdateDate"		column="challenge_achievement_rate_update_date"/>
-		<association property="normalUser" 				javaType="normalUser">
+		<association property="normalUser" 				javaType="com.devcdper.user_admin.domain.NormalUser">
 			<result property="userEmail" 				column="user_email"/>
 			<result property="userPassword" 			column="user_password"/>
 			<result property="userName" 				column="user_name"/>
@@ -454,11 +454,11 @@
 			<result property="userJoinDate" 			column="user_join_date"/>
 			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 		</association>
-		<association property="challengeCategory" 		javaType="challengeCategory">
+		<association property="challengeCategory" 		javaType="com.devcdper.challenge.domain.ChallengeCategory">
 			<result property="challengeCategoryCode" 	column="challenge_category_code"></result>
 			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
 		</association>
-		<association property="challenge" javaType="challenge">
+		<association property="challenge" javaType="com.devcdper.challenge.domain.Challenge">
 			<result property="challengeCode"					column="challenge_code"/>
 			<result property="challengeCategoryCode"			column="challenge_category_code"/>
 			<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
@@ -478,7 +478,7 @@
 			<result property="challengeEndDate"					column="challenge_end_date"/>
 			<result property="challengeRegisterDate"			column="challenge_register_date"/>
 		</association>
-		<association property="challengeParticipation" 		javaType="challengeParticipation">
+		<association property="challengeParticipation" 		javaType="com.devcdper.challenge.domain.ChallengeParticipation">
 			<result property="challengeParticipantCode"			column="challenge_participation_code"/>
 			<result property="challengeCategoryCode"			column="challenge_category_code"/>
 			<result property="challengeCode"					column="challenge_code"/>
