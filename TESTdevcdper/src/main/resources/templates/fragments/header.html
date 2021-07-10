@@ -9,16 +9,10 @@
 		<li class="nav-item d-none d-sm-inline-block">
 			<a href="/" class="nav-link"><b>Home</b></a>
 		</li>
-		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-              	경력개발계획 <span class="caret"></span>
+		<li class="nav-item d-none d-sm-inline-block">
+            <a class="nav-link" th:href="@{/mainPlan}">
+              	경력개발계획
             </a>
-            <div class="dropdown-menu">
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/totalPlan}">#(박승민)통합계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/mainPlan}">!(박승민)계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/detailPlan}">!(류준혁)상세계획</a>
-	              <a class="dropdown-item" tabindex="-1" th:href="@{/actionPlan}">!(김도연)실천계획</a>
-            </div>
 		</li>
 		<li class="nav-item dropdown d-none d-sm-inline-block" id="dropLi">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/mainCoaching}">

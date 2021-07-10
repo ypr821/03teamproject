@@ -4,7 +4,7 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
 	<input type="text" th:value="${mainCdp}" id="mainCdp" hidden />
-	<div class="col-sm-6">
+	<div class="col-sm-4">
 		<h1 class="m-0">나의 계획 한눈에보기</h1>
 	</div><!-- /.col -->
 	<!-- 우측 상단 경로바 -->
@@ -17,41 +17,33 @@
 			<div class="card col-md-8">
 				<div class="card-header">
 					<h3 class="card-title">나의 계획 한눈에보기</h3>
-
-					<div class="card-tools">
-						<div class="input-group input-group-sm" style="width: 150px;">
-							<input type="text" name="table_search" class="form-control float-right"
-								placeholder="통합계획검색">
-
-							<div class="input-group-append">
-								<button type="submit" class="btn btn-default">
-									<i class="fas fa-search"></i>
-								</button>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body table-responsive p-0">
 					<table class="table table-hover text-nowrap">
 						<thead style="text-align: center;">
 							<tr>
-								<th style="text-align: left;" class="col-2">통합계획명</th>
-								<th class="col-8">통합계획 팀프로젝트구현하기</th>
-								<th class="col-2">차수</th>
+								<th style="text-align: left;" class="col-2">통합계획선택</th>
+								<th class="col-8">
+									<select class="form-control select2 select2-hidden-accessible" id="totalPlanSelect" style="vertical-align : middle; width: 100%;" aria-hidden="true">
+										<option selected disabled>통합계획제목을 선택해주세요.</option>
+										<option class="totalPlanTitle" th:each="tpl :${totalPlanList}" th:text="${tpl.planTitle}"></option>
+									</select>
+									
+									<!-- 제목과 일치하는 코드를 찾아 담아두기 위해 hidden type의 input 생성 -->
+									<input type="hidden" class="totalPlanCode" th:each="tpl :${totalPlanList}" th:value="${tpl.planCode}"></div>
+								</th>
+								<th class="col-2">
+									차수
+								</th>
 							</tr>
 							<tr>
 								<th style="text-align: left;">
-									<strong>
-										기간
-									</strong>
+									계획카테고리
 								</th>
 								<th>
-									<a>2021.06.20 ~ </a>
-									<a>2021.08.06</a>
-									</td>
+
 								</th>
-								<th>2차</th>
 							</tr>
 						</thead>
 						<tbody class="col-9">
@@ -256,7 +248,7 @@
 
 </th:block>
 <th:block layout:fragment="pageJavascript">
-	<script>
+	<script type="text/javascript">
 		$(function () {
 			var mainCdp = $('#mainCdp').val();
 			if (mainCdp == "mainCdp") {
@@ -273,6 +265,68 @@
 			$('table').find('th').css({
 				'vertical-align': 'middle'
 			})
+			$('#totalPlanSelect').change(function(){
+				
+				// select에서 선택한 option의 인덱스를 추출하여 변수에 담는다.
+				// select에서 선택한 option의 인덱스와 input의 인덱스를 맞추기 위해 -1을 해주었다.		
+				var selectIndex = $(this).children('option:selected').index()-1;
+				
+				// 해당 option의 부모로 이동하여 자식중에 code를 담고있는 input을 찾아 같은 인덱스를 가진 input의 코드값을 추출하여 변수에 담는다.
+				var totalPlanCodeValue = $(this).parent().find('.totalPlanCode').eq(selectIndex).val();
+				
+				console.log('선택한 통합계획 제목 : ' + $('#totalPlanSelect').val());
+				console.log('선택한 select option의 index 번호 : ' + selectIndex);
+				console.log('선택한 통합계획의 totalPlanCode : ' + totalPlanCodeValue);
+				
+				// ajax를 사용 dataType은 text로 하니까 되길래 text로 하고있다.
+				var request = $.ajax({
+					url: "/totalPlanSelect",
+					method: "POST",
+					data: { totalPlanCodeValue : totalPlanCodeValue },
+					dataType: "json"
+				});
+				
+				// 서버 요청 후 정상적으로 응답받은 데이터 활용하는 메서드
+				request.done(function( planDto ) {
+					console.log(planDto[0].planCode + " <<- planDto : /mainPlan Ajax ( 사용자가 select한 totalPlanCode totalPlanSelect로 요청 후 응답 data )");
+					
+					
+					
+				});
+				
+				// 서버 요청 후 응답이 정상적이지 않았을 경우 실행되는 메서드
+				request.fail(function( jqXHR, textStatus ) {
+				alert( "Request failed: " + textStatus ); 
+			});
+			});
+			/*
+			var request = $.ajax({
+				url: "@{/totalPlan}",
+				method: "POST",
+				data: { totalPlanCode :  },
+				dataType: "json"
+			});
+			$('.totalPlanSelect').children().remove();
+			request.done(function( data ) {
+				console.log(data);
+				var html = '';
+				if(data != null && data != undefined && data != '' && data.length > 0){
+					for(var i=0; i<data.length; i++){
+						//guguPrint.append("<li>"+ data[i] +"</li>"+"<br/>");
+						html += '<li>';
+						html += data[i];
+						html += '</li>';
+					};
+				}else{
+					var html = '★[단수와 배수를 선택해 주세요]★';
+				};
+				$('#result').html(html);
+			});
+			//서버요청 후 응답이 정상적이지 않았을 경우 실행되는 메서드
+			request.fail(function( jqXHR, textStatus ) {
+				alert( "Request failed: " + textStatus ); 
+			});
+			*/
 		});
 	</script>
 </th:block>

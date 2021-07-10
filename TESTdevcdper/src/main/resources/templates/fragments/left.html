@@ -130,56 +130,32 @@
 					</a>
 				</li>
 				<!-- 전체 계획 관리 Start -->
-				<li class="nav-item has-treeview" th:if="${function == null}">
-					<a href="#" class="nav-link">
+				<li class="nav-item" th:if="${function == null}">
+					<a th:href="@{/mainPlan}" class="nav-link">
 						<i class="nav-icon fas fa-tasks "></i>
 						<p>
-							계획 관리
-							<i class="right fas fa-angle-left"></i>
+							경력개발계획(승민,도연,준혁)
+							<span style="font-size: 10px;" class="badge badge-primary">!</span>
 						</p>
 					</a>
-					<ul class="nav nav-treeview" style="background-color: #2E2E2E;">
-						<li class="nav-item">
-							<a th:href="@{/totalPlan}" class="nav-link">
-								<!--  <i class="nav-icon far fa-file-alt"></i> -->
-								<i class="nav-icon fas fa-tasks "></i>
-								<p>통합 계획 관리(박승민)
-									<span style="font-size: 10px;" class="badge badge-primary">#</span>
-								</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a th:href="@{/mainPlan}" class="nav-link">
-								<i class="nav-icon fas fa-tasks "></i>
-								<p>계획 관리(박승민)</p>
-								<span style="font-size: 10px;" class="badge badge-primary">#</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a th:href="@{/planEducationalHistoryDetail}" class="nav-link">
-								<i class="nav-icon fas fa-tasks "></i>
-								<p>상세 계획 관리(류준혁)</p>
-								<span style="font-size: 10px;" class="badge badge-primary">#</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a th:href="@{/actionPlan}" class="nav-link">
-								<i class="nav-icon fas fa-tasks "></i>
-								<p>실천 계획 관리(김도연)</p>
-								<span style="font-size: 10px;" class="badge badge-primary">#</span>
-							</a>
-						</li>
-					</ul>
 				</li>
 				<!--전체 계획 관리 종료-->
 
 
 				<!-- 계획 전용 left Start -->
+				<li class="nav-item mainPlan" th:if="${function == 'plan'}">
+					<a th:href="@{/mainPlan}" class="nav-link">
+						<i class="nav-icon fas fa-tasks "></i>
+						<p>1.계획 한눈에 보기(박승민)!
+							<span style="font-size: 10px;" class="badge badge-primary">!</span>
+						</p>
+					</a>
+				</li>
 				<li class="nav-item" th:if="${function == 'plan'}">
 					<a th:href="@{/totalPlan}" class="nav-link">
 						<!--  <i class="nav-icon far fa-file-alt"></i> -->
 						<i class="nav-icon fas fa-tasks "></i>
-						<p>통합 계획 관리(박승민)
+						<p>2.통합 계획(박승민)!
 							<span style="font-size: 10px;" class="badge badge-primary">!</span>
 						</p>
 					</a>
@@ -187,24 +163,16 @@
 				<li class="nav-item" th:if="${function == 'plan'}">
 					<a th:href="@{/mainPlan}" class="nav-link">
 						<i class="nav-icon fas fa-tasks "></i>
-						<p>계획 관리(박승민)</p>
+						<p>3.계획(박승민)!</p>
 						<span style="font-size: 10px;" class="badge badge-primary">!</span>
 						<i class="right fas fa-angle-left"></i>
 					</a>
 					<!-- 계획관리 하위메뉴 시작 -->
 					<ul class="nav nav-treeview" style="background-color: #151515;">
-						<li class="nav-item mainPlan">
-							<a th:href="@{/mainPlan}" class="nav-link">
-								<i class="nav-icon fas fa-tasks "></i>
-								<p>1.나의 계획 한눈에보기
-									<span style="font-size: 10px;" class="badge badge-primary">!</span>
-								</p>
-							</a>
-						</li>
 						<li class="nav-item planEducationalHistory">
 							<a th:href="@{/planEducationalHistory}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>2.학력 계획
+								<p>1.학력 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -212,7 +180,7 @@
 						<li class="nav-item planProject">
 							<a th:href="@{/planProject}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>3.프로젝트 계획
+								<p>2.프로젝트 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -220,7 +188,7 @@
 						<li class="nav-item planCertificate">
 							<a th:href="@{/planCertificate}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>4.자격증 계획
+								<p>3.자격증 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -228,7 +196,7 @@
 						<li class="nav-item planCertifiedLanguage">
 							<a th:href="@{/planCertifiedLanguage}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>5.공인어학 계획
+								<p>4.공인어학 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -236,7 +204,7 @@
 						<li class="nav-item planTechnologyStack">
 							<a th:href="@{/planTechnologyStack}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>6.기술스택 계획
+								<p>5.기술스택 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -244,7 +212,7 @@
 						<li class="nav-item planJobTraining">
 							<a th:href="@{/planJobTraining}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>7.직종전문교육과정 계획
+								<p>6.직종전문교육과정 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -252,7 +220,7 @@
 						<li class="nav-item planInternship">
 							<a th:href="@{/planInternship}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>8.인턴십 계획
+								<p>7.인턴십 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -260,7 +228,7 @@
 						<li class="nav-item planContest">
 							<a th:href="@{/planContest}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>9.공모전 계획
+								<p>8.공모전 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -268,7 +236,7 @@
 						<li class="nav-item planCareer">
 							<a th:href="@{/planCareer}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>10.경력 계획
+								<p>9.경력 계획
 									<span style="font-size: 10px;" class="badge badge-danger">#</span>
 								</p>
 							</a>
@@ -282,25 +250,16 @@
 				<li class="nav-item" th:if="${function == 'plan'}">
 					<a th:href="@{/detailPlan}" class="nav-link">
 						<i class="nav-icon fas fa-tasks "></i>
-						<p>상세 계획 관리(류준혁)</p>
+						<p>4.상세 계획 관리(류준혁)!</p>
 						<span style="font-size: 10px;" class="badge badge-primary">#</span>
 						<i class="right fas fa-angle-left"></i>
 					</a>
 					<!-- 준혁 상세 계획 관리 하위메뉴 STRAT  -->
 					<ul class="nav nav-treeview" style="background-color: #151515;">
-						<li class="nav-item detailPlan">
-							<a th:href="@{/detailPlan}" class="nav-link">
-								<!--href="plan/detailPlan.html" 대신 th로  -->
-								<i class="nav-icon far fa-file-alt"></i>
-								<p>1.상세 계획 한눈에 보여주기
-								</p>
-								<span style="font-size: 10px;" class="badge badge-danger">#</span>
-							</a>
-						</li>
 						<li class="nav-item planEducationalHistoryDetail">
 							<a th:href="@{/planEducationalHistoryDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>2.학력 상세 계획
+								<p>1.학력 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -308,7 +267,7 @@
 						<li class="nav-item planProjectDetail">
 							<a th:href="@{/planProjectDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>3.프로젝트 상세 계획
+								<p>2.프로젝트 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -316,7 +275,7 @@
 						<li class="nav-item planCertificateDetail">
 							<a th:href="@{/planCertificateDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>4.자격증 상세 계획
+								<p>3.자격증 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -324,7 +283,7 @@
 						<li class="nav-item planCertifiedLanguageDetail">
 							<a th:href="@{/planCertifiedLanguageDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>5.공인어학 상세 계획
+								<p>4.공인어학 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -332,7 +291,7 @@
 						<li class="nav-item planTechnologyStackDetail">
 							<a th:href="@{/planTechnologyStackDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>6.기술스택 상세 계획
+								<p>5.기술스택 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -340,7 +299,7 @@
 						<li class="nav-item planJobTrainingDetail">
 							<a th:href="@{/planJobTrainingDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>7.직종전문교육과정 상세 계획
+								<p>6.직종전문교육과정 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -348,7 +307,7 @@
 						<li class="nav-item planInternshipDetail">
 							<a th:href="@{/planInternshipDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>8.인턴십 상세 계획
+								<p>7.인턴십 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -356,7 +315,7 @@
 						<li class="nav-item planContestDetail">
 							<a th:href="@{/planContestDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>9.공모전 상세 계획
+								<p>8.공모전 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -364,7 +323,7 @@
 						<li class="nav-item planCareerDetail">
 							<a th:href="@{/planCareerDetail}" class="nav-link">
 								<i class="nav-icon far fa-file-alt"></i>
-								<p>10.경력 상세 계획
+								<p>9.경력 상세 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -378,25 +337,17 @@
 				<li class="nav-item" th:if="${function == 'plan'}">
 					<a th:href="@{/actionPlan}" class="nav-link">
 						<i class="nav-icon fas fa-tasks "></i>
-						<p>실천 계획 관리(김도연)</p>
+						<p>5.실천 계획 관리(김도연)!</p>
 						<span style="font-size: 10px;" class="badge badge-primary">#</span>
 						<i class="right fas fa-angle-left"></i>
 					</a>
 					<!-- 도연 실천 계획 관리 하위메뉴 START -->
 					<ul class="nav nav-treeview" style="background-color: #151515;">
-						<li class="nav-item actionPlan">
-							<a th:href="@{/actionPlan}" class="nav-link">
-								<i class="nav-icon fas fa-tasks "></i>
-								<p>1.나의 실천 계획 한눈에보기
-									<span style="font-size: 10px;" class="badge badge-primary">!</span>
-								</p>
-							</a>
-						</li>
 						<li class="nav-item actionEducationalHistory">
 							<a th:href="@{/actionEducationalHistory}" class="nav-link">
 								<!--  <i class="nav-icon far fa-file-alt"></i> -->
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>2.학력 실천 계획
+								<p>1.학력 실천 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -404,7 +355,7 @@
 						<li class="nav-item actionProject">
 							<a th:href="@{/actionProject}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>3.프로젝트 실천 계획
+								<p>2.프로젝트 실천 계획
 								</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
@@ -412,49 +363,49 @@
 						<li class="nav-item actionCertificate">
 							<a th:href="@{/actionCertificate}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>4.자격증 실천 계획</p>
+								<p>3.자격증 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>
 						<li class="nav-item actionCertifiedLanguage">
 							<a th:href="@{/actionCertifiedLanguage}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>5.공인어학 실천 계획</p>
+								<p>4.공인어학 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>
 						<li class="nav-item actionTechnologyStack">
 							<a th:href="@{/actionTechnologyStack}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>6.기술스택 실천 계획</p>
+								<p>5.기술스택 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>
 						<li class="nav-item actionJobTraining">
 							<a th:href="@{/actionJobTraining}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>7.직종전문교육과정 실천 계획</p>
+								<p>6.직종전문교육과정 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>
 						<li class="nav-item actionInternship">
 							<a th:href="@{/actionInternship}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>8.인턴십 실천 계획</p>
+								<p>7.인턴십 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>
 						<li class="nav-item actionContest">
 							<a th:href="@{/actionContest}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>9.공모전 실천 계획</p>
+								<p>8.공모전 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>
 						<li class="nav-item actionCareer">
 							<a th:href="@{/actionCareer}" class="nav-link">
 								<i class="nav-icon fas fa-tasks "></i>
-								<p>10.경력 실천 계획</p>
+								<p>9.경력 실천 계획</p>
 								<span style="font-size: 10px;" class="badge badge-danger">#</span>
 							</a>
 						</li>

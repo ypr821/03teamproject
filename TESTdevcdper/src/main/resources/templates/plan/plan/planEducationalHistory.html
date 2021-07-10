@@ -4,7 +4,7 @@
 	  layout:decorator="layout/default">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
-	<div class="col-sm-2">
+	<div class="col-sm-4">
 		<h1 class="m-0">학력 계획</h1>
 	</div><!-- /.col -->
 	<!-- 우측 상단 경로바 -->
@@ -13,16 +13,19 @@
 <th:block layout:fragment="container">
 <!-- Default box -->
 
+	<!-- 등록되어있는 통합계획선택하는 select -->
+	<th:block th:replace="/fragments/plan/planTitleSearch :: planTitleSearch"></th:block>
+	
 	<!--계획 공통검색 기능-->
 	<th:block th:replace="/fragments/plan/planSearch :: planSearch"></th:block>
 
 	<div class="card">
 		<div class="card-header">
-			<h3 class="card-title">
-				학력 계획
-			</h3>
+			<h2 class="card-title" style="line-height: 38.227px;">
+				예시)백앤드 개발자 취업준비의 학력계획하기
+			</h2>
 			<div class="card-tools">
-				<a class="btn btn-outline-primary" th:href="@{/addTotalPlan(planName='학력계획')}">
+				<a class="btn btn-outline-primary" th:href="@{/addTotalPlan(planName=${pathName})}">
 					등록하기
 				</a>
 				<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -38,7 +41,7 @@
 							번호
 						</th>
 						<th>
-							통합계획제목
+							학력계획제목
 						</th>
 						<th>
 							학력계획내용
@@ -84,7 +87,7 @@
 							1
 						</td>
 						<td>
-							백엔드 개발자 취업 준비
+							전북대컴공가기
 						</td>
 						<td>
 							<button type="button" class="btn btn-default btn-sm planContents">
@@ -157,7 +160,7 @@
 							2
 						</td>
 						<td>
-							백엔드 개발자 취업 준비
+							전북대컴공가기
 						</td>
 						<td>
 							<button type="button" class="btn btn-default btn-sm planContents">
@@ -229,7 +232,7 @@
 							3
 						</td>
 						<td>
-							백엔드 취업 후 1~3년차
+							명지대보안학과가기
 						</td>
 						<td>
 							<button type="button" class="btn btn-default btn-sm planContents">
@@ -301,7 +304,7 @@
 							4
 						</td>
 						<td>
-							배달의 민족 취업하기
+							독학사로학위따기
 						</td>
 						<td>
 							<button type="button" class="btn btn-default btn-sm planContents">
