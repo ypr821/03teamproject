@@ -1,6 +1,6 @@
 package com.devcdper.coaching.domain;
 
-public class coachingStop {
+public class CoachingStop {
 
 	private String coachingStopCode;
 	private String coachingCategoryCode;
@@ -95,15 +95,17 @@ public class coachingStop {
 	public void setCoachingStopDate(String coachingStopDate) {
 		this.coachingStopDate = coachingStopDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "coachingStop [coachingStopCode=" + coachingStopCode + ", coachingCategoryCode=" + coachingCategoryCode
+		return "CoachingStop [coachingStopCode=" + coachingStopCode + ", coachingCategoryCode=" + coachingCategoryCode
 				+ ", coachingRFQResultCode=" + coachingRFQResultCode + ", coachingProgressCode=" + coachingProgressCode
 				+ ", totalPlanCode=" + totalPlanCode + ", planDetailCode=" + planDetailCode + ", paymentCode="
 				+ paymentCode + ", coachUserEmail=" + coachUserEmail + ", userEmail=" + userEmail
 				+ ", coachingStopReason=" + coachingStopReason + ", coachingRemainingPeriod=" + coachingRemainingPeriod
 				+ ", coachingRefundAmount=" + coachingRefundAmount + ", coachingStopDate=" + coachingStopDate + "]";
 	}
+
 	
 	
 	

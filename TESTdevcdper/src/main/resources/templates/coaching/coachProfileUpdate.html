@@ -5,7 +5,7 @@
 	<th:block layout:fragment="pageTitle">
 		<title th:text="${title}">main title</title>
 		<div class="col-sm-6">
-			<h1 class="m-0">coach profile</h1>
+			<h1 class="m-0">코치 프로필 관리</h1>
 		</div><!-- /.col -->
 		<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block>
 		
@@ -36,15 +36,15 @@
 	                <ul class="list-group list-group-unbordered mb-3">
 	                  <li class="list-group-item">
 	                    <b>코칭 진행 횟수 </b> 
-	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoach_management_count()} + '회'"> </a>
+	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoachManagementCount()} + '회'"> </a>
 	                  </li>
 	                  <li class="list-group-item">
 	                    <b>코칭 평균 평점</b> 
-	                    <a class="float-right" th:text="'🌕'+${coachList.get(0).getCoachManagement().getCoach_management_rate()} + '/5.0'"></a>
+	                    <a class="float-right" th:text="'🌕'+${coachList.getCoachManagementRate()} + '/5.0'"></a>
 	                  </li>
 	                  <li class="list-group-item">
 	                    <b>1시간당 평균 </b> 
-	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoach_management_hourly_average_price()} + '원'"></a>
+	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoachManagementHourlyAveragePrice()} + '원'"></a>
 	                  </li>               
 	                </ul>
 	             	<a href="#" >
@@ -52,7 +52,7 @@
 			                <b><i class="fas fa-comments"></i>&nbsp;#문의</b>
 	             		</button>
 		            </a>
-	                <a th:href="@{/coachingRFQ(coachEmail=${l.coachEmail})}">
+	                <a th:href="@{/coachingRFQ}">
 	                	<button type="button"  class="btn btn-primary btn-block" style="width: 90%">
 	                		<b><i class="fas fa-user"></i> &nbsp;!견적요청</b>
 	                	</button>
@@ -81,49 +81,53 @@
 	              <div class="card-body">
 	                <div class="tab-content">
 	                 
-	                 <!-- 소개 -->
-	                  <div class="tab-pane active" id="activity">
-	                  	
-	                  	 <div class="post clearfix">
-	                      
-	                    	<!-- post 1 -->
-		                     <b>
-		                     	<p th:text="${coachList.get(0).getCoachManagement().getCoaching_introduce_subject()}"> </p>
-							</b> 
-							<p th:text="${coachList.get(0).getCoachManagement().getCoaching_introduce_contents()}"> </p>
-		                 </div>
-	                    
-	                    <!-- /.post 1 -->
-	
-	                    <!-- Post 2-->
-		                   <div class="post">
-					              <div class="card-body">
-	
-					                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-					
-					                <p class="text-muted">
-					                  <span class="tag tag-danger" th:if="${coachList.get(0).getCoachProfileTechStack()} != null" th:text="${coachList.get(0).getCoachProfileTechStack()}"></span>
-					                </p>
-					                <hr>
-					                <strong><ion-icon name="document-text-outline" ></ion-icon> Blog and <ion-icon name="logo-github" ></ion-icon>Github Adress</strong>
-					                <p class="text-muted">
-					                	- Blog: 
-					                	<span id="coachBlogAddress"> 
-					                		 
-					                	</span><br>
-										- GitHub: 
-										<span id="coachGitHubAddress"> 
+                     <form action="/coachProfileUpdate" method="post">
+		                 <!-- 소개 -->
+		                  <div class="tab-pane active" id="activity">
+		                  	
+		                  	 <div class="post clearfix">
+		                      
+		                    	<!-- post 1 -->
+			                     <b>title:</b>
+			                     	<textarea id="profileTitle" style="width: 100%;" th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceSubject()}"> </textarea><br>
+								 <b>contents:</b>
+								<textarea id="profileContents" style="width: 100%;" th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceContents()}"> </textarea>
+			                 </div>
+		                    
+		                    <!-- /.post 1 -->
+		
+		                    <!-- Post 2-->
+			                   <div class="post">
+						              <div class="card-body">
+		
+						                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+						
+						                <p class="text-muted">
+						                  <textarea id="Skills" class="tag tag-danger" style="width: 100%;" th:if="${coachList.get(0).getCoachProfileTechStack()} != null" th:text="${coachList.get(0).getCoachProfileTechStack()}"></textarea>
+						                </p>
+						                <hr>
+						                <strong><ion-icon name="document-text-outline" ></ion-icon> Blog and <ion-icon name="logo-github" ></ion-icon>Github Adress</strong>
+						                <p class="text-muted">
+						                	<br>
+						                	- Blog : &nbsp;&nbsp; 
+						                	<input id="coachBlogAddress" style="width: 80%;"> 
+						                		 
+						                	</input><br><br>
+											- GitHub :  
+											<input id="coachGitHubAddress" style="width: 80%;"> 
+												
+											</input>
 											
-										</span>
-										
-					                </p>
-					              </div>
-					              <!-- /.card-body -->
-					            <!-- /.card -->
+						                </p>
+						                <button type="button" class="btn btn-block btn-default btn-xs" id="coachProfileUpdateBtn" style="width: 20%; margin-left: 40%;" ><b>수정</b></button>
+						              </div>
+						              <!-- /.card-body -->
+						            <!-- /.card -->
+			                  </div>
+							 <!-- / Post 2-->
 		                  </div>
-						 <!-- / Post 2-->
-	                  </div>
-	                  <!-- /소개 -->
+		                  <!-- /소개 -->
+	                  </form>
 	                  
 	                  <div class="tab-pane" id="timeline">
 	                    <!-- The timeline -->
@@ -277,7 +281,8 @@
 	<th:block layout:fragment="pageJavascript">
 		<script th:inline="javascript">
 			/*<![CDATA[*/ 
-				var coachBlogGithubAddress = /*[[ ${coachList.get(0).getCoachManagement().getCoach_blog_github_adress()} ]]*/;
+				var coachBlogGithubAddress = /*[[ ${coachList.get(0).getCoachManagement().getCoachBlogGithubAdress()} ]]*/;
+				var coachEmail = /*[[ ${coachList.get(0).getCoachEmail()} ]]*/;
 			/*]]*/ 
 			console.log('coachBlogGithubAddress ==> ' + coachBlogGithubAddress);
 			var coachBlogGithubAddressArray = coachBlogGithubAddress.split(',');
@@ -288,8 +293,54 @@
 			console.log('coachGithubAddress : ',coachGithubAddress);
 			
 			$(function(){
-				$('#coachBlogAddress').html(coachBlogAddress);
-				$('#coachGitHubAddress').html(coachGithubAddress);
+				$('#coachBlogAddress').val(coachBlogAddress);
+				$('#coachGitHubAddress').val(coachGithubAddress);
+				
+				
+				$('#coachProfileUpdateBtn').click(function(){
+					console.log('coachProfileUpdateBtn 클릭이벤트 확인');
+					console.log('coachEmail  확인:',coachEmail);
+					console.log('profileTitle  확인:',$('#profileTitle').val());
+					console.log('profileContents  확인: ',$('#profileContents').val());
+					console.log('coachBlogAddress  확인: ',$('#coachBlogAddress').val());
+					console.log('coachGitHubAddress  확인: ',$('#coachGitHubAddress').val());
+					
+					var coachBlogGithubAdress = $('#coachBlogAddress').val()+','+$('#coachGitHubAddress').val();
+					console.log("coachBlogGithubAdress=>",coachBlogGithubAdress);
+					
+					
+					jQuery.ajax({ 
+						type: "POST", 
+						url: "/coachProfileUpdate", 
+						cache: false, 
+						data: { coachUserEmail: coachEmail.trim()
+							,profileTitle: $('#profileTitle').val().trim()
+							,profileContents : $('#profileContents').val().trim()
+							,coachBlogGithubAdress : coachBlogGithubAdress.trim()
+							}, 
+						datatype: "JSON", 
+						success: function (obj) { 
+							console.log('obj : ',obj,'- 잘받았다 오버')
+							console.log('type check obj : ',typeof(obj))//String이네
+							
+							//연결은 시킴 이후 토탈플랜 리스트 넘겨주고 받아서 화면단에 뿌려주는 작업필요 
+							
+							//var data = JSON.parse(obj); 
+							/* $.each(data, function (k, v) { 
+								$('<option></option>').val(k).text(v).appendTo($('#exhibition_id')); 
+								}); */ 
+						}, 
+						error: function (xhr, status, error) { console.log("ERROR!!!"); 
+						} 
+					});
+					
+					
+					
+					
+				})
+				
+
+				
 				
 			});
 			

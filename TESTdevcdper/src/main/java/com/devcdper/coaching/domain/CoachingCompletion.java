@@ -1,6 +1,6 @@
 package com.devcdper.coaching.domain;
 
-public class coachingCompletion {
+public class CoachingCompletion {
 
 	private String coachingCompletionCode;
 	private String coachingCategoryCode;
@@ -82,14 +82,14 @@ public class coachingCompletion {
 	}
 	@Override
 	public String toString() {
-		return "coachingCompletion [coachingCompletionCode=" + coachingCompletionCode + ", coachingCategoryCode="
+		return "CoachingCompletion [coachingCompletionCode=" + coachingCompletionCode + ", coachingCategoryCode="
 				+ coachingCategoryCode + ", coachingRFQResultCode=" + coachingRFQResultCode + ", coachingProgressCode="
 				+ coachingProgressCode + ", totalPlanCode=" + totalPlanCode + ", planDetailCode=" + planDetailCode
 				+ ", paymentCode=" + paymentCode + ", coachUserEmail=" + coachUserEmail + ", userEmail=" + userEmail
 				+ ", coachingCompletionFinalResult=" + coachingCompletionFinalResult
 				+ ", coachingCompletionRegisterDate=" + coachingCompletionRegisterDate + "]";
 	}
-	
+
 	
 	
 }
