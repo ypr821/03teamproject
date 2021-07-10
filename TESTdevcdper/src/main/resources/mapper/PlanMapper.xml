@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devcdper.plan.dao.PlanMapper">
+
+	<resultMap type="com.devcdper.plan.domain.PlanDto" id="planDtoResultMap">
+
+		<result property="planEducationalChoice" 				column="plan_educational_choice"/>
+		<result property="planEducationalSchool" 				column="plan_educational_school"/>
+		<result property="planEducationalDepartment" 			column="plan_educational_department"/>
+		<result property="planEducationalCredit" 				column="plan_educational_credit"/>
+		
+		<result property="planProjectDevelopmentEnvironment" 	column="plan_project_development_environment"/>
+		<result property="planProjectUrl" 						column="plan_project_url"/>
+
+		
+		<result property="planCertifiedLanguageTestName" 		column="plan_certified_language_test_name"/>
+		<result property="planCertifiedLanguageTestDate" 		column="plan_certified_language_test_date"/>
+		<result property="planCertifiedLanguageScore" 			column="plan_certified_language_score"/>
+
+		<result property="planJobTrainingAcademyName" 			column="plan_job_training_academy_name"/>
+		<result property="planClassificationRadio" 				column="plan_job_training_classification_training_classification"/>
+		<result property="planJobTrainingCost" 					column="plan_job_training_cost"/>
+		<result property="planJobTrainingCurriculum" 			column="plan_job_training_curriculum"/>
+		
+		<result property="planInternshipCompanyName" 			column="plan_internship_company_name"/>
+		<result property="planInternshipPeriod" 				column="plan_internship_Internship_period_"/>
+		<result property="planInternshipWorkingHours" 			column="plan_internship_working_hours"/>
+		<result property="planInternshipBusinessContents" 		column="plan_internship_business_contents"/>
+		<result property="planInternshipActiveGoal" 			column="plan_internship_activity_goal"/>
+		
+		<result property="planContestTopic" 					column="plan_contest_topic"/>
+		<result property="planContestField" 					column="plan_contest_field"/>
+		<result property="planContestPriodStartDate" 			column="plan_contest_period_start_date"/>
+		<result property="planContestPriodEndDate" 				column="plan_contest_period_end_date"/>
+		<result property="planContestHostOrganization" 			column="plan_contest_host_organization"/>
+		
+		<result property="planCareerCompanyName" 				column="plan_career_company_name"/>
+		<result property="planCareerOccupation" 				column="plan_career_occupation"/>
+		<result property="planCareerDepartment" 				column="plan_career_department"/>
+		<result property="planCareerPosition" 					column="plan_career_position"/>
+		<result property="planCareerEmploumentPeriodStartDate" 	column="plan_career_employment_period_start_date"/>
+		<result property="planCareerEmploumentPeriodEndDate" 	column="plan_career_employment_period_end_date"/>
+		<result property="planCareerJoinTargetDate" 			column="plan_career_join_target_date"/>
+	</resultMap>
+	
+	<!-- SELECT 영역 시작 -->
+	<select id="getTotalPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT 
+			total_plan_code						AS planCode
+			, user_email						AS userEmail
+			, all_plan_title					AS planTitle
+			, all_plan_contents					AS planContents
+			, all_plan_start_date				AS startDate
+			, all_plan_end_date					AS endDate
+			, all_plan_register_date			AS registerDate
+			, all_plan_degree					AS planDegree
+			, all_plan_division					AS totalPlanDivision
+			, all_plan_status					AS planStatus
+			, all_plan_degree_change_reason		AS degreeChangeReason
+		FROM 
+			ypr821.total_plan
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- SELECT 영역 종료 -->
+	
+	<!-- INSERT 영역 시작 -->
+	<insert id="addTotalPlan" parameterType="com.devcdper.plan.domain.PlanDto">
+		INSERT INTO total_plan
+			(total_plan_code
+			,user_email
+			,all_plan_title	
+			,all_plan_contents
+			,all_plan_start_date
+			,all_plan_end_date
+			,all_plan_register_date
+			,all_plan_degree
+			,all_plan_division
+			,all_plan_degree_change_reason
+			,all_plan_status
+		) VALUES (
+			 sf_newTotalPlanCode()
+			,#{userEmail}
+			,#{planTitle}
+			,#{planContents}
+			,#{startDate}
+			,#{endDate}
+			,NOW()
+			,1
+			,#{totalPlanDivision}
+			,''
+			,#{status}
+		);
+	</insert>
+	<!-- INSERT 영역 종료 -->
+	
+
+	  
+</mapper>

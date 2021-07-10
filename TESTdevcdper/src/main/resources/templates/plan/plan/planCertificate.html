@@ -4,7 +4,7 @@
 	  layout:decorator="layout/default">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">Insert title here</title>
-	<div class="col-sm-2">
+	<div class="col-sm-4">
 		<h1 class="m-0">자격증 계획</h1>
 	</div><!-- /.col -->
 	<!-- 우측 상단 경로바 -->
@@ -12,6 +12,9 @@
 </th:block>
 <th:block layout:fragment="container">
 <!-- Default box -->
+
+	<!-- 등록되어있는 통합계획선택하는 select -->
+	<th:block th:replace="/fragments/plan/planTitleSearch :: planTitleSearch"></th:block>
 
 	<!--계획 공통검색 기능-->
 	<th:block th:replace="/fragments/plan/planSearch :: planSearch"></th:block>
