@@ -11,7 +11,8 @@
 <th:block layout:fragment="container">
 <div class="mainChallengeFirst">
 	<div class="content">
-
+	
+	
 <header class="hero-section">
 	<div class="row container hero-warp">
 		<div class="mainChallengeFirst col-12 col-lg-6">
@@ -21,35 +22,182 @@
 			<a th:href="@{/challengeExploration}" class="btn btn-primary btn-start"><span>시작하기</span></a>
 		</div> 
 		<div class="col-12 col-lg-6 img-hero">
-			<img src="/AdminLTE3/dist/img/developer.jpg" class="mainChallengeImg">
+			<img th:src="@{/AdminLTE3/dist/img/developer.jpg}" class="mainChallengeImg">
 		</div>
 	</div>
 </header>
-		<div class="mainChallengeSecond">
+
+
+	<div class="card challengeUserRanking col-sm-10" style="margin: 45px;">
+        <div class="card-header">
+          <h3 class="card-title" style="text-align: center; font-size: 2.1rem; float: inherit;">이달의 챌린지 유저 랭킹</h3>
+          <div class="card-tools">
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                      <th style="width: 5%">
+                      	
+                          	순위
+                      </th>
+                      <th style="width: 15%">
+                          	챌린지 이용자
+                      </th>
+                      <th style="width: 20%">
+                          	지급 받은 금액
+                      </th>
+                     <th style="width: 20%">
+                           	참여챌린지명
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>
+                      	<img th:src="@{/AdminLTE3/dist/img/goldmedal.png}" style="width: 50px;">
+                      </td>
+                      <td>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <img alt="Avatar" class="table-avatar" th:src="@{/AdminLTE3/dist/img/avatar.png}">
+                              </li>
+                          </ul>
+                              	Woolly
+                      </td>
+                      <td>
+                         	1,000,000원
+                      </td>
+                      <td class="project_progress">
+                      		1일 1깃허브
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                      	<img th:src="@{/AdminLTE3/dist/img/silvermedal.png}" style="width: 50px;">
+                      </td>
+                      <td>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <img alt="Avatar" class="table-avatar" th:src="@{/AdminLTE3/dist/img/avatar.png}">
+                              </li>
+                          </ul>
+                              	Park
+                      </td>
+                      <td>
+                         	800,000원
+                      </td>
+                      <td class="project_progress">
+                      		정보처리기사 자격증
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                      	<img th:src="@{/AdminLTE3/dist/img/bronzemedal.png}" style="width: 50px;">
+                      </td>
+                      <td>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <img alt="Avatar" class="table-avatar" th:src="@{/AdminLTE3/dist/img/avatar.png}">
+                              </li>
+                          </ul>
+                              	Park
+                      </td>
+                      <td>
+                         	420,000원
+                      </td>
+                      <td class="project_progress">
+                      		정보처리기사 자격증
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                      	<img th:src="@{/AdminLTE3/dist/img/fourthmedal.png}" style="width: 50px;">
+                      </td>
+                      <td>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <img alt="Avatar" class="table-avatar" th:src="@{/AdminLTE3/dist/img/avatar.png}">
+                              </li>
+                          </ul>
+                              	Park
+                      </td>
+                      <td>
+                         	220,000원
+                      </td>
+                      <td class="project_progress">
+                      		정보처리기사 자격증
+                      </td>
+                  </tr>
+                  <tr>
+                     <td>
+                      	<img th:src="@{/AdminLTE3/dist/img/fivemedal.png}" style="width: 50px;">
+                      </td>
+                      <td>
+                          <ul class="list-inline">
+                              <li class="list-inline-item">
+                                  <img alt="Avatar" class="table-avatar" th:src="@{/AdminLTE3/dist/img/avatar.png}">
+                              </li>
+                          </ul>
+                              	Park
+                      </td>
+                      <td>
+                         	100,000원
+                      </td>
+                      <td class="project_progress">
+                      		정보처리기사 자격증
+                      </td>
+                  </tr>
+                   <tr>
+                     <td colspan="5">
+                     		<h3>참여한 챌린지에서 달성율 순위가 <span class="yellow-highlight">1위</span>라면? <span style="color: red;">모금된 베팅금액 전액 지급!</span></h3>
+                     		<h3>지금 바로 챌린지에 참여하고, 베팅금액을 받아보세요!</h3>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>	
+      
+      
+   <div style="display: block;" class="card card-default">
+      <div class="card-header">
+			<div class="mainChallengeFirst">
 			<div class="content">
-				<h2>1. 달성하고 싶은 목표를 정하세요.</h2>
-				<h3>토이 프로젝트, 1일 1깃허브(잔디심기), 정보처리기사자격증 취득 등<br>IT 경력관리 분야에서 달성하고 싶은 목표와<br>기간을 정해주세요.</h3>
+				<h2>챌린지, 어떻게 하는 건가요?</h2>
 			</div>
 		</div>
-
-
-		<div class="mainChallengeThird">
-			<div class="content">
-				<h2>2. 그리고, 결심에 돈을 베팅하세요.</h2>
-				<h3>돈을 걸면 의지가 달라집니다.<br>돈을 베팅하는 것은, 반드시 해야한다는 환경을 만들어줍니다.</h3>
-			</div>
 		</div>
-
-		<div class="mainChallengeFourth">
-			<div class="content">
-				<h2>3. 목표를 달성할 때마다 환급, 못 지키면 벌금!</h2>
-				<h3>오늘 실천한 목표에 대한 인증샷을 업로드 해주세요!<br>실천할 때마다 베팅비가 환급됩니다!</h3>
+		
+		<div class="card-body">
+			<div class="mainChallengeSecond">
+				<div class="content">
+					<h3 style="color: navy;">1. 달성하고 싶은 목표를 정하세요.</h3>
+					<h4>토이 프로젝트, 1일 1깃허브(잔디심기), 정보처리기사자격증 취득 등<br>IT 경력관리 분야에서 달성하고 싶은 목표와 기간을 정해주세요.</h4>
+				</div>
 			</div>
-		</div>
-	</div>
-</div>
-
-<div class="card card-default">
+			<br>
+			<div class="mainChallengeThird">
+				<div class="content">
+					<h3 style="color: navy;">2. 그리고, 결심에 돈을 베팅하세요.</h3>
+					<h4>돈을 걸면 의지가 달라집니다.<br>돈을 베팅하는 것은, 반드시 해야한다는 환경을 만들어줍니다.</h4>
+				</div>
+			</div>
+			<br>
+			<div style="display: block;" class="mainChallengeFourth">
+				<div class="content">
+					<h3 style="color: navy;">3. 1등에게는 모금된 베팅금액 전액을!</h3>
+					<h4>오늘 실천한 목표에 대한 인증샷을 업로드 해주세요!
+					<br>성공 인증횟수를 토대로 <span style="color: teal;">달성율(전체 인증횟수 대비 성공 인증횟수)</span>이 계산되며, 
+					<br>챌린지 기간이 모두 끝나고, 달성율을 토대로 챌린지 참여자들의 <span style="color: o">순위</span>가 정해집니다.
+					<br>1등에게는 <span style="color: red;">모금된 베팅금액 전액</span>이 돌아갑니다!</h4>
+				</div>
+			</div>
+   	</div>
+   	</div>
+<div style="display: block;" class="card card-default">
 
 		<div class="card-header">
 			<h3 class="card-title">챌린지 카테고리</h3>
@@ -97,184 +245,32 @@
 		</div>
    		<div class="card-body">
             <div class="row">
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
+             <div th:each="l: ${challengeExplorationList}" class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
 	          <div class="card bg-light d-flex flex-fill">
 	             <div class="card-header text-muted border-bottom-0">
 	             </div>
 	             <div class="card-body pt-0">
 	               <div class="row">
 	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
+	                   <h2 th:text="${l.challengeName}" class="lead"></h2>
 	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
+	                   <p class="text-muted text-sm" th:text="${l.challengeTag}"></p>       
 	                 </div>
 	               </div>
 	             </div>
 	             <div class="card-footer">
 	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
+	                 <a th:href="@{challengeExplorationDetailInfo}" class="btn btn-sm btn-primary">
 	                   		챌린지 정보보기
 	                 </a>
 	               </div>
 	             </div>
 	           </div>
 	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>토이프로젝트</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>정보처리기사 자격증 취득</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-           </div>  
-          </div>
+	    	</div>
+	    </div>
+   		</div>
+   		</div>
    		</div>
 
 </th:block>

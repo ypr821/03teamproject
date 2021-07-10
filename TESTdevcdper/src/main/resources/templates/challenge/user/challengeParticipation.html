@@ -4,6 +4,29 @@
 	  layout:decorate="@{layout/challengeUserDefault}">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
+					</a>
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeParticipation'}"> 챌린지 탐색하기
+					</a>
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
+					</a>
+					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div>
 </th:block>
 
 
@@ -28,54 +51,43 @@
             <div class="card-body">
             
             
-            <div class="col-12 col-sm-6 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>참여할 챌린지 이미지</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                 </div>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-	    	  <div class="form-group">
-                <label for="inputName">챌린지명</label>
-                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="1일 1깃허브">
+	    	  <div class="form-group"> 
+                <label for="challengeName">챌린지명</label>
+                <input type="text" id="challengeName" name="challengeName" th:value="${challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white">
+              </div>
+              <div class="form-group" id="challengeTerm">
+                <label for="challengeStartDate">챌린지 기간</label>  
+              	<div class="row">
+                <input type="text" id="challengeStartDate" name="challengeStartDate" th:value="${challenge.challengeStartDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+                <div class="input-group-prepend">
+	                 <span class="input-group-text">~</span>
+                </div>
+                <input type="text" id="challengeEndDate" name="challengeEndDate" th:value="${challenge.challengeEndDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+              	</div>
               </div>
               <div class="form-group">
-                <label for="inputName">챌린지 기간</label>
-                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="2021년 4월 22일 ~ 2021년 5월 6일">
-              </div>
-              <div class="form-group">
-                <label for="inputName">챌린지 인증빈도</label>
-                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="월~일 매일 인증하기">
+                <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
+                <input type="text" id="challengeCertificationFrequency" name="challengeCertificationFrequency" th:value="${challenge.challengeCertificationFrequency}" class="form-control" readonly="readonly" style="background-color: white">
               </div>
                <div class="form-group">
-                 <label for="inputBeting">챌린지 참가인원</label>
+                 <label for="challengeMaximumPeople">챌린지 참가인원</label>
                <div class="input-group mb-3">
-                 <input type="text" class="form-control" readonly="readonly" style="background-color: white" value="3">
+                 <input type="text" id="challengeMaximumPeople" name="challengeMaximumPeople" th:value="${challenge.challengeMaximumPeople}" class="form-control" readonly="readonly" style="background-color: white">
 	                  <div class="input-group-prepend">
 	                  	<span class="input-group-text">명</span>
 	                  </div>
                </div>
-               
                <div class="form-group">
-                        <label for="inputBeting">챌린지 베팅금액</label>
+                        <label for="challengeBetAmount">챌린지 베팅금액</label>
                <div class="input-group mb-3">
                  	  <div class="input-group-prepend" >
 	                  	<span class="input-group-text">총</span>
 	                  </div>
-               <input type="text" class="form-control" readonly="readonly" style="background-color: white" value="200,000">
+               <input type="text" id="challengeBetAmount" name="challengeBetAmount" th:value="${challenge.challengeBetAmount}" class="form-control" readonly="readonly" style="background-color: white">
 	                  <div class="input-group-prepend">
 	                  	<span class="input-group-text">원</span>
 	                  </div>
                 </div>
-			  </div>
-			  </div>
             <!-- /.card-body -->
 			<!-- 챌린지 정보카드 -->   
 		</div>
@@ -90,13 +102,13 @@
             <div class="card-body">
             	<div class="form-group">
                 <label for="inputName">총 베팅금액</label>
-                <h4 id="totalBetingPrice">10000원</h4>
+                <h4 id="totalBetingPrice" th:text="|${challenge.challengeBetAmount} 원|"></h4>
               </div>
 			</div>
 			<div class="card-footer">
             	<div class="form-group">
                 <label for="inputName">총 결제금액</label>
-                <h4 id="totalPaymentPrice">10000원</h4>
+                <h4 id="totalPaymentPrice" th:text="|${challenge.challengeBetAmount} 원|">10000원</h4>
 			</div>
 			</div>
               </div>

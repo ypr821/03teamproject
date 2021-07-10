@@ -1,165 +1,212 @@
 package com.devcdper.challenge.domain;
 
-import com.devcdper.user_admin.domain.*;
+import com.devcdper.user_admin.domain.NormalUser;
 
 public class Challenge {
-
-	private String ChallengeCode ;
-	private String ChallengeName;
-	private String ChallengeScope;
-	private String ChallengeParticipationPassword;
-	private String ChallengeTag;
-	private int ChallengeMaximumPeople;
-	private int ChallengeBetAmount;
-	private String ChallengeCertificationMethod;
-	private String ChallengeCertificationContents;
-	private String ChallengeCertificationFrequency;
-	private int ChallengeTotalTimes;
-	private int ChallengeTimesPerDays;
-	private String ChallengeTimesForCertification;
-	private String ChallengeStartDate;
-	private String ChallengeEndDate;
-	private String ChallengeRegisterDate;
 	
-	//챌린지 카테고리
+	private String challengeCode ;
+	private String challengeCategoryCode;
+	private String challengeOpenerEmail ;
+	private String challengeName;
+	private String challengeScope;
+	private String challengeParticipationPassword;
+	private String challengeTag;
+	private String challengeIntroduce;
+	private int challengeMaximumPeople;
+	private int challengeBetAmount;
+	private String challengeCertificationMethod;
+	private String challengeCertificationContents;
+	private String challengeCertificationFrequency;
+	private int challengeTotalTimes;
+	private String challengeStartDate;
+	private String challengeEndDate;
+	private String challengeRegisterDate;
+	
+	private NormalUser normalUser;
 	private ChallengeCategory challengeCategory;
 	
-	//챌린지 참여 회원이메일
-	private CoachUser coachUser;
-	private NormalUser nomaluser;
-	
+
 	
 	public String getChallengeCode() {
-		return ChallengeCode;
+		return challengeCode;
 	}
+
 	public void setChallengeCode(String challengeCode) {
-		ChallengeCode = challengeCode;
+		this.challengeCode = challengeCode;
 	}
+
+	public String getChallengeCategoryCode() {
+		return challengeCategoryCode;
+	}
+
+	public void setChallengeCategoryCode(String challengeCategoryCode) {
+		this.challengeCategoryCode = challengeCategoryCode;
+	}
+
+	public String getChallengeOpenerEmail() {
+		return challengeOpenerEmail;
+	}
+
+	public void setChallengeOpenerEmail(String challengeOpenerEmail) {
+		this.challengeOpenerEmail = challengeOpenerEmail;
+	}
+
 	public String getChallengeName() {
-		return ChallengeName;
+		return challengeName;
 	}
+
 	public void setChallengeName(String challengeName) {
-		ChallengeName = challengeName;
+		this.challengeName = challengeName;
 	}
+	
+
+	
+
 	public String getChallengeScope() {
-		return ChallengeScope;
+		return challengeScope;
 	}
+
 	public void setChallengeScope(String challengeScope) {
-		ChallengeScope = challengeScope;
+		this.challengeScope = challengeScope;
 	}
+
 	public String getChallengeParticipationPassword() {
-		return ChallengeParticipationPassword;
+		return challengeParticipationPassword;
 	}
+
 	public void setChallengeParticipationPassword(String challengeParticipationPassword) {
-		ChallengeParticipationPassword = challengeParticipationPassword;
+		this.challengeParticipationPassword = challengeParticipationPassword;
 	}
+
 	public String getChallengeTag() {
-		return ChallengeTag;
+		return challengeTag;
 	}
+
 	public void setChallengeTag(String challengeTag) {
-		ChallengeTag = challengeTag;
+		this.challengeTag = challengeTag;
 	}
+	
+
+	public String getChallengeIntroduce() {
+		return challengeIntroduce;
+	}
+
+	public void setChallengeIntroduce(String challengeIntroduce) {
+		this.challengeIntroduce = challengeIntroduce;
+	}
+
 	public int getChallengeMaximumPeople() {
-		return ChallengeMaximumPeople;
+		return challengeMaximumPeople;
 	}
+
 	public void setChallengeMaximumPeople(int challengeMaximumPeople) {
-		ChallengeMaximumPeople = challengeMaximumPeople;
+		this.challengeMaximumPeople = challengeMaximumPeople;
 	}
+
 	public int getChallengeBetAmount() {
-		return ChallengeBetAmount;
+		return challengeBetAmount;
 	}
+
 	public void setChallengeBetAmount(int challengeBetAmount) {
-		ChallengeBetAmount = challengeBetAmount;
+		this.challengeBetAmount = challengeBetAmount;
 	}
+
 	public String getChallengeCertificationMethod() {
-		return ChallengeCertificationMethod;
+		return challengeCertificationMethod;
 	}
+
 	public void setChallengeCertificationMethod(String challengeCertificationMethod) {
-		ChallengeCertificationMethod = challengeCertificationMethod;
+		this.challengeCertificationMethod = challengeCertificationMethod;
 	}
+
 	public String getChallengeCertificationContents() {
-		return ChallengeCertificationContents;
+		return challengeCertificationContents;
 	}
+
 	public void setChallengeCertificationContents(String challengeCertificationContents) {
-		ChallengeCertificationContents = challengeCertificationContents;
+		this.challengeCertificationContents = challengeCertificationContents;
 	}
+
 	public String getChallengeCertificationFrequency() {
-		return ChallengeCertificationFrequency;
+		return challengeCertificationFrequency;
 	}
+
 	public void setChallengeCertificationFrequency(String challengeCertificationFrequency) {
-		ChallengeCertificationFrequency = challengeCertificationFrequency;
+		this.challengeCertificationFrequency = challengeCertificationFrequency;
 	}
+
 	public int getChallengeTotalTimes() {
-		return ChallengeTotalTimes;
+		return challengeTotalTimes;
 	}
+
 	public void setChallengeTotalTimes(int challengeTotalTimes) {
-		ChallengeTotalTimes = challengeTotalTimes;
+		this.challengeTotalTimes = challengeTotalTimes;
 	}
-	public int getChallengeTimesPerDays() {
-		return ChallengeTimesPerDays;
-	}
-	public void setChallengeTimesPerDays(int challengeTimesPerDays) {
-		ChallengeTimesPerDays = challengeTimesPerDays;
-	}
-	public String getChallengeTimesForCertification() {
-		return ChallengeTimesForCertification;
-	}
-	public void setChallengeTimesForCertification(String challengeTimesForCertification) {
-		ChallengeTimesForCertification = challengeTimesForCertification;
-	}
+
+
 	public String getChallengeStartDate() {
-		return ChallengeStartDate;
+		return challengeStartDate;
 	}
+
 	public void setChallengeStartDate(String challengeStartDate) {
-		ChallengeStartDate = challengeStartDate;
+		this.challengeStartDate = challengeStartDate;
 	}
+
 	public String getChallengeEndDate() {
-		return ChallengeEndDate;
+		return challengeEndDate;
 	}
+
 	public void setChallengeEndDate(String challengeEndDate) {
-		ChallengeEndDate = challengeEndDate;
+		this.challengeEndDate = challengeEndDate;
 	}
+
 	public String getChallengeRegisterDate() {
-		return ChallengeRegisterDate;
+		return challengeRegisterDate;
 	}
+
 	public void setChallengeRegisterDate(String challengeRegisterDate) {
-		ChallengeRegisterDate = challengeRegisterDate;
+		this.challengeRegisterDate = challengeRegisterDate;
 	}
+
+	public NormalUser getNormalUser() {
+		return normalUser;
+	}
+
+	public void setNormalUser(NormalUser normalUser) {
+		this.normalUser = normalUser;
+	}
+	
+
 	public ChallengeCategory getChallengeCategory() {
 		return challengeCategory;
 	}
+
 	public void setChallengeCategory(ChallengeCategory challengeCategory) {
 		this.challengeCategory = challengeCategory;
 	}
-	public CoachUser getCoachUser() {
-		return coachUser;
-	}
-	public void setCoachUser(CoachUser coachUser) {
-		this.coachUser = coachUser;
-	}
-	public NormalUser getNomaluser() {
-		return nomaluser;
-	}
-	public void setNomaluser(NormalUser nomaluser) {
-		this.nomaluser = nomaluser;
-	}
+
 	
 	@Override
 	public String toString() {
-		return "Challenge [ChallengeCode=" + ChallengeCode + ", ChallengeName=" + ChallengeName + ", ChallengeScope="
-				+ ChallengeScope + ", ChallengeParticipationPassword=" + ChallengeParticipationPassword
-				+ ", ChallengeTag=" + ChallengeTag + ", ChallengeMaximumPeople=" + ChallengeMaximumPeople
-				+ ", ChallengeBetAmount=" + ChallengeBetAmount + ", ChallengeCertificationMethod="
-				+ ChallengeCertificationMethod + ", ChallengeCertificationContents=" + ChallengeCertificationContents
-				+ ", ChallengeCertificationFrequency=" + ChallengeCertificationFrequency + ", ChallengeTotalTimes="
-				+ ChallengeTotalTimes + ", ChallengeTimesPerDays=" + ChallengeTimesPerDays
-				+ ", ChallengeTimesForCertification=" + ChallengeTimesForCertification + ", ChallengeStartDate="
-				+ ChallengeStartDate + ", ChallengeEndDate=" + ChallengeEndDate + ", ChallengeRegisterDate="
-				+ ChallengeRegisterDate + ", challengeCategory=" + challengeCategory + ", coachUser=" + coachUser
-				+ ", nomaluser=" + nomaluser + "]";
+		return "Challenge [challengeCode=" + challengeCode + ", challengeCategoryCode=" + challengeCategoryCode
+				+ ", challengeOpenerEmail=" + challengeOpenerEmail + ", challengeName=" + challengeName
+				+ ", challengeScope=" + challengeScope + ", challengeParticipationPassword="
+				+ challengeParticipationPassword + ", challengeTag=" + challengeTag + ", challengeIntroduce="
+				+ challengeIntroduce + ", challengeMaximumPeople=" + challengeMaximumPeople + ", challengeBetAmount="
+				+ challengeBetAmount + ", challengeCertificationMethod=" + challengeCertificationMethod
+				+ ", challengeCertificationContents=" + challengeCertificationContents
+				+ ", challengeCertificationFrequency=" + challengeCertificationFrequency + ", challengeTotalTimes="
+				+ challengeTotalTimes + ", challengeStartDate=" + challengeStartDate + ", challengeEndDate="
+				+ challengeEndDate + ", challengeRegisterDate=" + challengeRegisterDate + ", normalUser=" + normalUser
+				+ ", challengeCategory=" + challengeCategory + "]";
 	}
 	
+
 	
 	
 
+	
+	
+
+	
 }

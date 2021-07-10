@@ -33,73 +33,70 @@
 </th:block>
 
 <th:block layout:fragment="container">
-
-<section class="content" id="challengeExplorationSection">
+<section class="content" id="challengeCertificationInsertform">
       <div class="row">
        <!-- ChallengeInsertCard1 Start -->
         <div class="col-md-12">
-          <div class="card card-default" id="challengeInsertForm">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputTitle">챌린지명</label>
-                <input type="text" id="inputName" placeholder="챌린지명을 입력해주세요."  class="form-control" value="1일 1깃허브" readonly="readonly" style="background-color: white;">
+          <div class="card card-default" id="challengeCertificationInsertform">
+	<article>
+		<div class="container" id="challengeCertificationInsertform" role="main">
+	<form id="challengeCertificationInsertform" th:action method="post">
+			<h2 class="challengeCertificationInsertformTitle">챌린지 인증하기</h2>
+				<div class="mb-3">
+					<label for="title">제목</label>
+					<input type="text" class="form-control" name="challengeCertificationTitle" id="challengeCertificationTitle" placeholder="제목을 입력해주세요.">
+				</div>
+				<div class="mb-3">
+					<label for="reg_id">작성자</label>
+					<input type="text" class="form-control" name="challengeParticipationEmail" id="challengeParticipationEmail" placeholder="이메일을 입력해주세요.">
+				</div>
+			  <div class="form-group">
+                <label for="challengeName">챌린지명</label>
+                <input type="text" name="challengeName" th:value="${challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
-              <div class="form-group">
-                         <label for="inputName">챌린지 카테고리</label>
-                        <select class="custom-select">
-                          <option>학력</option>
-                          <option selected="selected">프로젝트</option>
-                          <option>자격증</option>
-                          <option>공인어학</option>
-                          <option>기술스택</option>
-                          <option>직종전문교육과정</option>
-                          <option>인턴십</option>
-                          <option>공모전</option>
-                          <option>경력</option>
-                          <option>기타</option>
-                        </select>
-			</div>
-              <div class="form-group">
-                        <label for="inputCertificate">챌린지 인증방법</label>
-                        <select class="custom-select">
-                          <option>사진</option>
-                          <option>영상</option>
-                        </select>
-			 </div>
-			 <div class="form-group">
-                <label for="inputDescription">챌린지 인증내용</label>
-                <textarea id="inputDescription" class="form-control" rows="3"></textarea>
+             <div class="form-group">
+                <label for="challengeName">챌린지 카테고리</label>
+                <input type="text" name="challengeCategory" th:value="${challenge.challengeCategory.challengeCategoryName}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
-              <div class="form-group">
+				<div class="form-group">
+                <label for="challengeName">챌린지 인증방법</label>
+                <input type="text" name="challengeCategory" th:value="${challenge.challengeCertificationMethod}" class="form-control" readonly="readonly" style="background-color: white;">
+              </div>
+				<div class="form-group">
+                	<label for="challengeCertificationContents">챌린지 인증내용</label>
+                	<textarea name="challengeCertificationContents" class="form-control" rows="3"></textarea>
+            	</div>
+				<div class="mb-3">
                     <label for="customFile">챌린지 인증 첨부파일</label>
                     <div class="custom-file">
-                      <input type="file" multiple="multiple" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                      <input type="file" multiple="multiple" class="custom-file-input" name="challengeCertificationAttachedFile" id="challengeCertificationAttachedFile" placeholder="첨부할 파일을 선택하세요.">
+                      <label class="custom-file-label" for="customFile">첨부할 파일을 선택하세요.</label>
                     </div>
                   </div>
+			</form>
+			<div class="row">
+		        <div class="col-12" id="challengeCertificationInsertBtnGroup">
+		        <button type="button" id="challengeCertificationInsertBtn" class="btn btn-primary">인증 등록</button>
+				<button type="button" th:onclick="|location.href='@{challengeCertificationBoard}'|" class="btn btn-primary" id="btnList">목록 보기</button>
+		        </div>
+			</div>
+		</div>
+	</article>
+	</div>
+	</div>
+	</div>
+	</section>
 
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- ChallengeInsertCard1 End -->
-    <!-- ChallengeInsert Btn -->   
-	</div>
-      <div class="row">
-        <div class="col-12" id="insertBtn">
-          <a th:href="@{/mainChallenge}" class="btn btn-secondary">작성취소</a>
-          <a th:href="@{/myChallengeInfo}" class="btn btn-success" id="nextBtn">인증 등록</a>
-        </div>
-	</div>
-    <!-- ChallengeInsert Btn -->  
-    
-    </section>
 </th:block>
 
 
 <th:block layout:fragment="pageJavascript">
-
-
+<script>
+$('#challengeCertificationInsertBtn').click(function(){
+	var challengeCertificationInsertform = $('#challengeCertificationInsertform');
+	challengeCertificationInsertform.submit();
+	
+});
+</script>
 </th:block>
 </html>

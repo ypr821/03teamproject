@@ -13,22 +13,19 @@
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
 					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 개설 관리
-					</a>
-					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 관리
 					</a>
 					<a th:href="@{/adminChallengeParticipation}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeParticipation'}"> 챌린지 참여 관리
-					</a>
-					<a th:href="@{/adminChallengeCertification}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCertification'}"> 챌린지 인증 관리
 					</a>
 					<a th:href="@{/adminChallengeReport}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeReport'}"> 챌린지 신고 관리
 					</a>
 					<a th:href="@{/adminChallengeAchievement}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeAchievement'}"> 챌린지 달성율 관리
+					</a>
+					<a th:href="@{/adminChallengeRanking}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeRanking'}"> 챌린지 최종순위 리스트 관리
 					</a>
 					<a th:href="@{/adminChallengeCompensation}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCompensation'}"> 챌린지 보상지급 관리
@@ -44,7 +41,7 @@
 
 <th:block layout:fragment="container">
 
-<div class="card card-default">
+		<div class="card card-default">
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
 			        <div class="container-fluid">
@@ -57,7 +54,7 @@
                                  <div class="row">
 			                            <div class="col-3" data-select2-id="11">
 			                                <div class="form-group" data-select2-id="10">
-			                                    <label>상태</label>
+			                                    <label>진행상태</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
 			                                      	<option selected="selected">전체</option>
 			                                        <option>신고접수</option>
@@ -67,37 +64,47 @@
 			                                    </select>
 			                                </div>
 			                            </div>
-                                     
-                                     
                                      <div class="col-3">
                                          <div class="form-group">
-                                             <label>기간선택</label>
-                                             <select class="js-example-placeholder-single js-states form-control">
-                                                 <option selected="selected">전체</option>
-                                                 <option>지난 1일</option>
-                                                 <option>지난 1주</option>
-                                                 <option>지난 1개월</option>
-                                                 <option>지난 1년</option>
-                                    </select>
+                                             <label>신고 기간선택</label>
+                                             <input type="date" id="challengeStartDate" class="form-control" placeholder="신고 시작일을 선택해주세요.">
                                          </div>
                                      </div>
                                      <div class="col-3">
                                          <div class="form-group">
-                                             <label>정렬기준1 : 날짜</label>
+                                             <label>&emsp;</label>
+                                             <input type="date" id="challengeEndDate" class="form-control" placeholder="신고 종료일을 선택해주세요.">
+                                         </div>
+                                     </div>
+                                     <div class="col-3" data-select2-id="11">
+			                                <div class="form-group" data-select2-id="10">
+			                                    <label>&emsp;</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			                                        <option data-select2-id="16">지난 1일</option>
+			                                        <option data-select2-id="16">지난 1주</option>
+			                                        <option data-select2-id="16">지난 1개월</option>
+			                                        <option data-select2-id="16">지난 1년</option>
+			                                    </select>
+			                                </div>
+			                            </div>
+                                    <div class="col-6">
+                                         <div class="form-group">
+                                             <label>기간별 정렬기준</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>시작일 기준</option>
+			                                        <option>종료일 기준</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-6">
+                                         <div class="form-group">
+                                             <label>정렬기준</label>
                                              <select class="js-example-placeholder-single js-states form-control">
 			                                    	<option selected="selected">전체</option>
 			  										<option>최신순</option>
 			                                        <option>오래된순</option>
-											</select>
-                                         </div>
-                                     </div>
-                                     <div class="col-3">
-                                         <div class="form-group">
-                                             <label>정렬기준2 : 문자</label>
-                                             <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected">전체</option>
-			  										<option>오름차순</option>
-			                                        <option>내림차순</option>
 											</select>
                                          </div>
                                      </div>
@@ -109,9 +116,8 @@
                                             <div class="form-group">
 			                                    <label>검색옵션</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected" data-select2-id="8">전체</option>
+			                                    	<option selected="selected">전체</option>
 			  										<option>챌린지명</option>
-			  										<option>챌린지 카테고리</option>
 			  										<option>신고자 이메일</option>
 			  										<option>피신고자 이메일</option>
 			  										<option>신고사유</option>
@@ -160,10 +166,10 @@
 		                      	<th>챌린지명</th>
 								<th>신고자 이메일</th>
 								<th>피신고자 이메일</th>
-								<th>신고 인증글 링크</th>
+								<th>신고대상 인증글</th>
 								<th>신고사유</th>
 								<th>신고일자</th>
-								<th>상태</th>
+								<th>진행상태</th>
 								<th>신고정보</th>
 								<th>삭제</th>
 		                    </tr>
@@ -175,7 +181,7 @@
 		                    <td>깃허브 잔디심기</td>
 		                    <td>tae01@gmail.com</td>
 		                    <td>ryu01@naver.com</td>
-							<td>인증글 링크1</td>
+							<td>신고대상 인증글1</td>
 							<td>인증 내용 부실</td>
 							<td>2021년 4월 27일</td>
 							<td><span class="badge bg-warning">신고접수</span></td>
@@ -191,7 +197,7 @@
 		                    <td>깃허브 잔디심기</td>
 		                    <td>tae01@gmail.com</td>
 		                    <td>ryu01@naver.com</td>
-		                    <td>인증글 링크2</td>
+		                    <td>신고대상 인증글2</td>
 							<td>인증 내용 부실</td>
 							<td>2021년 4월 27일</td>
 							<td><span class="badge bg-primary">신고처리중</span></td>
@@ -207,7 +213,7 @@
 		                    <td>깃허브 잔디심기</td>
 		                    <td>tae01@gmail.com</td>
 		                    <td>ryu01@naver.com</td>
-		                    <td>인증글 링크3</td>
+		                    <td>신고대상 인증글3</td>
 							<td>인증 내용 부실</td>
 							<td>2021년 4월 27일</td>
 							<td><span class="badge bg-success">신고처리완료</span></td>
@@ -223,7 +229,7 @@
 		                    <td>깃허브 잔디심기</td>
 		                    <td>tae01@gmail.com</td>
 		                    <td>ryu01@naver.com</td>
-		                    <td>인증글 링크4</td>
+		                    <td>신고대상 인증글4</td>
 							<td>인증 내용 부실</td>
 							<td>2021년 4월 27일</td>
 							<td><span class="badge bg-danger">신고무효처리</span></td>
@@ -253,25 +259,28 @@
 		</div>
 		</div>
 		</div>		
-
-<!-- challenge Modal 영역 시작-->
-	<!-- 챌린지 신고정보 상세보기 Modal - challengeModalReportDetail -->
-	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalReportDetail :: challengeModalReportDetail"></th:block>
+		
+		
+		
+	<!-- challenge Modal 영역 시작-->
+	<!-- 챌린지 인증정보 상세보기 Modal - challengeModalInsertDetail -->
+	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalCertificationDetail :: challengeModalCertificationDetail"></th:block>
 	<!-- challenge Modal 영역 끝 -->
 
 </th:block>
 
 
+
 <th:block layout:fragment="pageJavascript">
 <script type="text/javascript" th:inline="javascript">
-	<!-- 챌린지 신고정보 상세보기 Modal - challengeModalReportDetail -->
+	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalCertificationDetail -->
 		
-		var challengeModalReportDetail = $('.challengeModalReportDetail');
+		var challengeModalCertificationDetail = $('.challengeModalCertificationDetail');
 		
 		/* Modal 영역 */
 		$(function(){
-			challengeModalReportDetail.click(function(){
-			$("#modal-ChallengeModalReportDetail").modal();
+			challengeModalCertificationDetail.click(function(){
+			$("#modal-ChallengeModalCertificationDetail").modal();
 		});
 				
 	});

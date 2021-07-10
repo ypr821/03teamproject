@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <!-- Admin 관련 Mapper -->
+  
+<mapper namespace="com.devcdper.challenge.dao.ChallengeMapper">
+	<resultMap type="Challenge" id="ChallengeResultMap">
+		<result property="challengeCode"					column="challenge_code"/>
+		<result property="challengeCategoryCode"			column="challenge_category_code"/>
+		<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
+		<result property="challengeName"					column="challenge_name"/>
+		<result property="challengeScope"					column="challenge_scope"/>
+		<result property="challengeParticipationPassword"	column="challenge_participation_password"/>
+		<result property="challengeTag"						column="challenge_tag"/>
+		<result property="challengeIntroduce"				column="challenge_introduce"/>
+		<result property="challengeMaximumPeople"			column="challenge_maximum_people"/>
+		<result property="challengeBetAmount"				column="challenge_bet_amount"/>
+		<result property="challengeCertificationMethod"		column="challenge_certification_method"/>
+		<result property="challengeCertificationContents"	column="challenge_certification_contents"/>
+		<result property="challengeCertificationFrequency"	column="challenge_certification_frequency"/>
+		<result property="challengeTotalTimes"				column="challenge_total_times"/>
+		<result property="challengeTimesPerDays"			column="challenge_times_per_days"/>
+		<result property="challengeTimesForCertification"	column="challenge_time_for_certification"/>
+		<result property="challengeStartDate"				column="challenge_start_date"/>
+		<result property="challengeEndDate"					column="challenge_end_date"/>
+		<result property="challengeRegisterDate"			column="challenge_register_date"/>
+		<association property="normalUser" javaType="normalUser">
+			<result property="userEmail" 				column="user_email"/>
+			<result property="userPassword" 			column="user_password"/>
+			<result property="userName" 				column="user_name"/>
+			<result property="userBirth" 				column="user_birth"/>
+			<result property="userAddr" 				column="user_addr"/>
+			<result property="userAddrDetail" 			column="user_addr_detail"/>
+			<result property="userGender" 				column="user_gender"/>
+			<result property="userMoblie" 				column="user_mobile"/>
+			<result property="userJob" 		 			column="user_job"/>
+			<result property="userIsReceiveMarketing" 	column="user_is_receive_marketing"/>
+			<result property="userJoinMotivation" 		column="user_join_motivation"/>
+			<result property="userJoinPath" 		 	column="user_join_path"/>
+			<result property="userRecommendEmail" 		column="user_recommend_email"/>
+			<result property="userJoinDate" 			column="user_join_date"/>
+			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
+		</association>
+		<association property="challengeCategory" javaType="challengeCategory">
+			<result property="challengeCategoryCode" 		column="challenge_category_code"></result>
+			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
+		</association>
+	</resultMap>
+	
+		<!-- 챌린지 개설하기 -->
+		<insert id="addChallenge" parameterType="Challenge">
+		INSERT INTO challenge
+		(			challenge_code
+				  , challenge_category_code
+				  , challenge_opener_email
+				  , challenge_name
+				  , challenge_scope
+				  , challenge_participation_password
+				  , challenge_tag
+				  , challenge_introduce
+				  , challenge_maximum_people
+				  , challenge_bet_amount
+				  , challenge_certification_method
+				  , challenge_certification_contents
+				  , challenge_certification_frequency
+				  , challenge_start_date
+				  , challenge_end_date
+				  , challenge_register_date
+		) VALUES (
+				sf_newChallengeCode()
+				, #{challengeCategoryCode}
+				, #{challengeOpenerEmail}
+				, #{challengeName}
+				, #{challengeScope}
+				, #{challengeParticipationPassword}
+				, #{challengeTag}
+				, #{challengeIntroduce}
+				, #{challengeMaximumPeople}
+				, #{challengeBetAmount}
+				, #{challengeCertificationMethod}
+				, #{challengeCertificationContents}
+				, #{challengeCertificationFrequency}
+				, #{challengeStartDate}
+				, #{challengeEndDate}
+				, CURDATE());
+		</insert>
+	
+	
+	<!-- 챌린지 탐색하기 : 전체 리스트 조회 -->
+	<select id="getChallengeExplorationList" resultMap="ChallengeResultMap">
+				SELECT 
+					challenge_name,
+					challenge_tag	
+				FROM 
+						challenge;
+	</select>
+	
+	<!-- 챌린지 탐색하기 : 카테고리별 리스트 조회 -->
+	<select id="getChallengeByCategoryExplorationList" parameterType="Map" resultMap="ChallengeResultMap">
+			SELECT 
+							
+						c.challenge_name,
+						c.challenge_tag
+				FROM 
+						challenge_category AS cc
+				INNER JOIN
+						challenge AS c
+				on
+				cc.challenge_category_code = c.challenge_category_code
+			WHERE
+				cc.challenge_category_code = #{challengeCategoryCode};
+	</select>
+	
+	
+	
+	
+	
+	<!-- 챌린지 탐색하기 : 상세정보 조회 -->
+	<!-- 챌린지 참여하기 : 상세정보 조회 -->
+	<select id="getChallengeExplorationDetailInfoByChallengeName"  parameterType="String" resultMap="ChallengeResultMap">
+				SELECT 
+					c.challenge_name, 
+					c.challenge_introduce, 
+					c.challenge_maximum_people, 
+					c.challenge_bet_amount, 
+					c.challenge_certification_method, 
+					c.challenge_certification_contents,
+					c.challenge_certification_frequency, 
+					c.challenge_start_date, 
+					c.challenge_end_date
+				FROM 
+					challenge AS c
+				WHERE
+					c.challenge_name = #{challengeName}
+	</select>
+	
+	<!-- 챌린지 인증 등록 페이지  -->
+	<select id="getChallengeCertificationInfoByChallengeName" parameterType="String" resultMap="ChallengeResultMap">
+			SELECT 
+					c.challenge_name, 
+					cc.challenge_category_name,
+					c.challenge_certification_method
+			FROM 
+					challenge AS c
+			INNER join
+					challenge_category AS cc
+			on
+				c.challenge_category_code = cc.challenge_category_code
+			WHERE
+				c.challenge_name = #{challengeName};
+	</select>
+	
+	<!-- 관리자 페이지 : 개설 챌린지 전체 행 조회 -->
+	<select id="getChallengeCount" resultType="int">
+			SELECT 
+				COUNT(1)
+			FROM 
+				challenge;
+	</select>
+	
+	<!-- 관리자 페이지 : 개설 챌린지 전체 조회 -->
+	<select id="getChallengeList" resultMap="ChallengeResultMap" parameterType="Map">
+				SELECT 
+					c.challenge_name, 
+					cc.challenge_category_name,
+					u.user_email,
+					c.challenge_start_date, 
+					c.challenge_end_date, 
+					c.challenge_register_date
+			FROM 
+					challenge AS c
+			INNER JOIN
+					user AS u
+			on
+				c.challenge_opener_email = u.user_email
+			INNER JOIN
+					challenge_category AS cc
+			on
+				c.challenge_category_code = cc.challenge_category_code
+			LIMIT #{rowStart}, #{rowPerPage};		
+	</select>
+	
+	
+	
+	<!-- User 관련 Mapper -->
+	<!-- ChallengeParticipation 관련 -->
+	
+	<resultMap type="ChallengeParticipation" id="ChallengeParticipationResultMap">
+		<result property="challengeParticipantCode"			column="challenge_participation_code"/>
+		<result property="challengeCategoryCode"			column="challenge_category_code"/>
+		<result property="challengeCode"					column="challenge_code"/>
+		<result property="challengeParticipationEmail"		column="challenge_participation_email"/>
+		<result property="challengeScope"					column="plan_detail_code"/>
+		<result property="allPaymentConnectGroupCode"		column="all_payment_connect_group_code"/>
+		<result property="challengeParticipationDate"		column="challenge_participation_date"/>
+		<result property="challengeServiceStartDate"		column="challenge_service_start_date"/>
+		<result property="challengeServiceEndDate"			column="challenge_service_end_date"/>
+		<association property="normalUser" javaType="normalUser">
+			<result property="userEmail" 				column="user_email"/>
+			<result property="userPassword" 			column="user_password"/>
+			<result property="userName" 				column="user_name"/>
+			<result property="userBirth" 				column="user_birth"/>
+			<result property="userAddr" 				column="user_addr"/>
+			<result property="userAddrDetail" 			column="user_addr_detail"/>
+			<result property="userGender" 				column="user_gender"/>
+			<result property="userMoblie" 				column="user_mobile"/>
+			<result property="userJob" 		 			column="user_job"/>
+			<result property="userIsReceiveMarketing" 	column="user_is_receive_marketing"/>
+			<result property="userJoinMotivation" 		column="user_join_motivation"/>
+			<result property="userJoinPath" 		 	column="user_join_path"/>
+			<result property="userRecommendEmail" 		column="user_recommend_email"/>
+			<result property="userJoinDate" 			column="user_join_date"/>
+			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
+		</association>
+		<association property="challengeCategory" javaType="challengeCategory">
+			<result property="challengeCategoryCode" 		column="challenge_category_code"></result>
+			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
+		</association>
+		<association property="challenge" javaType="Challenge">
+			<result property="challengeCode"					column="challenge_code"/>
+			<result property="challengeCategoryCode"			column="challenge_category_code"/>
+			<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
+			<result property="challengeName"					column="challenge_name"/>
+			<result property="challengeScope"					column="challenge_scope"/>
+			<result property="challengeParticipationPassword"	column="challenge_participation_password"/>
+			<result property="challengeTag"						column="challenge_tag"/>
+			<result property="challengeMaximumPeople"			column="challenge_maximum_people"/>
+			<result property="challengeBetAmount"				column="challenge_bet_amount"/>
+			<result property="challengeCertificationMethod"		column="challenge_certification_method"/>
+			<result property="challengeCertificationContents"	column="challenge_certification_contents"/>
+			<result property="challengeCertificationFrequency"	column="challenge_certification_frequency"/>
+			<result property="challengeTotalTimes"				column="challenge_total_times"/>
+			<result property="challengeTimesPerDays"			column="challenge_times_per_days"/>
+			<result property="challengeTimesForCertification"	column="challenge_time_for_certification"/>
+			<result property="challengeStartDate"				column="challenge_start_date"/>
+			<result property="challengeEndDate"					column="challenge_end_date"/>
+			<result property="challengeRegisterDate"			column="challenge_register_date"/>
+		</association>
+	</resultMap>
+	
+	
+	<!-- 관리자 페이지 : 참여 챌린지 전체 행 조회 -->
+	<select id="getChallengeParticipationCount" resultType="int">
+			SELECT 
+				COUNT(1)
+			FROM 
+				challenge_participation;
+	</select>
+	
+	<!-- 관리자 페이지 : 챌린지 참여 전체 조회 -->
+	<select id="getChallengeParticipationList" resultMap="ChallengeParticipationResultMap" parameterType="Map">
+				SELECT 
+						c.challenge_name,
+						u.user_email,
+						c.challenge_opener_email,
+						c.challenge_bet_amount,
+						challenge_participation_date, 
+						challenge_service_start_date, 
+						challenge_service_end_date
+						
+				FROM 
+						challenge_participation AS cp
+				INNER JOIN
+						challenge AS c
+				ON
+						cp.challenge_code = c.challenge_code
+					
+				INNER JOIN
+						user AS u
+				ON
+						cp.challenge_participation_email = u.user_email
+				LIMIT #{rowStart}, #{rowPerPage};		
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- ChallengeCertification 관련 -->
+	<resultMap type="ChallengeCertification" id="ChallengeCertificationResultMap">
+		<result property="challengeCertificationCode"			column="challenge_certification_code"/>
+		<result property="challengeCategoryCode"				column="challenge_category_code"/>
+		<result property="challengeCode"						column="challenge_code"/>
+		<result property="challengeParticipationCode"			column="challenge_participation_code"/>
+		<result property="challengeParticipationEmail"			column="challenge_participation_email"/>
+		<result property="challengeCertificationTitle"			column="challenge_certification_title"/>
+		<result property="challengeCertificationMethod"			column="challenge_certification_method"/>
+		<result property="challengeCertificationContents"		column="challenge_certification_contents"/>
+		<result property="challengeCertificationAttachedFile"	column="challenge_certification_attached_file"/>
+		<result property="challengeCertificationStatus"			column="challenge_certification_status"/>
+		<result property="challengeCertificationDate"			column="challenge_certification_date"/>
+		<association property="normalUser" 				javaType="normalUser">
+			<result property="userEmail" 				column="user_email"/>
+			<result property="userPassword" 			column="user_password"/>
+			<result property="userName" 				column="user_name"/>
+			<result property="userBirth" 				column="user_birth"/>
+			<result property="userAddr" 				column="user_addr"/>
+			<result property="userAddrDetail" 			column="user_addr_detail"/>
+			<result property="userGender" 				column="user_gender"/>
+			<result property="userMoblie" 				column="user_mobile"/>
+			<result property="userJob" 		 			column="user_job"/>
+			<result property="userIsReceiveMarketing" 	column="user_is_receive_marketing"/>
+			<result property="userJoinMotivation" 		column="user_join_motivation"/>
+			<result property="userJoinPath" 		 	column="user_join_path"/>
+			<result property="userRecommendEmail" 		column="user_recommend_email"/>
+			<result property="userJoinDate" 			column="user_join_date"/>
+			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
+		</association>
+		<association property="challengeCategory" 		javaType="challengeCategory">
+			<result property="challengeCategoryCode" 	column="challenge_category_code"></result>
+			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
+		</association>
+		<association property="challenge" javaType="challenge">
+			<result property="challengeCode"					column="challenge_code"/>
+			<result property="challengeCategoryCode"			column="challenge_category_code"/>
+			<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
+			<result property="challengeName"					column="challenge_name"/>
+			<result property="challengeScope"					column="challenge_scope"/>
+			<result property="challengeParticipationPassword"	column="challenge_participation_password"/>
+			<result property="challengeTag"						column="challenge_tag"/>
+			<result property="challengeMaximumPeople"			column="challenge_maximum_people"/>
+			<result property="challengeBetAmount"				column="challenge_bet_amount"/>
+			<result property="challengeCertificationMethod"		column="challenge_certification_method"/>
+			<result property="challengeCertificationContents"	column="challenge_certification_contents"/>
+			<result property="challengeCertificationFrequency"	column="challenge_certification_frequency"/>
+			<result property="challengeTotalTimes"				column="challenge_total_times"/>
+			<result property="challengeTimesPerDays"			column="challenge_times_per_days"/>
+			<result property="challengeTimesForCertification"	column="challenge_time_for_certification"/>
+			<result property="challengeStartDate"				column="challenge_start_date"/>
+			<result property="challengeEndDate"					column="challenge_end_date"/>
+			<result property="challengeRegisterDate"			column="challenge_register_date"/>
+		</association>
+		<association property="challengeParticipation" 		javaType="challengeParticipation">
+			<result property="challengeParticipantCode"			column="challenge_participation_code"/>
+			<result property="challengeCategoryCode"			column="challenge_category_code"/>
+			<result property="challengeCode"					column="challenge_code"/>
+			<result property="challengeParticipationEmail"		column="challenge_participation_email"/>
+			<result property="challengeScope"					column="plan_detail_code"/>
+			<result property="allPaymentConnectGroupCode"		column="all_payment_connect_group_code"/>
+			<result property="challengeParticipationDate"		column="challenge_participation_date"/>
+			<result property="challengeServiceStartDate"		column="challenge_service_start_date"/>
+			<result property="challengeServiceEndDate"			column="challenge_service_end_date"/>
+		</association>
+	</resultMap>
+	
+	
+	
+	
+	<!-- 챌린지 인증하기 -->
+	<insert id="addChallengeCertification" parameterType="ChallengeCertification">
+	INSERT INTO challenge_certification
+	(
+		challenge_certification_code
+		, challenge_category_code
+		, challenge_code
+		, challenge_participation_code
+		, challenge_participation_email
+		, challenge_certification_title
+		, challenge_certification_method
+		, challenge_certification_contents
+		, challenge_certification_attached_file
+		, challenge_certification_status
+		, challenge_certification_date
+
+		) VALUES (
+		
+		sf_newChallengeCertificationCode()
+		, #{challengeCategoryCode}
+		, #{challengeCode}
+		, #{challengeParticipationCode}
+		, #{challengeParticipationEmail}
+		, #{challengeCertificationTitle}
+		, #{challengeCertificationMethod}
+		, #{challengeCertificationContents}
+		, #{challengeCertificationAttachedFile}
+		, #{challengeCertificationStatus}
+		, CURDATE());
+	</insert>
+	
+	<!-- 챌린지 인증하기 : 인증가능한 챌린지 목록 조회 -->
+	<select id="getVerifiableChallengeList" resultMap="ChallengeCertificationResultMap">
+					SELECT 
+						DISTINCT 
+						c.challenge_code,
+						cp.challenge_participation_email,
+						c.challenge_name,
+						cate.challenge_category_name,
+						c.challenge_scope,
+						c.challenge_tag,
+						c.challenge_maximum_people,
+						c.challenge_certification_method,
+						c.challenge_start_date,
+						c.challenge_end_date
+					FROM 
+						challenge_participation AS cp
+					INNER JOIN
+						challenge AS c
+					ON
+						cp.challenge_code = c.challenge_code
+					INNER JOIN
+						challenge_category cate
+					ON
+						c.challenge_category_code = cate.challenge_category_code
+					INNER JOIN
+						user AS u
+					ON
+						cp.challenge_participation_email = u.user_email
+					WHERE
+						cp.challenge_participation_email = 'kang01@naver.com';
+															<!-- 이메일 세션값 가져오기  -->
+	</select>
+	
+	
+	
+	
+	<!-- ChallengeCategory 관련 -->
+	<resultMap type="ChallengeCategory" id="ChallengeCategoryResultMap">
+		<result property="challengeCategoryCode" 	column="challenge_category_code"></result>
+		<result property="challengeCategoryName" 	column="challenge_category_name"></result>
+	</resultMap>
+	
+	
+
+	
+	
+	<!-- ChallengeAchievementRate 관련 -->
+	<resultMap type="ChallengeAchievementRate" id="ChallengeAchievementRateResultMap">
+		<result property="challengeAchievementRateCode"			column="challenge_achievement_rate_code"/>
+		<result property="challengeCategoryCode"				column="challenge_category_code"/>
+		<result property="challengeCode"						column="challenge_code"/>
+		<result property="challengeParticipationCode"			column="challenge_participation_code"/>
+		<result property="challengeParticipationEmail"			column="challenge_participation_email"/>
+		<result property="challengeAchievementRateSuccesCount"			column="challenge_achievement_rate_succes_count"/>
+		<result property="challengeAchievementRateTotalTimes"			column="challenge_achievement_rate_total_times"/>
+		<result property="challengeAchievementRateUpdateDate"		column="challenge_achievement_rate_update_date"/>
+		<association property="normalUser" 				javaType="normalUser">
+			<result property="userEmail" 				column="user_email"/>
+			<result property="userPassword" 			column="user_password"/>
+			<result property="userName" 				column="user_name"/>
+			<result property="userBirth" 				column="user_birth"/>
+			<result property="userAddr" 				column="user_addr"/>
+			<result property="userAddrDetail" 			column="user_addr_detail"/>
+			<result property="userGender" 				column="user_gender"/>
+			<result property="userMoblie" 				column="user_mobile"/>
+			<result property="userJob" 		 			column="user_job"/>
+			<result property="userIsReceiveMarketing" 	column="user_is_receive_marketing"/>
+			<result property="userJoinMotivation" 		column="user_join_motivation"/>
+			<result property="userJoinPath" 		 	column="user_join_path"/>
+			<result property="userRecommendEmail" 		column="user_recommend_email"/>
+			<result property="userJoinDate" 			column="user_join_date"/>
+			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
+		</association>
+		<association property="challengeCategory" 		javaType="challengeCategory">
+			<result property="challengeCategoryCode" 	column="challenge_category_code"></result>
+			<result property="challengeCategoryName" 	column="challenge_category_name"></result>
+		</association>
+		<association property="challenge" javaType="challenge">
+			<result property="challengeCode"					column="challenge_code"/>
+			<result property="challengeCategoryCode"			column="challenge_category_code"/>
+			<result property="challengeOpenerEmail"				column="challenge_opener_email"/>
+			<result property="challengeName"					column="challenge_name"/>
+			<result property="challengeScope"					column="challenge_scope"/>
+			<result property="challengeParticipationPassword"	column="challenge_participation_password"/>
+			<result property="challengeTag"						column="challenge_tag"/>
+			<result property="challengeMaximumPeople"			column="challenge_maximum_people"/>
+			<result property="challengeBetAmount"				column="challenge_bet_amount"/>
+			<result property="challengeCertificationMethod"		column="challenge_certification_method"/>
+			<result property="challengeCertificationContents"	column="challenge_certification_contents"/>
+			<result property="challengeCertificationFrequency"	column="challenge_certification_frequency"/>
+			<result property="challengeTotalTimes"				column="challenge_total_times"/>
+			<result property="challengeTimesPerDays"			column="challenge_times_per_days"/>
+			<result property="challengeTimesForCertification"	column="challenge_time_for_certification"/>
+			<result property="challengeStartDate"				column="challenge_start_date"/>
+			<result property="challengeEndDate"					column="challenge_end_date"/>
+			<result property="challengeRegisterDate"			column="challenge_register_date"/>
+		</association>
+		<association property="challengeParticipation" 		javaType="challengeParticipation">
+			<result property="challengeParticipantCode"			column="challenge_participation_code"/>
+			<result property="challengeCategoryCode"			column="challenge_category_code"/>
+			<result property="challengeCode"					column="challenge_code"/>
+			<result property="challengeParticipationEmail"		column="challenge_participation_email"/>
+			<result property="challengeScope"					column="plan_detail_code"/>
+			<result property="allPaymentConnectGroupCode"		column="all_payment_connect_group_code"/>
+			<result property="challengeParticipationDate"		column="challenge_participation_date"/>
+			<result property="challengeServiceStartDate"		column="challenge_service_start_date"/>
+			<result property="challengeServiceEndDate"			column="challenge_service_end_date"/>
+		</association>
+	</resultMap>
+	
+	<select id="getChallengeAchievementRateList" resultMap="ChallengeAchievementRateResultMap">
+			SELECT 
+				c.challenge_name,
+				u.user_email,
+				cr.challenge_achievement_rate_succes_count,
+				cr.challenge_achievement_rate_total_times,
+				TRUNCATE((cr.challenge_achievement_rate_succes_count/cr.challenge_achievement_rate_total_times*100),0) AS challenge_achievement_finally_rate,
+				cr.challenge_achievement_rate_update_date
+			FROM 
+				challenge_achievement_rate AS cr
+			INNER JOIN
+				challenge AS c
+			on
+			cr.challenge_code = c.challenge_code
+			INNER JOIN
+				user AS u
+			ON
+			cr.challenge_participation_email = u.user_email;
+	
+	</select>
+	
+	<select id="getChallengeAchievementRateCount" resultType="int">
+	SELECT 
+		COUNT(1)
+	FROM 
+		challenge_achievement_rate
+	</select>
+	
+</mapper>

@@ -2,26 +2,29 @@ package com.devcdper.challenge.domain;
 
 public class ChallengeCategory {
 
-	private String ChallengeCategoryCode;
-	private String ChallengeCategoryName;
+	private String challengeCategoryCode;
+	private String challengeCategoryName;
 	
 	
 	public String getChallengeCategoryCode() {
-		return ChallengeCategoryCode;
+		return challengeCategoryCode;
 	}
 	public void setChallengeCategoryCode(String challengeCategoryCode) {
-		ChallengeCategoryCode = challengeCategoryCode;
+		this.challengeCategoryCode = challengeCategoryCode;
 	}
 	public String getChallengeCategoryName() {
-		return ChallengeCategoryName;
+		return challengeCategoryName;
 	}
 	public void setChallengeCategoryName(String challengeCategoryName) {
-		ChallengeCategoryName = challengeCategoryName;
+		this.challengeCategoryName = challengeCategoryName;
 	}
+	
 	@Override
 	public String toString() {
-		return "ChallengeCategory [ChallengeCategoryCode=" + ChallengeCategoryCode + ", ChallengeCategoryName="
-				+ ChallengeCategoryName + "]";
+		return "ChallengeCategory [challengeCategoryCode=" + challengeCategoryCode + ", challengeCategoryName="
+				+ challengeCategoryName + "]";
 	}
-
+	
+	
+	
 }
