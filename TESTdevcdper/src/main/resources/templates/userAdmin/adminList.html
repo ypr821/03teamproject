@@ -141,7 +141,7 @@
 								<td th:text="${l.adminLevel}"></td>
 								<td th:text="${l.adminMobile}"></td>
 								<td th:text="${l.adminJoinDate}"></td>
-								<td><a th:href="@{/#}">수정</a></td>
+								<td><a th:href="@{/modifyAdmin(adminEmail=${l.adminEmail})}">수정</a>
 								<td><a th:href="@{/#}">삭제</a></td>
 							</tr>
 

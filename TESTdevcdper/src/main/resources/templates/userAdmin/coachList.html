@@ -151,8 +151,8 @@
 								<th>전화번호</th>
 								<th>권한</th>
 								<th>직업</th>
-								<th>경력사항</th>
 								<th>기술스택</th>
+								<th>경력사항</th>
 								<th>자격증</th>
 								<th>경력증빙서류</th>
 								<th>자격증빙서류</th>
@@ -180,8 +180,8 @@
 								<td th:text="${l.coachMobile}"></td>
 								<td th:text="${l.coachAuthority}"></td>
 								<td th:text="${l.coachJob}"></td>
-								<td th:text="${l.coachProfileCareer}"></td>
 								<td th:text="${l.coachProfileTechStack}"></td>
+								<td th:text="${l.coachProfileCareer}"></td>
 								<td th:text="${l.coachCertificate}"></td>
 								<td th:text="${l.coachCareerDocumentaryEvidence}"></td>
 								<td th:text="${l.coachCertificateDocumentaryEvidence}"></td>
@@ -193,8 +193,7 @@
 								<td th:text="${l.coachRecommendEmail}"></td>
 								<td th:text="${l.coachJoinDate}"></td>
 								<td th:text="${l.coachWithdrawStatus}"></td>
-								<td><a
-									th:href="@{/modifyCoach(coachUserEmail=${l.coachEmail})}">수정</a>
+								<td><a th:href="@{/modifyCoach(coachEmail=${l.coachEmail})}">수정</a>
 								</td>
 								<td><a th:href="@{/#}">삭제</a></td>
 							</tr>

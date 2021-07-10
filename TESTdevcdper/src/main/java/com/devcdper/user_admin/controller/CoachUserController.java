@@ -64,8 +64,8 @@ public class CoachUserController {
 			System.out.println(resultMap);
 			
 			if(loginCheck) {
-				session.setAttribute("NEMAIL",	coachLogin.getCoachEmail());
-				session.setAttribute("CNAME", 	coachLogin.getCoachName());
+				session.setAttribute("UEMAIL",	coachLogin.getCoachEmail());
+				session.setAttribute("UNAME", 	coachLogin.getCoachName());
 				session.setAttribute("ULEVEL", 	"코치회원");
 				session.setAttribute("CLEVEL", 	coachLogin.getCoachAuthority());
 				return "redirect:/";
@@ -104,7 +104,7 @@ public class CoachUserController {
 		log.info("화면에서 입력받은 값 coachUser : {}", coachUser);
 		coachUserService.addCoachUser(coachUser);
 		
-		return "redirect:/coachList";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/addCoach")

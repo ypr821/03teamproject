@@ -23,7 +23,7 @@
 		<div class="container-fluid">
 			<section class="content">
 				<div class="row">
-					<!-- ChallengeInsertCard1 Start -->
+					<!-- addNormal Start -->
 					<div class="col-md">
 						<div class="card card-default" id="addNormalForm">
 							<div class="card-body">
@@ -31,21 +31,23 @@
 									<div class="card card-outline card-primary">
 										<div class="card-header text-center">
 											<b><font style="vertical-align: inherit;">
-													<font style="vertical-align: inherit;"><h2>회원가입</h2></font>
+													<font style="vertical-align: inherit;"><h2>일반회원 가입</h2></font>
 												</font>
 											</b>
 										</div>
 										<div class="card-body">
 											<form id="addNormalForm" th:action="@{/addNormal}" method="post">
+												<div>회원이메일</div>
 												<div class="input-group mb-3">
 													<input type="email" class="form-control" name="userEmail"
 														placeholder="회원이메일을 입력해주세요.">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-user"></span>
-														</div>
-													</div>
+													<button type="button" class="btn btn-primary " id="idCheckBtn" >
+														<font style="vertical-align: inherit;"> 
+															<font style="vertical-align: inherit;">이메일 중복체크</font>
+														</font>
+													</button>
 												</div>
+												<div>패스워드</div>
 												<div class="input-group mb-3">
 													<input type="password" class="form-control"
 														name="userPassword" placeholder="비밀번호를 입력해주세요.">
@@ -55,6 +57,7 @@
 														</div>
 													</div>
 												</div>
+												<div>이름</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userName"
 														placeholder="회원이름을 입력해주세요.">
@@ -64,6 +67,7 @@
 														</div>
 													</div>
 												</div>
+												<div>생년월일</div>
 												<div class="input-group mb-3">
 													<input type="date" class="form-control" name="userBirth"
 														value="xxx" min="yyy" max="zzz">
@@ -73,6 +77,7 @@
 														</div>
 													</div>
 												</div>
+												<div>주소</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userAddr" placeholder="주소를 입력해주세요.">
 													<div class="input-group-append">
@@ -81,6 +86,7 @@
 														</div>
 													</div>
 												</div>
+												<div>상세주소</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userAddrDetail" placeholder="상세주소를 입력해주세요.">
 													<div class="input-group-append">
@@ -98,8 +104,24 @@
 														<input type="radio" name="userGender" value="여">여자
 													</label>
 												</div>
+												<div>연락처</div>
 												<div class="input-group mb-3">
-													<input class="form-control" type="tel" name="userMoblie" size="5" /> - 
+													<select name="userMoblie" style="width: 7%;" class="form-control">
+														<option value="">선택</option>
+
+														<option value="010">010</option>
+
+														<option value="011">011</option>
+
+														<option value="016">016</option>
+
+														<option value="017">017</option>
+
+														<option value="018">018</option>
+
+														<option value="019">019</option>
+
+													</select>-
 					 							    <input class="form-control" type="tel" name="userMoblie" size="5" /> -
 												    <input class="form-control" type="tel" name="userMoblie" size="5" />
 													<div class="input-group-append">
@@ -108,6 +130,7 @@
 														</div>
 													</div>
 												</div>
+												<div>직업</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userJob" placeholder="회원직업 입력해주세요.">
 													<div class="input-group-append">
@@ -116,6 +139,9 @@
 														</div>
 													</div>
 												</div>
+												
+												
+												<div>가입동기</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userJoinMotivation" placeholder="가입동기를 입력해주세요.">
 													<div class="input-group-append">
@@ -124,14 +150,22 @@
 														</div>
 													</div>
 												</div>
+												
+												<div>가입경로</div>
 												<div class="input-group mb-3">
-													<input type="text" class="form-control" name="userJoinPath" placeholder="가입경로를 입력해주세요.">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-lock"></span>
-														</div>
+													<select class="form-control" name="userJoinPath">
+														<option value="">::가입경로::</option>
+														<option value="인터넷 검색">인터넷 검색</option>
+														<option value="블로그 /카페">블로그 /카페</option>
+														<option value="SNS 광고">SNS 광고</option>
+														<option value="지인 추천">지인 추천</option>
+														<option value="기타 다른경로">기타 다른경로</option>
+													</select>
+													<div class="input-group-text">
+														<ion-icon name="chatbubble-ellipses-outline"></ion-icon>
 													</div>
 												</div>
+												<div>추천인 이메일</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userRecommendEmail" placeholder="추천인 이메일을 입력해주세요.">
 													<div class="input-group-append">

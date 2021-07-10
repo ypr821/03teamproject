@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/default}">
+	  layout:decorate="@{layout/addDefault}">
 	  
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">main title</title>
@@ -17,142 +17,240 @@
 </th:block>
 
 <th:block layout:fragment="container">
-	<div class="col-sm-12">
-		<div class="card-body table-responsive p-0">
-			<form id="modifyNormalForm" th:action="@{/modifyCoach}" method="post">
-			     <table id="example2" class="table table-bordered table-hover">
-					<tr>
-						<td>비밀번호</td>
-						<td>
-							<input type="text" name="coachPassword" th:value="${coachUser.coachPassword}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>
-							<input type="text" name="coachName"th:value="${coachUser.coachName}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>생년월일</td>
-						<td>
-							<input type="date" name="coachBirth" th:value="${coachUser.coachBirth}">
-						</td>			
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>
-							<input type="text" name="coachAddr" th:value="${coachUser.coachAddr}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>상세주소</td>
-						<td>
-							<input type="text" name="coachAddrDetail" th:value="${coachUser.coachAddrDetail}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>성별</td>
-						<td>
-							<label>
-								 <input type="radio" name="coachGender" value="남" th:checked ="${coachUser.coachGender}">남 
-							</label>
-							<label>
-	                  			 <input type="radio" name="coachGender" value="여" th:checked ="${coachUser.coachGender}">여
-							</label>
-						</td>			
-					</tr>
-					<tr>
-						<td>연락처</td>
-						<td>
-							 <select name="coachMobile" th:selected="${coachUser.coachMobile}">
-                                <option value="">선택</option>
-                                
-                                    <option value="010">010</option>
-                                
-                                    <option value="011">011</option>
-                                
-                                    <option value="016">016</option>
-                                
-                                    <option value="017">017</option>
-                                
-                                    <option value="018">018</option>
-                                
-                                    <option value="019">019</option>
-                                
-                            </select>-
-						     <input type="tel" name="coachMobile" size="5" th:value="${coachUser.coachMobile}"/> - 
-						     <input type="tel" name="coachMobile" size="5" th:value="${coachUser.coachMobile}"/><br />
-						</td>			
-					</tr>
-					<tr>
-						<td>코치권한</td>
-						<td>
-							<select name="coachAuthority" th:selected="${coachUser.coachAuthority}">
-                                <option value="">선택</option>
-                                
-                                    <option value="컨설턴트">컨설턴트</option>
-                                
-                                    <option value="멘토">멘토</option>
-                             </select>       
-						</td>			
-					</tr>
-					<tr>
-						<td>코치직업</td>
-						<td>
-							<input type="text" name="coachJob"  th:value="${coachUser.coachJob}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>코치경력사항</td>
-						<td>
-							<input type="text" name="coachProfileCareer" th:value="${coachUser.coachProfileCareer}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>코치경력사항</td>
-						<td>
-							<input type="text" name="coachProfileTechStack" th:value="${coachUser.coachProfileTechStack}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>자격증</td>
-						<td>
-							<input type="text" name="coachCertificate" th:value="${coachUser.coachCertificate}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>경력인증</td>
-						<td>
-							<input type="file" name="coachCareerDocumentaryEvidence" th:value="${coachUser.coachCareerDocumentaryEvidence}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>자격증인증</td>
-						<td>
-							<input type="file" name="coachCertificateDocumentaryEvidence" th:value="${coachUser.coachCertificateDocumentaryEvidence}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>수신동의여부</td>
-						<td>
-						<label>
-							<input type="radio" name="coachIsReceiveMarketing" value="Y" th:checked ="${coachUser.coachIsReceiveMarketing}">Yes 
-						</label>
-						<label>
-                  			<input type="radio" name="coachIsReceiveMarketing" value="N" th:checked ="${coachUser.coachIsReceiveMarketing}">NO
-						</label>
-						</td>			
-					</tr>
-					<tr>
-						<td colspan="2" style="text-align: center;">
-							<button type="submit">코치정보 수정</button>
-						</td>			
-					</tr>
-			    </table>
-		   </form>
+<div class="content">
+		<!-- /.container-fluid -->
+		<div class="container-fluid">
+			<section class="content">
+				<div class="row">
+					<!-- ChallengeInsertCard1 Start -->
+					<div class="col-md">
+						<div class="card card-default" id="addNormalForm">
+							<div class="card-body">
+								<div class="register-box">
+								
+									<div class="card card-outline card-primary">
+									
+										<div class="card-header text-center">
+											<b> <font style="vertical-align: inherit;"> 
+											<font style="vertical-align: inherit;">
+														<h2>코치회원 수정</h2>
+												</font>
+											</font>
+											</b>
+										</div>
+										
+										<div class="card-body">
+											<form id="addForm" th:action="@{/modifyCoach}" method="post">
+												<div>회원일메일</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachUser"  class="form-control" th:value="${coachUser.coachEmail}" readonly="readonly"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-user"></span>
+														</div>
+													</div>
+												</div>
+												<div>패스워드</div>
+												<div class="input-group mb-3">
+													<input type="password" name="coachPassword" class="form-control" th:value="${coachUser.coachPassword}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>이름</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachName" class="form-control" th:value="${coachUser.coachName}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>생년월일</div>
+												<div class="input-group mb-3">
+													<input type="date" name="coachBirth" class="form-control" th:value="${coachUser.coachBirth}">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>주소</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachAddr" class="form-control" th:value="${coachUser.coachAddr}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div>상세주소</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachAddrDetail" class="form-control" th:value="${coachUser.coachAddrDetail}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div class="input-group mb-3">
+												성별 : &emsp;
+													<label> 
+														 <input type="radio" name="coachGender" value="남" th:checked ="${coachUser.coachGender}">남자	
+													</label> &emsp;&emsp;
+													<label> 
+														<input type="radio" name="coachGender" value="여" th:checked ="${coachUser.coachGender}">여자
+													</label>
+												</div>
+												
+												<div>연락처</div>
+												<div class="input-group mb-3">
+													<select name="coachMobile" class="form-control" th:selected="${coachUser.coachMobile}">
+						                                <option value="">선택</option>
+						                                
+						                                    <option value="010">010</option>
+						                                
+						                                    <option value="011">011</option>
+						                                
+						                                    <option value="016">016</option>
+						                                
+						                                    <option value="017">017</option>
+						                                
+						                                    <option value="018">018</option>
+						                                
+						                                    <option value="019">019</option>
+						                                
+						                            </select>-
+												     <input type="tel" name="coachMobile" class="form-control" size="5" th:value="${coachUser.coachMobile}"  /> - 
+												     <input type="tel" name="coachMobile" class="form-control" size="5" th:value="${coachUser.coachMobile}"  /><br />
+												     
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+													
+													
+												<div>권한</div>
+												<div class="input-group mb-3">
+													<select  name="coachAuthority" class="form-control" th:selected="${coachUser.coachAuthority}">
+														<option value="">::코치권한::</option>
+														<option value="컨설턴트">컨설턴트</option>
+														<option value="멘토">멘토</option>
+													</select>
+													<div class="input-group-text">
+														<ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+													</div>
+												</div>
+												
+												<div>직업</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachJob" class="form-control" th:value="${coachUser.coachJob}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+
+												<div>기술스택</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachProfileTechStack" class="form-control" th:value="${coachUser.coachProfileTechStack}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div>경력사항</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachProfileCareer" class="form-control" th:value="${coachUser.coachProfileCareer}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												
+												<div>자격증</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachCertificate" class="form-control" th:value="${coachUser.coachCertificate}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div>경력인증 서류</div>
+												<div class="input-group mb-3">
+													<input type="file" multiple name="coachCareerDocumentaryEvidence" class="form-control" th:value="${coachUser.coachCareerDocumentaryEvidence}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div>자격증인증 서류</div>
+												<div class="input-group mb-3">
+													<input type="file" name="coachCertificateDocumentaryEvidence" class="form-control" th:value="${coachUser.coachCertificateDocumentaryEvidence}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+													
+												<div class="row">
+													<div class="col-8">
+														<div class="icheck-primary">
+															<label for="userIsReceiveMarketing">
+																<input type="checkbox" name="userIsReceiveMarketing" value="Y" checked ="checked"> 
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">수신 동의 여부 </font>
+																</font>
+															</label>
+														</div>
+													</div>
+													<!-- /.col -->
+													<div class="col-4 butt">
+														<button type="submit" class="btn btn-primary btn-block" id="addUserBtn">
+															<font style="vertical-align: inherit;"> <font
+																style="vertical-align: inherit;">회원정보 수정</font>
+															</font>
+														</button>
+													</div>
+													<!-- /.col -->
+												</div>
+												</div>
+											</form>
+										</div>
+										<!-- /.form-box -->
+									</div>
+									<!-- /.card -->
+								</div>
+
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+
+			</section>
+
+
+
 		</div>
-	</div>	    
+		<!-- /.container-fluid -->
+	</div>
+	
 </th:block>
 
 <th:block layout:fragment="pageJavascript">

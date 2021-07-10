@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.devcdper.user_admin.dao.AdminUserMapper">
+
 	<resultMap type="AdminUser" id="AdminUserResultMap">
 		<result property="adminEmail"				column="admin_email"/>
 		<result property="adminPassword"			column="admin_password"/>
@@ -11,6 +12,50 @@
 		<result property="adminMobile"				column="admin_mobile"/>
 		<result property="adminJoinDate"			column="admin_join_date"/>
 	</resultMap>
+	
+	<update id="modifyAdminUser" parameterType="AdminUser">
+		UPDATE
+			admin
+		SET
+			admin_email = #{adminEmail}
+			,admin_password=#{adminPassword}
+			,admin_name=#{adminName}
+			,admin_level=#{adminLevel}
+			,admin_mobile=#{adminMobile}
+		WHERE 
+			admin_email=#{adminEmail};
+	</update>
+	
+	<select id="getAdminInfoById" parameterType="String" resultMap="AdminUserResultMap">
+			SELECT 
+			admin_email
+			, admin_password
+			, admin_name
+			, admin_level
+			, admin_mobile
+			, admin_join_date
+		FROM 
+			admin 
+		WHERE 
+			admin_email = #{adminEmail};
+	</select>
+	
+	<insert id="addAdminUser" parameterType="AdminUser">
+		INSERT INTO admin
+			(admin_email
+			, admin_password
+			, admin_name
+			, admin_level
+			, admin_mobile
+			, admin_join_date
+			)VALUES(
+			#{adminEmail}
+			, #{adminPassword}
+			, #{adminName}
+			, #{adminLevel}
+			, #{adminMobile}
+			, CURDATE());
+	</insert>
 	
 	<select id="getAdminUserList" resultType="AdminUser">
 		SELECT 
