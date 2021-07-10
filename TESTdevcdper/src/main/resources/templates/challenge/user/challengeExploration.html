@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/challengeUserDefault}">
+
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
@@ -30,11 +31,14 @@
 			</div>
 		</ol>
 	</div>
+
 </th:block>
 
 
 
 <th:block layout:fragment="container">
+	
+
 
 	<div class="card card-default">
 			<div class="card-body">
@@ -44,10 +48,74 @@
 			            <form action="enhanced-results.html">
 			                <div class="row">
 			                
-			                
                              <div class="col-md-10 offset-md-1">
                                  <div class="row">
-                                 	<div class="col-3">
+                                 <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>카테고리</label>
+			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+							                          <option selected="selected">전체</option>
+							                          <option>학력</option>
+							                          <option>프로젝트</option>
+							                          <option>자격증</option>
+							                          <option>공인어학(외국어능력)</option>
+							                          <option>기술스택</option>
+							                          <option>직종전문교육과정</option>
+							                          <option>인턴십</option>
+							                          <option>공모전</option>
+							                          <option>경력</option>
+                                   				 </select>
+			                                </div>
+			                            </div>
+                                 	
+			                            <div class="col-3">
+                                         <div class="form-group">
+                                             <label>챌린지 기간선택</label>
+                                             <input type="date" id="adminChallengeStartDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
+                                         </div>
+                                     </div>
+                                     <div class="col-3">
+                                         <div class="form-group">
+                                             <label>&emsp;</label>
+                                             <input type="date" id="adminChallengeEndDate" class="form-control" placeholder="챌린지 종료일을 선택해주세요.">
+                                         </div>
+                                     </div>
+                                     <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>챌린지 기간</label>
+			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
+							                          <option selected="selected">전체</option>
+							                          <option>1주</option>
+							                          <option>2주</option>
+							                          <option>3주</option>
+							                          <option>1개월</option>
+							                          <option>2개월</option>
+							                          <option>3개월</option>
+							                          <option>6개월</option>
+                                   				 </select>
+			                                </div>
+			                            </div>
+                                     <div class="col-4">
+                                         <div class="form-group">
+                                             <label>기간별 정렬기준</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>시작일 기준</option>
+			                                        <option>종료일 기준</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-4">
+                                         <div class="form-group">
+                                             <label>정렬기준</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>최신순</option>
+			                                        <option>오래된순</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-4">
 			                                <div class="form-group">
 			                                    <label>인증빈도</label>
 			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
@@ -64,61 +132,21 @@
                                    				 </select>
 			                                </div>
 			                            </div>
-			                            
-			                            <div class="col-3">
-			                                <div class="form-group">
-			                                    <label>챌린지 기간</label>
-			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
-							                          <option selected="selected">전체</option>
-							                          <option selected="selected">1주</option>
-							                          <option data-select2-id="16">2주</option>
-							                          <option data-select2-id="16">3주</option>
-							                          <option data-select2-id="16">1개월</option>
-							                          <option data-select2-id="16">2개월</option>
-							                          <option data-select2-id="16">3개월</option>
-							                          <option data-select2-id="16">기간설정</option>
-                                   				 </select>
-			                                </div>
-			                            </div>
-                                     
-                                     
-                                     <div class="col-3">
-                                         <div class="form-group">
-                                             <label>정렬기준1 : 날짜</label>
-                                             <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected">전체</option>
-			  										<option>최신순</option>
-			                                        <option>오래된순</option>
-											</select>
-                                         </div>
                                      </div>
-                                     <div class="col-3">
-                                         <div class="form-group">
-                                             <label>정렬기준2 : 문자</label>
-                                             <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected">전체</option>
-			  										<option>오름차순</option>
-			                                        <option>내림차순</option>
-											</select>
-                                         </div>
-                                     </div>
-                                 
-                                 </div>
-                                 <div class="form-group">
+                                     <div class="form-group">
                                      <div class="input-group input-group-lg">
                                         <div class="col-3">
-			                                <div class="form-group">
-			                                    <label>검색조건</label>
+                                            <div class="form-group">
+			                                    <label>검색옵션</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected">전체</option>
-			  										<option>챌린지명으로 검색하기</option>
-			  										<option>내용으로 검색하기</option>
-			  										<option>챌린지명+내용으로 검색하기</option>
-			  										<option>카테고리로 검색하기</option>
-			  										<option>태그로 검색하기</option>
+			                                    	<option selected="selected" data-select2-id="8">전체</option>
+			  										<option>챌린지명</option>
+			  										<option>인증내용</option>
+			  										<option>챌린지명+인증내용</option>
+			  										<option>태그</option>
 												</select>
 			                                </div>
-			                            </div>
+                                        </div>
                                          <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="검색어를 입력해주세요" value="">
                                          <div class="input-group-append">
                                              <button type="button" class="btn btn-lg btn-default btn-sm" th:onclick="|location.href='@{#}'|" style="height : 49px;margin-top : 25px;">
@@ -127,240 +155,133 @@
                                          </div>
                                      </div>
                                  </div>
+                                 </div>
+                                 </div>
+                             </form>
                              </div>
+                         </section>
                          </div>
-                     </form>
                  </div>
-             </section>
-            </div>
-       </div>
        <!-- /검색-->
 	
-    	<div class="card card-default">
+    	<div class="card card-default" >
 		<div class="card-header">
 			<h3 class="card-title">진행중인 챌린지</h3>
 		</div>
 			<div class="card-body">
-			<div class="exploationBtnGroup">
-			<a class="btn btn-app">
-		       <i class="fas fa-list"></i> 전체
-		    </a>
-			<a class="btn btn-app">
-		       <i class="fas fa-graduation-cap"></i> 학력
-		    </a>
-			<a class="btn btn-app">
-		        <i class="fas fa-file-code"></i> 프로젝트
-		    </a>
-			<a class="btn btn-app">
-		         <i class="fas fa-certificate"></i> 자격증
-		    </a>
-			<a class="btn btn-app">
-		         <i class="fas fa-atlas"></i> 공인어학
-		    </a>
-			<a class="btn btn-app">
-		        <i class="fab fa-dev"></i> 기술스택
-		    </a>
-			<a class="btn btn-app">
-		        <i class="fas fa-university"></i> 직종전문교육과정
-		    </a>
-			<a class="btn btn-app">
-		        <i class="fas fa-briefcase"></i> 인턴십
-		    </a>
-			<a class="btn btn-app">
-		       <i class="fas fa-pen-alt"></i> 공모전
-		    </a>
-			<a class="btn btn-app">
-		        <i class="fas fa-user-tie"></i> 경력
-		    </a>
+			<div class="exploationBtnGroup" >
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_all">
+		       <i class="fas fa-list"></i><span>전체</span> 
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_01">
+		       <i class="fas fa-graduation-cap" ></i><span>학력</span>
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_02">
+		        <i class="fas fa-file-code"></i><span>프로젝트</span>
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_03">
+		         <i class="fas fa-certificate"></i>자격증 
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_04">
+		         <i class="fas fa-atlas"></i>공인어학
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_05">
+		        <i class="fab fa-dev"></i>기술스택 
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_06">
+		        <i class="fas fa-university"></i>직종전문교육과정
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_07">
+		        <i class="fas fa-briefcase"></i>인턴십 
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_08">
+		       <i class="fas fa-pen-alt"></i>공모전
+		    </button>
+			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_09">
+		        <i class="fas fa-user-tie"></i>경력
+		    </button>
    		</div>
-   		<div class="card-body">
             <div class="row">
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
+             <div th:each="l: ${challengeExplorationList}" class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
 	          <div class="card bg-light d-flex flex-fill">
 	             <div class="card-header text-muted border-bottom-0">
 	             </div>
 	             <div class="card-body pt-0">
 	               <div class="row">
 	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
+	                   <h2 th:text="${l.challengeName}" id="challengeName" class="lead"></h2>
 	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
+	                   <p class="text-muted text-sm" id="challengeTag" th:text="${l.challengeTag}"></p>       
 	                 </div>
 	               </div>
 	             </div>
 	             <div class="card-footer">
 	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
+	                 <a th:href="@{/challengeExplorationDetailInfo(challengeName=${l.challengeName})}" class="btn btn-sm btn-primary">
 	                   		챌린지 정보보기
 	                 </a>
 	               </div>
 	             </div>
 	           </div>
 	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>토이프로젝트</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>정보처리기사 자격증 취득</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-             <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
-	          <div class="card bg-light d-flex flex-fill">
-	             <div class="card-header text-muted border-bottom-0">
-	             </div>
-	             <div class="card-body pt-0">
-	               <div class="row">
-	                 <div class="col-12">
-	                   <h2 class="lead"><b>1일 1깃허브</b></h2>
-	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-	                   <p class="text-muted text-sm">#깃허브 #개발 #잔디 #경력</b></p>       
-	                 </div>
-	               </div>
-	             </div>
-	             <div class="card-footer">
-	               <div class="text-right">
-	                 <a th:href="@{/challengeDetailInfo}" class="btn btn-sm btn-primary">
-	                   		챌린지 정보보기
-	                 </a>
-	               </div>
-	             </div>
-	           </div>
-	    	 </div>
-           </div>  
-          </div>
-   		</div>
+	    	</div>
+	    </div>
    	</div>
-   	
     	
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
+<script type="text/javascript">
+	/* $(function(){
+		$('.btn-app').click(function(){
+			
+			var categoryVal = $(this).val();
+			console.log(categoryVal + "<--categoryVal");
+			
+			if(categoryVal != ''){
+					var request = $.ajax({
+						   url: "/byCategory",
+						   method: "Post",
+						   data: { categoryVal : categoryVal },
+						   dataType : "JSON"
+					});
+					request.done(function( data ) {
+							console.log(data);
+							// $('body').html(data);
+					});
+					request.fail(function( jqXHR, textStatus ) {
+					  	 	alert( "Request failed: " + textStatus );
+					});
+			}
+		});
+	}); */
 	
-
+	$(function(){
+	$('.btn-app').click(function(){
+		
+		var kind = $(this).val();
+		console.log(kind + "<--kind");
+		
+		if(kind != ''){
+				jQuery.ajax({ 
+			        type: "POST", 
+			        url: "/byCategory", 
+			        cache: false, 
+			        data: { challengeCategoryCode : kind },
+			        success: function (data) { 
+			           console.log('data : ',data,'- 잘 받았음')
+			           console.log('type check data : ',typeof(data))//String이네
+			           $('body').html(data);
+			        }, 
+			        error: function (xhr, status, error) { 
+			        	alert('error');
+			        } 
+					});
+					}
+			     });
+	
+	});
+	
+	</script>	
 </th:block>
 </html>

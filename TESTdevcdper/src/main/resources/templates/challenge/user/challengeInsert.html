@@ -32,31 +32,39 @@
 	</div>
 </th:block>
 
+
+
+
+
+
 <th:block layout:fragment="container">
 
-<section class="content" id="challengeExplorationSection">
+
+<section class="content" id="challengeInsertSection">
+
+    <form id="challengeInsertForm" th:action="@{/challengeInsert}" method="post">
       <div class="row">
        <!-- ChallengeInsertCard1 Start -->
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="card card-default" id="challengeInsertForm">
             <div class="card-body">
               <div class="form-group">
                 <label for="challengeName">챌린지명</label>
-                <input type="text" id="challengeName" placeholder="챌린지명을 입력해주세요."  class="form-control">
+                <input type="text" name="challengeName" placeholder="챌린지명을 입력해주세요."  class="form-control">
               </div>
               <div class="form-group">
-                         <label for="challengeCategory">챌린지 카테고리</label>
-                        <select class="custom-select">
-                          <option>학력</option>
-                          <option>프로젝트</option>
-                          <option>자격증</option>
-                          <option>공인어학</option>
-                          <option>기술스택</option>
-                          <option>직종전문교육과정</option>
-                          <option>인턴십</option>
-                          <option>공모전</option>
-                          <option>경력</option>
-                          <option>기타</option>
+                          <label for="challengeCategoryCode" >챌린지 카테고리</label>
+                          <select class="custom-select" name="challengeCategoryCode">
+                          <option id="challengeCategoryCode" value="none">--- 챌린지 카테고리 선택 ---</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_01">학력</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_02">프로젝트</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_03">자격증</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_04">공인어학</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_05">기술스택</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_06">직종전문교육과정</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_07">인턴십</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_08">공모전</option>
+                          <option id="challengeCategoryCode" value="challenge_category_code_09">경력</option>
                         </select>
 			</div>
               <div class="form-group">
@@ -65,32 +73,45 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" id="firstChallengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" id="SecondChallengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" id="ThirdChallengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" id="FourthChallengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
                 </div>
+                <div class="form-group">
+                <label for="challengeScope">챌린지 공개범위</label>
+               	<select class="custom-select" id="challengeScope" name="challengeScope">
+		               	 <option id="challengeScope" value="none">--- 챌린지 공개범위 선택 ---</option>
+		                 <option id="challengeScope" value="공개">공개</option>
+		                 <option id="challengeScope" value="비공개">비공개</option>
+               	</select>
+			 </div>
+              <div class="form-group">
+                <label for="challengeParticipationPassword">참여비밀번호</label>
+              <div class="form-group">
+                <input type="password" name="challengeParticipationPassword" placeholder="참여비밀번호를 입력해주세요." class="form-control">
+              </div>
               </div>
               <div class="form-group">
                 <label for="challengeIntroduce">챌린지 소개</label>
-                <textarea id="challengeIntroduce" class="form-control" rows="3"></textarea>
+                <textarea id="challengeIntroduce" name="challengeIntroduce" class="form-control" rows="3"></textarea>
               </div>
-
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -99,120 +120,169 @@
         <!-- ChallengeInsertCard1 End -->
         
         <!-- ChallengeInsertCard2 Start-->
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="card card-default" id="challengeInsertForm">
             
             <div class="card-body">
-            
+             
               <div class="form-group">
-                <label for="challengeScope">챌린지 공개범위</label>
-               	<select class="custom-select" id="challengeScope">
-                 <option>공개</option>
-                 <option>비공개</option>
-               	</select>
-			 </div>
-              <div class="form-group">
-                <label for="challengePassword">참여비밀번호</label>
-              <div class="form-group">
-                <input type="password" id="challengePassword" placeholder="참여비밀번호를 입력해주세요." class="form-control">
+                <label for="challengeMaximumPeople">최대 인원수</label>
+                <input type="text" name="challengeMaximumPeople" placeholder="최대 인원수를 입력해주세요." class="form-control">
               </div>
-              </div>
-            
               <div class="form-group">
-                <label for="challengeMaxPeople">최대 인원수</label>
-                <input type="text" id="challengeMaxPeople" placeholder="최대 인원수를 입력해주세요." class="form-control">
-              </div>
-              
-              <div class="form-group">
-                        <label for="challengeBetPrice">챌린지 베팅금액</label>
+                        <label for="challengeBetAmount">챌린지 베팅금액</label>
                  <div class="input-group mb-3">
-                  <input type="text" id="challengeBetPrice" class="form-control" placeholder="베팅 금액을 입력하세요.">
+                  <input type="text" id="challengeBetAmount" name="challengeBetAmount" class="form-control" placeholder="베팅 금액을 입력하세요.">
 	                  <div class="input-group-prepend">
-	                    <span class="input-group-text">만원</span>
+	                    <span class="input-group-text">원</span>
 	                  </div>
                 </div>
 			</div>
-			 <div class="form-group">
-                        <label for="inputCertificate">챌린지 인증방법</label>
-                        <select class="custom-select" id="challengeCertificationMethods">
-                          <option>사진</option>
-                          <option>영상</option>
+			<div class="form-group">
+                        <label for="challengeCertificationMethod">챌린지 인증방법</label>
+                        <select class="custom-select" name="challengeCertificationMethod" id="challengeCertificationMethod">
+                          <option id="challengeCertificationMethod" value="none">--- 챌린지 인증방법 선택 ---</option>
+                          <option id="challengeCertificationMethod" value="사진">사진</option>
+                          <option id="challengeCertificationMethod" value="영상">영상</option>
                         </select>
 			 </div>
 			<div class="form-group">
                 <label for="challengeCertificationContents">챌린지 인증내용</label>
-                <textarea id="challengeCertificationContents" class="form-control" rows="3"></textarea>
+                <textarea id="challengeCertificationContents" name="challengeCertificationContents"  class="form-control" rows="3"></textarea>
               </div>
-             
+              <div class="form-group">
+                        <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
+                        <select class="custom-select" name="challengeCertificationFrequency" id="challengeCertificationFrequency">
+                          <option id="challengeCertificationFrequency" value="none">--- 챌린지 인증빈도 선택 ---</option>
+                          <option id="challengeCertificationFrequency" value="월~일 매일 인증하기">월~일 매일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="월~금 매일 인증하기">월~금 매일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="토~일 매일 인증하기">토~일 매일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 6일 매일 인증하기">주 6일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 5일 매일 인증하기">주 5일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 4일 매일 인증하기">주 4일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 3일 매일 인증하기">주 3일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 2일 매일 인증하기">주 2일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 1일 매일 인증하기">주 1일 인증하기</option>
+                        </select>
+			 </div>
+              <div class="form-group">
+                <label for="challengeStartDate">챌린지 시작일</label>
+                <label for="challengeStartDate"> : 챌린지 시작일을 선택해주세요.</label>
+                <input type="date" id="challengeStartDate" name="challengeStartDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
+              </div>
+              <div class="form-group">
+                <label for="challengeEndDate">챌린지 종료일</label>
+                <label for="challengeEndDate"> : 챌린지 종료일을 선택해주세요.</label>
+                <input type="date" id="challengeEndDate" name="challengeEndDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
         </div>
       <!-- ChallengeInsertCard2 End --> 
-      
-        <!-- ChallengeInsertCard3 Start-->
-        <div class="col-md-4">
-          <div class="card card-default" id="challengeInsertForm">
-            
-             <div class="card-body">
-              <div class="form-group">
-                        <label>챌린지 인증빈도</label>
-                        <select class="custom-select">
-                          <option>월~일 매일 인증하기</option>
-                          <option>월~금 매일 인증하기</option>
-                          <option>토~일 매일 인증하기</option>
-                          <option>주 6일 인증하기</option>
-                          <option>주 5일 인증하기</option>
-                          <option>주 4일 인증하기</option>
-                          <option>주 3일 인증하기</option>
-                          <option>주 2일 인증하기</option>
-                          <option>주 1일 인증하기</option>
-                        </select>
-			 </div>
-			  <div class="form-group">
-                <label for="challengeOneDayCertificationCount">하루 인증 가능 횟수</label>
-                <input type="text" id="challengeOneDayCertificationCount" placeholder="하루 인증 가능 횟수를 입력해주세요."  class="form-control">
-              </div>
-             
-              <div class="form-group">
-                <label for="challengeCertificationTime">챌린지 인증가능시간</label>
-                <input type="text" id="challengeCertificationTime" placeholder="챌린지 인증가능시간을 선택해주세요."  class="form-control">
-              	<!-- <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr form-control"> -->
-              </div>
-              
-              <div class="form-group">
-                <label for="challengeStartDate">챌린지 시작일</label>
-                <label for="challengeStartDate"> : 챌린지 시작일을 선택해주세요.</label>
-                <input type="date" id="challengeStartDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
-              </div>
-              <div class="form-group">
-                <label for="challengeEndDate">챌린지 종료일</label>
-                <label for="challengeEndDate"> : 챌린지 종료일을 선택해주세요.</label>
-                <input type="date" id="challengeEndDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
-              </div>
-              
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-      <!-- ChallengeInsertCard3 End --> 
+     
       
     <!-- ChallengeInsert Btn -->   
 	</div>
-      <div class="row">
-        <div class="col-12" id="insertBtn">
-          <a th:href="@{/mainChallenge}" class="btn btn-secondary">개설취소</a>
-          <a th:href="@{/myChallenge}" class="btn btn-success" id="nextBtn">개설하기</a>
-        </div>
-	</div>
-    <!-- ChallengeInsert Btn -->  
+    </form>
     
-    </section>
+			<div class="row">
+		        <div class="col-12" id="challengeInsertBtnGroup">
+		        <button type="button" class="btn btn-primary" id="challengeInsertBtn" style="float: right;">개설하기</button>
+				<button type="button" th:onclick="|location.href='@{myChallenge}'|" class="btn btn-danger" id="challengeCancelBtn" style="float: left;">개설취소</button>
+		        </div>
+			</div>
+	
+    <!-- ChallengeInsert Btn -->
+	</section>
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
-
+<script>
+$('#challengeInsertBtn').click(function(){
+	
+	//태그 글자수 제한 정규식 (한글, 숫자 1~10자리)
+	var regexTag = /^[가-힣0-9]{1,10}$/;
+	
+	//참여비밀번호 글자수 제한 정규식 (숫자 4자리 필수)
+	var regexPass = /[0-9]{4}/;
+	
+	var submitFlag = true;
+	var challengeInsertForm = $('#challengeInsertForm');
+	var inputObj = challengeInsertForm.find('input');
+	
+	$.each(inputObj, function(e){
+		var inputName = $(this).attr('name');
+		var inputValue = $(this).val();
+		var inputLabel = $(this).parent().parent().children().eq(0).text();
+		
+		var selectObj = challengeInsertForm.find('select');
+		var selectName = selectObj.attr('name');
+		var selectValue = selectObj.val();
+		var selectLabel = selectObj.parent().children().eq(0).text();
+		
+		
+			
+		if(inputName == 'challengeTag'){
+			if(!regexTag.test(inputValue)){
+				alert(inputLabel + ' 을 다시 입력해주세요.');
+				$(this).focus();
+				submitFlag = false;
+				return submitFlag;
+			}
+		}else if(inputName == 'challengeParticipationPassword'){
+			if(!regexPass.test(inputValue)){
+				alert(inputLabel + ' 을 다시 입력해주세요.');
+				$(this).focus();
+				submitFlag = false;
+				return submitFlag;
+			}
+		}else{
+			if(inputValue == '' || inputValue == undefined || inputValue == null){
+				alert(inputLabel + '을 입력해주세요.');
+				$(this).focus();
+				submitFlag = false;
+				return submitFlag;
+			}
+			
+			if(selectValue == 'none'){
+				alert(selectLabel + '을 선택해주세요.');
+				selectObj.focus();
+				submitFlag = false;
+				return submitFlag;
+				}
+			}
+/* 	var textAreaObj = challengeInsertForm.find('textarea');
+	
+	var challengeIntroduce = $('#challengeIntroduce');
+	var challengeIntroduceValue = challengeIntroduce.val();
+	var challengeIntroduceLabel = challengeIntroduce.parent().children().eq(0).text();
+	
+	var certificationContents = $('#challengeCertificationContents');
+	var certificationContentsValue = certificationContents.val();
+	var certificationContentsLabel = certificationContents.parent().children().eq(0).text();
+	
+			if(challengeIntroduceValue == '' || challengeIntroduceValue == undefined || challengeIntroduceValue == null){
+				alert(challengeIntroduceLabel + '을 입력해주세요.');
+				challengeIntroduce.focus();
+				submitFlag = false;
+				return submitFlag;
+				}
+			if(certificationContentsValue == '' || certificationContentsValue == undefined || certificationContentsValue == null){
+				alert(certificationContentsLabel + '을 입력해주세요.');
+				certificationContents.focus();
+				submitFlag = false;
+				return submitFlag;
+				}  */
+	});
+	
+		
+		
+	if(submitFlag)challengeInsertForm.submit();
+	
+});
+</script>
 </th:block>
+
 </html>

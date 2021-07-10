@@ -56,7 +56,7 @@
 	      <!-- Add icons to the links using the .nav-icon class
 	           with font-awesome or any other icon font library -->
            <!-- 챌린지 관리 -->
-	      <li class="nav-item menu-open"  >
+	      <li class="nav-item">
             <a href="#" class="nav-link">
            	 <i class="nav-icon fas fad fa-thumbs-up"></i>
               <p>
@@ -71,35 +71,35 @@
                   <p>챌린지 가이드</p>
                 </a>
               </li> -->
-              <li class="nav-item">
+              <li class="nav-item mainChallenge">
                 <a th:href="@{/mainChallenge}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 메인</p>
                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item challengeExploration">
                 <a th:href="@{/challengeExploration}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 탐색하기</p>
                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item challengeInsert">
                 <a th:href="@{/challengeInsert}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 개설하기</p>
                    <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item challengeCertification">
                 <a th:href="@{/challengeCertification}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 인증하기</p>
                    <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item myChallenge">
                 <a th:href="@{/myChallenge}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>나의 챌린지</p>
@@ -108,7 +108,7 @@
               </li>
              </ul>
 	         <!-- 결제 및 환불 관리 -->
-	      <li class="nav-item has-treeview menu-open"  >
+	      <li class="nav-item has-treeview"  >
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-credit-card"></i>
               <p>
@@ -117,14 +117,14 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <li class="nav-item payment">
                 <a th:href="@{/payment}" class="nav-link">
                   <i class="nav-icon fas fa-credit-card"></i>
                   <p>챌린지 결제 관리</p>
                    <span style="font-size: 10px;" class="badge badge-primary"># 양슬기</span>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item refund">
                 <a th:href="@{/refund}" class="nav-link">
                   <i class="nav-icon fas fa-credit-card"></i>
                   <p>챌린지 환불 관리</p>
@@ -143,36 +143,5 @@
 
 
 <script type="text/javascript">
-$.AdminLTE.tree = function (menu) {
-    var _this = this;
-    var animationSpeed = $.AdminLTE.options.animationSpeed;
-    $(document).off('click', menu + ' li a')
-      .on('click', menu + ' li a', function (e) {
-        //Get the clicked link and the next element
-        var $this = $(this);
-        var checkElement = $this.next();
-
-        //If the menu is not visible open it
-        if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
-          //Get the parent menu
-          var parent = $this.parents('ul').first();
-          //Get the parent li
-          var parent_li = $this.parent("li");
-
-          //Open the target menu and add the menu-open class
-          checkElement.slideDown(animationSpeed, function () {
-            //Add the class active to the parent li
-            checkElement.addClass('menu-open');
-            parent_li.addClass('active');
-            //Fix the layout in case the sidebar stretches over the height of the window
-            _this.layout.fix();
-          });
-        }
-        //if this isn't a link, prevent the page from being redirected
-        if (checkElement.is('.treeview-menu')) {
-          e.preventDefault();
-        }
-      });
-  };
 </script>
 </html>

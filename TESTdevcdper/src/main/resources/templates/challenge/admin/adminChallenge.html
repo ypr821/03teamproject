@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/challengeAdminDefault}">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">!챌린지 개설 관리</h1>
+		<h1 class="m-0">!챌린지 관리</h1>
 	</div>
 	<br><br>
 	
@@ -14,22 +14,19 @@
 			<div class="card-body table-responsive pad">
 				<div class="btn-group btn-group-toggle" data-toggle="buttons">
 					<a th:href="@{/adminChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 개설 관리
-					</a>
-					<a th:href="@{/adminChallengeCategory}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a2" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCategory'}"> 챌린지 카테고리 관리
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'adminChallenge'}"> 챌린지 관리
 					</a>
 					<a th:href="@{/adminChallengeParticipation}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeParticipation'}"> 챌린지 참여 관리
-					</a>
-					<a th:href="@{/adminChallengeCertification}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCertification'}"> 챌린지 인증 관리
 					</a>
 					<a th:href="@{/adminChallengeReport}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeReport'}"> 챌린지 신고 관리
 					</a>
 					<a th:href="@{/adminChallengeAchievement}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeAchievement'}"> 챌린지 달성율 관리
+					</a>
+					<a th:href="@{/adminChallengeRanking}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeRanking'}"> 챌린지 최종순위 리스트 관리
 					</a>
 					<a th:href="@{/adminChallengeCompensation}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCompensation'}"> 챌린지 보상지급 관리
@@ -59,26 +56,26 @@
 			                
                              <div class="col-md-10 offset-md-1">
                                  <div class="row">
-                                 	<div class="col-3">
+                                 	<div class="col-2">
 			                                <div class="form-group">
-			                                    <label>인증빈도</label>
+			                                    <label>카테고리</label>
 			                                    <select class="js-example-placeholder-single js-states form-control" style="width: 100%;" data-select2-id="6" tabindex="-1" aria-hidden="true">
 							                          <option selected="selected">전체</option>
-							                          <option>월~일 매일 인증하기</option>
-							                          <option>월~금 매일 인증하기</option>
-							                          <option>토~일 매일 인증하기</option>
-							                          <option>주 6일 인증하기</option>
-							                          <option>주 5일 인증하기</option>
-							                          <option>주 4일 인증하기</option>
-							                          <option>주 3일 인증하기</option>
-							                          <option>주 2일 인증하기</option>
-							                          <option>주 1일 인증하기</option>
+							                          <option>학력</option>
+							                          <option>프로젝트</option>
+							                          <option>자격증</option>
+							                          <option>공인어학(외국어능력)</option>
+							                          <option>기술스택</option>
+							                          <option>직종전문교육과정</option>
+							                          <option>인턴십</option>
+							                          <option>공모전</option>
+							                          <option>경력</option>
                                    				 </select>
 			                                </div>
 			                            </div>
 			                            <div class="col-2" data-select2-id="11">
 			                                <div class="form-group" data-select2-id="10">
-			                                    <label>상태</label>
+			                                    <label>진행상태</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
 			                                      	<option selected="selected">전체</option>
 			                                        <option>참여중</option>
@@ -89,19 +86,41 @@
 			                            </div>
                                      <div class="col-3">
                                          <div class="form-group">
-                                             <label>기간선택</label>
-                                             <select class="js-example-placeholder-single js-states form-control">
-                                                 <option selected="selected">전체</option>
-                                                 <option>지난 1일</option>
-                                                 <option>지난 1주</option>
-                                                 <option>지난 1개월</option>
-                                                 <option>지난 1년</option>
-                                    </select>
+                                             <label>챌린지 기간선택</label>
+                                             <input type="date" id="adminChallengeStartDate" class="form-control" placeholder="챌린지 시작일을 선택해주세요.">
                                          </div>
                                      </div>
-                                     <div class="col-2">
+                                     <div class="col-3">
                                          <div class="form-group">
-                                             <label>정렬기준1 : 날짜</label>
+                                             <label>&emsp;</label>
+                                             <input type="date" id="adminChallengeEndDate" class="form-control" placeholder="챌린지 종료일을 선택해주세요.">
+                                         </div>
+                                     </div>
+                                     <div class="col-2" data-select2-id="11">
+			                                <div class="form-group" data-select2-id="10">
+			                                    <label>&emsp;</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			                                        <option data-select2-id="16">지난 1일</option>
+			                                        <option data-select2-id="16">지난 1주</option>
+			                                        <option data-select2-id="16">지난 1개월</option>
+			                                        <option data-select2-id="16">지난 1년</option>
+			                                    </select>
+			                                </div>
+			                            </div>
+                                     <div class="col-4">
+                                         <div class="form-group">
+                                             <label>기간별 정렬기준</label>
+                                             <select class="js-example-placeholder-single js-states form-control">
+			                                    	<option selected="selected">전체</option>
+			  										<option>시작일 기준</option>
+			                                        <option>종료일 기준</option>
+											</select>
+                                         </div>
+                                     </div>
+                                     <div class="col-4">
+                                         <div class="form-group">
+                                             <label>정렬기준</label>
                                              <select class="js-example-placeholder-single js-states form-control">
 			                                    	<option selected="selected">전체</option>
 			  										<option>최신순</option>
@@ -109,13 +128,13 @@
 											</select>
                                          </div>
                                      </div>
-                                     <div class="col-2">
+                                     <div class="col-4">
                                          <div class="form-group">
-                                             <label>정렬기준2 : 문자</label>
+                                             <label>진행율별 정렬</label>
                                              <select class="js-example-placeholder-single js-states form-control">
 			                                    	<option selected="selected">전체</option>
-			  										<option>오름차순</option>
-			                                        <option>내림차순</option>
+			  										<option>높은순</option>
+			                                        <option>낮은순</option>
 											</select>
                                          </div>
                                      </div>
@@ -127,13 +146,12 @@
                                             <div class="form-group">
 			                                    <label>검색옵션</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected" data-select2-id="8">전체</option>
+			                                    	<option selected="selected">전체</option>
 			  										<option>챌린지명</option>
-			  										<option>챌린지 카테고리</option>
 			  										<option>개설자 이메일</option>
 			  										<option>참여자 이메일</option>
-			  										<option>내용</option>
-			  										<option>챌린지명+내용</option>
+			  										<option>인증내용</option>
+			  										<option>챌린지명+인증내용</option>
 			  										<option>태그</option>
 												</select>
 			                                </div>
@@ -163,7 +181,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                 <ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; 챌린지 관리</h3>
+					&emsp; 개설 챌린지 관리</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -177,7 +195,7 @@
                 <table class="table table-striped text-nowrap">
                   <thead>
 		                    <tr>
-		                      <th>번호</th>
+		                    	<th>번호</th>
 								<th>챌린지명</th>
 								<th>챌린지 카테고리</th>
 		                      	<th>개설자 이메일</th>
@@ -185,23 +203,23 @@
 								<th>챌린지 종료일</th>
 								<th>챌린지 등록일자</th>
 								<th>진행율</th>
-		                     	<th>상태</th>
+		                     	<th>진행상태</th>
 		                     	<th>개설정보</th>
-		                     	<th>개설페이지</th>
+		                     	<th>순위결정</th>
 								<th>삭제</th>
 		                    </tr>
-		                  </thead>
+		          </thead>
 		                  <!--tbody start  -->
 		                  <tbody>
-		                    <tr>
-		                    <td>1.</td>
-		                    <td>깃허브 잔디심기</td>
-		                    <td>프로젝트</td>
-		                    <td>park01@hanmail.net</td>
-		                  	<td>2021년 4월 22일</td>
-							<td>2021년 5월 6일</td>
-							<td>2021년 4월 15일</td>
-		                      <td>
+		                    <tr th:if="${#lists.size(challengeList) > 0}" th:each="l, idx : ${challengeList}">
+			                    <td id="indexCount" th:text="${idx.count}"></td>
+			                    <td id="challengeName" th:text="${l.challengeName}"></td>
+			                    <td id="challengeCategoryName" th:text="${l.challengeCategory.challengeCategoryName}"></td>
+			                    <td id="userEmail" th:text="${l.normalUser.userEmail}"></td>
+			                  	<td id="challengeStartDate" th:text="${l.challengeStartDate}"></td>
+								<td id="challengeEndDate" th:text="${l.challengeEndDate}"></td>
+								<td id="challengeRegisterDate" th:text="${l.challengeRegisterDate}"></td>
+							<td>
 							   <div class="progress progress-sm">
 							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>
 							   </div>
@@ -213,66 +231,12 @@
 		                    <td>
 								<button type="button" class="btn btn-block btn-default btn-xs challengeModalInsertDetail" data-toggle="modal" data-target="#modal-ChallengeInsertDetail">상세보기</button>
 							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs contentsBtn" th:onclick="|location.href='@{/myChallengeInfo}'|" id="contentsBtn">본문</button>
+		                    <td>
+								<button type="button" class="btn btn-block btn-default btn-xs rankingBtn">순위결정</button>
 							</td>
 		                    <td>
 								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
-							</td>
-		                    </tr>
-		                    <tr>
-		                    <td>2.</td>
-		                    <td>깃허브 잔디심기</td>
-		                    <td>프로젝트</td>
-		                    <td>park01@hanmail.net</td>
-		                  	<td>2021년 4월 22일</td>
-							<td>2021년 5월 6일</td>
-							<td>2021년 4월 15일</td>
-		                      <td>
-							   <div class="progress progress-sm">
-							     <div class="progress-bar progress-bar bg-danger" style="width: 100%"></div>
-							   </div>
-							   <small>
-									100% Complete
-								</small>
-							</td>
-							<td><span class="badge bg-danger">완료</span></td>
-							 <td>
-								<button type="button" class="btn btn-block btn-default btn-xs challengeModalInsertDetail" data-toggle="modal" data-target="#modal-ChallengeInsertDetail">상세보기</button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs contentsBtn" th:onclick="|location.href='@{/myChallengeInfo}'|" id="contentsBtn">본문</button>
-							</td>
-		                      <td>
-								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
-							</td>
-		                    </tr>
-		                    <tr>
-		                      <td>3.</td>
-		                    <td>깃허브 잔디심기</td>
-		                    <td>프로젝트</td>
-		                    <td>park01@hanmail.net</td>
-		                  	<td>2021년 4월 22일</td>
-							<td>2021년 5월 6일</td>
-							<td>2021년 4월 15일</td>
-		                      <td>
-							   <div class="progress progress-sm">
-							     <div class="progress-bar progress-bar bg-warning" style="width: 1%"></div>
-							   </div>
-							   <small>
-									1% Complete
-								</small>
-							</td>
-							<td><span class="badge bg-warning">개설</span></td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs challengeModalInsertDetail" data-toggle="modal" data-target="#modal-ChallengeInsertDetail">상세보기</button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs contentsBtn" th:onclick="|location.href='@{/myChallengeInfo}'|" id="contentsBtn">본문</button>
-							</td>
-		                      <td>
-								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
-							</td>
+							</td> 
 		                    </tr>
 		                  </tbody>
 				</table>
@@ -281,6 +245,144 @@
 			<!-- 코치 list 페이지번호  -->
 			
 			<div class="card-footer clearfix">
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                <li class="page-item"><a class="page-link" th:href="@{/adminChallenge}">«</a></li>
+		                  <th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+		                  		<li class="page-item"><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallenge(currentPage=${num})}" th:text="${num}"></a></li>
+		                  		<span th:unless="${num != currentPage}" th:text="${'[' + num + ']'}"></span>
+		                  </th:block>
+		                  <li class="page-item"><a class="page-link" th:href="@{/adminChallenge(currentPage=${lastPage})}">»</a></li>
+		                </ul>
+			   </div>	
+		</div>
+		
+	<div class="row">
+	<div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                <ion-icon size="small" name="list-outline"></ion-icon>
+					&emsp; 챌린지 카테고리 관리</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <div class="input-group-append">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped text-nowrap">
+                  <thead>
+	                    	<tr>
+	                      		<th>카테고리 번호</th>
+								<th>카테고리명</th>
+							 	<th>수정</th>
+                      		 	<th>삭제</th>
+	                    	</tr>
+		                  </thead>
+		                  <!--tbody start  -->
+		                  <tbody>
+		                    <tr>
+			                    <td>1.</td>
+			                    <td>학력</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>2.</td>
+			                    <td>프로젝트</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>3.</td>
+			                    <td>자격증</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>4.</td>
+			                    <td>공인어학(외국어능력)</td>
+			                   <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>5.</td>
+			                    <td>기술스택</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>6.</td>
+			                    <td>직종전문교육과정</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>7.</td>
+			                    <td>인턴십</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>8.</td>
+			                    <td>공모전</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                    <tr>
+			                    <td>9.</td>
+			                    <td>경력</td>
+			                    <td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
+								</td>
+		                    </tr>
+		                  </tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+			<!-- 코치 list 페이지번호  -->
+			
+			<div class="card-footer clearfix">
+						<button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
+						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
 		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -293,8 +395,10 @@
 			   </div>	
 		</div>
 		</div>
-				
+		</div>
+		</div>
 </div>
+
 	<!-- challenge Modal 영역 시작-->
 	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalInsertDetail -->
 	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalInsertDetail :: challengeModalInsertDetail"></th:block>

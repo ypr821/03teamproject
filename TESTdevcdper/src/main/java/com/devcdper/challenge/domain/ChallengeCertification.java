@@ -5,28 +5,97 @@ import com.devcdper.user_admin.domain.NormalUser;
 
 public class ChallengeCertification {
 
-		private String ChallengeCertificationCode;
+		private String challengeCertificationCode;
+		private String challengeCategoryCode;
+		private String challengeCode;
+		private String challengeParticipationCode;
+		private String challengeParticipationEmail;
+		private String challengeCertificationTitle;
+		private String challengeCertificationMethod;
+		private String challengeCertificationContents;
+		private String challengeCertificationAttachedFile;
+		private String challengeCertificationStatus;
+		private String challengeCertificationDate;
 		
+		//챌린지 카테고리
 		private ChallengeCategory challengeCategory;
+		
+		//챌린지
 		private Challenge challenge;
+		
+		//챌린지 참여
 		private ChallengeParticipation challengeParticipation;
 		
 		//챌린지 참여 회원이메일
 		private CoachUser coachUser;
-		private NormalUser nomaluser;
-		
-		private String ChallengeCertificationMethod;
-		private String ChallengeCertificationContents;
-		private String ChallengeCertificationAttachedFile;
-		private String ChallengeCertificationStatus;
-		private String ChallengeCertificationDate;
-		
+		private NormalUser normalUser;
 		
 		public String getChallengeCertificationCode() {
-			return ChallengeCertificationCode;
+			return challengeCertificationCode;
 		}
 		public void setChallengeCertificationCode(String challengeCertificationCode) {
-			ChallengeCertificationCode = challengeCertificationCode;
+			this.challengeCertificationCode = challengeCertificationCode;
+		}
+		public String getChallengeCategoryCode() {
+			return challengeCategoryCode;
+		}
+		public void setChallengeCategoryCode(String challengeCategoryCode) {
+			this.challengeCategoryCode = challengeCategoryCode;
+		}
+		public String getChallengeCode() {
+			return challengeCode;
+		}
+		public void setChallengeCode(String challengeCode) {
+			this.challengeCode = challengeCode;
+		}
+		public String getChallengeParticipationCode() {
+			return challengeParticipationCode;
+		}
+		public void setChallengeParticipationCode(String challengeParticipationCode) {
+			this.challengeParticipationCode = challengeParticipationCode;
+		}
+		public String getChallengeParticipationEmail() {
+			return challengeParticipationEmail;
+		}
+		public void setChallengeParticipationEmail(String challengeParticipationEmail) {
+			this.challengeParticipationEmail = challengeParticipationEmail;
+		}
+		
+		public String getChallengeCertificationTitle() {
+			return challengeCertificationTitle;
+		}
+		public void setChallengeCertificationTitle(String challengeCertificationTitle) {
+			this.challengeCertificationTitle = challengeCertificationTitle;
+		}
+		public String getChallengeCertificationMethod() {
+			return challengeCertificationMethod;
+		}
+		public void setChallengeCertificationMethod(String challengeCertificationMethod) {
+			this.challengeCertificationMethod = challengeCertificationMethod;
+		}
+		public String getChallengeCertificationContents() {
+			return challengeCertificationContents;
+		}
+		public void setChallengeCertificationContents(String challengeCertificationContents) {
+			this.challengeCertificationContents = challengeCertificationContents;
+		}
+		public String getChallengeCertificationAttachedFile() {
+			return challengeCertificationAttachedFile;
+		}
+		public void setChallengeCertificationAttachedFile(String challengeCertificationAttachedFile) {
+			this.challengeCertificationAttachedFile = challengeCertificationAttachedFile;
+		}
+		public String getChallengeCertificationStatus() {
+			return challengeCertificationStatus;
+		}
+		public void setChallengeCertificationStatus(String challengeCertificationStatus) {
+			this.challengeCertificationStatus = challengeCertificationStatus;
+		}
+		public String getChallengeCertificationDate() {
+			return challengeCertificationDate;
+		}
+		public void setChallengeCertificationDate(String challengeCertificationDate) {
+			this.challengeCertificationDate = challengeCertificationDate;
 		}
 		public ChallengeCategory getChallengeCategory() {
 			return challengeCategory;
@@ -52,55 +121,29 @@ public class ChallengeCertification {
 		public void setCoachUser(CoachUser coachUser) {
 			this.coachUser = coachUser;
 		}
-		public NormalUser getNomaluser() {
-			return nomaluser;
-		}
-		public void setNomaluser(NormalUser nomaluser) {
-			this.nomaluser = nomaluser;
-		}
-		public String getChallengeCertificationMethod() {
-			return ChallengeCertificationMethod;
-		}
-		public void setChallengeCertificationMethod(String challengeCertificationMethod) {
-			ChallengeCertificationMethod = challengeCertificationMethod;
-		}
-		public String getChallengeCertificationContents() {
-			return ChallengeCertificationContents;
-		}
-		public void setChallengeCertificationContents(String challengeCertificationContents) {
-			ChallengeCertificationContents = challengeCertificationContents;
-		}
-		public String getChallengeCertificationAttachedFile() {
-			return ChallengeCertificationAttachedFile;
-		}
-		public void setChallengeCertificationAttachedFile(String challengeCertificationAttachedFile) {
-			ChallengeCertificationAttachedFile = challengeCertificationAttachedFile;
-		}
-		public String getChallengeCertificationStatus() {
-			return ChallengeCertificationStatus;
-		}
-		public void setChallengeCertificationStatus(String challengeCertificationStatus) {
-			ChallengeCertificationStatus = challengeCertificationStatus;
-		}
-		public String getChallengeCertificationDate() {
-			return ChallengeCertificationDate;
-		}
-		public void setChallengeCertificationDate(String challengeCertificationDate) {
-			ChallengeCertificationDate = challengeCertificationDate;
-		}
 		
+		public NormalUser getNormalUser() {
+			return normalUser;
+		}
+		public void setNormalUser(NormalUser normalUser) {
+			this.normalUser = normalUser;
+		}
 		
 		@Override
 		public String toString() {
-			return "ChallengeCertification [ChallengeCertificationCode=" + ChallengeCertificationCode
-					+ ", challengeCategory=" + challengeCategory + ", challenge=" + challenge
-					+ ", challengeParticipation=" + challengeParticipation + ", coachUser=" + coachUser + ", nomaluser="
-					+ nomaluser + ", ChallengeCertificationMethod=" + ChallengeCertificationMethod
-					+ ", ChallengeCertificationContents=" + ChallengeCertificationContents
-					+ ", ChallengeCertificationAttachedFile=" + ChallengeCertificationAttachedFile
-					+ ", ChallengeCertificationStatus=" + ChallengeCertificationStatus + ", ChallengeCertificationDate="
-					+ ChallengeCertificationDate + "]";
+			return "ChallengeCertification [challengeCertificationCode=" + challengeCertificationCode
+					+ ", challengeCategoryCode=" + challengeCategoryCode + ", challengeCode=" + challengeCode
+					+ ", challengeParticipationCode=" + challengeParticipationCode + ", challengeParticipationEmail="
+					+ challengeParticipationEmail + ", challengeCertificationTitle=" + challengeCertificationTitle
+					+ ", challengeCertificationMethod=" + challengeCertificationMethod
+					+ ", challengeCertificationContents=" + challengeCertificationContents
+					+ ", challengeCertificationAttachedFile=" + challengeCertificationAttachedFile
+					+ ", challengeCertificationStatus=" + challengeCertificationStatus + ", challengeCertificationDate="
+					+ challengeCertificationDate + ", challengeCategory=" + challengeCategory + ", challenge="
+					+ challenge + ", challengeParticipation=" + challengeParticipation + ", coachUser=" + coachUser
+					+ ", normalUser=" + normalUser + "]";
 		}
-	
+		
+		
 
 }

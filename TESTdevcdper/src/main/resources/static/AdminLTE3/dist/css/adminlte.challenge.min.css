@@ -25,7 +25,7 @@ span.input-group-text {
     background: white;
 }
 div#challengeInsertForm {
-    height: 600px;
+    height: 750px;
 }
 a#nextBtn {
     float: right;
@@ -93,5 +93,26 @@ button#challengeCertificationAttachedFileBtn {
     border-top: 1px solid #dee2e6;
     text-align: center;
 }
-
+.yellow-highlight {
+  text-shadow: 
+    -3px 0px 3px yellow,
+     3px 0px 3px yellow,
+     6px 0px 6px yellow,
+    -6px 0px 6px yellow;
+}
+.BoardBtn.btn-group {
+	text-align : center;
+    margin: 0px 500px 100px;
+    white-space: nowrap;
+}
+div#challengeCertificationInsertform {
+    padding: 20px;
+}
+h2.challengeCertificationInsertformTitle {
+    padding: 0px 0px 20px;
+}
+div#challengeCertificationInsertBtnGroup {
+    /* float: right; */
+    text-align: center;
+}
 /*# sourceMappingURL=adminlte.min.css.map */

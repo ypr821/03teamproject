@@ -6,10 +6,14 @@ import com.devcdper.user_admin.domain.NormalUser;
 public class ChallengeAchievementRate {
 
 		
-		private String ChallengeAchievementRateCode; 
-		private String ChallengeAchievementRateSuccesCount;
-		private String ChallengeAchievementRateTotalTimes	;
-		private String ChallengeAchievementRateUpdateDate;
+		private String challengeAchievementRateCode;
+		private String challengeCategoryCode;
+		private String challengeCode;
+		private String challengeParticipationCode;
+		private String challengeParticipationEmail;
+		private int challengeAchievementRateSuccesCount;
+		private int challengeAchievementRateTotalTimes	;
+		private String challengeAchievementRateUpdateDate;
 
 		//챌린지 카테고리
 		private ChallengeCategory challengeCategory;
@@ -22,32 +26,56 @@ public class ChallengeAchievementRate {
 		
 		//챌린지 참여 회원이메일
 		private CoachUser coachUser;
-		private NormalUser nomaluser;
+		private NormalUser normalUser;
 		
 		
 		public String getChallengeAchievementRateCode() {
-			return ChallengeAchievementRateCode;
+			return challengeAchievementRateCode;
 		}
 		public void setChallengeAchievementRateCode(String challengeAchievementRateCode) {
-			ChallengeAchievementRateCode = challengeAchievementRateCode;
+			this.challengeAchievementRateCode = challengeAchievementRateCode;
 		}
-		public String getChallengeAchievementRateSuccesCount() {
-			return ChallengeAchievementRateSuccesCount;
+		public String getChallengeCategoryCode() {
+			return challengeCategoryCode;
 		}
-		public void setChallengeAchievementRateSuccesCount(String challengeAchievementRateSuccesCount) {
-			ChallengeAchievementRateSuccesCount = challengeAchievementRateSuccesCount;
+		public void setChallengeCategoryCode(String challengeCategoryCode) {
+			this.challengeCategoryCode = challengeCategoryCode;
 		}
-		public String getChallengeAchievementRateTotalTimes() {
-			return ChallengeAchievementRateTotalTimes;
+		public String getChallengeCode() {
+			return challengeCode;
 		}
-		public void setChallengeAchievementRateTotalTimes(String challengeAchievementRateTotalTimes) {
-			ChallengeAchievementRateTotalTimes = challengeAchievementRateTotalTimes;
+		public void setChallengeCode(String challengeCode) {
+			this.challengeCode = challengeCode;
+		}
+		public String getChallengeParticipationCode() {
+			return challengeParticipationCode;
+		}
+		public void setChallengeParticipationCode(String challengeParticipationCode) {
+			this.challengeParticipationCode = challengeParticipationCode;
+		}
+		public String getChallengeParticipationEmail() {
+			return challengeParticipationEmail;
+		}
+		public void setChallengeParticipationEmail(String challengeParticipationEmail) {
+			this.challengeParticipationEmail = challengeParticipationEmail;
+		}
+		public int getChallengeAchievementRateSuccesCount() {
+			return challengeAchievementRateSuccesCount;
+		}
+		public void setChallengeAchievementRateSuccesCount(int challengeAchievementRateSuccesCount) {
+			this.challengeAchievementRateSuccesCount = challengeAchievementRateSuccesCount;
+		}
+		public int getChallengeAchievementRateTotalTimes() {
+			return challengeAchievementRateTotalTimes;
+		}
+		public void setChallengeAchievementRateTotalTimes(int challengeAchievementRateTotalTimes) {
+			this.challengeAchievementRateTotalTimes = challengeAchievementRateTotalTimes;
 		}
 		public String getChallengeAchievementRateUpdateDate() {
-			return ChallengeAchievementRateUpdateDate;
+			return challengeAchievementRateUpdateDate;
 		}
 		public void setChallengeAchievementRateUpdateDate(String challengeAchievementRateUpdateDate) {
-			ChallengeAchievementRateUpdateDate = challengeAchievementRateUpdateDate;
+			this.challengeAchievementRateUpdateDate = challengeAchievementRateUpdateDate;
 		}
 		public ChallengeCategory getChallengeCategory() {
 			return challengeCategory;
@@ -73,25 +101,27 @@ public class ChallengeAchievementRate {
 		public void setCoachUser(CoachUser coachUser) {
 			this.coachUser = coachUser;
 		}
-		public NormalUser getNomaluser() {
-			return nomaluser;
+		public NormalUser getNormalUser() {
+			return normalUser;
 		}
-		public void setNomaluser(NormalUser nomaluser) {
-			this.nomaluser = nomaluser;
+		public void setNormalUser(NormalUser normalUser) {
+			this.normalUser = normalUser;
 		}
 		
 		@Override
 		public String toString() {
-			return "ChallengeAchievementRate [ChallengeAchievementRateCode=" + ChallengeAchievementRateCode
-					+ ", ChallengeAchievementRateSuccesCount=" + ChallengeAchievementRateSuccesCount
-					+ ", ChallengeAchievementRateTotalTimes=" + ChallengeAchievementRateTotalTimes
-					+ ", ChallengeAchievementRateUpdateDate=" + ChallengeAchievementRateUpdateDate
-					+ ", challengeCategory=" + challengeCategory + ", challenge=" + challenge
-					+ ", challengeParticipation=" + challengeParticipation + ", coachUser=" + coachUser + ", nomaluser="
-					+ nomaluser + "]";
+			return "ChallengeAchievement [challengeAchievementRateCode=" + challengeAchievementRateCode
+					+ ", challengeCategoryCode=" + challengeCategoryCode + ", challengeCode=" + challengeCode
+					+ ", challengeParticipationCode=" + challengeParticipationCode + ", challengeParticipationEmail="
+					+ challengeParticipationEmail + ", challengeAchievementRateSuccesCount="
+					+ challengeAchievementRateSuccesCount + ", challengeAchievementRateTotalTimes="
+					+ challengeAchievementRateTotalTimes + ", challengeAchievementRateUpdateDate="
+					+ challengeAchievementRateUpdateDate + ", challengeCategory=" + challengeCategory + ", challenge="
+					+ challenge + ", challengeParticipation=" + challengeParticipation + ", coachUser=" + coachUser
+					+ ", normalUser=" + normalUser + "]";
 		}
 		
 		
-	
+		
 
 }

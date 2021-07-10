@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeUserDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">상세보기</h1>
+	</div><!-- /.col -->
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
+					</a>
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
+					</a>
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
+					</a>
+					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallengeInfo'}"> 나의 챌린지
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div>
+</th:block>
+
+
+
+	<th:block layout:fragment="container">
+	<section class="content" id="challengeCertificationInsertform">
+      <div class="row">
+       <!-- ChallengeInsertCard1 Start -->
+        <div class="col-md-12">
+          <div class="card card-default" id="challengeCertificationInsertform">
+	<article>
+		<div class="container" id="challengeCertificationInsertform" role="main">
+			<form name="challengeCertificationInsertform" id="challengeCertificationInsertform" role="form" method="post" action="#">
+				<div class="mb-3">
+					<label for="title">제목</label>
+					<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해주세요.">
+				</div>
+				<div class="mb-3">
+					<label for="reg_id">작성자</label>
+					<input type="text" class="form-control" name="reg_id" id="reg_id" placeholder="이메일을 입력해주세요.">
+				</div>
+				<div class="mb-3">
+                <label for="challengeName">챌린지명</label>
+                <input type="text" id="inputName" placeholder="챌린지명을 입력해주세요."  class="form-control" value="1일 1깃허브" readonly="readonly" style="background-color: white;">
+              </div>
+             	  <div class="mb-3">
+                         <label for="challengeCategory">챌린지 카테고리</label>
+                        <select class="custom-select">
+                          <option>학력</option>
+                          <option selected="selected">프로젝트</option>
+                          <option>자격증</option>
+                          <option>공인어학</option>
+                          <option>기술스택</option>
+                          <option>직종전문교육과정</option>
+                          <option>인턴십</option>
+                          <option>공모전</option>
+                          <option>경력</option>
+                          <option>기타</option>
+                        </select>
+				  </div>
+	              <div class="mb-3">
+	                        <label for="certificateMethods">챌린지 인증방법</label>
+	                        <select class="custom-select">
+	                          <option>사진</option>
+	                          <option>영상</option>
+	                        </select>
+				 </div>
+				<div class="mb-3">
+					<label for="certificateContent">인증내용</label>
+					<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+				</div>
+				<div class="mb-3">
+                    <label for="customFile">챌린지 인증 첨부파일</label>
+                    <div class="custom-file">
+                      <input type="file" multiple="multiple" class="custom-file-input" id="customFile" placeholder="첨부할 파일을 선택하세요.">
+                      <label class="custom-file-label" for="customFile">첨부할 파일을 선택하세요.</label>
+                    </div>
+                  </div>
+			</form>
+
+
+			
+			<div class="row">
+		        <div class="col-12" id="insertBtnGroup">
+		        <button type="button" th:onclick="|location.href='@{challengeCertificationBoard}'|" class="btn btn-default" id="btnBack">뒤로 가기</button>
+				<button type="button" th:onclick="|location.href='@{challengeCertificationBoard}'|" class="btn btn-primary" id="btnEdit">수정</button>
+				<button type="button" th:onclick="|location.href='@{challengeCertificationBoard}'|" class="btn btn-danger" id="btnDelete">삭제</button>
+		        </div>
+			</div>
+		</div>
+	</article>
+	</div>
+	</div>
+	</div>
+	</section>
+			
+	</th:block>
+	
+	<th:block layout:fragment="pageJavascript">
+	
+	</th:block>
+</html>
+
