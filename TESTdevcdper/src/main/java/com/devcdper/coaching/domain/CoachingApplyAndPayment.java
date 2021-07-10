@@ -1,6 +1,6 @@
 package com.devcdper.coaching.domain;
 
-public class coachingApplyAndPayment {
+public class CoachingApplyAndPayment {
 
 	private String coachingApplyAndPaymentCode;
 	private String coachingCategoryCode;	
@@ -11,12 +11,12 @@ public class coachingApplyAndPayment {
 	private String planDetailCode;
 	private String userEmail;
 	private String allPaymentConnectGroupCode;	
-	private String coachingApplyAndPaymentRegisterDate;	
 	private String coachingApplyAndPaymentServiceStartDate;	
 	private String coachingApplyAndPaymentServiceEndDate;
 	private int coachingApplyCost;	
 	private String coachingProgressStatus;
-	
+	private String coachingApplyAndPaymentRegisterDate;	
+	private String paymentCode;
 	public String getCoachingApplyAndPaymentCode() {
 		return coachingApplyAndPaymentCode;
 	}
@@ -71,12 +71,6 @@ public class coachingApplyAndPayment {
 	public void setAllPaymentConnectGroupCode(String allPaymentConnectGroupCode) {
 		this.allPaymentConnectGroupCode = allPaymentConnectGroupCode;
 	}
-	public String getCoachingApplyAndPaymentRegisterDate() {
-		return coachingApplyAndPaymentRegisterDate;
-	}
-	public void setCoachingApplyAndPaymentRegisterDate(String coachingApplyAndPaymentRegisterDate) {
-		this.coachingApplyAndPaymentRegisterDate = coachingApplyAndPaymentRegisterDate;
-	}
 	public String getCoachingApplyAndPaymentServiceStartDate() {
 		return coachingApplyAndPaymentServiceStartDate;
 	}
@@ -101,20 +95,37 @@ public class coachingApplyAndPayment {
 	public void setCoachingProgressStatus(String coachingProgressStatus) {
 		this.coachingProgressStatus = coachingProgressStatus;
 	}
-	
+	public String getCoachingApplyAndPaymentRegisterDate() {
+		return coachingApplyAndPaymentRegisterDate;
+	}
+	public void setCoachingApplyAndPaymentRegisterDate(String coachingApplyAndPaymentRegisterDate) {
+		this.coachingApplyAndPaymentRegisterDate = coachingApplyAndPaymentRegisterDate;
+	}
+	public String getPaymentCode() {
+		return paymentCode;
+	}
+	public void setPaymentCode(String paymentCode) {
+		this.paymentCode = paymentCode;
+	}
 	@Override
 	public String toString() {
-		return "coachingApplyAndPayment [coachingApplyAndPaymentCode=" + coachingApplyAndPaymentCode
+		return "CoachingApplyAndPayment [coachingApplyAndPaymentCode=" + coachingApplyAndPaymentCode
 				+ ", coachingCategoryCode=" + coachingCategoryCode + ", coachingRFQCode=" + coachingRFQCode
 				+ ", coachingRFQResultCode=" + coachingRFQResultCode + ", coachUserEmail=" + coachUserEmail
 				+ ", totalPlanCode=" + totalPlanCode + ", planDetailCode=" + planDetailCode + ", userEmail=" + userEmail
 				+ ", allPaymentConnectGroupCode=" + allPaymentConnectGroupCode
-				+ ", coachingApplyAndPaymentRegisterDate=" + coachingApplyAndPaymentRegisterDate
 				+ ", coachingApplyAndPaymentServiceStartDate=" + coachingApplyAndPaymentServiceStartDate
 				+ ", coachingApplyAndPaymentServiceEndDate=" + coachingApplyAndPaymentServiceEndDate
 				+ ", coachingApplyCost=" + coachingApplyCost + ", coachingProgressStatus=" + coachingProgressStatus
-				+ "]";
-	}
+				+ ", coachingApplyAndPaymentRegisterDate=" + coachingApplyAndPaymentRegisterDate + ", paymentCode="
+				+ paymentCode + "]";
+	}	
+	
+	
+
+
+	
+
 	
 	
 	

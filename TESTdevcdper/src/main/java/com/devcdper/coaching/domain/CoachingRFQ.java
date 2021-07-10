@@ -1,6 +1,6 @@
 package com.devcdper.coaching.domain;
 
-public class coachingRFQ {
+public class CoachingRFQ {
 	private String coachingRFQCode;
 	private String coachingCategoryCode;
 	private String totalPlanCode;
@@ -13,6 +13,9 @@ public class coachingRFQ {
 	private String coachingRFQDay;
 	private String coachingRFQWishfulThinking;
 	private String coachingRFQRequestDate;
+	private CoachingRFQResult coachingRFQResult;
+	private CoachingApplyAndPayment coachingApplyAndPayment;
+	private CoachingUser coachingUser;
 	
 	public String getCoachingRFQCode() {
 		return coachingRFQCode;
@@ -86,14 +89,33 @@ public class coachingRFQ {
 	public void setCoachingRFQRequestDate(String coachingRFQRequestDate) {
 		this.coachingRFQRequestDate = coachingRFQRequestDate;
 	}
+	public CoachingRFQResult getCoachingRFQResult() {
+		return coachingRFQResult;
+	}
+	public void setCoachingRFQResult(CoachingRFQResult coachingRFQResult) {
+		this.coachingRFQResult = coachingRFQResult;
+	}
+	public CoachingApplyAndPayment getCoachingApplyAndPayment() {
+		return coachingApplyAndPayment;
+	}
+	public void setCoachingApplyAndPayment(CoachingApplyAndPayment coachingApplyAndPayment) {
+		this.coachingApplyAndPayment = coachingApplyAndPayment;
+	}
+	public CoachingUser getCoachingUser() {
+		return coachingUser;
+	}
+	public void setCoachingUser(CoachingUser coachingUser) {
+		this.coachingUser = coachingUser;
+	}
 	@Override
 	public String toString() {
-		return "coachingRFQ [coachingRFQCode=" + coachingRFQCode + ", coachingCategoryCode=" + coachingCategoryCode
+		return "CoachingRFQ [coachingRFQCode=" + coachingRFQCode + ", coachingCategoryCode=" + coachingCategoryCode
 				+ ", totalPlanCode=" + totalPlanCode + ", planDetailCode=" + planDetailCode + ", coachUserEmail="
 				+ coachUserEmail + ", userEmail=" + userEmail + ", coachClassification=" + coachClassification
 				+ ", coachingRFQStartDate=" + coachingRFQStartDate + ", coachingRFQEndDate=" + coachingRFQEndDate
 				+ ", coachingRFQDay=" + coachingRFQDay + ", coachingRFQWishfulThinking=" + coachingRFQWishfulThinking
-				+ ", coachingRFQRequestDate=" + coachingRFQRequestDate + "]";
+				+ ", coachingRFQRequestDate=" + coachingRFQRequestDate + ", coachingRFQResult=" + coachingRFQResult
+				+ ", coachingApplyAndPayment=" + coachingApplyAndPayment + ", coachingUser=" + coachingUser + "]";
 	}
 	
 	

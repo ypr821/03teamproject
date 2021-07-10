@@ -1,6 +1,6 @@
 package com.devcdper.coaching.domain;
 
-public class coachingRFQResult {
+public class CoachingRFQResult {
 	private String coachingRFQResultCode;
 	private String coachingCategoryCode;
 	private String coachingRFQCode;
@@ -15,10 +15,8 @@ public class coachingRFQResult {
 	private String coachingRFQResultMethod;
 	private String coachingRFQResultArea;
 	private String coachingRFQResultAgreement;
-	private String coachingRFQResultStatus;
 	private String coachingRFQResultServiceStartDate;
 	private String coachingRFQResultServiceEndDate;
-	private String coachingRFQ_confirmationDate;
 	private String coachingRFQResultRegisterDate;
 	
 	public String getCoachingRFQResultCode() {
@@ -105,12 +103,6 @@ public class coachingRFQResult {
 	public void setCoachingRFQResultAgreement(String coachingRFQResultAgreement) {
 		this.coachingRFQResultAgreement = coachingRFQResultAgreement;
 	}
-	public String getCoachingRFQResultStatus() {
-		return coachingRFQResultStatus;
-	}
-	public void setCoachingRFQResultStatus(String coachingRFQResultStatus) {
-		this.coachingRFQResultStatus = coachingRFQResultStatus;
-	}
 	public String getCoachingRFQResultServiceStartDate() {
 		return coachingRFQResultServiceStartDate;
 	}
@@ -123,34 +115,27 @@ public class coachingRFQResult {
 	public void setCoachingRFQResultServiceEndDate(String coachingRFQResultServiceEndDate) {
 		this.coachingRFQResultServiceEndDate = coachingRFQResultServiceEndDate;
 	}
-	public String getCoachingRFQ_confirmationDate() {
-		return coachingRFQ_confirmationDate;
-	}
-	public void setCoachingRFQ_confirmationDate(String coachingRFQ_confirmationDate) {
-		this.coachingRFQ_confirmationDate = coachingRFQ_confirmationDate;
-	}
 	public String getCoachingRFQResultRegisterDate() {
 		return coachingRFQResultRegisterDate;
 	}
 	public void setCoachingRFQResultRegisterDate(String coachingRFQResultRegisterDate) {
 		this.coachingRFQResultRegisterDate = coachingRFQResultRegisterDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "coachingRFQResult [coachingRFQResultCode=" + coachingRFQResultCode + ", coachingCategoryCode="
+		return "CoachingRFQResult [coachingRFQResultCode=" + coachingRFQResultCode + ", coachingCategoryCode="
 				+ coachingCategoryCode + ", coachingRFQCode=" + coachingRFQCode + ", totalPlanCode=" + totalPlanCode
 				+ ", planDetailCode=" + planDetailCode + ", coachUserEmail=" + coachUserEmail + ", userEmail="
 				+ userEmail + ", coachingRFQResultCost=" + coachingRFQResultCost + ", coachingRFQResultDay="
 				+ coachingRFQResultDay + ", coachingRFQResultCostPerHour=" + coachingRFQResultCostPerHour
 				+ ", coachingRFQResultTime=" + coachingRFQResultTime + ", coachingRFQResultMethod="
 				+ coachingRFQResultMethod + ", coachingRFQResultArea=" + coachingRFQResultArea
-				+ ", coachingRFQResultAgreement=" + coachingRFQResultAgreement + ", coachingRFQResultStatus="
-				+ coachingRFQResultStatus + ", coachingRFQResultServiceStartDate=" + coachingRFQResultServiceStartDate
-				+ ", coachingRFQResultServiceEndDate=" + coachingRFQResultServiceEndDate
-				+ ", coachingRFQ_confirmationDate=" + coachingRFQ_confirmationDate + ", coachingRFQResultRegisterDate="
-				+ coachingRFQResultRegisterDate + "]";
+				+ ", coachingRFQResultAgreement=" + coachingRFQResultAgreement + ", coachingRFQResultServiceStartDate="
+				+ coachingRFQResultServiceStartDate + ", coachingRFQResultServiceEndDate="
+				+ coachingRFQResultServiceEndDate + ", coachingRFQResultRegisterDate=" + coachingRFQResultRegisterDate
+				+ "]";
 	}
+
 	
 	
 	
