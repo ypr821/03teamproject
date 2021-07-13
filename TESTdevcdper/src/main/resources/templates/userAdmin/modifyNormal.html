@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/default}">
+	  layout:decorate="@{layout/addDefault}">
 	  
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">main title</title>
@@ -17,107 +17,171 @@
 </th:block>
 
 <th:block layout:fragment="container">
-	<div class="col-sm-12">
-		<div class="card-body table-responsive p-0">
-			<form id="modifyNormalForm" th:action="@{/modifyNormal}" method="post">
-			    <table id="example2" class="table table-bordered table-hover">
-					<tr>
-						<td>아이디</td>
-						<td>
-							<input type="text" name="userEmail" th:value="${normalUser.userEmail}" readonly="readonly"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td>
-							<input type="password" name="userPassword" th:value="${normalUser.userPassword}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>
-							<input type="text" name="userName" th:value="${normalUser.userName}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>생년월일</td>
-						<td>
-							<input type="date" name="userBirth" th:value="${normalUser.userBirth}">
-						</td>			
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>
-							<input type="text" name="userAddr" th:value="${normalUser.userAddr}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>상세주소</td>
-						<td>
-							<input type="text" name="userAddrDetail" th:value="${normalUser.userAddrDetail}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>성별</td>
-						<td>
-							<label>
-								 <input type="radio" name="userGender" value="남" th:checked ="${normalUser.userGender == '남'}">남 
-							</label>
-							<label>
-	                  			 <input type="radio" name="userGender" value="여" th:checked ="${normalUser.userGender == '여'}">여
-							</label>
-						</td>			
-					</tr>
-					<tr>
-						<td>연락처</td>
-						<td>
-							 <select name="userMoblie" style="width: 7%; " th:selected = "${normalUser.userMoblie}">
-                                <option value="">선택</option>
-                                
-                                    <option value="010">010</option>
-                                
-                                    <option value="011">011</option>
-                                
-                                    <option value="016">016</option>
-                                
-                                    <option value="017">017</option>
-                                
-                                    <option value="018">018</option>
-                                
-                                    <option value="019">019</option>
-                                
-                            </select>-
-						     <input type="text" name="userMoblie" th:value="${normalUser.userMoblie}" size="5" /> - 
-						     <input type="text" name="userMoblie" th:value="${normalUser.userMoblie}" size="5" /><br />
-						</td>			
-					</tr>
-					<tr>
-						<td>회원직업</td>
-						<td>
-							<input type="text" name="userJob" th:value="${normalUser.userJob}"/>
-						</td>			
-					</tr>
-					<tr>
-						<td>수신동의여부</td>
-						<td>
-							<label>
-								<input type="radio" name="userIsReceiveMarketing" value="Y" th:checked ="${normalUser.userIsReceiveMarketing == 'Y'}">Yes 
-							</label>
-							<label>
-	                  			<input type="radio" name="userIsReceiveMarketing" value="N" th:checked ="${normalUser.userIsReceiveMarketing == 'N'}">NO
-							</label>
-						</td>			
-					</tr>
+<div class="content">
+		<!-- /.container-fluid -->
+		<div class="container-fluid">
+			<section class="content">
+				<div class="row">
+					<!-- ChallengeInsertCard1 Start -->
+					<div class="col-md">
+						<div class="card card-default" id="addNormalForm">
+							<div class="card-body">
+								<div class="register-box">
+								
+									<div class="card card-outline card-primary">
+									
+										<div class="card-header text-center">
+											<b> <font style="vertical-align: inherit;"> 
+											<font style="vertical-align: inherit;">
+														<h2>일반회원 수정</h2>
+												</font>
+											</font>
+											</b>
+										</div>
 										
-					<tr>
-						<td colspan="2" style="text-align: center;">
-							<button type="submit" id="modifyNormalBtn">회원가입</button>
-						</td>			
-					</tr>
-			    </table>
-		   </form>
+										<div class="card-body">
+											<form id="addForm" th:action="@{/modifyNormal}" method="post">
+												<div>회원일메일</div>
+												<div class="input-group mb-3">
+													<input type="text" name="userEmail"  class="form-control" th:value="${normalUser.userEmail}" readonly="readonly"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-user"></span>
+														</div>
+													</div>
+												</div>
+												<div>패스워드</div>
+												<div class="input-group mb-3">
+													<input type="password" name="userPassword" class="form-control" th:value="${normalUser.userPassword}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>이름</div>
+												<div class="input-group mb-3">
+													<input type="text" name="userName" class="form-control" th:value="${normalUser.userName}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>생년월일</div>
+												<div class="input-group mb-3">
+													<input type="date" name="userBirth" class="form-control" th:value="${normalUser.userBirth}">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>주소</div>
+												<div class="input-group mb-3">
+													<input type="text" name="userAddr" class="form-control" th:value="${normalUser.userAddr}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>상세주소</div>
+												<div class="input-group mb-3">
+													<input type="text" name="userAddrDetail" class="form-control" th:value="${normalUser.userAddrDetail}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div class="input-group mb-3">
+												성별 : &emsp;
+													<label> 
+														 <input type="radio" name="userGender" value="남" th:checked ="${normalUser.userGender}">남자	
+													</label> &emsp;&emsp;
+													<label> 
+														 <input type="radio" name="userGender" value="여" th:checked ="${normalUser.userGender}">여자	
+													</label>
+												</div>
+												
+												<div>연락처</div>
+												<div class="input-group mb-3">
+													<select name="userMoblie" style="width: 7%;"  class="form-control" th:selected = "${normalUser.userMoblie}">
+						                                <option value="">선택</option>
+						                                
+						                                    <option value="010">010</option>
+						                                
+						                                    <option value="011">011</option>
+						                                
+						                                    <option value="016">016</option>
+						                                
+						                                    <option value="017">017</option>
+						                                
+						                                    <option value="018">018</option>
+						                                
+						                                    <option value="019">019</option>
+						                                
+						                            </select>-
+												     <input type="text" name="userMoblie"  class="form-control" th:value="${normalUser.userMoblie}" size="5" /> - 
+												     <input type="text" name="userMoblie"  class="form-control" th:value="${normalUser.userMoblie}" size="5" /><br />
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												<div>직업</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control" name="userJob" th:value="${normalUser.userJob}">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+											<div class="row">
+													<div class="col-8">
+														<div class="icheck-primary">
+															<label for="userIsReceiveMarketing">
+																<input type="checkbox" name="userIsReceiveMarketing" value="Y" checked ="checked"> 
+																<font style="vertical-align: inherit;">
+																	<font style="vertical-align: inherit;">수신 동의 여부 </font>
+																</font>
+															</label>
+														</div>
+													</div>
+													<!-- /.col -->
+													<div class="col-4 butt">
+														<button type="submit" class="btn btn-primary btn-block" id="addUserBtn">
+															<font style="vertical-align: inherit;"> <font
+																style="vertical-align: inherit;">회원정보 수정</font>
+															</font>
+														</button>
+													</div>
+													<!-- /.col -->
+												</div>
+												</div>
+											</form>
+										</div>
+										<!-- /.form-box -->
+									</div>
+									<!-- /.card -->
+								</div>
+
+							</div>
+							<!-- /.card-body -->
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+
+			</section>
+
+
+
 		</div>
-	</div>	    
+		<!-- /.container-fluid -->
+	</div>
+	
 </th:block>
 
 <th:block layout:fragment="pageJavascript">

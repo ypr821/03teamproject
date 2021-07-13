@@ -30,77 +30,96 @@
 								<div class="register-box">
 									<div class="card card-outline card-primary">
 										<div class="card-header text-center">
-											<b><font style="vertical-align: inherit;"> <font
-													style="vertical-align: inherit;"><h2>회원가입</h2></font>
-											</font> </b>
+											<b>
+												<font style="vertical-align: inherit;"> 
+													<font style="vertical-align: inherit;"><h2>코치 회원가입</h2>
+													</font>
+												</font> 
+											</b>
 										</div>
 										<div class="card-body">
-											<form id="addCoachForm" th:action="@{/addCoach}"
-												method="post">
+											<form id="addCoachForm" th:action="@{/addCoach}" method="post">
+												<div>회원이메일</div>
 												<div class="input-group mb-3">
-													<input type="email" class="form-control"
-														name="coachEmail" placeholder="회원이메일을 입력해주세요.">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-user"></span>
-														</div>
-													</div>
+													<input type="email" class="form-control" name="coachEmail" placeholder="회원이메일을 입력해주세요.">
+													<button type="button" class="btn btn-primary " id="idCheckBtn" >
+														<font style="vertical-align: inherit;"> 
+															<font style="vertical-align: inherit;">이메일 중복체크</font>
+														</font>
+													</button>
+													
 												</div>
+												<div>패스워드</div>
 												<div class="input-group mb-3">
-													<input type="password" class="form-control"
-														name="coachPassword" placeholder="비밀번호를 입력해주세요.">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-lock"></span>
-														</div>
-													</div>
-												</div>
-												<div class="input-group mb-3">
-													<input type="text" class="form-control" name="coachName"
-														placeholder="회원이름을 입력해주세요.">
+													<input type="password" class="form-control" name="coachPassword" placeholder="비밀번호를 입력해주세요.">
 													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
 														</div>
 													</div>
 												</div>
+												<div>이름</div>
 												<div class="input-group mb-3">
-													<input type="date" class="form-control" name="coachBirth"
-														value="xxx" min="yyy" max="zzz">
+													<input type="text" class="form-control" name="coachName" placeholder="회원이름을 입력해주세요.">
 													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
 														</div>
 													</div>
 												</div>
+												<div>생년월일</div>
 												<div class="input-group mb-3">
-													<input type="text" class="form-control" name="coachAddr"
-														placeholder="주소를 입력해주세요.">
+													<input type="date" class="form-control" name="coachBirth" value="xxx" min="yyy" max="zzz">
 													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
 														</div>
 													</div>
 												</div>
+												<div>주소</div>
 												<div class="input-group mb-3">
-													<input type="text" class="form-control"
-														name="coachAddrDetail" placeholder="상세주소를 입력해주세요.">
+													<input type="text" class="form-control" name="coachAddr" placeholder="주소를 입력해주세요.">
 													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
 														</div>
 													</div>
 												</div>
+												<div>상세주소</div>
 												<div class="input-group mb-3">
-													성별 : &emsp; <label> <input type="radio"
-														name="coachGender" value="남" checked="checked">남자
-													</label> &emsp;&emsp; <label> <input type="radio"
-														name="coachGender" value="여">여자
+													<input type="text" class="form-control" name="coachAddrDetail" placeholder="상세주소를 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div class="input-group mb-3">
+													성별 : &emsp; 
+													<label> <input type="radio" name="coachGender" value="남" checked="checked">남자
+													</label> &emsp;&emsp; 
+													<label> <input type="radio" name="coachGender" value="여">여자
 													</label>
 												</div>
+												<div>연락처</div>
 												<div class="input-group mb-3">
-													<input class="form-control" type="tel" name="coachMobile"
-														size="5" placeholder="010" /> - <input
+														<select name="coachMobile" style="width: 7%;" class="form-control">
+														<option value="">선택</option>
+
+														<option value="010">010</option>
+
+														<option value="011">011</option>
+
+														<option value="016">016</option>
+
+														<option value="017">017</option>
+
+														<option value="018">018</option>
+
+														<option value="019">019</option>
+
+													</select>- <input
 														class="form-control" type="tel" name="coachMobile"
 														size="5" placeholder="0000" /> - <input
 														class="form-control" type="tel" name="coachMobile"
@@ -111,6 +130,7 @@
 														</div>
 													</div>
 												</div>
+												<div>권한</div>
 												<div class="input-group mb-3">
 													<select class="form-control" name="coachAuthority">
 														<option value="">::코치권한::</option>
@@ -121,6 +141,7 @@
 														<ion-icon name="chatbubble-ellipses-outline"></ion-icon>
 													</div>
 												</div>
+												<div>직업</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="coachJob"
 														placeholder="회원직업 입력해주세요.">
@@ -130,15 +151,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="input-group mb-3">
-													<input type="text" class="form-control"
-														name="coachProfileCareer" placeholder="코치의 경력사항을 입력해주세요.">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-lock"></span>
-														</div>
-													</div>
-												</div>
+												<div>기술스택</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control"
 														name="coachProfileTechStack"
@@ -149,6 +162,19 @@
 														</div>
 													</div>
 												</div>
+												
+												<div>경력사항</div>
+												<div class="input-group mb-3">
+													<input type="text" class="form-control"
+														name="coachProfileCareer" placeholder="코치의 경력사항을 입력해주세요.">
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												
+												<div>자격증</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control"
 														name="coachCertificate" placeholder="코치의 자격증 입력해주세요.">
@@ -156,24 +182,21 @@
 														<span class="fas fa-lock"></span>
 													</div>
 												</div>
+												
+												<div>경력증명 서류</div>
 												<div class="input-group mb-3">
-													<input type="file" class="form-control"
+													<input type="file" multiple class="form-control"
 														name="coachCareerDocumentaryEvidence">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-lock"></span>
-														</div>
-													</div>
 												</div>
+												
+												
+												<div>자격증 서류</div>
 												<div class="input-group mb-3">
-													<input type="file" class="form-control"
+													<input type="file" multiple  class="form-control"
 														name="coachCertificateDocumentaryEvidence">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-lock"></span>
-														</div>
-													</div>
 												</div>
+												
+												<div>가입동기</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control"
 														name="coachJoinMotivation" placeholder="가입동기를 입력해주세요.">
@@ -183,15 +206,21 @@
 														</div>
 													</div>
 												</div>
+												<div>가입경로</div>
 												<div class="input-group mb-3">
-													<input type="text" class="form-control"
-														name="coachJoinPath" placeholder="가입경로를 입력해주세요.">
-													<div class="input-group-append">
-														<div class="input-group-text">
-															<span class="fas fa-lock"></span>
-														</div>
+													<select class="form-control" name="coachJoinPath">
+														<option value="">::가입경로::</option>
+														<option value="인터넷 검색">인터넷 검색</option>
+														<option value="블로그 /카페">블로그 /카페</option>
+														<option value="SNS 광고">SNS 광고</option>
+														<option value="지인 추천">지인 추천</option>
+														<option value="기타 다른경로">기타 다른경로</option>
+													</select>
+													<div class="input-group-text">
+														<ion-icon name="chatbubble-ellipses-outline"></ion-icon>
 													</div>
 												</div>
+												<div>추천인이메일</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control"
 														name="coachRecommendEmail" placeholder="추천인 이메일을 입력해주세요.">
@@ -216,8 +245,7 @@
 													<!-- /.col -->
 													<div class="col-4">
 														<button type="submit" class="btn btn-primary btn-block">
-															<font style="vertical-align: inherit;"> <font
-																style="vertical-align: inherit;">회원가입</font></font>
+															<font style="vertical-align: inherit;">회원가입</font>
 														</button>
 													</div>
 													<!-- /.col -->

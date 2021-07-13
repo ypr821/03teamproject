@@ -35,6 +35,7 @@ public class NormalUserController {
 	public String myPage(Model model) {
 		
 		model.addAttribute("title","마이페이지");
+		model.addAttribute("function","myPage");
 		return "userAdmin/myPage";
 	}
 	
@@ -80,8 +81,8 @@ public class NormalUserController {
 			System.out.println(resultMap);
 			
 			if(loginCheck) {
-				session.setAttribute("NEMAIL", 	normalLogin.getUserEmail());
-				session.setAttribute("NNAME", 	normalLogin.getUserName());
+				session.setAttribute("UEMAIL", 	normalLogin.getUserEmail());
+				session.setAttribute("UNAME", 	normalLogin.getUserName());
 				session.setAttribute("ULEVEL", 	"일반사용자");
 				
 				return "redirect:/";
@@ -131,7 +132,7 @@ public class NormalUserController {
 		log.info("화면에서 입력받은 값 normalUser : {}", normalUser);
 		normalUserService.addNormalUser(normalUser);
 		
-		return "redirect:/normalList";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/addNormal")

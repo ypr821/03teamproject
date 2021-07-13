@@ -13,7 +13,7 @@
 	
 		<!-- 비회원 프로필 -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
-			th:if="${session.NEMAIL eq null}">
+			th:if="${session.UEMAIL eq null}">
 			<div class="image">
 				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
 					class="img-circle elevation-2" alt="User Image">
@@ -24,18 +24,20 @@
 		</div>
 
 		<!-- 로그인후 프로필 -->
-		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
-			th:if="${session.NEMAIL ne null}">
+	<div class="user-panel mt-3 pb-3 mb-3 d-flex"
+			th:if="${session.UEMAIL ne null}">
 			<div class="image">
 				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
 					class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a th:href="@{/myPage}" class="d-block"> <span>[[${session.NEMAIL}]]</span>
+				<a th:href="@{/myPage}" class="d-block"> <span>[[${session.UEMAIL}]]</span>
 					<span style="font-size: 10px;" class="badge badge-primary">#</span>
 				</a>
 			</div>
 		</div>
+
+
 
 		<!-- SidebarSearch Form -->
 		<div class="form-inline">
@@ -58,12 +60,12 @@
 				<!-- Add icons to the links using the .nav-icon class
 	           with font-awesome or any other icon font library -->
 				<li class="nav-item" th:if="${function == null}"><a
-					href="devcdper/introduce.html" th:if="${session.SLEVEL == null}"
+					href="devcdper/introduce.html" th:if="${session.ULEVEL == null}"
 					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
 						<p>DEV-CDPER 소개</p>
 				</a></li>
 				<li class="nav-item" th:if="${function == null}"><a
-					href="devcdper/guide.html" th:if="${session.SLEVEL == null}"
+					href="devcdper/guide.html" th:if="${session.ULEVEL == null}"
 					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
 						<p>DEV-CDPER 가이드</p>
 				</a></li>

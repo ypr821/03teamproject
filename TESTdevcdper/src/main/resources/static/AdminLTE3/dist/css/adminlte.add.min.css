@@ -14,6 +14,12 @@
     margin: auto;
     width: 600px;
 }
+.login-card-body {
+    height: 490px;
+}
+.col-4.butt {
+    margin: auto;
+}
 /*
 .container-fluid { 
     display : inline-fluid ;
