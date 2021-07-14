@@ -10,12 +10,15 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		      </div>
 				<div class="modal-body">
-				<div class="form-group">
-               	 	<label for="challengeName">챌린지명</label>
-                	<input type="text" id="challengeName" placeholder="챌린지명을 입력해주세요." value="1일 1깃허브"  class="form-control">
-              	</div>
+				<form class="modifyChallengeNameForm" name="modifyChallengeNameForm">
+				 <div class="form-group">
+	                <label for="modalModifyChallengeName">챌린지명</label>
+	                <input type="text" id="modalModifyChallengeName" th:value="${modifyChallengeAttribute.challengeName}" name="modalModifyChallengeName" class="form-control" style="background-color: white;">
+	                <input type="hidden" id="modalModifyChallengeCode" th:value="${modifyChallengeAttribute.challengeCode}" name="modalModifyChallengeCode" class="form-control" style="background-color: white;">
+           		 </div>
+           		 </form>
 				<div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <button type="submit" class="btn btn-default" id="modifyChallengeNameSubmit" data-dismiss="modal">변경</button>
 			    </div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -23,4 +26,7 @@
 	</div>
 	</div>
 </th:block>
+
+
+
 </html>

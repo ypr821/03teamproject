@@ -11,11 +11,11 @@
 		      </div>
 				<div class="modal-body">
 				 <div class="form-group">
-                <label for="challengeIntroduce">챌린지 소개</label>
-                <textarea id="challengeIntroduce" class="form-control" rows="3"></textarea>
+                <label for="modalModifyChallengeIntroduce">챌린지 소개</label>
+                <textarea id="modalModifyChallengeIntroduce" th:value="${modifyChallengeAttribute.challengeIntroduce}" th:text="${modifyChallengeAttribute.challengeIntroduce}" class="form-control" rows="3"></textarea>
               </div>
 				<div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <button type="button" class="btn btn-default" id="modifyChallengeModalIntroduceBtn" data-dismiss="modal">변경</button>
 			    </div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

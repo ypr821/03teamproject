@@ -1,51 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/challengeUserDefault}">
-<th:block layout:fragment="pageTitle">
-	<title th:text="${title}"></title>
-	<div class="col-sm-6">
-		<h1 class="m-0">!챌린지 인증하기</h1>
-	</div><!-- /.col -->
-	<div class="col-sm-12">
-		<ol class="breadcrumb float-sm-right">
-			<div class="card-body table-responsive pad">
-				<div class="btn-group btn-group-toggle" data-toggle="buttons">
-					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
-					</a>
-					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
-					</a>
-					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
-					</a>
-					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
-					</a>
-					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
-					</a>
-				</div>
-		</div>	
-		</ol>
-	</div>
-</th:block>
+<html xmlns:th="http://www.thymeleaf.org">
 
-
-
-<th:block layout:fragment="container">
-
-
-
-<div class="card card-default">
+<div th:fragment="myChallengeSearchForm" class="card card-default">
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
 			        <div class="container-fluid">
-			            <h2 class="text-center display-5">인증 가능한 챌린지 조회하기</h2>
+			            <h2 class="text-center display-5">나의 챌린지 조회</h2>
 			            <form action="enhanced-results.html">
 			                <div class="row">
-			                    <div class="col-md-10 offset-md-1">
+			                
+			                
+                             <div class="col-md-10 offset-md-1">
 			                        <div class="row">
                                  <div class="col-3">
 			                                <div class="form-group">
@@ -138,7 +103,7 @@
 			                                <div class="form-group">
 			                                    <label>검색옵션</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
-			                                    	<option selected="selected" data-select2-id="8">전체</option>
+			                                    	<option selected="selected">전체</option>
 			  										<option>챌린지명</option>
 			  										<option>인증내용</option>
 			  										<option>챌린지명+인증내용</option>
@@ -156,100 +121,15 @@
                                      </div>
                                  </div>
 			                    </div>
-			                </div>
-			            </form>
-			        	</div>
-    			</section>
-			 </div>
-   		</div>
+                         </div>
+                     </form>
+                 </div>
+             </section>
+            </div>
+       </div>
+       <!-- /검색-->
 
 
-
-	<div class="row" id="certificationPossibleList">
-		<div class="col-12">
-            <div class="card">
-              <div class="card-header">
-               <h3 class="card-title">
-					<ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; <b>인증 가능한 챌린지</b>
-				</h3>
-
-                <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <div class="input-group-append">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-striped text-nowrap">
-                  <thead>
-		                    <tr>
-		                      <th>번호</th>
-								<th>챌린지명</th>
-								<th>카테고리</th>
-								<th>공개범위</th>
-								<th>태그</th>
-								<th>참가인원</th>
-								<th>인증방법</th>
-								<th>챌린지 기간</th>
-		                     	<th>챌린지 인증하기</th>
-		                     	<th>나의 챌린지</th>
-		                    </tr>
-		                  </thead>
-					<tbody>
-						<tr th:if="${#lists.size(verifiableChallengeList) > 0}" th:each="l, idx : ${verifiableChallengeList}">
-							<td th:text="${idx.count}"></td>
-							<td th:text="${l.challenge.challengeName}"></td>
-			                <td th:text="${l.challengeCategory.challengeCategoryName}"></td>
-			                <td th:text="${l.challenge.challengeScope}"></td>
-			                <td th:text="${l.challenge.challengeTag}"></td>
-			                <td th:text="${l.challenge.challengeMaximumPeople}"></td>
-			                <td th:text="${l.challenge.challengeCertificationMethod}"></td>
-							<td th:text="|${l.challenge.challengeStartDate} ~ ${l.challenge.challengeEndDate}|"></td>
-		                     <td>
-		                    <a th:href="@{/challengeCertificationInsert(challengeName=${l.challenge.challengeName})}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											챌린지 인증하기
-										</button>
-								</a>
-							</td>
-							<td>
-		                      <a th:href="@{/myChallenge}">
-										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-folder">
-											</i>
-											나의 챌린지
-										</button>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<!-- /.card-body -->
-			<!-- 코치 list 페이지번호  -->
-			<div class="card-footer clearfix">
-		                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
-		                </ul>
-			   </div>	
-		</div>
-		</div>
-		</div>
-
-</th:block>
-
-<th:block layout:fragment="pageJavascript">
-</th:block>
-
+<script type="text/javascript">
+</script>
 </html>

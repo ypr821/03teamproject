@@ -24,51 +24,108 @@ public class ChallengeService {
 	}
 	
 	//챌린지 리스트
-	public Map<String, Object> getChallengeList(int currentPage){
+	public List<Challenge> getChallengeList(int currentPage, String challengeName){
 		
 		
-		//보여줄 행의 갯수
-		int rowPerPage = 10;
+		/*
+		 * //보여줄 행의 갯수 int rowPerPage = 10;
+		 * 
+		 * //table에서 보여질 행의 시작점 초기화 int rowStart = 0;
+		 * 
+		 * //페이지 번호 초기화 int pageStartNum = 1; int pageEndNum = 10;
+		 * 
+		 * //rowStart = 페이지알고리즘(현재페이지 - 1) * 보여줄 행의 갯수 rowStart = (currentPage - 1) *
+		 * rowPerPage;
+		 * 
+		 * Map<String, Object> paramMap = new HashMap<String, Object>();
+		 * paramMap.put("rowStart", rowStart); paramMap.put("rowPerPage", rowPerPage);
+		 */
 		
-		//table에서 보여질 행의 시작점 초기화
-		int rowStart = 0;
+		List<Challenge> challengeList = challengeMapper.getChallengeList(challengeName);
 		
-		//페이지 번호 초기화
-		int pageStartNum = 1;
-		int pageEndNum = 10;
-				
-		//rowStart = 페이지알고리즘(현재페이지 - 1) * 보여줄 행의 갯수
-		rowStart = (currentPage - 1) * rowPerPage;
-
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("rowStart", rowStart);
-		paramMap.put("rowPerPage", rowPerPage);
+		/*
+		 * double rowCount = challengeMapper.getChallengeCount();
+		 * 
+		 * int lastPage = (int) Math.ceil(rowCount/rowPerPage);
+		 * 
+		 * if(currentPage > 6) { pageStartNum = currentPage - 5; pageEndNum =
+		 * currentPage + 4;
+		 * 
+		 * if(pageEndNum >= lastPage) { pageStartNum = lastPage - 9; pageEndNum =
+		 * lastPage; } }
+		 */
 		
-		List<Map<String, Challenge>> challengeList = challengeMapper.getChallengeList(paramMap);
+		/*
+		 * Map<String, Object> resultMap = new HashMap<String, Object>();
+		 * resultMap.put("challengeList", challengeList); resultMap.put("lastPage",
+		 * lastPage); resultMap.put("pageStartNum", pageStartNum);
+		 * resultMap.put("pageEndNum", pageEndNum);
+		 */
 		
-		double rowCount = challengeMapper.getChallengeCount();
-		
-		int lastPage = (int) Math.ceil(rowCount/rowPerPage);
-		
-		if(currentPage > 6) {
-			pageStartNum = currentPage - 5;
-			pageEndNum = currentPage + 4;
-			
-			if(pageEndNum >= lastPage) {
-				pageStartNum = lastPage - 9;
-				pageEndNum = lastPage;
-			}
-		}
-		
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("challengeList", challengeList);
-		resultMap.put("lastPage", lastPage);
-		resultMap.put("pageStartNum", pageStartNum);
-		resultMap.put("pageEndNum", pageEndNum);
-		
-		return resultMap;
+		return challengeList;
 		
 	}
+	
+	
+	/* 나의 챌린지 : 개설 챌린지 설정(수정) */
+	
+	//0. 수정할 챌린지 리스트
+	public List<Challenge> getmodifyChallengeList(String sessionEmail, String challengeName){
+		return challengeMapper.getmodifyChallengeList(sessionEmail, challengeName);
+	}
+	
+	//1. 수정할 챌린지명
+	public Challenge getModifyChallengeAttributeList(String challengeCode) {
+		System.out.println("챌린지 코드 : " + challengeCode);
+		return challengeMapper.getModifyChallengeAttributeList(challengeCode);
+	}
+	
+	/*
+	 * //2. 수정할 챌린지기간 public Challenge getModifyChallengePeriod(String
+	 * challengeStartDate, String challengeEndDate, String challengeName) {
+	 * System.out.println(challengeStartDate + "<< challengeStartDate");
+	 * System.out.println(challengeEndDate + "<< challengeEndDate"); return
+	 * challengeMapper.getModifyChallengePeriod(challengeStartDate,
+	 * challengeEndDate, challengeName);
+	 * 
+	 * }
+	 */
+	
+	
+	/* ------------------------- 개설 챌린지 정보 수정 시작 ------------------------- */
+	
+  //1. 챌린지명 수정 
+	public int modifyChallengeName(Challenge challenge) { 
+		System.out.println("챌린지 서비스 - modifyChallengeName : " + challenge);
+		return challengeMapper.modifyChallengeName(challenge); 
+	}
+  
+  //2. 챌린지 날짜(기간) 수정 
+	public int modifyChallengePeriod(Challenge challenge) {
+		System.out.println("챌린지 서비스 - modifyChallengePeriod : " + challenge);
+		return challengeMapper.modifyChallengePeriod(challenge); 
+	}
+  
+  //3. 챌린지 인증방법 수정 
+	public int modifyChallengeCertificationMethod(Challenge challenge) { 
+		return challengeMapper.modifyChallengeCertificationMethod(challenge); 
+	}
+  
+  //4. 챌린지 소개 수정 
+	public int modifyChallengeIntroduce(Challenge challenge) {
+		return challengeMapper.modifyChallengeIntroduce(challenge); 
+	}
+  
+  //5. 챌린지 태그 수정 
+	public int modifyChallengeTag(Challenge challenge) { 
+		System.out.println("modifyChallengeTag 받아온 값" + challenge);
+		return challengeMapper.modifyChallengeTag(challenge); 
+	}
+	
+	/* ------------------------- 개설 챌린지 정보 수정 끝 ------------------------- */
+
+	
+	
 	
 	//챌린지 탐색 리스트
 	public List<Challenge> getChallengeExplorationList(){
@@ -82,8 +139,8 @@ public class ChallengeService {
 	}
 	
 	//챌린지 인증하기 - 인증할 챌린지 정보 조회
-	public Challenge getChallengeCertificationInfoByChallengeName(String challengeName) {
-		return challengeMapper.getChallengeCertificationInfoByChallengeName(challengeName);
+	public ChallengeParticipation getChallengeCertificationInfo(String challengeName, String sessionEmail) {
+		return challengeMapper.getChallengeCertificationInfo(challengeName, sessionEmail);
 	}
 	
 	//챌린지 개설하기(등록)
@@ -191,24 +248,19 @@ public class ChallengeService {
 	}
 	
 	//챌린지 인증하기 (인증 가능한 챌린지 리스트 조회)
-	public List<ChallengeCertification> getVerifiableChallengeList(){
-		return challengeMapper.getVerifiableChallengeList();
+	public List<ChallengeCertification> getVerifiableChallengeList(String sessionEmail){
+		
+		return challengeMapper.getVerifiableChallengeList(sessionEmail);
 	}
 	
-	//챌린지 카테고리 리스트
-	public List<Challenge> getChallengeByCategoryExplorationList(Map<String, Object> cateMap){
+	//챌린지 카테고리별 리스트
+	public List<Challenge> getChallengeByCategoryExplorationList(String challengeCategoryCode){
 		
-		System.out.println("CateMap:"+cateMap);
+		System.out.println("챌린지 카테고리 코드 (ChallengeService):"+ challengeCategoryCode);
+		List<Challenge> ChallengeByCategoryExplorationList = challengeMapper.getChallengeByCategoryExplorationList(challengeCategoryCode);
+		System.out.println("ChallengeByCategoryExplorationList (ChallengeService) >>>" + ChallengeByCategoryExplorationList);
 		
-		/*
-		 * String cateName = cateMap.toString().split("=")[1]; System.out.println("}: "+
-		 * cateName.substring(0,cateName.indexOf("}"))); String realName =
-		 * (cateName.substring(0,cateName.indexOf("}")).trim());
-		 */
-		
-		
-		//챌린지 탐색하기 - 카테고리별 리스트 
-		return challengeMapper.getChallengeByCategoryExplorationList(cateMap);
+		return ChallengeByCategoryExplorationList;
 	}
 	
 
