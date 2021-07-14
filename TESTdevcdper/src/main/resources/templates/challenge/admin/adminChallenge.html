@@ -78,9 +78,9 @@
 			                                    <label>진행상태</label>
 			                                    <select class="js-example-placeholder-single js-states form-control">
 			                                      	<option selected="selected">전체</option>
-			                                        <option>참여중</option>
+			                                        <option>진행예정</option>
+			                                        <option>진행중</option>
 			                                        <option>완료</option>
-			                                        <option>개설</option>
 			                                    </select>
 			                                </div>
 			                            </div>
@@ -227,11 +227,18 @@
 									50% Complete
 								</small>
 							</td>
-							<td><span class="badge bg-primary">참여중</span></td>
-		                    <td>
-								<button type="button" class="btn btn-block btn-default btn-xs challengeModalInsertDetail" data-toggle="modal" data-target="#modal-ChallengeInsertDetail">상세보기</button>
+							<td>
+							<span th:if="${l.challengeProgressStatus == '완료'}" class="badge bg-success"  th:text="${l.challengeProgressStatus}" id="challengeProgressStatus"></span>
+							<span th:if="${l.challengeProgressStatus == '진행중'}" class="badge bg-primary" th:text="${l.challengeProgressStatus}" id="challengeProgressStatus"></span>
+							<span th:if="${l.challengeProgressStatus == '진행예정'}" class="badge bg-danger" th:text="${l.challengeProgressStatus}" id="challengeProgressStatus"></span>
+							
 							</td>
+		                    
+		                    
 		                    <td>
+								<button type="button" class="btn btn-block btn-default btn-xs challengeModalInsertDetailBtn" th:id="challengeModalInsertDetailBtn" data-toggle="modal" data-target="#modal-ChallengeInsertDetail" th:data-count="${i}" th:data-ChallengeName="${l.getChallengeName()}">상세보기</button>
+							</td>
+		                    <td>	
 								<button type="button" class="btn btn-block btn-default btn-xs rankingBtn">순위결정</button>
 							</td>
 		                    <td>
@@ -245,13 +252,16 @@
 			<!-- 코치 list 페이지번호  -->
 			
 			<div class="card-footer clearfix">
+						<button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
+						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
-		                <li class="page-item"><a class="page-link" th:href="@{/adminChallenge}">«</a></li>
-		                  <th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
-		                  		<li class="page-item"><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallenge(currentPage=${num})}" th:text="${num}"></a></li>
-		                  		<span th:unless="${num != currentPage}" th:text="${'[' + num + ']'}"></span>
-		                  </th:block>
-		                  <li class="page-item"><a class="page-link" th:href="@{/adminChallenge(currentPage=${lastPage})}">»</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
 		                </ul>
 			   </div>	
 		</div>
@@ -409,20 +419,84 @@
 
 
 <th:block layout:fragment="pageJavascript">
-<script type="text/javascript" th:inline="javascript">
+<script th:src="@{/js/jquery-3.6.0.min.js}" type="text/javascript"></script>
+<script th:inline="javascript">
 	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalInsertDetail -->
 		
-		var challengeModalInsertDetail = $('.challengeModalInsertDetail');
+	/* Modal 영역  */
+	//상세정보 모달
+	$('.challengeModalInsertDetailBtn').click(function(){
+		var ChallengeName = $(this).attr('data-ChallengeName');
+		var countNumber = $(this).parents('tr').children()[0].innerText;
+		console.log(countNumber);
+		console.log(ChallengeName);
 		
-		/* Modal 영역 */
-		$(function(){
-			challengeModalInsertDetail.click(function(){
-			$("#modal-ChallengeInsertDetail").modal();
-		});
-				
-	});
-</script>
-</th:block>
+		/*<![CDATA[*/ 
+		var challengeList = /*[[ ${challengeList} ]]*/;
+		/*]]*/ 
+		
+		console.log(challengeList);
+		console.log(challengeList[countNumber-1].challengeName);
+		
+		//모달 챌린지명 값 전달
+		$('#modalChallengeName').val(challengeList[countNumber-1].challengeName);
+		console.log("챌린지명 : " + $('#modalChallengeName').val(challengeList[countNumber-1].challengeName));
 
+		//모달 챌린지 카테고리 값 전달
+		$('#modalChallengeCategory').val(challengeList[countNumber-1].challengeCategory.challengeCategoryName);
+		console.log("챌린지 카테고리 : " + $('#modalChallengeCategory').val(challengeList[countNumber-1].challengeCategory.challengeCategoryName));
+
+		//모달 챌린지 개설자 값 전달
+		$('#modalChallengeOpener').val(challengeList[countNumber-1].normalUser.userEmail);
+		console.log("챌린지 개설자 이메일 : " + $('#modalChallengeOpener').val(challengeList[countNumber-1].normalUser.userEmail));
+		
+		//모달 챌린지 공개범위 값 전달
+		$('#modalChallengeScope').val(challengeList[countNumber-1].challengeScope);
+		console.log("챌린지 공개범위 : " + $('#modalChallengeScope').val(challengeList[countNumber-1].challengeScope));
+		
+		//모달 챌린지 참여비밀번호 값 전달
+		$('#modalCallengePassword').val(challengeList[countNumber-1].challengeParticipationPassword);
+		console.log("챌린지 참여비밀번호 : " + $('#modalCallengePassword').val(challengeList[countNumber-1].challengeParticipationPassword));
+		
+		//모달 챌린지 최대참여인원수 값 전달
+		$('#modalChallengeMaxPeople').val(challengeList[countNumber-1].challengeMaximumPeople);
+		console.log("챌린지 최대인원수 : " + $('#modalChallengeMaxPeople').val(challengeList[countNumber-1].challengeMaximumPeople));
+		
+		//모달 챌린지 베팅금액 값 전달
+		$('#modalChallengeBetAmount').val(challengeList[countNumber-1].challengeBetAmount);
+		console.log("챌린지 베팅금액 : " + $('#modalChallengeBetAmount').val(challengeList[countNumber-1].challengeBetAmount));
+		
+		//모달 챌린지 인증방법 값 전달
+		$('#modalChallengeCertificationMethods').val(challengeList[countNumber-1].challengeCertificationMethod);
+		console.log("챌린지 인증방법 : " + $('#modalChallengeCertificationMethods').val(challengeList[countNumber-1].challengeCertificationMethod));
+		
+		//모달 챌린지 인증내용 값 전달
+		$('#modalChallengeCertificationContents').val(challengeList[countNumber-1].challengeCertificationContents);
+		console.log("챌린지 인증내용 : " + $('#modalChallengeCertificationContents').val(challengeList[countNumber-1].challengeCertificationContents));
+		
+		//모달 챌린지 인증빈도 값 전달
+		$('#modalChallengeCertificationFrequency').val(challengeList[countNumber-1].challengeCertificationFrequency);
+		console.log("챌린지 인증빈도 : " + $('#modalChallengeCertificationFrequency').val(challengeList[countNumber-1].challengeCertificationFrequency));
+		
+		//모달 챌린지 시작일 값 전달
+		$('#modalChallengeStartDate').val(challengeList[countNumber-1].challengeStartDate);
+		console.log("챌린지 시작일 : " + $('#modalChallengeStartDate').val(challengeList[countNumber-1].challengeStartDate));
+
+		//모달 챌린지 종료일 값 전달
+		$('#modalChallengeEndDate').val(challengeList[countNumber-1].challengeEndDate);
+		console.log("챌린지 종료일 : " + $('#modalChallengeEndDate').val(challengeList[countNumber-1].challengeEndDate));
+
+		//모달 챌린지 등록일 값 전달
+		$('#modalChallengeRegisterDate').val(challengeList[countNumber-1].challengeRegisterDate);
+		console.log("챌린지 등록일 : " + $('#modalChallengeRegisterDate').val(challengeList[countNumber-1].challengeRegisterDate));
+		
+		
+	});
+	
+	
+	
+
+		
+</script>
 </th:block>
 </html>

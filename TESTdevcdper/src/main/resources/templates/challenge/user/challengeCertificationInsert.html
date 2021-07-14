@@ -48,19 +48,19 @@
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" name="challengeParticipationEmail" id="challengeParticipationEmail" placeholder="이메일을 입력해주세요.">
+					<input type="text" class="form-control" th:value="${challengeParticipation.challengeParticipationEmail}" name="challengeParticipationEmail" id="challengeParticipationEmail" placeholder="이메일을 입력해주세요.">
 				</div>
 			  <div class="form-group">
                 <label for="challengeName">챌린지명</label>
-                <input type="text" name="challengeName" th:value="${challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white;">
+                <input type="text" name="challengeName" th:value="${challengeParticipation.challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
              <div class="form-group">
                 <label for="challengeName">챌린지 카테고리</label>
-                <input type="text" name="challengeCategory" th:value="${challenge.challengeCategory.challengeCategoryName}" class="form-control" readonly="readonly" style="background-color: white;">
+                <input type="text" name="challengeCategory" th:value="${challengeParticipation.challengeCategory.challengeCategoryName}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
 				<div class="form-group">
                 <label for="challengeName">챌린지 인증방법</label>
-                <input type="text" name="challengeCategory" th:value="${challenge.challengeCertificationMethod}" class="form-control" readonly="readonly" style="background-color: white;">
+                <input type="text" name="challengeCategory" th:value="${challengeParticipation.challenge.challengeCertificationMethod}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
 				<div class="form-group">
                 	<label for="challengeCertificationContents">챌린지 인증내용</label>

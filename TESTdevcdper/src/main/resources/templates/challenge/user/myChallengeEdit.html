@@ -5,7 +5,7 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">!챌린지 설정</h1>
+		<h1 class="m-0">!개설 챌린지 설정</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
@@ -24,10 +24,10 @@
 						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
 					</a>
 					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallengeEdit'}"> 나의 챌린지
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
 					</a>
 				</div>
-			</div>
+		</div>	
 		</ol>
 	</div>
 </th:block>
@@ -35,24 +35,27 @@
 <th:block layout:fragment="container">
 
 <div class="card card-default">
-			<div class="card-body">
-				<button type="button" class="btn btn-default btn-block challengeModalNameModify" data-toggle="modal" data-target="#modal-ChallengeModalNameModify" style="text-align: center;">챌린지명 변경</button>
-				<button type="button" class="btn btn-default btn-block challengeModalDateModify" data-toggle="modal" data-target="#modal-ChallengeModalDateModify" style="text-align: center;">챌린지 날짜 변경</button>
-				<!-- <button type="button" class="btn btn-default btn-block challengeModalMainImageModify" data-toggle="modal" data-target="#" style="text-align: center;">대표이미지 변경</button> -->
-				<button type="button" class="btn btn-default btn-block challengeModalCertificationMethodsModify" data-toggle="modal" data-target="#modal-ChallengeModalCertificationMethodsModify" style="text-align: center;">인증방법 변경</button>
-				<button type="button" class="btn btn-default btn-block challengeModalIntroduceModify" data-toggle="modal" data-target="#modal-ChallengeModalIntroduceModify" style="text-align: center;">챌린지 소개 변경</button>
-				<button type="button" class="btn btn-default btn-block challengeModalTagModify" data-toggle="modal" data-target="#modal-ChallengeModalTagModify" style="text-align: center;">챌린지 태그 변경</button>
+		<div class="card-body">
+			<div class="container-fluid">					
+				<button type="button" class="btn btn-default btn-block challengeModalNameModifyBtn" th:id="challengeModalNameModifyBtn" data-toggle="modal" data-target="#modal-ChallengeModalNameModify" th:data-count="${i}" th:data-ChallengeName="${modifyChallengeAttribute.getChallengeName()}" th:data-ChallengeCode="${modifyChallengeAttribute.getChallengeCode()}"  style="text-align: center;">챌린지명 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalDateModifyBtn" th:id="challengeModalDateModifyBtn" data-toggle="modal" data-target="#modal-ChallengeModalDateModify" th:data-count="${i}" th:data-challengeStartDate="${modifyChallengeAttribute.getChallengeStartDate()}" th:data-ChallengeEndDate="${modifyChallengeAttribute.getChallengeEndDate()}" style="text-align: center;">챌린지 기간 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalCertificationMethodsModifyBtn" th:id="challengeModalCertificationMethodsModifyBtn" data-toggle="modal" data-target="#modal-ChallengeModalCertificationMethodsModify" th:data-count="${i}" th:data-ChallengeCertificationMethod="${modifyChallengeAttribute.getChallengeCertificationMethod()}" style="text-align: center;">챌린지 인증방법 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalIntroduceModifyBtn" th:id="challengeModalIntroduceModifyBtn" data-toggle="modal"  data-target="#modal-ChallengeModalIntroduceModify" th:data-count="${i}" th:data-ChallengeIntroduce="${modifyChallengeAttribute.getChallengeIntroduce()}" style="text-align: center;">챌린지 소개 변경</button>
+				<button type="button" class="btn btn-default btn-block challengeModalTagModifyBtn" th:id="challengeModalTagModifyBtn" data-toggle="modal" data-target="#modal-ChallengeModalTagModify" th:data-count="${i}" th:data-ChallengeTag="${modifyChallengeAttribute.getChallengeTag()}" style="text-align: center;">챌린지 태그 변경</button>
 				<button type="button" class="btn btn-danger btn-block" th:onclick="|location.href='@{/myChallenge}'|" style="text-align: center;">챌린지 삭제</button>
+   				<input type="hidden" th:value="${modifyChallengeAttribute.challengeCode}">
+   				<input type="hidden" th:value="${modifyChallengeAttribute.challengeName}">
+   			</div>
    		</div>
-   	</div>
-   	
+</div>  	
+
 	<!-- challenge Modal 영역 시작-->
 	<!-- 챌린지명 변경 Modal - challengeModalNameModify -->
-	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalNameModify :: challengeModalNameModify"></th:block>   	
-   	
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalNameModify :: challengeModalNameModify"></th:block>  
+	
 	<!-- 챌린지 날짜 변경 Modal - challengeModalDateModify -->
-	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalDateModify :: challengeModalDateModify"></th:block>   	
-   	
+	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalDateModify :: challengeModalDateModify"></th:block>   
+
 	<!-- 챌린지 인증방법 변경 Modal - challengeModalCertificationMethodsModify -->
 	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalCertificationMethodsModify :: challengeModalCertificationMethodsModify"></th:block>   	
    	
@@ -61,48 +64,296 @@
    	
 	<!-- 챌린지 태그 변경 Modal - challengeModalTagModify -->
 	<th:block th:replace="/fragments/challengeModal/userChallengeModal/challengeModalTagModify :: challengeModalTagModify"></th:block>   	
-   	
-   	
+
+
 </th:block>
 
+
+
+
+
 <th:block layout:fragment="pageJavascript">
-<script type="text/javascript" th:inline="javascript">
+<script th:inline="javascript">
 		
+	$(function(){
 		
-		var challengeModalNameModify = $('.challengeModalNameModify');
-		var challengeModalDateModify = $('.challengeModalDateModify');
-		var challengeModalCertificationMethodsModify = $('.challengeModalCertificationMethodsModify');
-		var challengeModalIntroduceModify = $('.challengeModalIntroduceModify');
-		var challengeModalTagModify = $('.challengeModalTagModify');
+		/*<![CDATA[*/ 
+		var modifyChallengeAttribute = /*[[ ${modifyChallengeAttribute} ]]*/;
+		/*]]*/ 
+		console.log("modifyChallengeAttribute" + modifyChallengeAttribute);
+		
+		/*<![CDATA[*/
+		var challengeCode = [[${modifyChallengeAttribute.challengeCode}]];
+	        console.log("챌린지 코드 : " + challengeCode);
+		/*]]>*/
+
+		/*<![CDATA[*/
+		var challengeCertificationMethod = [[${modifyChallengeAttribute.challengeCertificationMethod}]];
+	        console.log("챌린지 인증방법 : " + challengeCertificationMethod);
+		/*]]>*/
+		
+		/*<![CDATA[*/
+		var challengeName = [[${modifyChallengeAttribute.challengeName}]];
+	        console.log("챌린지명 : " + challengeName);
+		/*]]>*/
+		
+		/*<![CDATA[*/
+		var challengeStartDate = [[${modifyChallengeAttribute.challengeStartDate}]];
+	        console.log("챌린지 시작일 : " + challengeStartDate);
+		/*]]>*/
+		
+		/*<![CDATA[*/
+		var challengeEndDate = [[${modifyChallengeAttribute.challengeEndDate}]];
+	        console.log("챌린지 종료일 : " + challengeEndDate);
+		/*]]>*/
+		
+		/*<![CDATA[*/
+		var challengeIntroduce = [[${modifyChallengeAttribute.challengeIntroduce}]];
+	        console.log("챌린지 소개 : " + challengeIntroduce);
+		/*]]>*/
+		
+		/*<![CDATA[*/
+		var challengeTag = [[${modifyChallengeAttribute.challengeTag}]];
+	        console.log("챌린지 태그 : " + challengeTag);
+		/*]]>*/
 		
 		<!-- 챌린지명 변경 Modal - challengeModalNameModify -->
-		$(function(){
-			challengeModalNameModify.click(function(){
-			$("#modal-ChallengeModalNameModify").modal('show');
+		$('.challengeModalNameModifyBtn').click(function(){
+			
+			var challengeName = $(this).attr('data-ChallengeName');
+			console.log("챌린지명 : "+ challengeName);	
+			
+			$('#modalModifyChallengeName').val(modifyChallengeAttribute.challengeName);
+				
+		});
+		
+			/* --------------- 챌린지명 수정처리 --------------- Script */
+			
+			$("button#modifyChallengeNameSubmit").click(function(){
+			var modalModifyChallengeName = $('#modalModifyChallengeName').val();
+			
+
+				
+			if(modalModifyChallengeName != ''){
+				var request = $.ajax({
+					   url: "/myChallengeEdit",
+					   method: "POST",
+					   data: {
+						   			challengeCode : challengeCode,
+						   			challengeName : modalModifyChallengeName,
+						   			challengeStartDate : challengeStartDate,
+						   			challengeEndDate : challengeEndDate,
+						   			challengeCertificationMethod : challengeCertificationMethod,
+						   			challengeIntroduce : challengeIntroduce,
+						   			challengeTag : challengeTag			
+					   		},
+						   			
+					   dataType: "html"
+				});
+				request.done(function( data ) {
+						console.log(data + "<<<< data");
+						location.href="/myChallengeInsertList"; 	
+				});
+				request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+				});
+			};
+		});
+				
+			/* --------------- 챌린지명 수정처리 --------------- Script */
+			
+			
+		
+		<!-- 챌린지 기간 변경 Modal - challengeModalDateModify -->
+		$('.challengeModalDateModifyBtn').click(function(){
+			
+			var challengeStartDate = $(this).attr('data-challengeStartDate');
+			console.log("챌린지 시작일 : "+ challengeStartDate);	
+			
+			var challengeEndDate = $(this).attr('data-ChallengeEndDate');
+			console.log("챌린지 종료일 : "+ challengeEndDate);	
+			
+			$('#modalModifyChallengeStartDate').val(modifyChallengeAttribute.challengeStartDate);
+			$('#modalModifyChallengeEndDate').val(modifyChallengeAttribute.challengeEndDate);
+			
+			/* --------------- 챌린지 날짜 수정처리 --------------- Script */
+			
+			$("button#modifyChallengeDateSubmit").click(function(){
+			
+			var modalModifyChallengeStartDate = $('#modalModifyChallengeStartDate').val();
+			var modalModifyChallengeEndDate = $('#modalModifyChallengeEndDate').val();
+			
+			
+			if(modalModifyChallengeStartDate != '' && modalModifyChallengeEndDate != ''){
+				var request = $.ajax({
+					   url: "/myChallengeEdit",
+					   method: "POST",
+					   data: {
+						   			challengeCode : challengeCode,
+						   			challengeName : challengeName,
+						   			challengeStartDate : modalModifyChallengeStartDate,
+						   			challengeEndDate : modalModifyChallengeEndDate,
+						   			challengeCertificationMethod : challengeCertificationMethod,
+						   			challengeIntroduce : challengeIntroduce,
+						   			challengeTag : challengeTag
+						   			
+					   		},
+						   			
+					   dataType: "html"
+				});
+				request.done(function( data ) {
+						console.log(data + "<<<< data");
+						location.href="/myChallengeInsertList"; 	
+				});
+				request.fail(function( jqXHR, textStatus ) {
+				/*   	location.href="/challenge/user/myChallengeInsertList"; 	
+				  		location.reload();	 */
+						alert( "Request failed: " + textStatus );
+				});
+			};
+		});
+				
+			/* --------------- 챌린지 인증방법 수정처리 --------------- Script */
+			
 		});
 			
-		<!-- 챌린지 날짜 변경 Modal - challengeModalDateModify -->
-		$(function(){
-			challengeModalDateModify.click(function(){
-			$("#modal-ChallengeModalDateModify").modal('show');
-		});
-			
+		
+		
+		
+		
 		<!-- 챌린지 인증방법 변경 Modal - challengeModalCertificationMethodsModify -->
-		$(function(){
-			challengeModalCertificationMethodsModify.click(function(){
-			$("#modal-ChallengeModalCertificationMethodsModify").modal('show');
+		$('.challengeModalCertificationMethodsModifyBtn').click(function(){
+			
+			var challengeCertificationMethod = $(this).attr('data-ChallengeCertificationMethod');
+			console.log("챌린지 인증방법 : "+ challengeCertificationMethod);
+			
+			$('#modalChallengeCertificationMethod').val(modifyChallengeAttribute.challengeCertificationMethod);
+			
+			/* ------------------------- 챌린지 인증방법 수정처리 Script 시작 -------------------------  */
+			
+			$("button#modifyChallengeModalCertificationMethodBtn").click(function(){
+			var modalModifyChallengeCertificationMethod = $('#modalModifyChallengeCertificationMethod').val();
+			
+			
+			if(modalModifyChallengeCertificationMethod != ''){
+				var request = $.ajax({
+					   url: "/myChallengeEdit",
+					   method: "POST",
+					   data: {
+						   			challengeCode : challengeCode,
+						   			challengeName : challengeName,
+						   			challengeStartDate : challengeStartDate,
+						   			challengeEndDate : challengeEndDate,
+						   			challengeCertificationMethod : modalModifyChallengeCertificationMethod,
+						   			challengeIntroduce : challengeIntroduce,
+						   			challengeTag : challengeTag			
+					   		},
+					   dataType: "html"
+				});
+				request.done(function( data ) {
+						console.log(data + "<<<< data");
+						location.href="/myChallengeInsertList"; 	
+				});
+				request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+				});
+			};
+		});
+				
+			/* ------------------------- 챌린지 인증방법 수정처리 Script 끝 -------------------------  */
+			
+			
 		});
 			
 		<!-- 챌린지 소개 변경 Modal - challengeModalIntroduceModify -->
-		$(function(){
-			challengeModalIntroduceModify.click(function(){
-			$("#modal-ChallengeModalIntroduceModify").modal('show');
+		$('.challengeModalIntroduceModifyBtn').click(function(){
+			
+			var challengeIntroduce = $(this).attr('data-ChallengeIntroduce');
+			console.log("챌린지 소개 : "+ challengeIntroduce);
+			
+			$('#modalModifyChallengeIntroduce').val(modifyChallengeAttribute.challengeIntroduce);
+			
+			/* ------------------------- 챌린지 소개 수정처리 Script 시작 -------------------------  */
+			
+			$("button#modifyChallengeModalIntroduceBtn").click(function(){
+			var modalModifyChallengeIntroduce = $('#modalModifyChallengeIntroduce').val();
+			
+			
+			if(modalModifyChallengeIntroduce != ''){
+				var request = $.ajax({
+					   url: "/myChallengeEdit",
+					   method: "POST",
+					   data: {
+						   			challengeCode : challengeCode,
+						   			challengeName : challengeName,
+						   			challengeStartDate : challengeStartDate,
+						   			challengeEndDate : challengeEndDate,
+						   			challengeCertificationMethod : challengeCertificationMethod,
+						   			challengeIntroduce : modalModifyChallengeIntroduce,
+						   			challengeTag : challengeTag			
+					   		},
+					   dataType: "html"
+				});
+				request.done(function( data ) {
+						console.log(data + "<<<< data");
+						location.href="/myChallengeInsertList"; 	
+				});
+				request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+				});
+			};
+		});
+			
+			/* ------------------------- 챌린지 소개 수정처리 Script 끝 -------------------------  */
+
+			
+			
 		});
 			
 		<!-- 챌린지 태그 변경 Modal - challengeModalTagModify -->
-		$(function(){
-			challengeModalTagModify.click(function(){
-			$("#modal-ChallengeModalTagModify").modal('show');
+		$('.challengeModalTagModifyBtn').click(function(){
+			
+			var challengeTag = $(this).attr('data-ChallengeTag');
+			console.log("챌린지 태그 : "+ challengeTag);
+			
+			$('#modalModifyChallengeTag').val(modifyChallengeAttribute.challengeTag);
+			console.log("챌린지 태그 변경 모달에 전달된 값" + $('#modalModifyChallengeTag').val(modifyChallengeAttribute.challengeTag))
+			
+		/* ------------------------- 챌린지 태그 수정처리 Script 시작 -------------------------  */
+			
+			$("button#modifyChallengeModalTagBtn").click(function(){
+			var modalModifyChallengeTag = $('#modalModifyChallengeTag').val();
+			
+			
+			if(modalModifyChallengeTag != ''){
+				var request = $.ajax({
+					   url: "/myChallengeEdit",
+					   method: "POST",
+					   data: {
+						   			challengeCode : challengeCode,
+						   			challengeName : challengeName,
+						   			challengeStartDate : challengeStartDate,
+						   			challengeEndDate : challengeEndDate,
+						   			challengeCertificationMethod : challengeCertificationMethod,
+						   			challengeIntroduce : challengeIntroduce,
+						   			challengeTag : modalModifyChallengeTag			
+					   		},
+					   dataType: "html"
+				});
+				request.done(function( data ) {
+						console.log(data + "<<<< data");
+						location.href="/myChallengeInsertList"; 	
+				});
+				request.fail(function( jqXHR, textStatus ) {
+						alert( "Request failed: " + textStatus );
+				});
+			};
+		});
+			
+			/* ------------------------- 챌린지 태그 수정처리 Script 끝 -------------------------  */
+			
+			
+			
 		});
 	});
 		

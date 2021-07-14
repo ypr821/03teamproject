@@ -11,34 +11,16 @@
 		      </div>
 				<div class="modal-body">
 				<div class="form-group">
-		              <label for="challengeTag">챌린지 태그</label>
+		              <label for="modalModifyChallengeTag">챌린지 태그</label>
 		              <div class="input-group mb-3">
 		                  <div class="input-group-prepend">
 		                    <span class="input-group-text">#</span>
 		                  </div>
-		                  <input type="text" id="firstChallengeTag" class="form-control" placeholder="최대 10자" value="깃허브">
+		                  <input type="text" id="modalModifyChallengeTag" th:value="${modifyChallengeAttribute.challengeTag}" class="form-control" placeholder="최대 10자" >
 		                </div>
-		              <div class="input-group mb-3">
-		                  <div class="input-group-prepend">
-		                    <span class="input-group-text">#</span>
-		                  </div>
-		                  <input type="text" id="SecondChallengeTag" class="form-control" placeholder="최대 10자" value="개발">
-		                </div>
-		              <div class="input-group mb-3">
-		                  <div class="input-group-prepend">
-		                    <span class="input-group-text">#</span>
-		                  </div>
-		                  <input type="text" id="ThirdChallengeTag" class="form-control" placeholder="최대 10자" value="잔디">
-		                </div>
-		              <div class="input-group mb-3">
-		                  <div class="input-group-prepend">
-		                    <span class="input-group-text">#</span>
-		                  </div>
-		                  <input type="text" id="FourthChallengeTag" class="form-control" placeholder="최대 10자" value="경력">
-		                </div>
-		              </div>
+		           </div>
 				<div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <button type="button" class="btn btn-default" id="modifyChallengeModalTagBtn" data-dismiss="modal">변경</button>
 			    </div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

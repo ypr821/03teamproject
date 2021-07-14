@@ -41,14 +41,11 @@
              <h3 class="card-title">챌린지 현황</h3>
 
              <div class="card-tools">
-               <button type="button" class="btn btn-tool col-sm-12" >
-                 <i class="fas fa-cog"></i>
-               </button>
              </div>
            </div>
            <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
-                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참여중</button>
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참가중</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeCompleteList}'|" style="color: white;">1<br>완료</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeInsertList}'|" style="color: white;">1<br>개설</button>
                     </div>

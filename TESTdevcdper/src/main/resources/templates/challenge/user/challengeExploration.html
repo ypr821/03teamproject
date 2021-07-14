@@ -170,39 +170,39 @@
 		</div>
 			<div class="card-body">
 			<div class="exploationBtnGroup" >
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_all">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_all">
 		       <i class="fas fa-list"></i><span>전체</span> 
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_01">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_01">
 		       <i class="fas fa-graduation-cap" ></i><span>학력</span>
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_02">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_02">
 		        <i class="fas fa-file-code"></i><span>프로젝트</span>
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_03">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_03">
 		         <i class="fas fa-certificate"></i>자격증 
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_04">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_04">
 		         <i class="fas fa-atlas"></i>공인어학
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_05">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_05">
 		        <i class="fab fa-dev"></i>기술스택 
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_06">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_06">
 		        <i class="fas fa-university"></i>직종전문교육과정
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_07">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_07">
 		        <i class="fas fa-briefcase"></i>인턴십 
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_08">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_08">
 		       <i class="fas fa-pen-alt"></i>공모전
 		    </button>
-			<button class="btn btn-app challengeCategory" id="categoryBtn" name="button" value="challenge_category_code_09">
+			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_09">
 		        <i class="fas fa-user-tie"></i>경력
 		    </button>
    		</div>
             <div class="row">
-             <div th:each="l: ${challengeExplorationList}" class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
+             <div th:each="l: ${challengeExplorationList}" id="challengeExplorationCard" class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
 	          <div class="card bg-light d-flex flex-fill">
 	             <div class="card-header text-muted border-bottom-0">
 	             </div>
@@ -259,19 +259,29 @@
 	$(function(){
 	$('.btn-app').click(function(){
 		
-		var kind = $(this).val();
-		console.log(kind + "<--kind");
+		var challengeCategoryCodeValue = $(this).val();
+		console.log("챌린지 카테고리 코드 : " + challengeCategoryCodeValue);
 		
-		if(kind != ''){
+		
+		
+		if(challengeCategoryCodeValue != ''){
 				jQuery.ajax({ 
 			        type: "POST", 
 			        url: "/byCategory", 
-			        cache: false, 
-			        data: { challengeCategoryCode : kind },
+			        data: { challengeCategoryCode : challengeCategoryCodeValue },
+			        dataType : 'json',
 			        success: function (data) { 
 			           console.log('data : ',data,'- 잘 받았음')
 			           console.log('type check data : ',typeof(data))//String이네
-			           $('body').html(data);
+			           console.log(data);
+			           //console.log(Object.values(data));
+			           //console.log(Object.keys(data)[3]);
+			           //console.log(data.length);
+			           //var challengeName = data.filter(function (getChallenge) { return getChallenge.challengeName});
+			           //console.log(challengeName[0].challengeName);
+			           //$('#challengeName.lead').text(challengeName[0].challengeName);
+			           $('#challengeName.lead').text(data);
+			          	//$('p#challengeTag').text(data[i]);
 			        }, 
 			        error: function (xhr, status, error) { 
 			        	alert('error');

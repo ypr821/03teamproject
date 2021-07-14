@@ -4,84 +4,72 @@
 	<!-- modal -->
 	<div class="modal fade" id="modal-ChallengeInsertDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
 		<div class="modal-dialog modal-lg" >
-			  <div class="modal-content">
+			  <div class="modal-content" id="modal-ChallengeInsertDetailContents">
 				<div class="modal-header">
 				 <h3 class="modal-title" id="myModalLabel">챌린지 개설정보 상세보기</h3>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		      </div>
 				<div class="modal-body">
 			  <div class="form-group">
-                <label for="challengeName">챌린지명</label>
-                <input type="text" id="challengeName" class="form-control" readonly="readonly" style="background-color: white" value="1일 1깃허브">
+                <label for="modalChallengeName">챌린지명</label>
+                <input type="text" id="modalChallengeName" class="form-control" readonly="readonly" style="background-color: white"  value="">
               </div>
 			  <div class="form-group">
-                <label for="challengeCategory">챌린지 카테고리</label>
-                <input type="text" id="challengeCategory" class="form-control" readonly="readonly" style="background-color: white" value="프로젝트">
+                <label for="modalChallengeCategory">챌린지 카테고리</label>
+                <input type="text" id="modalChallengeCategory" class="form-control" readonly="readonly" style="background-color: white"  value="">
               </div>
               <div class="form-group">
-                <label for="challengeOpener">챌린지 개설자</label>
-                <input type="text" id="challengeOpener" class="form-control" readonly="readonly" style="background-color: white" value="park01@hanmail.net">
+                <label for="modalChallengeOpener">챌린지 개설자</label>
+                <input type="text" id="modalChallengeOpener" class="form-control" readonly="readonly" style="background-color: white">
               </div>
               <div class="form-group">
-                <label for="challengeScope">챌린지 공개범위</label>
-                <input type="text" id="challengeScope" class="form-control" readonly="readonly" style="background-color: white" value="공개">
+                <label for="modalChallengeScope">챌린지 공개범위</label>
+                <input type="text" id="modalChallengeScope" class="form-control" readonly="readonly" style="background-color: white">
               </div>
               <div class="form-group">
-                <label for="challengePassword">챌린지 참여비밀번호</label>
-                <input type="password" id="challengePassword" class="form-control" readonly="readonly" style="background-color: white" value="">
+                <label for="modalCallengePassword">챌린지 참여비밀번호</label>
+                <input type="text" id="modalCallengePassword" class="form-control" readonly="readonly" style="background-color: white">
               </div>
               <div class="form-group">
-                <label for="challengeMaxPeople">챌린지 최대참여인원수</label>
+                <label for="modalChallengeMaxPeople">챌린지 최대참여인원수</label>
                  <div class="input-group mb-3">
-                 <input type="text" id="challengeMaxPeople" class="form-control" readonly="readonly" style="background-color: white" value="3">
+                 <input type="text" id="modalChallengeMaxPeople" class="form-control" readonly="readonly" style="background-color: white">
 	                  <div class="input-group-prepend">
 	                  	<span class="input-group-text">명</span>
 	                  </div>
                </div>
               </div>
               <div class="form-group">
-                <label for="challengeBetPrice">챌린지 베팅금액</label>
+                <label for="modalChallengeBetAmount">챌린지 베팅금액</label>
                 <div class="input-group mb-3">
-              	<input type="text" id="challengeBetPrice" class="form-control" readonly="readonly" style="background-color: white" value="1,000">
+              	<input type="text" id="modalChallengeBetAmount" class="form-control" readonly="readonly" style="background-color: white" >
 	                  <div class="input-group-prepend">
 	                  	<span class="input-group-text">원</span>
 	                  </div>
               </div>
               <div class="form-group">
-                <label for="challengeCertificationMethods">챌린지 인증방법</label>
-                <input type="text" id="challengeCertificationMethods" class="form-control" readonly="readonly" style="background-color: white" value="사진">
+                <label for="modalChallengeCertificationMethods">챌린지 인증방법</label>
+                <input type="text" id="modalChallengeCertificationMethods" class="form-control" readonly="readonly" style="background-color: white" >
               </div>
               <div class="form-group">
-                <label for="challengeCertificationContents">챌린지 인증내용</label>
-                <input type="text" id="challengeCertificationContents" class="form-control" readonly="readonly" style="background-color: white" value="자신의 깃허브주소의 잔디화면을 찍어주세요	">
+                <label for="modalChallengeCertificationContents">챌린지 인증내용</label>
+                <input type="text" id="modalChallengeCertificationContents" class="form-control" readonly="readonly" style="background-color: white" >
               </div>
               <div class="form-group">
-                <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
-                <input type="text" id="challengeCertificationFrequency" class="form-control" readonly="readonly" style="background-color: white" value="월~일 매일 인증하기">
+                <label for="modalChallengeCertificationFrequency">챌린지 인증빈도</label>
+                <input type="text" id="modalChallengeCertificationFrequency" class="form-control" readonly="readonly" style="background-color: white" >
               </div>
               <div class="form-group">
-                <label for="challengeTotalCount">챌린지 총횟수</label>
-                <input type="text" id="challengeTotalCount" class="form-control" readonly="readonly" style="background-color: white" value="10일">
+                <label for="modalChallengeStartDate">챌린지 시작일</label>
+                <input type="text" id="modalChallengeStartDate" class="form-control" readonly="readonly" style="background-color: white" >
               </div>
               <div class="form-group">
-                <label for="challengeOneDayCertificationCount">챌린지 하루인증횟수</label>
-                <input type="text" id="challengeOneDayCertificationCount" class="form-control" readonly="readonly" style="background-color: white" value="1회">
+                <label for="modalChallengeEndDate">챌린지 종료일</label>
+                <input type="text" id="modalChallengeEndDate" class="form-control" readonly="readonly" style="background-color: white" >
               </div>
               <div class="form-group">
-                <label for="challengeCertificationTime">챌린지 인증가능시간</label>
-                <input type="text" id="challengeCertificationTime" class="form-control" readonly="readonly" style="background-color: white" value="00:00~24:00">
-              </div>
-              <div class="form-group">
-                <label for="challengeStartDate">챌린지 시작일</label>
-                <input type="text" id="challengeStartDate" class="form-control" readonly="readonly" style="background-color: white" value="2021년 4월 22일">
-              </div>
-              <div class="form-group">
-                <label for="challengeEndDate">챌린지 종료일</label>
-                <input type="text" id="challengeEndDate" class="form-control" readonly="readonly" style="background-color: white" value="2021년 5월 6일">
-              </div>
-              <div class="form-group">
-                <label for="challengeRegDate">챌린지 등록일</label>
-                <input type="text" id="challengeRegDate" class="form-control" readonly="readonly" style="background-color: white" value="2021년 4월 15일">
+                <label for="modalChallengeRegisterDate">챌린지 등록일</label>
+                <input type="text" id="modalChallengeRegisterDate" class="form-control" readonly="readonly" style="background-color: white" >
 
               </div>
                 </div>
