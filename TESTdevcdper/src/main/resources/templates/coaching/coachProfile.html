@@ -36,15 +36,15 @@
 	                <ul class="list-group list-group-unbordered mb-3">
 	                  <li class="list-group-item">
 	                    <b>코칭 진행 횟수 </b> 
-	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoach_management_count()} + '회'"> </a>
+	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoachManagementCount()} + '회'"> </a>
 	                  </li>
 	                  <li class="list-group-item">
 	                    <b>코칭 평균 평점</b> 
-	                    <a class="float-right" th:text="'🌕'+${coachList.get(0).getCoachManagement().getCoach_management_rate()} + '/5.0'"></a>
+	                    <a class="float-right" th:text="'🌕'+${coachList.get(0).getCoachManagement().getCoachManagementRate()} + '/5.0'"></a>
 	                  </li>
 	                  <li class="list-group-item">
 	                    <b>1시간당 평균 </b> 
-	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoach_management_hourly_average_price()} + '원'"></a>
+	                    <a class="float-right" th:text="${coachList.get(0).getCoachManagement().getCoachManagementHourlyAveragePrice()} + '원'"></a>
 	                  </li>               
 	                </ul>
 	             	<a href="#" >
@@ -52,7 +52,7 @@
 			                <b><i class="fas fa-comments"></i>&nbsp;#문의</b>
 	             		</button>
 		            </a>
-	                <a th:href="@{/coachingRFQ(coachEmail=${l.coachEmail})}">
+	                <a th:href="@{/coachingRFQ(coachEmail=${coachList.get(0).getCoachManagement().getCoachUserEmail()})}">
 	                	<button type="button"  class="btn btn-primary btn-block" style="width: 90%">
 	                		<b><i class="fas fa-user"></i> &nbsp;!견적요청</b>
 	                	</button>
@@ -88,9 +88,9 @@
 	                      
 	                    	<!-- post 1 -->
 		                     <b>
-		                     	<p th:text="${coachList.get(0).getCoachManagement().getCoaching_introduce_subject()}"> </p>
+		                     	<p th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceSubject()}"> </p>
 							</b> 
-							<p th:text="${coachList.get(0).getCoachManagement().getCoaching_introduce_contents()}"> </p>
+							<p th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceContents()}"> </p>
 		                 </div>
 	                    
 	                    <!-- /.post 1 -->
@@ -276,8 +276,8 @@
 	
 	<th:block layout:fragment="pageJavascript">
 		<script th:inline="javascript">
-			/*<![CDATA[*/ 
-				var coachBlogGithubAddress = /*[[ ${coachList.get(0).getCoachManagement().getCoach_blog_github_adress()} ]]*/;
+			/* /*<![CDATA[*/ 
+				var coachBlogGithubAddress = /*[[ ${coachList.get(0).getCoachManagement().getCoachBlogGithubAdress()} ]]*/
 			/*]]*/ 
 			console.log('coachBlogGithubAddress ==> ' + coachBlogGithubAddress);
 			var coachBlogGithubAddressArray = coachBlogGithubAddress.split(',');
@@ -291,7 +291,7 @@
 				$('#coachBlogAddress').html(coachBlogAddress);
 				$('#coachGitHubAddress').html(coachGithubAddress);
 				
-			});
+			}); 
 			
 			
 		</script>

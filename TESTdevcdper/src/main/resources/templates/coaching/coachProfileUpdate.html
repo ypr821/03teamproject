@@ -40,7 +40,7 @@
 	                  </li>
 	                  <li class="list-group-item">
 	                    <b>코칭 평균 평점</b> 
-	                    <a class="float-right" th:text="'🌕'+${coachList.getCoachManagementRate()} + '/5.0'"></a>
+	                    <a class="float-right" th:text="'🌕'+${coachList.get(0).getCoachManagement().getCoachManagementRate()} + '/5.0'"></a>
 	                  </li>
 	                  <li class="list-group-item">
 	                    <b>1시간당 평균 </b> 

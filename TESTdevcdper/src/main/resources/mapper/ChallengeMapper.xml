@@ -213,7 +213,7 @@
 	</select>
 	
 	<!-- 1. 나의 챌린지 : 챌린지명 수정 -->
-	<update id="modifyChallengeName" parameterType="Challenge">
+	<update id="modifyChallengeName" parameterType="com.devcdper.challenge.domain.Challenge">
 		UPDATE challenge
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="challengeName != null and challengeName != ''.toString()">
@@ -225,7 +225,7 @@
 	</update>
 	
 	<!-- 2. 나의 챌린지 : 챌린지 기간(날짜) 수정-->
-	<update id="modifyChallengePeriod" parameterType="Challenge">
+	<update id="modifyChallengePeriod" parameterType="com.devcdper.challenge.domain.Challenge">
 			UPDATE challenge
 			<trim prefix="SET" prefixOverrides=",">
 				<if test="challengeStartDate != null and challengeStartDate != ''.toString()">
@@ -240,7 +240,7 @@
 	</update> 
 	
 	<!-- 3. 나의 챌린지 : 챌린지 인증방법 수정 -->
-	<update id="modifyChallengeCertificationMethod" parameterType="Challenge">
+	<update id="modifyChallengeCertificationMethod" parameterType="com.devcdper.challenge.domain.Challenge">
 		UPDATE challenge
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="challengeCertificationMethod != null and challengeCertificationMethod != ''.toString()">
@@ -252,7 +252,7 @@
 	</update>
 	
 	<!-- 4. 나의 챌린지 : 챌린지 소개 수정-->
-	<update id="modifyChallengeIntroduce" parameterType="Challenge">
+	<update id="modifyChallengeIntroduce" parameterType="com.devcdper.challenge.domain.Challenge">
 		UPDATE challenge
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="challengeIntroduce != null and challengeIntroduce != ''.toString()">
@@ -264,7 +264,7 @@
 	</update>
 
 	<!-- 5. 나의 챌린지 : 챌린지 태그 수정-->
-	<update id="modifyChallengeTag" parameterType="Challenge">
+	<update id="modifyChallengeTag" parameterType="com.devcdper.challenge.domain.Challenge">
 		UPDATE challenge
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="challengeTag != null and challengeTag != ''.toString()">
