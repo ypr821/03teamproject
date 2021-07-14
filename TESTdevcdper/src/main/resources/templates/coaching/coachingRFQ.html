@@ -74,7 +74,8 @@
               
               <!-- 코칭 시작, 종료일자  -->
               <div class="form-group">
-                <label for="coachingStartDate">시작가능일자</label>
+                <label for="coachingStartDate">시작 
+                가능 일자</label>
                 <input type="date" id="coachingStartDate" class="form-control" value="">
               </div>
               
@@ -147,18 +148,17 @@
               <!-- / 코칭 희망 요청 사항  -->
               
               
-             <a th:href="@{#}"><!-- @{/myCoachingClient} -->
-           		 <button type="button" id="RFQSubmitBtn" class="btn btn-block bg-gradient-primary btn-sm">요청 전송</button>
-             </a>            
+           
+           	  <button type="button" id="RFQSubmitBtn" class="btn btn-block bg-gradient-primary btn-sm">요청 전송</button>
+                         
      	   </div>
            <!-- /.card-body -->
          </div>
          <!-- /.card -->
     </div>
-      
     <!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
 	<th:block th:replace="/coaching/coachingModal/modal-coaching-totalPlan :: modal-coaching-totalPlan"></th:block>
-   
+   	<input id="coachEmail" th:value="${coachEmail}" hidden="true"></input>
    
    
    
@@ -166,7 +166,9 @@
 
 <th:block layout:fragment="pageJavascript">
 	<script type="text/javascript">
-		
+		//controller model로 부터 넘겨받은 값을 이렇게 받는다.. 
+		console.log("coachEmail=>",$('#coachEmail').val());
+			
 		<!--  코치님과 내 계획 짜기 통합계획 선택  Modal  -->
 		$(function(){
 			$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
@@ -179,6 +181,8 @@
 				})
 		});
 		
+	
+		
 		/* RFQSubmitBtn (요청전송) 클릭 이벤트 */
 		$('#RFQSubmitBtn').click(function(){
 			//console.log('클릭 이벤트 확인');
@@ -187,49 +191,150 @@
 			//console.log($($('.coachingType').children()[1]).children().val());
 			//console.log($($('.coachingType').children()[1]).children().is(":checked"));
 			var coachingType = '';
-			if(true == $($('.coachingType').children()[1]).children().is(":checked")){
-				coachingType = '멘토';
-			}
-			else if(true == $($('.coachingType').children()[2]).children().is(":checked")){
-				coachingType = '컨설턴트';
+			//코칭 타입 유효성 검사
+			if($($('.coachingType').children()[1]).children().is(":checked")||$($('.coachingType').children()[2]).children().is(":checked")){
+				if(true == $($('.coachingType').children()[1]).children().is(":checked")){
+					coachingType = '멘토';
+				}
+				else if(true == $($('.coachingType').children()[2]).children().is(":checked")){
+					coachingType = '컨설턴트';
+				}
+				
+				
+				//카테고리코드값
+				//console.log($('#coachingCategory').val());
+				//카테고리 유효성 검사
+				if('' == $('#coachingCategory').val() || undefined == $('#coachingCategory').val()){
+					alert('카테고리 입력을 확인해주세요');
+				}else{
+					console.log('카테고리 코드가 들어옴 : ',$('#coachingCategory').val());
+						
+					//시작일자 유효성 검사
+					var today = new Date();
+					var year = today.getFullYear();
+					var month = today.getMonth()+1;
+					if(10>month){
+						month = '0'+month;
+					}
+					var date = today.getDate();
+					var nowDate = year+'-'+month+'-'+date;
+					//console.log('오늘날짜 =>',nowDate);
+					var startDate = $('#coachingStartDate').val();
+					var endDate   = $('#coachingEndDate').val();
+					if('' == startDate || undefined == startDate){
+						alert('시작일자를 확인해주세요');						
+					}else if( nowDate > startDate ){
+						alert('시작일자는 오늘 이전 날짜로 입력이 불가능합니다. 입력을 확인해주세요!');						
+					}else{
+						
+						//끝나는 일자 유효성검사
+						console.log(endDate);
+						if('' == endDate || undefined == endDate){
+	
+							alert('종료일자를 확인해주세요');						
+						}else if(startDate > endDate){
+							alert('종료일자는 시작일자 이전 날짜로 입력이 불가능합니다. 입력을 확인해주세요!');						
+						}else{
+							
+
+							//진행요일 입력받은 데이터 변수에 담기 
+							//console.log($($(".checkbox")[1]).is(":checked"));
+							var dayStr = '';
+							var notDayStr = '';
+							for(i = 0; i < $(".checkbox").length; i++){
+								//체크된 요일 dayStr에 모으기
+								if($($(".checkbox")[i]).is(":checked")){
+									//console.log($($(".checkbox")[i]).val());
+									dayStr += $($(".checkbox")[i]).val()+','
+								}
+								//체크 안된 요일 notDayStr에 모으기 => 유효성 검사에 사용
+								if(false == $($(".checkbox")[i]).is(":checked")){
+									//console.log($($(".checkbox")[i]).val());
+									notDayStr += $($(".checkbox")[i]).val()+','
+									//console.log('notDayStr: '+notDayStr);
+								}
+							}
+							//진행요일 문자열 마지막에 붙은 , 제거
+							dayStr = dayStr.slice(0,-1);
+							notDayStr = notDayStr.slice(0,-1);
+							//console.log('dayStr=>'+ dayStr);
+							//console.log('notDayStr=>'+ notDayStr);
+							
+							//진행요일 유효성 검사
+							if('월,화,수,목,금,토,일' == notDayStr){
+								alert('진행 요일을 입력해주세요');
+								
+							}else{
+								
+								//희망 요청사항 유효성 검사
+								console.log($('#RFQRequestContents').val());
+								console.log($('#RFQRequestContents').val().length);
+								if( undefined == $('#RFQRequestContents').val() || $('#RFQRequestContents').val().length == 0){
+									alert('희망 요청 사항을 입력해주세요.');
+								}else if($('#RFQRequestContents').val().length < 50){
+									alert('50자 이상 입력해주세요.');
+									
+								//모든 데이터 입력완료후 ajax 발동	
+								}else{
+									
+									//코치 통합계획 ajax
+									jQuery.ajax({ 
+										type: "POST", 
+										url: "/coachingRFQ", 
+										cache: false, 
+										data: { coachingRFQCode         : null
+											,coachingCategoryCode       : $('#coachingCategory').val()
+											,totalPlanCode              : null
+											,planDetailCode             : null
+										 	,coachUserEmail             : $('#coachEmail').val()
+											,userEmail                  : null
+											,coachClassification        : coachingType
+ 											,coachingRFQStartDate       : startDate
+											,coachingRFQEndDate         : endDate
+											,coachingRFQDay             : dayStr
+											,coachingRFQWishfulThinking : $('#RFQRequestContents').val()
+											,coachingRFQRequestDate     : nowDate
+
+										}, 
+										datatype: "JSON", 
+										success: function (obj) { 
+											console.log('obj : ',obj,'- 잘받았다 오버')
+											console.log('type check obj : ',typeof(obj))//String이네
+											
+											//연결은 시킴 이후 토탈플랜 리스트 넘겨주고 받아서 화면단에 뿌려주는 작업필요 
+											
+											//var data = JSON.parse(obj); 
+											/* $.each(data, function (k, v) { 
+												$('<option></option>').val(k).text(v).appendTo($('#exhibition_id')); 
+												}); */ 
+										}, 
+										error: function (xhr, status, error) { console.log("ERROR!!!"); 
+										} 
+									});
+									
+									
+									
+									
+									
+								}
+							}
+							//계획 선택 받기 통합, 계획
+							
+							
+							
+						}
+						
+					}
+				}
+			
+				
+			//코칭 타입에 둘 다 선택이 안된 경우 	
 			}else{
 				alert('코칭 타입을 선택해주세요')
 			}
 			console.log(coachingType);
 			
-			//카테고리코드값
-			console.log($('#coachingCategory').val());
 			
-			//시작일자 
-			console.log($('#coachingStartDate').val());
-			var today = new Date();
-			var year = today.getFullYear();
-			var month = today.getMonth()+1;
-			if(10>month){
-				month = '0'+month;
-			}
-			var date = today.getDate();
-			var nowDate = year+'-'+month+'-'+date;
-			console.log(nowDate);
-			
-			//끝나는 일자
-			console.log($('#coachingEndDate').val());
-			
-			//진행요일
-			//console.log($($(".checkbox")[1]).is(":checked"));
-			var dayStr = '';
-			for(i = 0; i < $(".checkbox").length; i++){
-				if($($(".checkbox")[i]).is(":checked")){
-					console.log($($(".checkbox")[i]).val());
-					dayStr += $($(".checkbox")[i]).val()+','
-				}
-			}
-			//진행요일 문자열 마지막에 붙은 , 제거
-			dayStr = dayStr.slice(0,-1);
-			
-			//계획 선택 받기 통합, 계획
-			console.log($('da#RFQRequestContents').val());
-			console.log(dayStr);
 		});
 				
 	</script>

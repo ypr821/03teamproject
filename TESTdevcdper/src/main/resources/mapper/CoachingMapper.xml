@@ -81,6 +81,57 @@
 			<result property="coachWithdrawStatus" 					column="coach_withdraw_status"/>
 		</association>
 	</resultMap>
+	<update id="updateCoachingRFQ" parameterType="Map">
+		UPDATE coaching_RFQ
+		SET
+			coaching_category_code= #{coachingCategoryCode},
+			total_plan_code = null,
+			plan_detail_code = null,
+			coaching_RFQ_day = #{coachingRFQDay},
+			coaching_RFQ_start_date= #{coachingRFQStartDate},
+			coaching_RFQ_end_date= #{coachingRFQEndDate},
+			coaching_RFQ_wishful_thinking= #{coachingRFQWishfulThinking}
+		WHERE 
+			coaching_RFQ_code = #{coachingRFQCode};	
+	
+	</update>
+
+	 <insert id="insertCoachingRFQ" parameterType="Map">
+		INSERT 
+		INTO coaching_RFQ 
+			(coaching_RFQ_code
+			,coaching_category_code
+			,total_plan_code
+			,plan_detail_code
+			,coach_user_email
+			,user_email
+			,coach_classification
+			,coaching_RFQ_start_date
+			,coaching_RFQ_end_date
+			,coaching_RFQ_day
+			,coaching_RFQ_wishful_thinking
+			,coaching_RFQ_request_date	
+			)
+			VALUES(
+			sf_createCode(),
+			#{coachingCategoryCode},
+			null,
+			null,
+			#{coachUserEmail},
+			#{userEmail},
+			#{coachClassification},
+			#{coachingRFQStartDate},
+			#{coachingRFQEndDate},
+			#{coachingRFQDay},
+			#{coachingRFQWishfulThinking},
+			CURDATE()
+			);
+		
+	
+	</insert> 
+
+
+
 
 <!-- 마이코칭페이지 client 화면 -->
 	<select id="getMyCoachingList" parameterType="String" resultMap="CoachingListMap">

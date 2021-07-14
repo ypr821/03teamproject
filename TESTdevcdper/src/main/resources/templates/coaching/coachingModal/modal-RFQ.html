@@ -66,25 +66,25 @@
 	                </label>
 	                <br>
 	 				<label>
-	                	<input type="checkbox" class="checkbox" /> 월        &nbsp; &nbsp;      	
+	                	<input type="checkbox" class="checkbox" value="월"/> 월        &nbsp; &nbsp;      	
 	                </label>
 	                <label>
-	                	<input type="checkbox" class="checkbox" /> 화        &nbsp; &nbsp;  
+	                	<input type="checkbox" class="checkbox" value="화"/> 화        &nbsp; &nbsp;  
 	                </label>
 	                <label>
-	                	<input type="checkbox" class="checkbox" /> 수        &nbsp; &nbsp;  
+	                	<input type="checkbox" class="checkbox" value="수"/> 수        &nbsp; &nbsp;  
 	                </label>	
 	                <label>
-	                	<input type="checkbox" class="checkbox" /> 목        &nbsp; &nbsp;    
+	                	<input type="checkbox" class="checkbox" value="목"/> 목        &nbsp; &nbsp;    
 	                </label>
 	                <label>
-	                	<input type="checkbox" class="checkbox" /> 금        &nbsp;  &nbsp;     
+	                	<input type="checkbox" class="checkbox" value="금"/> 금        &nbsp;  &nbsp;     
 	                </label>	
 	                <label>
-	                	<input type="checkbox" class="checkbox" /> 토        &nbsp;  &nbsp;  
+	                	<input type="checkbox" class="checkbox" value="토"/> 토        &nbsp;  &nbsp;  
 	                </label>	
 	                <label>
-	                	<input type="checkbox" class="checkbox" /> 일       
+	                	<input type="checkbox" class="checkbox" value="일"/> 일       
 	                </label>         	
 	              </div>
 
@@ -94,7 +94,7 @@
 		          		<label for="totalPlanCoaching"> 코치님과 내 계획짜기 </label>
 		              	 &nbsp; &nbsp;
 		              	 <div class="row">
-						 	<button type="button" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>            
+						 	<button type="button" id="coachingTotalPlanBtn" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>            
 		             	    &nbsp; &nbsp;
 		            		 <input type="text" id="coachingTotalPlan" class="form-control col-9" value="선택한 통합계획">
 		              	 </div>
@@ -118,9 +118,9 @@
 	                <textarea id="RFQRequestContents" class="form-control" rows="4" placeholder="희망요청사항을 입력해주세요. 현 상황 및 필요한 부분을 상세하게 작성해주시면 좋습니다"></textarea>
 	              </div>
 
-	              <a th:href="@{/myCoachingClient}">
-	             	 <button type="button" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
-	              </a>
+	              
+	              <button type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
+	              
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default ModalClose" data-dismiss="modal">닫기</button>
@@ -130,4 +130,28 @@
 		</div>
 	</th:block>
 	<!-- /견적요청 Modal -->
+	<script type="text/javascript">
+	
+	</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

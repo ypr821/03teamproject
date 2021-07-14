@@ -99,6 +99,19 @@ public class CoachingService {
 			System.out.println("======서비스==myCoachingList :  "+ myCoachingList + "==========");
 			
 			return myCoachingList;
+		}
+
+	//견적요청 insert
+		public int insertCoachingRFQ(CoachingRFQ rfq) {
+			System.out.println("서비스단 실행확인!!!!!!!!!!!!!!!!!!");
+			int result = coachingMapper.insertCoachingRFQ(rfq);
+			return result;
+		};
+	//견적요청 update
+		public int updateCoachingRFQ(CoachingRFQ rfq) {
+			System.out.println("서비스단 updateCoachingRFQ실행확인!!!!!!!!!!!!!!!!!!");
+			int result = coachingMapper.updateCoachingRFQ(rfq);
+			return result;
 		};
 	
 	

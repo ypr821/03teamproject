@@ -35,6 +35,12 @@ public interface CoachingMapper {
 
 	//코치 프로링 수정 처리
 	public int coachProfileUpdateProcess(Map<String, Object> profileUpdateInfo);
+
+	//견적요청 insert
+	public int insertCoachingRFQ(CoachingRFQ rfq);
+
+	//견적요청 update
+	public int updateCoachingRFQ(CoachingRFQ rfq);
 	
 	
 	

@@ -18,13 +18,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.devcdper.coaching.domain.CoachingRFQ;
 import com.devcdper.coaching.domain.CoachingUser;
 import com.devcdper.coaching.service.CoachingService;
+import com.devcdper.plan.domain.PlanDto;
+import com.devcdper.plan.service.PlanService;
 
 
 @Controller
 public class CoachingController {
 	private CoachingService coachingService;
-	public CoachingController(CoachingService coachingService) {
+	private PlanService planService;
+	
+	public CoachingController(CoachingService coachingService,PlanService planService) {
 		this.coachingService = coachingService;
+		this.planService = planService;
 	}
 	
 	//private static final Logger log = LoggerFactory.getLogger(CoachingController.class);
@@ -125,13 +130,19 @@ public class CoachingController {
 		return "coaching/myCoachingCoach";
 	}
 	
+	//코칭 통합계획 선택
 	@PostMapping("/coachingTotalPlan")
 	@ResponseBody
-	public String getCoachingTotalPlan(@RequestBody String totalPlanCode) {
-		System.out.println("totalPlanCode : " + totalPlanCode);
+	public List<PlanDto> getCoachingTotalPlan(@RequestBody String totalPlanCode) {
+
+		//변수로 totalPlanCode=total_plan_code_01 형태로 넘어와서 '='기준으로 잘라서 값 구함
+		String totalPlanCodeValue = totalPlanCode.split("=")[1];
 		
-		//연결은 시킴 이후 토탈플랜 리스트 넘겨주고 받아서 화면단에 뿌려주는 작업필요 
-		return totalPlanCode;
+		List<PlanDto> totalPlan = planService.getTotalPlan("total_plan_code", totalPlanCodeValue);
+		//연결은 시킴 이후 토탈플랜 리스트 넘겨주고 받아서 화면단에 뿌려주는 작업필요
+		System.out.println("totalPlan:::"+totalPlan);
+		
+		return totalPlan;
 	}
 	
 	
@@ -176,7 +187,37 @@ public class CoachingController {
 		return "coaching/coachingRFQResult";
 	}
 	
+	//코칭 견적요청 update 처리
+	@PostMapping("/updateCoachingRFQ")
+	@ResponseBody
+	public String updateCoachingRFQ(Model model, HttpSession session
+				,CoachingRFQ rfq) {
+		System.out.println("=========================================");
+		System.out.println("======insertCoachingRFQ 메서드 실행==========");
+		System.out.println(session.getAttribute("NEMAIL"));
+		rfq.setUserEmail((String) session.getAttribute("NEMAIL"));
+		System.out.println("rfq => "+ rfq);
+		int result = coachingService.updateCoachingRFQ(rfq);
+		model.addAttribute("title", "견적요청 등록 화면");
+		return "coaching/coachingRFQ";
+	}	
+
 	
+	//코칭 견적요청 insert 처리
+	@PostMapping("/coachingRFQ")
+	@ResponseBody
+	public String insertCoachingRFQ(Model model, HttpSession session
+				,CoachingRFQ rfq) {
+		System.out.println("=========================================");
+		//System.out.println("coachEmail==>"+coachEmail);
+		System.out.println("======insertCoachingRFQ 메서드 실행==========");
+		System.out.println(session.getAttribute("NEMAIL"));
+		rfq.setUserEmail((String) session.getAttribute("NEMAIL"));
+		System.out.println("rfq => "+ rfq);
+		int result = coachingService.insertCoachingRFQ(rfq);
+		model.addAttribute("title", "견적요청 등록 화면");
+		return "coaching/coachingRFQ";
+	}
 	//코칭 견적요청화면
 	@GetMapping("/coachingRFQ")
 	public String coachingRFQ(Model model, HttpSession session
@@ -186,6 +227,7 @@ public class CoachingController {
 		System.out.println("======coachingRFQ 메서드 실행==========");
 		//System.out.println("========================================");
 		//System.out.println("=======coachingRFQ 메서드 실행=================");
+		model.addAttribute("coachEmail", coachEmail);
 		model.addAttribute("title", "멘토링 관리 화면");
 		return "coaching/coachingRFQ";
 	}
