@@ -158,6 +158,7 @@
 						<tr>
 							<th style="width: 10px">#</th>
 							<th>구분</th>
+							<th>수강생이름</th>
 							<th>수강생이메일</th>
 							<th>수강생연락처</th>
 							<th>코칭일정</th>
@@ -169,163 +170,70 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1.</td>
-							<td>멘토링</td>
-							<td>ksmart@email.com</td>
-							<td>010-0000-0000</td>
-							<td>2021/06/24-2021/07/23</td>
+						<tr th:if="${#lists.size(myCoachingList) >0}" th:each="l, i : ${myCoachingList}">
+							<td id="countNumber" th:text="${i.index+1}"></td>
+							<td th:text="${l.getCoachClassification()}"></td>
+							<td th:text="${l.getNormalUser().getUserName()}"></td>
+							<td th:text="${l.getUserEmail()}"></td>
+							<td th:text="${l.getNormalUser().getUserMoblie()}"></td>
 							<td>
-								<span class="badge badge-primary">
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceStartDate() != null}" 
+									th:text="${l.getCoachingRFQResult().getCoachingRFQResultServiceStartDate()}">
+								</span>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceStartDate() == null}" 
+									th:text="${l.getCoachingRFQStartDate()}">
+								</span>
+								~
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceEndDate() != null}" 
+									th:text="${l.getCoachingRFQResult().getCoachingRFQResultServiceEndDate()}">
+								</span>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceEndDate() == null}" 
+									th:text="${l.getCoachingRFQEndDate()}">
+								</span>
+								
+							</td>
+							<td>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultCode() == null}" class="badge badge-primary">
 									견적요청
 								</span>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQ">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQResult">
-									 등록
-								</button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
-									중단
-								</button>
-							</td>
-	
-						</tr>
-						<tr>
-							<td>2.</td>
-							<td>멘토링</td>
-							<td>ksmart@email.com</td>
-							<td>010-0000-0000</td>
-							<td>2021/06/24-2021/07/23</td>
-							<td>
-								<span class="badge badge-warning">
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() == null}" 
+									class="badge badge-warning">
 									견적결과
 								</span>
-							</td>	
-							<td>
-										<!-- Button trigger modal -->
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQ">
-									 상세보기
-								</button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQResult">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
-									중단
-								</button>
-							</td>
-	
-						</tr>
-						<tr>
-							<td>3.</td>
-							<td>컨설팅</td>
-							<td>ksmart@email.com</td>
-							<td>010-0000-0000</td>
-							<td>2021/06/24-2021/07/23</td>
-							<td>
-								<span class="badge badge-success">
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='1)신청완료'}" 
+									class="badge badge-success">
 									신청완료
 								</span>
-							</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQ">
-									 상세보기
-								</button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQResult">
-			                  		상세보기
-				                </button>
-
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
-									중단
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td>4.</td>
-							<td>컨설팅</td>
-							<td>ksmart@email.com</td>
-							<td>010-0000-0000</td>
-							<td>2021/06/24-2021/07/23</td>
-							<td>
-								<span class="badge badge-secondary ">
-									이용완료
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='2)진행중'}" 
+									class="badge badge-success">
+									진행중
 								</span>
-							</td>
-							<td>
-								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQ">
-									 상세보기
-								</button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQResult">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
-			                  		상세보기
-				                </button>
-							</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
-			                  		중단
-				                </button>
-							</td>	
-						</tr>
-						<tr>
-							<td>5.</td>
-							<td>멘토링</td>
-							<td>ksmart@email.com</td>
-							<td>010-0000-0000</td>
-							<td>2021/06/24-2021/07/23</td>
-							<td>
-								<span class="badge badge-danger">
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='3)중단'}" 
+									 class="badge badge-danger">
 									취소/환불
 								</span>
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='4)기간만료'}" 
+									 class="badge badge-secondary ">
+									사용완료
+								</span>
 							</td>
 							<td>
 								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQ">
+								<button type="button" class="btn btn-block btn-default btn-xs RFQBtn" th:id="RFQBtn" data-toggle="modal" data-target="#modal-RFQ" th:data-count="${i}" th:data-RFQCode="${l.getCoachingRFQCode()}">
 									 상세보기
 								</button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQResult">
-			                  		상세보기
+								<button type="button" class="btn btn-block btn-default btn-xs RFQResultBtn" data-toggle="modal" data-target="#modal-RFQResult" th:data-count="${i}" th:data-RFQResultCode="${l.getCoachingRFQResult().getCoachingRFQResultCode()}">
+			                  		<span class="RFQResultBtnText" th:if="${l.getCoachingRFQResult().getCoachingRFQResultCode() == null}" th:text="등록" ></span>
+			                  		<span class="RFQResultBtnText" th:unless="${l.getCoachingRFQResult().getCoachingRFQResultCode() == null}"  th:text="상세보기"></span>
 				                </button>
-
+								
 							</td>
 							<td>
 								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
@@ -337,7 +245,7 @@
 			                  		중단
 				                </button>
 							</td>	
-						</tr>
+						</tr>				
 					</tbody>
 				</table>
 			</div>
@@ -546,43 +454,49 @@
 
 <th:block layout:fragment="pageJavascript">
 <!-- 모달 script단 -->
-	<script>
-		<!-- 견적요청 Modal -->
-		$(function(){
-			$('#modal-RFQ').on('shown.bs.modal', function () {
-				  $('#myInput').focus()
-				})
-		});
-		
-		<!-- 견적결과 Modal -->
-		$(function(){
-			$('#modal-RFQResult').on('shown.bs.modal', function () {
-				  $('#myInput').focus()
-				})
-		});
-		<!-- 후기 상세보기  Modal -->
-		$(function(){
-			$('#modal-Review').on('shown.bs.modal', function () {
-				  $('#myInput').focus()
-				})
-		});
-		
-		/*  중단 경고 메시지 */
-		$(function(){
-			$('#coaching-stopModalBtn').click(function(){
-				alert('코칭을 중단하시겠습니까')
-			})
+	
+	<!-- 견적요청 상세보기 Modal Js -->
+	<th:block th:replace="/coaching/coachingJs/coachingRFQJs  ::  coachingRFQJs"></th:block>
+	
+	<!-- 견적결과 상세보기 Modal Js -->
+	<th:block th:replace="/coaching/coachingJs/coachingRFQResultJs  ::  coachingRFQResultJs"></th:block>
+	
+	<script th:inline="javascript">
 			
-		});
-		
-		<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
-		$(function(){
-			$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
-				  $('#myInput').focus()
+			$(function(){
+				
+				$('#modal-RFQ, #modal-RFQResult, #modal-Review, #modal-coachingStop').on('hide.bs.modal', function () {
+					console.log('모달 닫기 이벤트 확인');
+					$('.checkbox').removeAttr("checked");
+					$('.checkbox1').removeAttr("checked");
+					//$('.container-fluid').css("pointer-events","auto");
+					$('#coachingRFQUpdate').attr('hidden',true);
+					//요일 입력하고 모달창을 닫았을때 초기화가 이뤄지지않아서 새로고침기능을 넣음
+					location.reload();
 				})
-		});
-		<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+				
+			});
+
+			
+			$(function(){
+				
+			
 		
+				/*  중단 경고 메시지 */
+				$('#coaching-stopModalBtn').click(function(){
+					alert('코칭을 중단하시겠습니까')
+				})
+				
+				<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+				$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
+					  $('#myInput').focus()
+					  console.log('통합계획 모달 열림 확인 ') 
+					})
+				<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+			});
+			
+			
+			
 	</script>
 
 <!-- 그래프 script단 -->
