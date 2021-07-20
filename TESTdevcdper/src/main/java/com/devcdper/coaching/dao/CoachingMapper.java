@@ -43,6 +43,9 @@ public interface CoachingMapper {
 	public int updateCoachingRFQ(CoachingRFQ rfq);
 	
 	
+	//견적결과 insert
+	public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult);
+	
 	
 	
 	

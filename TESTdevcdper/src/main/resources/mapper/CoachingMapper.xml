@@ -80,7 +80,71 @@
 			<result property="coachJoinDate" 						column="coach_join_date"/>
 			<result property="coachWithdrawStatus" 					column="coach_withdraw_status"/>
 		</association>
+		<association property="normalUser" 		javaType="com.devcdper.user_admin.domain.NormalUser">
+			<id property="userEmail" 					column="user_email"/>
+			<result property="userPassword" 			column="user_password"/>
+			<result property="userName" 				column="user_name"/>
+			<result property="userBirth" 				column="user_birth"/>
+			<result property="userAddr" 				column="user_addr"/>
+			<result property="userAddrDetail" 			column="user_addr_detail"/>
+			<result property="userGender" 				column="user_gender"/>
+			<result property="userMoblie" 				column="user_mobile"/>
+			<result property="userJob" 		 			column="user_job"/>
+			<result property="userIsReceiveMarketing" 	column="user_is_receive_marketing"/>
+			<result property="userJoinMotivation" 		column="user_join_motivation"/>
+			<result property="userJoinPath" 		 	column="user_join_path"/>
+			<result property="userRecommendEmail" 		column="user_recommend_email"/>
+			<result property="userJoinDate" 			column="user_join_date"/>
+			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
+		</association>
 	</resultMap>
+	
+	<insert id="insertCoachingRFQResult" parameterType="Map">
+		INSERT INTO coaching_RFQ_result
+			(coaching_RFQ_result_code
+			, coaching_category_code
+			, coaching_RFQ_code
+			, total_plan_code
+			, plan_detail_code
+			, coach_user_email
+			, user_email
+			, coaching_RFQ_result_cost
+			, coaching_RFQ_result_day
+			, coaching_RFQ_result_costPerHour
+			, coaching_RFQ_result_time
+			, coaching_RFQ_result_method
+			, coaching_RFQ_result_area
+			, coaching_RFQ_result_agreement
+			, coaching_RFQ_result_service_start_date
+			, coaching_RFQ_result_service_end_date
+			, coaching_RFQ_result_register_date)
+		VALUES (
+					#{coachingRFQResultCode}
+					, #{coachingCategoryCode}
+					, #{coachingRFQCode}
+					, null
+					, null
+					, #{coachUserEmail}
+					, #{userEmail}
+					, 0
+					, #{coachingRFQResultDay}
+					, #{coachingRFQResultCostPerHour}
+					, #{coachingRFQResultTime}
+					, #{coachingRFQResultMethod}
+					, NULL
+					, #{coachingRFQResultAgreement}			
+					, #{coachingRFQResultServiceStartDate}
+					, #{coachingRFQResultServiceEndDate}
+					, (SELECT DATE_FORMAT(CURDATE(),'%Y-%m-%d'))
+				)
+			
+	
+	
+	
+	</insert>
+	
+	
+	
 	<update id="updateCoachingRFQ" parameterType="Map">
 		UPDATE coaching_RFQ
 		SET
@@ -145,6 +209,8 @@
 			ON q.coaching_RFQ_code = a.coaching_RFQ_code
 			INNER JOIN coach_user AS c
 			ON q.coach_user_email = c.coach_user_email
+			INNER JOIN user AS u
+			ON q.user_email = u.user_email
 			
 		<if test="coachUserEmail != null and coachUserEmail != ''.toString()">	
 			WHERE q.coach_user_email = #{coachUserEmail};

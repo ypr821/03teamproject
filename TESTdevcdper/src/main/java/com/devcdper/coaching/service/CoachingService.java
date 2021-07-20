@@ -1,5 +1,6 @@
 package com.devcdper.coaching.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import com.devcdper.coaching.domain.CoachingRFQ;
 import com.devcdper.coaching.domain.CoachingRFQResult;
 import com.devcdper.coaching.domain.CoachingUser;
 import com.devcdper.user_admin.dao.CoachUserMapper;
+import com.devcdper.user_admin.dao.CommonMapper;
 
 
 
@@ -18,11 +20,13 @@ import com.devcdper.user_admin.dao.CoachUserMapper;
 public class CoachingService {
 	private CoachingMapper coachingMapper;
 	private CoachUserMapper coachUserMapper;
+	private CommonMapper commonMapper;
 	
 	
-	public CoachingService(CoachingMapper coachingMapper,CoachUserMapper coachUserMapper) {
+	public CoachingService(CoachingMapper coachingMapper,CoachUserMapper coachUserMapper,CommonMapper commonMapper) {
 		this.coachingMapper = coachingMapper;
 		this.coachUserMapper = coachUserMapper;
+		this.commonMapper = commonMapper;
 		
 	}
 	
@@ -92,10 +96,10 @@ public class CoachingService {
 		return coachingRFQList;
 	};
 	
-	//마이 코치 리스트  (client page)
+	//마이 코칭 리스트  (client page)
 		public List<CoachingRFQ> getMyCoachingList(String userEmail,String coachUserEmail){
 			
-			List<CoachingRFQ> myCoachingList = coachingMapper.getMyCoachingList(userEmail, null);
+			List<CoachingRFQ> myCoachingList = coachingMapper.getMyCoachingList(userEmail, coachUserEmail);
 			System.out.println("======서비스==myCoachingList :  "+ myCoachingList + "==========");
 			
 			return myCoachingList;
@@ -113,7 +117,30 @@ public class CoachingService {
 			int result = coachingMapper.updateCoachingRFQ(rfq);
 			return result;
 		};
-	
+
+	//getNewCode
+		public String getNewCode(String tableName) {
+			System.out.println("tableName=>"+tableName);
+			String result = commonMapper.getNewCode(tableName);
+			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode("+tableName+"♡♡==>>"+ result);
+			return result;
+		}
+
+		public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult) {
+			
+			System.out.println("insertCoachingRFQResult 서서서서비비비비스스스 실행");
+			
+			String newCode = getNewCode("coaching_RFQ_result");
+			System.out.println("newCode=>"+newCode);
+			coachingRFQResult.put("coachingRFQResultCode", newCode);
+			//System.out.println("coachingRFQResult===>>>>>"+coachingRFQResult);
+			
+			int result = coachingMapper.insertCoachingRFQResult(coachingRFQResult);
+			
+			
+			
+			return 0;
+		}
 	
 	
 	

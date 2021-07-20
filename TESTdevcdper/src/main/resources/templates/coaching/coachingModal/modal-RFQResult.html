@@ -1,59 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+	<!-- 견적결과 Modal -->
 	<th:block th:fragment="modal-RFQResult">
-				<!-- 견적결과 Modal -->
 		<!-- 해당 멘토아이디 , 사용자 아이디 데이터 넘겨받자 -->
 		<div class="modal fade" id="modal-RFQResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
 		  <div class="modal-dialog modal-lg" >
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <h4 class="modal-title" id="myModalLabel">견적결과 내역</h4>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <button type="button" class="close ModalClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		      </div>
-           <!-- .card-body -->
-            <div class="card-body">
+            <div class="modal-body">
 	              <!-- 코칭구분, 카테고리  -->
 	              <div class="form-group">
-	              	<b>코칭구분</b>&emsp;
+	              	<b>코칭구분 :</b>&emsp;
 	              	<label id="coachingType">
-	              		<input type="radio" name="coachingType" value="mentoring">
-	              		멘토링
-	              	</label>&nbsp; &nbsp; 
-	              	<label id="coachingType">
-	              		<input type="radio" name="coachingType" value="consulting">
-	              		컨설팅
-	              	</label>
+	              		<span class="coachingResultTypeSpan" name="coachingType" ></span>
+	              	</label> 
 	              	<br>
 	              	<!-- 코칭 카테고리  -->
 	                <label for="coachingCategory">카테고리 선택</label>
-	                <select id="coachingCategory" class="form-control custom-select">
-	                  <option >Select one</option>
-	                  <option>카테고리선택</option>
+	                <select class="form-control custom-select coachingResultCategory">
+	                  <option value="">카테고리선택</option>
 	                  <!-- 멘토링카테고리 -->
-	                  <option>학력</option>
-	                  <option>프로젝트</option>
-	                  <option>자격증</option>
-	                  <option>공인어학(외국어능력)</option>
-	                  <option>기술스택</option>
-	                  <option>직종전문교육과정</option>
-	                  <option>인턴쉽</option>
-	                  <option>공모전</option>
+	                  <option value="coaching_category_01">학력</option>
+	                  <option value="coaching_category_02">프로젝트</option>
+	                  <option value="coaching_category_03">자격증</option>
+	                  <option value="coaching_category_04">공인어학(외국어능력)</option>
+	                  <option value="coaching_category_05">기술스택</option>
+	                  <option value="coaching_category_06">직종전문교육과정</option>
+	                  <option value="coaching_category_07" >인턴쉽</option>
+	                  <option value="coaching_category_08">공모전</option>
 	                  
 	                  <!-- 컨설팅카테고리 -->
-	                  <option>진로설정·취업전략</option>
-	                  <option>취업준비 스펙(자격증, 포트폴리오)</option>
-	                  <option>기업·직무 분석</option>
-	                  <option>자기소개서 + 이력서</option>
-	                  <option>면접</option>
-	                  <option>인적성검사 대비</option>
-	                  <option>대기업 취업준비</option>
-	                  <option>공기업 취업준비·NCS</option>
-	                  <option>경력관리</option>
-	                  <option>경력기술서</option>
-	                  <option>경력분석·이전직</option>
+	                  <option value="coaching_category_09">진로설정·취업전략</option>
+	                  <option value="coaching_category_10">취업준비 스펙(자격증, 포트폴리오)</option>
+	                  <option value="coaching_category_11">기업·직무 분석</option>
+	                  <option value="coaching_category_12">자기소개서 + 이력서</option>
+	                  <option value="coaching_category_13">면접</option>
+	                  <option value="coaching_category_14">인적성검사 대비</option>
+	                  <option value="coaching_category_15">대기업 취업준비</option>
+	                  <option value="coaching_category_16">공기업 취업준비·NCS</option>
+	                  <option value="coaching_category_17">경력관리</option>
+	                  <option value="coaching_category_18">경력기술서</option>
+	                  <option value="coaching_category_19">경력분석·이전직</option>
 	                </select>
-	                <button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> + 추가 </button>
 	              	<!-- /코칭 카테고리  -->
 	              </div>
 	              <!--/ 코칭구분, 카테고리  -->
@@ -61,87 +53,87 @@
 		             
 		          <div class="form-group">
 		                <label for="coachingStartDate">시작 일자</label>
-		                <input type="date" id="coachingStartDate" class="form-control" value="">
+		                <input type="date"  class="form-control coachingResultStartDate" value="">
 		          </div>
 		              
 		          <div class="form-group">
 		                <label for="coachingEndDate">종료 일자</label>
-		                <input type="date" id="coachingEndDate" class="form-control" value="">
+		                <input type="date"  class="form-control coachingResultEndDate" value="">
 		          </div>
 		              
-		          <div class="form-group">
-		                <label>
-		                	진행 요일 선택
-		                </label>
-		                <br>
-		                <label>
-		                	<input type="checkbox"/> 월        &nbsp;&nbsp;   	
-		                </label>
-		                <label>
-		                	<input type="checkbox"/> 화        &nbsp;&nbsp;	
-		                </label>
-		                <label>
-		                	<input type="checkbox"/> 수        &nbsp;&nbsp;
-		                </label>	
-		                <label>
-		                	<input type="checkbox"/> 목        &nbsp;&nbsp;  
-		                </label>
-		                <label>
-		                	<input type="checkbox"/> 금        &nbsp;&nbsp;
-		                </label>	
-		                <label>
-		                	<input type="checkbox"/> 토        &nbsp;&nbsp;
-		                </label>	
-		                <label>
-		                	<input type="checkbox"/> 일       
-		                </label>     	
-		          </div>
+	             <div class="form-group resultCheckDay">
+	                <label>
+	                	진행 요일 선택
+	                </label>
+	                <br>
+	 				<label>
+	                	<input type="checkbox" class="resultCheckbox" value="월"/> 월        &nbsp; &nbsp;      	
+	                </label>
+	                <label>
+	                	<input type="checkbox" class="resultCheckbox" value="화"/> 화        &nbsp; &nbsp;  
+	                </label>
+	                <label>
+	                	<input type="checkbox" class="resultCheckbox" value="수"/> 수        &nbsp; &nbsp;  
+	                </label>	
+	                <label>
+	                	<input type="checkbox" class="resultCheckbox" value="목"/> 목        &nbsp; &nbsp;    
+	                </label>
+	                <label>
+	                	<input type="checkbox" class="resultCheckbox" value="금"/> 금        &nbsp;  &nbsp;     
+	                </label>	
+	                <label>
+	                	<input type="checkbox" class="resultCheckbox" value="토"/> 토        &nbsp;  &nbsp;  
+	                </label>	
+	                <label>
+	                	<input type="checkbox" class="resultCheckbox" value="일"/> 일       
+	                </label>         	
+	              </div>
 		          <div class="form-group">
 				            <label for="hourPerOneTime">1회당 진행 시간</label>
 			                <select id="hourPerOneTime" class="form-control custom-select" >
-			                  <option disabled="" selected="">1회당 진행 시간 선택</option>
-			                  <option>1시간</option>
-			                  <option>2시간</option>
-			                  <option>3시간</option>
-			                  <option>4시간</option>
-			                  <option>5시간</option>
-			                  <option>6시간</option>
-			                  <option>7시간</option>
-			                  <option>8시간</option>
-			                  <option>9시간</option>
-			                  <option>10시간</option>
+			                  <option value = "" selected="selected">1회당 진행 시간 선택</option>
+			                  <option value="1">1시간</option>
+			                  <option value="2">2시간</option>
+			                  <option value="3">3시간</option>
+			                  <option value="4">4시간</option>
+			                  <option value="5">5시간</option>
+			                  <option value="6">6시간</option>
+			                  <option value="7">7시간</option>
+			                  <option value="8">8시간</option>
+			                  <option value="9">9시간</option>
+			                  <option value="10">10시간</option>
 			                </select>
 			      </div>
 			      <div class="form-group">
 		                <label for="pricePerHour"> 1시간당 코칭 금액 </label>
-		                <input type="text" id="pricePerHour" class="form-control" value="1시간당 코칭 금액">
+		                <input type="text" id="pricePerHour" class="form-control" value="">
 		          </div>
 		          <div class="form-group">
-		                <label for="pricePerOneTime"> 1회 코칭 금액 </label>
-		                <input type="text" id="pricePerOneTime" class="form-control" value="1회 코칭 금액">
+		                <label for="pricePerOneTime"> 1회 코칭 금액/원 </label>
+		                <input type="text" id="pricePerOneTime" class="form-control" value="">
 		          </div>
 		          <div class="form-group">
-		                <label for="totalCoachingPrice"> 코칭 총 금액 </label>
-		                <input type="text" id="totalCoachingPrice" class="form-control" value="코칭 기간 총 금액">
+		                <label for="totalCoachingPrice"> 코칭 총 금액/원 </label>
+		                <input type="text" id="totalCoachingPrice" class="form-control" value="">
 		          </div>
 		          <div class="form-group">
 				            <label for="coachingMethod">진행방법 선택</label>
 			                <select id="coachingMethod" class="form-control custom-select" >
-			                  <option disabled="" selected="">온/오프라인 선택</option>
-			                  <option>온라인</option>
-			                  <option>오프라인</option>
+			                  <option value = "" selected="selected">온/오프라인 선택</option>
+			                  <option value="온라인">온라인</option>
+			                  <option value="오프라인">오프라인</option>
 			                </select>
 		          </div>
 
 		          
-		          <!-- 계획 함께 짜기, 함께 짤 통합 계획 선택  -->
+	              <!-- 계획 함께 짜기, 함께 짤 통합 계획 선택  -->
 		          <div class="form-group">
-		          		<label for="totalPlanCoachingRFQResult"> 코치님과 내 계획짜기 </label>
+		          		<label for="totalPlanCoaching"> 코치님과 내 계획짜기 </label>
 		              	 &nbsp; &nbsp;
 		              	 <div class="row">
-			  		 	 <button type="button" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>             
+						 	<button type="button" id="coachingResultTotalPlanBtn" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>            
 		             	    &nbsp; &nbsp;
-		            		 <input type="text" id="totalPlanCoachingRFQResult" class="form-control col-9" value="선택한 통합계획">
+		            		 <input type="text" id="coachingResultTotalPlan" class="form-control col-9" value="선택한 통합계획">
 		              	 </div>
 		          </div>
 		          <!-- /계획 함께 짜기, 함께 짤 통합 계획 선택  -->
@@ -165,9 +157,8 @@
 		          <div class="form-group">
 		                <div class="row">
 		                	 &emsp;&emsp;&emsp;
-			                <a th:href="@{/myCoachingCoach}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm" style="height: 30px; margin-top: 8px ">등록</a>
-			                 &nbsp; &emsp;&emsp;
-			                <a th:href="@{/myCoachingCoach}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">수정</a>
+		                	 <!-- th:href="@{/myCoachingCoach}" -->
+			                <a  class="resultBtn col-md-2 btn btn-block bg-gradient-primary btn-sm" style="height: 30px; margin-top: 8px "></a>
 			                 &nbsp; &emsp;&emsp;
 			                 <a th:href="@{/myCoachingClient}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">수정요청</a>
 			                 &nbsp; &emsp;&emsp;

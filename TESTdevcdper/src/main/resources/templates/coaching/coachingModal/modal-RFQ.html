@@ -15,13 +15,13 @@
 				  <div class="form-group">
 	              	<b>코칭구분 :</b>&emsp;
 	              	<label id="coachingType">
-	              		<span type="text" id="coachingTypeSpan" name="coachingType" ></span>
+	              		<span type="text" class="coachingTypeSpan" name="coachingType" ></span>
 	              	</label>
 	              	<br>
 	              	
 	              	<!-- 코칭 카테고리  -->
 	                <label for="coachingCategory">카테고리 선택</label>
-	                <select id="coachingCategory" class="form-control custom-select">
+	                <select class="form-control custom-select coachingCategory">
 	                  <option value="">카테고리선택</option>
 	                  <!-- 멘토링카테고리 -->
 	                  <option value="coaching_category_01">학력</option>
@@ -52,12 +52,12 @@
 	     
 	              <div class="form-group">
 	                <label for="coachingStartDate">시작가능일자</label>
-	                <input type="date" id="coachingStartDate" class="form-control" value="">
+	                <input type="date"  class="form-control coachingStartDate" >
 	              </div>
 	              
 	              <div class="form-group">
 	                <label for="coachingEndDate">종료 일자</label>
-	                <input type="date" id="coachingEndDate" class="form-control" value="">
+	                <input type="date"  class="form-control coachingEndDate" >
 	              </div>
 	              
 	             <div class="form-group checkDay">
@@ -119,8 +119,9 @@
 	              </div>
 
 	              
-	              <button type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
-	              
+	              <button th:if="${'코치회원'==sessionLevel and sessionLevel == null}" th:remove="ture" type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
+	              <button th:if="${'일반사용자'==sessionLevel }" type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
+	              <span th:if="${sessionLevel == null}" th:text="${sessionLevel}"></span>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default ModalClose" data-dismiss="modal">닫기</button>

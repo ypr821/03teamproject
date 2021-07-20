@@ -1,5 +1,7 @@
 package com.devcdper.coaching.domain;
 
+import com.devcdper.user_admin.domain.NormalUser;
+
 public class CoachingRFQ {
 	private String coachingRFQCode;
 	private String coachingCategoryCode;
@@ -16,6 +18,8 @@ public class CoachingRFQ {
 	private CoachingRFQResult coachingRFQResult;
 	private CoachingApplyAndPayment coachingApplyAndPayment;
 	private CoachingUser coachingUser;
+	private NormalUser normalUser;
+	
 	
 	public String getCoachingRFQCode() {
 		return coachingRFQCode;
@@ -107,6 +111,14 @@ public class CoachingRFQ {
 	public void setCoachingUser(CoachingUser coachingUser) {
 		this.coachingUser = coachingUser;
 	}
+	
+	
+	public NormalUser getNormalUser() {
+		return normalUser;
+	}
+	public void setNormalUser(NormalUser normalUser) {
+		this.normalUser = normalUser;
+	}
 	@Override
 	public String toString() {
 		return "CoachingRFQ [coachingRFQCode=" + coachingRFQCode + ", coachingCategoryCode=" + coachingCategoryCode
@@ -115,7 +127,8 @@ public class CoachingRFQ {
 				+ ", coachingRFQStartDate=" + coachingRFQStartDate + ", coachingRFQEndDate=" + coachingRFQEndDate
 				+ ", coachingRFQDay=" + coachingRFQDay + ", coachingRFQWishfulThinking=" + coachingRFQWishfulThinking
 				+ ", coachingRFQRequestDate=" + coachingRFQRequestDate + ", coachingRFQResult=" + coachingRFQResult
-				+ ", coachingApplyAndPayment=" + coachingApplyAndPayment + ", coachingUser=" + coachingUser + "]";
+				+ ", coachingApplyAndPayment=" + coachingApplyAndPayment + ", coachingUser=" + coachingUser
+				+ ", normalUser=" + normalUser + "]";
 	}
 	
 	
