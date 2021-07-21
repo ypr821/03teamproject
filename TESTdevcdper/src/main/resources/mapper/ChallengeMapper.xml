@@ -99,7 +99,7 @@
 	<!-- 챌린지 탐색하기 : 카테고리별 리스트 조회 -->
 	<select id="getChallengeByCategoryExplorationList" parameterType="String" resultType="com.devcdper.challenge.domain.Challenge">
 			SELECT 
-							
+						cc.challenge_category_code AS challengeCategoryCode,
 						c.challenge_name AS challengeName,
 						c.challenge_tag AS challengeTag
 				FROM 
@@ -174,8 +174,9 @@
 	
 	
 	<!-- 나의 챌린지 : 개설 챌린지 설정(수정) -->
-	<!-- 0. 수정할 챌린지 리스트 조회 -->
-	<select id="getmodifyChallengeList" parameterType="String" resultMap="ChallengeResultMap">
+	<!-- 0. 수정할 개설 챌린지 리스트 조회 -->
+	
+	<select id="getInsertChallengeList" parameterType="map" resultMap="ChallengeResultMap">
 				SELECT 
 					c.challenge_code,
 					c.challenge_name, 
@@ -192,12 +193,112 @@
 						challenge_category AS cc
 				on
 					c.challenge_category_code = cc.challenge_category_code
-				WHERE
-					challenge_opener_email = #{sessionEmail};
+				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+					c.challenge_opener_email = #{sessionEmail}
+				<if test="categorySearchOption != null and categorySearchOption != ''.toString()">
+						<if test="categorySearchOption == 'all'.toString()">
+								or cc.challenge_category_name = '학력'
+								and cc.challenge_category_name = '프로젝트'
+								and cc.challenge_category_name = '자격증'
+								and cc.challenge_category_name = '공인어학(외국어능력)'
+								and cc.challenge_category_name = '기술스택'
+								and cc.challenge_category_name = '직종전문교육과정'
+								and cc.challenge_category_name = '인턴십'
+								and cc.challenge_category_name = '공모전'
+								and cc.challenge_category_name = '경력'
+						</if>
+						<if test="categorySearchOption == '학력'.toString()">
+								and cc.challenge_category_name = '학력'
+						</if>
+						<if test="categorySearchOption == '프로젝트'.toString()">
+								and cc.challenge_category_name = '프로젝트'
+						</if>
+						<if test="categorySearchOption == '자격증'.toString()">
+								and cc.challenge_category_name = '자격증'
+						</if>
+						<if test="categorySearchOption == '공인어학(외국어능력)'.toString()">
+								and cc.challenge_category_name = '공인어학(외국어능력)'
+						</if>
+						<if test="categorySearchOption == '기술스택'.toString()">
+								and cc.challenge_category_name = '기술스택'
+						</if>
+						<if test="categorySearchOption == '직종전문교육과정'.toString()">
+								and cc.challenge_category_name = '직종전문교육과정'
+						</if>
+						<if test="categorySearchOption == '인턴십'.toString()">
+								and cc.challenge_category_name = '인턴십'
+						</if>
+						<if test="categorySearchOption == '공모전'.toString()">
+								and cc.challenge_category_name = '공모전'
+						</if>
+						<if test="categorySearchOption == '경력'.toString()">
+								and cc.challenge_category_name = '경력'
+						</if>
+				</if>
+				<if test="myChallengeSearchKey != null and myChallengeSearchKey != ''.toString()">
+						<if test="myChallengeSearchKey == 'all'.toString()">
+								and (c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									or c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									or c.challenge_tag LIKE CONCAT('%', #{myChallengeSearchValue} ,'%'))
+						</if>
+						<if test="myChallengeSearchKey == 'challengeName'.toString()">
+								and c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+						</if>
+						<if test="myChallengeSearchKey == 'challengeCertificationContents'.toString()">
+								and c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+						</if>
+						<if test="myChallengeSearchKey == 'challengeTag'.toString()">
+								and c.challenge_tag LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+						</if>
+						<if test="myChallengeSearchKey == 'cNcCC'.toString()">
+								and (c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									or c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%'))
+						</if>
+				</if>
+				<if test="termSearchOption != null and termSearchOption != ''.toString()">
+						<if test="termSearchOption == '1week'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW()
+						</if>
+						<if test="termSearchOption == '2week'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -2 WEEK ) AND NOW()
+						</if>
+						<if test="termSearchOption == '3week'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -3 WEEK ) AND NOW()
+						</if>
+						<if test="termSearchOption == '1month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW()
+						</if>
+						<if test="termSearchOption == '2month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -2 MONTH ) AND NOW();
+						</if>
+						<if test="termSearchOption == '3month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -3 MONTH ) AND NOW();
+						</if>
+						<if test="termSearchOption == '6month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -6 MONTH ) AND NOW();
+						</if>
+				</if>
+				<if test="startDateSearchOption != null and startDateSearchOption != ''.toString()">
+							between #{startDateSearchOption} and #{endDateSearchOption}
+				</if>
+			</trim>
+			<trim prefix="ORDER BY">
+					<choose>
+						<when test="termSortOption == 'startDate'.toString() and dateSortOption == 'latest'.toString()"> 
+							c.challenge_start_date DESC 
+						</when>
+						<when test="termSortOption == 'startDate'.toString() and dateSortOption== 'oldest'.toString()"> 
+							c.challenge_start_date ASC 
+						</when>
+						<when test="termSortOption == 'endDate'.toString() and dateSortOption== 'latest'.toString()">  
+							c.challenge_end_date DESC 
+						</when>
+					</choose>	
+			</trim>
 	</select>
 	
 	<!-- 나의 챌린지 : 수정할 챌린지 속성 리스트 조회 -->
-	<select id="getModifyChallengeAttributeList" parameterType="String" resultMap="ChallengeResultMap">
+	<select id="getModifyInsertChallengeAttributeList" parameterType="String" resultMap="ChallengeResultMap">
 			SELECT
 				challenge_code,
 				challenge_name,
@@ -210,6 +311,7 @@
 				challenge
 			WHERE 
 				challenge_code=#{challengeCode};
+			
 	</select>
 	
 	<!-- 1. 나의 챌린지 : 챌린지명 수정 -->
@@ -531,9 +633,35 @@
 		<result property="challengeCategoryName" 	column="challenge_category_name"></result>
 	</resultMap>
 	
+	<select id="getChallengeCategoryList" resultMap="ChallengeCategoryResultMap">
+			SELECT 
+				challenge_category_code,
+				challenge_category_name
+			FROM 
+				challenge_category
+	</select>
 	
-
+	<!-- <insert id="addChallengeCategory" parameterType="com.devcdper.challenge.domain.ChallengeCategory">
+			INSERT INTO 
+				challenge_category(
+					   challenge_category_code
+					 , challenge_category_name
+				 )VALUES (
+				 	  sf_newChallengeCategoryCode()
+					, #{challengeCategoryName});
+	</insert> -->
 	
+	
+	<update id="modifyChallengeCategoryName" parameterType="com.devcdper.challenge.domain.ChallengeCategory">
+		UPDATE challenge_category
+		<trim prefix="SET" prefixOverrides=",">
+			<if test="challengeCategoryName != null and challengeCategoryName != ''.toString()">
+				challenge_category_name=#{challengeCategoryName}
+			</if>
+		</trim>	
+		WHERE 
+				challenge_category_code=#{challengeCategoryCode};
+	</update>
 	
 	<!-- ChallengeAchievementRate 관련 -->
 	<resultMap type="com.devcdper.challenge.domain.ChallengeAchievementRate" id="ChallengeAchievementRateResultMap">

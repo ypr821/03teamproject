@@ -129,11 +129,9 @@
 		
 			/* --------------- 챌린지명 수정처리 --------------- Script */
 			
-			$("button#modifyChallengeNameSubmit").click(function(){
+			$("button#modifyChallengeNameBtn").click(function(){
 			var modalModifyChallengeName = $('#modalModifyChallengeName').val();
 			
-
-				
 			if(modalModifyChallengeName != ''){
 				var request = $.ajax({
 					   url: "/myChallengeEdit",
@@ -178,7 +176,7 @@
 			
 			/* --------------- 챌린지 날짜 수정처리 --------------- Script */
 			
-			$("button#modifyChallengeDateSubmit").click(function(){
+			$("button#modifyChallengeDateBtn").click(function(){
 			
 			var modalModifyChallengeStartDate = $('#modalModifyChallengeStartDate').val();
 			var modalModifyChallengeEndDate = $('#modalModifyChallengeEndDate').val();
@@ -217,8 +215,6 @@
 			
 		});
 			
-		
-		
 		
 		
 		<!-- 챌린지 인증방법 변경 Modal - challengeModalCertificationMethodsModify -->

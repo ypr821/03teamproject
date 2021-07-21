@@ -2,6 +2,7 @@ package com.devcdper.challenge.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,8 +48,22 @@ public class ChallengeController {
 	/*-------------------------------------ChallengeControllerInit 메서드 끝----------------------------------------*/
 
 	
+	/*------------------------------------------------두배러 챌린지 메인화면 시작-----------------------------------------------------*/
+	@GetMapping("/mainChallenge")
+	public String mainChallenge(Model model) {
+		
+		
+		List<Challenge> challengeExplorationList = challengeService.getChallengeExplorationList();
+		
+		model.addAttribute("title", "챌린지 메인");
+		model.addAttribute("radioCheck", "mainChallenge");
+		model.addAttribute("challengeExplorationList", challengeExplorationList);
+		return "challenge/mainChallenge";
+	}
+	/*------------------------------------------------두배러 챌린지 메인화면 끝-----------------------------------------------------*/
 	
-	//챌린지 탐색하기 화면
+	
+	/*------------------------------------------------챌린지 탐색하기 화면 시작-----------------------------------------------------*/
 	@GetMapping("/challengeExploration")
 	public String challengeExploration(Model model) {
 		List<Challenge> challengeExplorationList = challengeService.getChallengeExplorationList();
@@ -56,67 +73,36 @@ public class ChallengeController {
 		model.addAttribute("challengeExplorationList", challengeExplorationList);
 		return "challenge/user/challengeExploration";
 	}
+	/*------------------------------------------------챌린지 탐색하기 화면 끝-----------------------------------------------------*/
 
 	//챌린지 탐색하기 - 카테고리별 리스트 화면
-	@PostMapping(value = "/byCategory")
-	public @ResponseBody List<Challenge> byCategory(@RequestParam(value="challengeCategoryCode") String challengeCategoryCodeValue) {
+	@RequestMapping(value = "/byCategory", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Challenge> byCategory(@RequestParam(value="challengeCategoryCode") String challengeCategoryCodeValue) {
 		
 		System.out.println(challengeCategoryCodeValue + "<< challengeCategoryCodeValue");
 			List<Challenge> ChallengeByCategoryExplorationList = challengeService.getChallengeByCategoryExplorationList(challengeCategoryCodeValue);
 			System.out.println("ChallengeByCategoryExplorationList>>" + ChallengeByCategoryExplorationList);
 		
 		return ChallengeByCategoryExplorationList;
-
-		/*
-		 * Map<String, Object> cateMap = new HashMap<String, Object>();
-		 * cateMap.put("categoryVal", categoryVal); List<Challenge>
-		 * challengeByCategoryExplorationList =
-		 * challengeService.getChallengeByCategoryExplorationList(cateMap);
-		 * System.out.println("challengeByCategoryExplorationList" +
-		 * challengeByCategoryExplorationList);
-		 * 
-		 * return challengeByCategoryExplorationList;
-		 */
-
-		/*
-		 * Map<String, Object> cateMap = (Map<String, Object>)
-		 * challengeService.getChallengeByCategoryExplorationList(categoryVal);
-		 * ModelAndView categoryAjaxList = new ModelAndView();
-		 * categoryAjaxList.setViewName("challengeExploation");
-		 * categoryAjaxList.addObject("cateMap", cateMap.get(cateMap));
-		 * 
-		 * return categoryAjaxList;
-		 */
-
-		/*
-		 * System.out.println("categoryVal>>>"+ categoryVal); Map<String, Object>
-		 * cateMap = new HashMap<String, Object>(); cateMap.put("categoryVal",
-		 * categoryVal);
-		 * 
-		 * List<Challenge> challengeByCategoryExplorationList =
-		 * challengeService.getChallengeByCategoryExplorationList(cateMap);
-		 * System.out.println("challengeByCategoryExplorationList >>>"+
-		 * challengeByCategoryExplorationList);
-		 * 
-		 * model.addAttribute("categoryVal", categoryVal);
-		 * model.addAttribute("challengeByCategoryExplorationList",
-		 * challengeByCategoryExplorationList);
-		 * 
-		 * categoryAjaxList.setViewName("challengeExploation");
-		 * categoryAjaxList.addObject("categoryVal", categoryVal);
-		 * categoryAjaxList.addObject("challengeByCategoryExplorationList",
-		 * challengeByCategoryExplorationList);
-		 * 
-		 * System.out.println("========================================");
-		 * //System.out.println("challengeByCategoryExplorationList 카테고리별 챌린지 리스트: " +
-		 * challengeByCategoryExplorationList.toString());
-		 * System.out.println("ModelAndView categoryAjaxList: " + model.toString());
-		 * System.out.println("============================================");
-		 * 
-		 * return challengeByCategoryExplorationList;
-		 */
-
 	}
+	
+	//챌린지 탐색하기 - 상세정보 화면
+		@GetMapping("/challengeExplorationDetailInfo")
+		public String challengeExplorationDetailInfo(
+				@RequestParam(name = "challengeName", required = false) String challengeName, Model model) {
+
+			System.out.println("============================================");
+			System.out.println("화면에 입력 받은 값(챌린지 탐색 : 상세정보): " + challengeName.toString());
+			System.out.println("============================================");
+
+			Challenge challenge = challengeService.getChallengeExplorationDetailInfoByChallengeName(challengeName);
+
+			model.addAttribute("challenge", challenge);
+			model.addAttribute("title", "챌린지 상세 정보");
+			model.addAttribute("radioCheck", "challengeExplorationDetailInfo");
+			return "challenge/user/challengeExplorationDetailInfo";
+		}
 
 	//챌린지 개설하기 화면
 	@GetMapping("/challengeInsert")
@@ -126,7 +112,7 @@ public class ChallengeController {
 		model.addAttribute("radioCheck", "challengeInsert");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);		
@@ -139,9 +125,9 @@ public class ChallengeController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); </script>");
+			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); location.href='/login';</script>");
 			out.flush();
-			return "login/login";
+			
 		}
 		
 		return "challenge/user/challengeInsert";
@@ -186,22 +172,21 @@ public class ChallengeController {
 		model.addAttribute("radioCheck", "challengeCertification");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
 				
 		if(sessionEmail == null) {
-			response.setContentType("text/html; charset=euc-kr");
+			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = null;
 			try {
 				out = response.getWriter();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); </script>");
+			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); location.href='/login';</script>");
 			out.flush();
-			return "login/login";
 		}
 		
 		List<ChallengeCertification> verifiableChallengeList = challengeService.getVerifiableChallengeList(sessionEmail);
@@ -213,13 +198,11 @@ public class ChallengeController {
 	//챌린지 인증하기 등록 페이지 화면
 	@GetMapping("/challengeCertificationInsert")
 	public String challengeCertificationInsert(@RequestParam(name = "challengeName", required = false) String challengeName,
-					Model model, HttpSession session, HttpServletResponse response) {
+					Model model, HttpSession session) {
 		
-		model.addAttribute("title", "챌린지 인증 등록");
-		model.addAttribute("radioCheck", "challengeCertificationInsert");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
@@ -232,9 +215,11 @@ public class ChallengeController {
 		System.out.println("화면에 입력 받은 값(챌린지 인증 등록): " + challengeName.toString());
 		System.out.println("============================================");
 		
-		ChallengeParticipation challengeParticipation = challengeService.getChallengeCertificationInfo(challengeName, sessionEmail);
+		ChallengeParticipation challengeCertificationInsert = challengeService.getChallengeCertificationInfo(challengeName, sessionEmail);
 		
-		model.addAttribute("challengeParticipation", challengeParticipation);
+		model.addAttribute("title", "챌린지 인증 등록");
+		model.addAttribute("radioCheck", "challengeCertificationInsert");
+		model.addAttribute("challengeCertificationInsert", challengeCertificationInsert);
 		return "challenge/user/challengeCertificationInsert";
 	}
 	
@@ -275,53 +260,35 @@ public class ChallengeController {
 		model.addAttribute("radioCheck", "myChallenge");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
 				
 		if(sessionEmail == null) {
-			response.setContentType("text/html; charset=euc-kr");
+			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = null;
 			try {
 				out = response.getWriter();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); </script>");
+			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); location.href='/login';</script>");
 			out.flush();
-			return "login/login";
 		}
 		
 		return "challenge/user/myChallenge";
 	}
 	
-	
-	//챌린지 탐색하기 상세정보 화면
-	@GetMapping("/challengeExplorationDetailInfo")
-	public String challengeExplorationDetailInfo(
-			@RequestParam(name = "challengeName", required = false) String challengeName, Model model) {
 
-		System.out.println("============================================");
-		System.out.println("화면에 입력 받은 값(챌린지 탐색 : 상세정보): " + challengeName.toString());
-		System.out.println("============================================");
-
-		Challenge challenge = challengeService.getChallengeExplorationDetailInfoByChallengeName(challengeName);
-
-		model.addAttribute("challenge", challenge);
-		model.addAttribute("title", "챌린지 상세 정보");
-		model.addAttribute("radioCheck", "challengeExplorationDetailInfo");
-		return "challenge/user/challengeExplorationDetailInfo";
-	}
-
-	//챌린지 상세정보 화면
+	//나의 챌린지 - 상세정보 화면
 	@GetMapping("/myChallengeDetailInfo")
 	public String myChallengeDetailInfo(Model model, HttpSession session) {
 		model.addAttribute("title", "챌린지 상세 정보");
 		model.addAttribute("radioCheck", "myChallengeDetailInfo");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
@@ -335,12 +302,22 @@ public class ChallengeController {
 
 	//나의 챌린지 - 개설 챌린지 리스트 화면
 	@GetMapping("/myChallengeInsertList")
-	public String myChallengeInsertList(Model model, HttpSession session,String challengeName) {
-		model.addAttribute("title", "개설한 챌린지 목록");
+	public String myChallengeInsertList(Model model, HttpSession session,
+			@RequestParam(name="categorySearchOption", required = false) String categorySearchOption,
+			@RequestParam(name="startDateSearchOption", required = false) String startDateSearchOption,
+			@RequestParam(name="endDateSearchOption", required = false) String endDateSearchOption,
+			@RequestParam(name="termSearchOption", required = false) String termSearchOption,
+			@RequestParam(name="dateSortOption", required = false) String dateSortOption,
+			@RequestParam(name="certificationFrequencySearchOption", required = false) String certificationFrequencySearchOption,
+			@RequestParam(name="myChallengeSearchKey", required = false) String myChallengeSearchKey,
+			@RequestParam(name="myChallengeSearchValue", required = false) String myChallengeSearchValue
+			) {
+		
+		model.addAttribute("title", "나의 개설한 챌린지");
 		model.addAttribute("radioCheck", "myChallengeInsertList");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
@@ -349,8 +326,26 @@ public class ChallengeController {
 			return "redirect:/login";
 		}
 		
-		List<Challenge> modifyChallengeList = challengeService.getmodifyChallengeList(sessionEmail, challengeName);
-		model.addAttribute("modifyChallengeList", modifyChallengeList);
+		System.out.println("categorySearchOption :" + categorySearchOption);
+		System.out.println("startDateSearchOption :" + startDateSearchOption);
+		System.out.println("endDateSearchOption :" + endDateSearchOption);
+		System.out.println("termSearchOption" + termSearchOption);
+		System.out.println("dateSortOption" + dateSortOption);
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("sessionEmail", sessionEmail);
+		paramMap.put("categorySearchOption", categorySearchOption);
+		paramMap.put("startDateSearchOption", startDateSearchOption);
+		paramMap.put("endDateSearchOption", endDateSearchOption);
+		paramMap.put("termSearchOption", termSearchOption);
+		paramMap.put("dateSortOption", dateSortOption);
+		paramMap.put("certificationFrequencySearchOption", certificationFrequencySearchOption);
+		paramMap.put("myChallengeSearchKey", myChallengeSearchKey);
+		paramMap.put("myChallengeSearchKey", myChallengeSearchKey);
+		paramMap.put("myChallengeSearchValue", myChallengeSearchValue);
+		
+		List<Challenge> insertChallengeList = challengeService.getInsertChallengeList(paramMap);
+		model.addAttribute("insertChallengeList", insertChallengeList);
 		
 		return "challenge/user/myChallengeInsertList";
 	}
@@ -358,11 +353,11 @@ public class ChallengeController {
 	//나의 챌린지 - 참여 챌린지 리스트 화면
 	@GetMapping("/myChallengeParticipationList")
 	public String myChallengeParticipationList(Model model, HttpSession session) {
-		model.addAttribute("title", "참여중인 챌린지 목록");
+		model.addAttribute("title", "나의 참여중 챌린지");
 		model.addAttribute("radioCheck", "myChallengeParticipationList");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
@@ -377,11 +372,11 @@ public class ChallengeController {
 	//나의 챌린지 - 완료 챌린지 리스트 화면
 	@GetMapping("/myChallengeCompleteList")
 	public String myChallengeCompleteList(Model model, HttpSession session) {
-		model.addAttribute("title", "완료된 챌린지 목록");
+		model.addAttribute("title", "나의 완료된 챌린지");
 		model.addAttribute("radioCheck", "myChallengeCompleteList");
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
@@ -393,7 +388,7 @@ public class ChallengeController {
 		return "challenge/user/myChallengeCompleteList";
 	}
 	
-	//나의 챌린지 - 개설챌린지 수정화면
+	//나의 챌린지 - 개설 챌린지 수정 화면 
 	@GetMapping("/myChallengeEdit")
 	public String myChallengeEdit(Model model, HttpSession session, String challengeCode) {
 		model.addAttribute("title", "챌린지 설정");
@@ -402,7 +397,7 @@ public class ChallengeController {
 		System.out.println("챌린지 코드 : " + challengeCode);
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
-		String sessionEmail = (String) session.getAttribute("NEMAIL");
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
@@ -411,7 +406,7 @@ public class ChallengeController {
 			return "redirect:/login";
 		}
 		
-		Challenge modifyChallengeAttribute = challengeService.getModifyChallengeAttributeList(challengeCode);
+		Challenge modifyChallengeAttribute = challengeService.getModifyInsertChallengeAttributeList(challengeCode);
 		//Challenge modifyChallengePeriod = challengeService.getModifyChallengePeriod(challengeStartDate, challengeEndDate, challengeName);
 		System.out.println(modifyChallengeAttribute +"<<<< modifyChallengeAttribute");
 		//System.out.println(modifyChallengePeriod +"<<<< modifyChallengePeriod");
@@ -431,7 +426,6 @@ public class ChallengeController {
 		System.out.println("챌린지 설정 [challengeCode]: " + challengeCode);
 		System.out.println("========================================");
 		
-		
 		//챌린지명 변경 처리
 		int modifyChallengeName = challengeService.modifyChallengeName(challenge);
 		System.out.println("챌린지명 변경 처리 완료 [modifyChallengeName] : " + modifyChallengeName);
@@ -450,11 +444,10 @@ public class ChallengeController {
 		
 		//챌린지 태그 변경 처리
 		int modifyChallengeTag = challengeService.modifyChallengeTag(challenge);
-		System.out.println("챌린지 소개 변경 처리 완료 [modifyChallengeTag] : " + modifyChallengeTag);
+		System.out.println("챌린지 태그 변경 처리 완료 [modifyChallengeTag] : " + modifyChallengeTag);
 		
 		//return "redirect:challenge/user/myChallengeInsertList";
 		return "challenge/user/myChallengeInsertList";
-		
 		
 	}
 	

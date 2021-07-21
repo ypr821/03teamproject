@@ -42,7 +42,7 @@
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
 			        <div class="container-fluid">
-			            <h2 class="text-center display-5">인증 가능한 챌린지 조회하기</h2>
+			            <h2 class="text-center display-5">인증 가능한 챌린지 상세검색</h2>
 			            <form action="enhanced-results.html">
 			                <div class="row">
 			                    <div class="col-md-10 offset-md-1">
@@ -171,7 +171,7 @@
               <div class="card-header">
                <h3 class="card-title">
 					<ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; <b>인증 가능한 챌린지</b>
+					&emsp; <b>인증 가능한 챌린지 목록</b>
 				</h3>
 
                 <div class="card-tools">
@@ -190,11 +190,11 @@
 								<th>챌린지명</th>
 								<th>카테고리</th>
 								<th>공개범위</th>
-								<th>태그</th>
 								<th>참가인원</th>
 								<th>인증방법</th>
 								<th>챌린지 기간</th>
-		                     	<th>챌린지 인증하기</th>
+		                     	<th>챌린지 인증 등록</th>
+		                     	<th>챌린지 인증 게시판</th>
 		                     	<th>나의 챌린지</th>
 		                    </tr>
 		                  </thead>
@@ -204,7 +204,6 @@
 							<td th:text="${l.challenge.challengeName}"></td>
 			                <td th:text="${l.challengeCategory.challengeCategoryName}"></td>
 			                <td th:text="${l.challenge.challengeScope}"></td>
-			                <td th:text="${l.challenge.challengeTag}"></td>
 			                <td th:text="${l.challenge.challengeMaximumPeople}"></td>
 			                <td th:text="${l.challenge.challengeCertificationMethod}"></td>
 							<td th:text="|${l.challenge.challengeStartDate} ~ ${l.challenge.challengeEndDate}|"></td>
@@ -213,9 +212,18 @@
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
 											<i class="fas fa-folder">
 											</i>
-											챌린지 인증하기
+											챌린지 인증 등록
 										</button>
-								</a>
+							</a>
+							</td>
+							<td>
+		                    <a th:href="@{/challengeCertificationBoard}">
+										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
+											<i class="fas fa-folder">
+											</i>
+											챌린지 인증 게시판
+										</button>
+							</a>
 							</td>
 							<td>
 		                      <a th:href="@{/myChallenge}">
