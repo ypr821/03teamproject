@@ -26,38 +26,55 @@ public class AdminUserController {
 	}
 	
 
-	@PostMapping("/adminForgotEmail")
-	public String normalForgotEmail() {
+	@PostMapping("/adminForgotEmail") //아직 안됨
+	public String adminForgotEmail(@RequestParam(value = "adminName",required = false)String adminName
+								  ,@RequestParam(value = "adminMobile", required = false)String adminMobile
+								  ,Model model) {
+		if(adminName != null && !"".equals(adminName) && adminMobile != null && !"".equals(adminMobile)) {
+			System.out.println(adminName + adminMobile);
+			Map<String, Object> resultMap = adminUserService.adminFindEmail(adminName, adminMobile);
+			
+			boolean FindEmailcheck = (boolean) resultMap.get("FindEmailcheck");
+			AdminUser AdminFindEmail = (AdminUser) resultMap.get("AdminFindEmail");
+			System.out.println(resultMap);
+			
+			if(FindEmailcheck) {
+				model.addAttribute("userEmail", AdminFindEmail);
+				
+				return "userAdmin/adminForgotEmail";
+			}
+		}
 		
-		return "";
+		return "redirect:/adminForgotEmail";
 	}
+	
 	@PostMapping("/adminForgotPassword")
-	public String normalForgotPassword() {
+	public String adminForgotPassword() {
 		
 		return "";
 	}
 	
 	
 	@GetMapping("/adminForgotPassword")
-	public String normalPassword(Model model) {
+	public String adminForgotPassword(Model model) {
 		
 		model.addAttribute("title","회원패스워드찾기");
 		
 		return "userAdmin/adminForgotPassword";
 	}
 	
-	@PostMapping("/adminEmailCheck")
+	@PostMapping("/adminEmailCheck")  //아이디 중복체크
 	@ResponseBody
-	public boolean memberIdCheck(@RequestParam(name="adminEmail", required = false) String adminEmail) {
-		boolean idCheck = true;
+	public boolean adminEmailCheck(@RequestParam(name="adminEmail", required = false) String adminEmail) {
+		boolean EmailCheck = true;
 		//idcheck 중복된 아이디있는 경우에는 false
 		AdminUser adminUser = adminUserService.getAdminInfoById(adminEmail);
-		if(adminUser != null) idCheck = false;
+		if(adminUser != null) EmailCheck = false;
 		
-		return idCheck;
+		return EmailCheck;
 	}
 	
-	@PostMapping("/adminLogin") //아직안됨...
+	@PostMapping("/adminLogin") 
 	public String adminLogin(@RequestParam(value="adminEmail", required = false) String adminEmail
 			   ,@RequestParam(value="adminPassword", required = false) String adminPassword
 			   ,HttpSession session

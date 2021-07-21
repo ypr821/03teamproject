@@ -1,5 +1,10 @@
 package com.devcdper.user_admin.controller;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.devcdper.user_admin.domain.NormalUser;
@@ -31,11 +38,48 @@ public class NormalUserController {
 		this.normalUserService = normalUserService;
 	}
 	
-	@GetMapping("myPage")
-	public String myPage(Model model) {
+	@PostMapping("/getProfilePicture")
+	public String modifyProfilePicture(@RequestParam(name="userProfilePicture",required = false) MultipartFile file
+										, HttpSession session) {
+
+		log.info("프로필 수정에 대한 부분 file: {}", file);
+		
+		System.out.println(file.getOriginalFilename());
+		try {
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            
+            InetAddress local = InetAddress.getLocalHost();
+
+            System.out.println(local.getHostAddress());
+            
+            //localhost용
+//            Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ file.getOriginalFilename() );
+           
+            //cafe24용
+            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/") + file.getOriginalFilename());
+            Files.write(path, bytes);
+            
+            System.out.println(file.getOriginalFilename());
+            
+        	normalUserService.modifyProfilePicture(session.getAttribute("UEMAIL"),file.getOriginalFilename());
+        	
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	
+		return "redirect:/myPage";
+	}
+	
+	@GetMapping("/myPage")
+	public String myPage(Model model, HttpSession session) {
 		
 		model.addAttribute("title","마이페이지");
 		model.addAttribute("function","myPage");
+		
+		
 		return "userAdmin/myPage";
 	}
 	
@@ -50,16 +94,15 @@ public class NormalUserController {
 		return "redirect:/normalForgotPassword";
 	}
 	
-	
 	@GetMapping("/normalForgotPassword")
-	public String normalPassword(Model model) {
+	public String normalForgotPassword(Model model) {
 		
 		model.addAttribute("title","회원패스워드찾기");
 		
 		return "userAdmin/normalForgotPassword";
 	}
 	
-	@GetMapping("/logout")  //아직안됨...
+	@GetMapping("/logout")  
 	public String logout(HttpSession session) {
 		
 		session.invalidate();
@@ -67,7 +110,18 @@ public class NormalUserController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/normalLogin") //아직안됨...
+	@PostMapping("/normalEmailCheck")  //아이디 중복체크
+	@ResponseBody
+	public boolean normalEmailCheck(@RequestParam(name="normalEmail", required = false) String normalEmail) {
+		boolean EmailCheck = true;
+		//idcheck 중복된 아이디있는 경우에는 false
+		NormalUser normalUser = normalUserService.getNormalInfoById(normalEmail);
+		if(normalUser != null) EmailCheck = false;
+		
+		return EmailCheck;
+	}
+	
+	@PostMapping("/normalLogin") 
 	public String normalLogin(@RequestParam(value="userEmail", required = false) String userEmail
 			   ,@RequestParam(value="userPassword", required = false) String userPassword
 			   ,HttpSession session
@@ -81,10 +135,10 @@ public class NormalUserController {
 			System.out.println(resultMap);
 			
 			if(loginCheck) {
-				session.setAttribute("UEMAIL", 	normalLogin.getUserEmail());
-				session.setAttribute("UNAME", 	normalLogin.getUserName());
-				session.setAttribute("ULEVEL", 	"일반사용자");
-				
+				session.setAttribute("UEMAIL",		normalLogin.getUserEmail());
+				session.setAttribute("UNAME", 		normalLogin.getUserName());
+				session.setAttribute("UPROFILE", 	normalLogin.getUserProfilePicture());
+				session.setAttribute("ULEVEL", 		"일반");
 				return "redirect:/";
 			}
 		}
@@ -130,6 +184,7 @@ public class NormalUserController {
 	public String addMember(NormalUser normalUser) {
 		
 		log.info("화면에서 입력받은 값 normalUser : {}", normalUser);
+	
 		normalUserService.addNormalUser(normalUser);
 		
 		return "redirect:/login";

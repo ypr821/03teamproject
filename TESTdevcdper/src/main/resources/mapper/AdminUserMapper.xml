@@ -13,6 +13,18 @@
 		<result property="adminJoinDate"			column="admin_join_date"/>
 	</resultMap>
 	
+	<select id="FindAdminEmail" parameterType="String" resultMap="AdminUserResultMap">
+		SELECT 
+			admin_email
+		FROM 
+			admin
+		WHERE 
+			admin_name = #{adminName} 
+		AND 
+			admin_mobile = #{adminMobile}
+		
+	</select>
+	
 	<update id="modifyAdminUser" parameterType="AdminUser">
 		UPDATE
 			admin

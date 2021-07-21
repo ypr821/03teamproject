@@ -15,8 +15,7 @@
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
 			th:if="${session.UEMAIL eq null}">
 			<div class="image">
-				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
-					class="img-circle elevation-2" alt="User Image">
+				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
 				<a th:href="@{/login}" class="d-block">로그인을 해주세요.</a>
@@ -24,14 +23,12 @@
 		</div>
 
 		<!-- 로그인후 프로필 -->
-	<div class="user-panel mt-3 pb-3 mb-3 d-flex"
-			th:if="${session.UEMAIL ne null}">
+	<div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${session.UEMAIL ne null}">
 			<div class="image">
-				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
-					class="img-circle elevation-2" alt="User Image">
-			</div>
-			<div class="info">
-				<a th:href="@{/myPage}" class="d-block"> <span>[[${session.UEMAIL}]]</span>
+				<a th:href="@{/myPage}" class="d-block"> 
+<!-- 					<img th:if="${session.UPROFILE ne null}" th:src="@{/AdminLTE3/dist/img/profilePicture/Normal/${l.NormalPicPath}}" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+					<img  th:if="${session.UPROFILE eq null && session.UPROFILE eq''}"th:src="@{/AdminLTE3/dist/img/profilePicture/Normal/usernull.jpg}" class="brand-image img-circle elevation-3" style="opacity: .8">
+					<span>[[${session.UEMAIL}]]</span>
 					<span style="font-size: 10px;" class="badge badge-primary">#</span>
 				</a>
 			</div>

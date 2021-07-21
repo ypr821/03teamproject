@@ -25,6 +25,29 @@ public class AdminUserService {
 		System.out.println("========================================");
 	}
 	
+	//adminFindPassword				
+	
+	//이메일 찾기
+	public Map<String, Object> adminFindEmail(String adminName, String adminMobile){
+		
+		boolean FindEmailcheck = false;
+		System.out.println(adminName +"==="+adminMobile);
+		Map<String, Object> FindEmailInfoMap = new HashMap<String, Object>();
+		
+		AdminUser AdminUser = (com.devcdper.user_admin.domain.AdminUser) adminUserMapper.adminFindEmail(adminName, adminMobile);
+		System.out.println(AdminUser);
+		
+		if(AdminUser != null && adminName.equals(AdminUser.getAdminName()) && adminMobile.equals(AdminUser.getAdminMobile())) {
+			System.out.println("AdminFindEmail@@@@@@");
+			FindEmailcheck = true;
+			FindEmailInfoMap.put("AdminFindEmail", AdminUser);
+		}
+		FindEmailInfoMap.put("FindEmailcheck", FindEmailcheck);
+		
+		return FindEmailInfoMap;
+	}
+	
+	//로그인
 	public Map<String, Object> loginAdminUser(String adminEmail, String adminPassword){
 		
 		boolean loginCheck = false;
@@ -32,7 +55,7 @@ public class AdminUserService {
 		Map<String, Object> AdminUserInfoMap = new HashMap<String, Object>();
 		
 		AdminUser AdminUser = adminUserMapper.getAdminInfoById(adminEmail);
-//		System.out.println(nomalUser);
+		System.out.println(AdminUser);
 		if(AdminUser != null && adminPassword.equals(AdminUser.getAdminPassword())) {
 			System.out.println("hi@");
 			loginCheck = true;
@@ -43,17 +66,13 @@ public class AdminUserService {
 		return AdminUserInfoMap;
 	}
 	
-	
+	//수정
 	public int modifyAdminUser(AdminUser adminUser) {
-		
-		
-		
-		
 		int result = adminUserMapper.modifyAdminUser(adminUser);
 				
 		return result;
 	}
-	
+	//수정폼까지
 	public AdminUser getAdminInfoById(String adminEmail) {
 		
 		return adminUserMapper.getAdminInfoById(adminEmail);

@@ -12,10 +12,18 @@ public interface NormalUserMapper {
 	
 	//회원전체 조회
 	public List<NormalUser> getNormalUserList();
+	
 	//회원가입
 	public int addNormalUser(NormalUser normalUser);
+	
 	//회원 수정 조회
 	public NormalUser getNormalInfoById(String userEmail);
+	
 	//회원 수정
 	public int modifyNormalUser(NormalUser normalUser); 
+	
+	//회원 프로필 수정
+	public int modifyProfilePicture(Object userEmail,String userProfilePicture);
+	
 }
+

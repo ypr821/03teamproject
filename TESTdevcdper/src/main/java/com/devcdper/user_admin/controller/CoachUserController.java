@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.devcdper.user_admin.domain.CoachUser;
@@ -30,24 +31,36 @@ public class CoachUserController {
 	}
 	
 	@PostMapping("/coachForgotEmail")
-	public String normalForgotEmail() {
+	public String coachForgotEmail() {
 		
 		return "";
 	}
 	
 	@PostMapping("/coachForgotPassword")
-	public String normalForgotPassword() {
+	public String coachForgotPassword() {
 		
 		return "";
 	}
 	
 	@GetMapping("/coachForgotPassword")
-	public String normalPassword(Model model) {
+	public String coachForgotPassword(Model model) {
 		
 		model.addAttribute("title","회원패스워드찾기");
 		
 		return "userAdmin/coachForgotPassword";
 	}
+	
+	@PostMapping("/coachEmailCheck")  //아이디 중복체크
+	@ResponseBody
+	public boolean coachEmailCheck(@RequestParam(name="coachEmail", required = false) String coachEmail) {
+		boolean EmailCheck = true;
+		//EmailCheck 중복된 아이디있는 경우에는 false
+		CoachUser coachUser = coachUserService.getCoachInfoById(coachEmail);
+		if(coachUser != null) EmailCheck = false;
+		
+		return EmailCheck;
+	}
+	
 	
 	@PostMapping("/coachLogin")
 	public String coachLogin(@RequestParam(value="coachEmail", required = false) String coachEmail
@@ -62,12 +75,11 @@ public class CoachUserController {
 			System.out.println(loginCheck);
 			CoachUser coachLogin = (CoachUser) resultMap.get("loginCoachUser");
 			System.out.println(resultMap);
-			
+//			
 			if(loginCheck) {
 				session.setAttribute("UEMAIL",	coachLogin.getCoachEmail());
 				session.setAttribute("UNAME", 	coachLogin.getCoachName());
-				session.setAttribute("ULEVEL", 	"코치회원");
-				session.setAttribute("CLEVEL", 	coachLogin.getCoachAuthority());
+				session.setAttribute("ULEVEL", 	"코치");
 				return "redirect:/";
 			}
 		}
@@ -84,12 +96,13 @@ public class CoachUserController {
 	}
 	
 	@GetMapping("/modifyCoach")
-	public String getCoachInfoById(@RequestParam(name="coachUEmail", required = false)String coachUEmail 
+	public String getCoachInfoById(@RequestParam(name="coachEmail", required = false)String coachEmail 
 									,Model model) {
 		log.info("+++++++++++++++++++++++++++");
-		log.info("화면에서 입력받은 값(회원수정폼) coachUserEmail: {}", coachUEmail);
+		log.info("화면에서 입력받은 값(회원수정폼) coachUserEmail: {}", coachEmail);
 		log.info("+++++++++++++++++++++++++++");
-		CoachUser coachUser = coachUserService.getCoachInfoById(coachUEmail);
+		
+		CoachUser coachUser = coachUserService.getCoachInfoById(coachEmail);
 		
 		model.addAttribute("title", "회원수정폼");
 		model.addAttribute("coachUser",coachUser);
