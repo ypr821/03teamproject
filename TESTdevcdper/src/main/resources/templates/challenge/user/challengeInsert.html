@@ -54,7 +54,7 @@
               </div>
               <div class="form-group">
                           <label for="challengeCategoryCode" >챌린지 카테고리</label>
-                          <select class="custom-select" name="challengeCategoryCode">
+                          <select class="custom-select" id="challengeCategoryCode" name="challengeCategoryCode">
                           <option id="challengeCategoryCode" value="none">--- 챌린지 카테고리 선택 ---</option>
                           <option id="challengeCategoryCode" value="challenge_category_code_01">학력</option>
                           <option id="challengeCategoryCode" value="challenge_category_code_02">프로젝트</option>
@@ -68,30 +68,30 @@
                         </select>
 			</div>
               <div class="form-group">
-              <label for="challengeTag">챌린지 태그</label>
+              <label for="challengeTag">챌린지 태그(선택)</label>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag1" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag2" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag3" class="form-control" placeholder="최대 10자">
                 </div>
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">#</span>
                   </div>
-                  <input type="text" name="challengeTag" class="form-control" placeholder="최대 10자">
+                  <input type="text" name="challengeTag4" class="form-control" placeholder="최대 10자">
                 </div>
                 <div class="form-group">
                 <label for="challengeScope">챌린지 공개범위</label>
@@ -102,7 +102,7 @@
                	</select>
 			 </div>
               <div class="form-group">
-                <label for="challengeParticipationPassword">참여비밀번호</label>
+                <label for="challengeParticipationPassword">챌린지 참여비밀번호</label>
               <div class="form-group">
                 <input type="password" name="challengeParticipationPassword" placeholder="참여비밀번호를 입력해주세요." class="form-control">
               </div>
@@ -126,7 +126,7 @@
             <div class="card-body">
              
               <div class="form-group">
-                <label for="challengeMaximumPeople">최대 인원수</label>
+                <label for="challengeMaximumPeople">챌린지 참여 최대 인원수</label>
                 <input type="text" name="challengeMaximumPeople" placeholder="최대 인원수를 입력해주세요." class="form-control">
               </div>
               <div class="form-group">
@@ -140,9 +140,9 @@
 			</div>
 			<div class="form-group">
                         <label for="challengeCertificationMethod">챌린지 인증방법</label>
-                        <select class="custom-select" name="challengeCertificationMethod" id="challengeCertificationMethod">
-                          <option id="challengeCertificationMethod" value="none">--- 챌린지 인증방법 선택 ---</option>
-                          <option id="challengeCertificationMethod" value="사진">사진</option>
+                        <select class="custom-select form-control" name="challengeCertificationMethod" id="challengeCertificationMethod">
+                          <option id="challengeCertificationMethod" value="none" >--- 챌린지 인증방법 선택 ---</option>
+                          <option id="challengeCertificationMethod" value="사진" >사진</option>
                           <option id="challengeCertificationMethod" value="영상">영상</option>
                         </select>
 			 </div>
@@ -152,17 +152,17 @@
               </div>
               <div class="form-group">
                         <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
-                        <select class="custom-select" name="challengeCertificationFrequency" id="challengeCertificationFrequency">
+                        <select class="custom-select form-control" name="challengeCertificationFrequency" id="challengeCertificationFrequency">
                           <option id="challengeCertificationFrequency" value="none">--- 챌린지 인증빈도 선택 ---</option>
-                          <option id="challengeCertificationFrequency" value="월~일 매일 인증하기">월~일 매일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="월~금 매일 인증하기">월~금 매일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="토~일 매일 인증하기">토~일 매일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="주 6일 매일 인증하기">주 6일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="주 5일 매일 인증하기">주 5일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="주 4일 매일 인증하기">주 4일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="주 3일 매일 인증하기">주 3일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="주 2일 매일 인증하기">주 2일 인증하기</option>
-                          <option id="challengeCertificationFrequency" value="주 1일 매일 인증하기">주 1일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="월~일 매일 인증하기" >월~일 매일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="월~금 매일 인증하기" >월~금 매일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="토~일 매일 인증하기" >토~일 매일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 6일 매일 인증하기" >주 6일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 5일 매일 인증하기" >주 5일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 4일 매일 인증하기" >주 4일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 3일 매일 인증하기" >주 3일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 2일 매일 인증하기" >주 2일 인증하기</option>
+                          <option id="challengeCertificationFrequency" value="주 1일 매일 인증하기" >주 1일 인증하기</option>
                         </select>
 			 </div>
               <div class="form-group">
@@ -210,75 +210,180 @@ $('#challengeInsertBtn').click(function(){
 	
 	var submitFlag = true;
 	var challengeInsertForm = $('#challengeInsertForm');
-	var inputObj = challengeInsertForm.find('input');
 	
-	$.each(inputObj, function(e){
-		var inputName = $(this).attr('name');
-		var inputValue = $(this).val();
-		var inputLabel = $(this).parent().parent().children().eq(0).text();
-		
-		var selectObj = challengeInsertForm.find('select');
-		var selectName = selectObj.attr('name');
-		var selectValue = selectObj.val();
-		var selectLabel = selectObj.parent().children().eq(0).text();
-		
-		
-			
-		if(inputName == 'challengeTag'){
-			if(!regexTag.test(inputValue)){
-				alert(inputLabel + ' 을 다시 입력해주세요.');
-				$(this).focus();
-				submitFlag = false;
-				return submitFlag;
-			}
-		}else if(inputName == 'challengeParticipationPassword'){
-			if(!regexPass.test(inputValue)){
-				alert(inputLabel + ' 을 다시 입력해주세요.');
-				$(this).focus();
-				submitFlag = false;
-				return submitFlag;
-			}
-		}else{
-			if(inputValue == '' || inputValue == undefined || inputValue == null){
-				alert(inputLabel + '을 입력해주세요.');
-				$(this).focus();
-				submitFlag = false;
-				return submitFlag;
-			}
-			
-			if(selectValue == 'none'){
-				alert(selectLabel + '을 선택해주세요.');
-				selectObj.focus();
-				submitFlag = false;
-				return submitFlag;
-				}
-			}
-/* 	var textAreaObj = challengeInsertForm.find('textarea');
+	//챌린지명
+	var challengeName = $('input[name=challengeName]');
+	var challengeNameValue = challengeName.val();
 	
-	var challengeIntroduce = $('#challengeIntroduce');
+	//챌린지 카테고리
+	var challengeCategoryCode = $('select[name=challengeCategoryCode]');
+	var challengeCategoryCodeValue = challengeCategoryCode.val();
+	
+/* 	//챌린지태그
+	var challengeTag1 = $('input[name=challengeTag1]');
+	var challengeTag1Value = $('input[name=challengeTag1]').val();
+	var challengeTag2 = $('input[name=challengeTag2]');
+	var challengeTag2Value = $('input[name=challengeTag2]').val();
+	var challengeTag3 = $('input[name=challengeTag3]');
+	var challengeTag3Value = $('input[name=challengeTag3]').val();
+	var challengeTag4 = $('input[name=challengeTag4]');
+	var challengeTag4Value = $('input[name=challengeTag4]').val(); */
+	
+	//챌린지 공개범위
+	var challengeScope = $('select[name=challengeScope]');
+	var challengeScopeValue = challengeScope.val();
+	
+	//챌린지 참여 비밀번호
+	var challengeParticipationPassword = $('input[name=challengeParticipationPassword]');
+	var challengeParticipationPasswordValue = challengeParticipationPassword.val();
+	
+	//챌린지 소개
+	var challengeIntroduce = $('textarea[name=challengeIntroduce]');
 	var challengeIntroduceValue = challengeIntroduce.val();
-	var challengeIntroduceLabel = challengeIntroduce.parent().children().eq(0).text();
 	
-	var certificationContents = $('#challengeCertificationContents');
-	var certificationContentsValue = certificationContents.val();
-	var certificationContentsLabel = certificationContents.parent().children().eq(0).text();
+	//챌린지 최대인원수
+	var challengeMaximumPeople = $('input[name=challengeMaximumPeople]');
+	var challengeMaximumPeopleValue = challengeMaximumPeople.val();
+
+	//챌린지 베팅금액
+	var challengeBetAmount = $('input[name=challengeBetAmount]');
+	var challengeBetAmountValue = challengeBetAmount.val();
 	
-			if(challengeIntroduceValue == '' || challengeIntroduceValue == undefined || challengeIntroduceValue == null){
-				alert(challengeIntroduceLabel + '을 입력해주세요.');
-				challengeIntroduce.focus();
-				submitFlag = false;
-				return submitFlag;
-				}
-			if(certificationContentsValue == '' || certificationContentsValue == undefined || certificationContentsValue == null){
-				alert(certificationContentsLabel + '을 입력해주세요.');
-				certificationContents.focus();
-				submitFlag = false;
-				return submitFlag;
-				}  */
-	});
+	//챌린지 인증방법
+	var challengeCertificationMethod = $('select[name=challengeCertificationMethod]');
+	var challengeCertificationMethodValue = challengeCertificationMethod.val();
 	
-		
-		
+	//챌린지 인증내용
+	var challengeCertificationContents = $('textarea[name=challengeCertificationContents]');
+	var challengeCertificationContentsValue = challengeCertificationContents.val();
+	
+	//챌린지 인증빈도
+	var challengeCertificationFrequency = $('select[name=challengeCertificationFrequency]');
+	var challengeCertificationFrequencyValue = challengeCertificationFrequency.val();
+	
+	//챌린지 시작일
+	var challengeStartDate = $('input[name=challengeStartDate]');
+	var challengeStartDateValue = challengeStartDate.val();
+
+	//챌린지 시작일
+	var challengeEndDate = $('input[name=challengeEndDate]');
+	var challengeEndDateValue = challengeEndDate.val();
+	
+	
+	if(challengeNameValue == '' || challengeNameValue == undefined || challengeNameValue == null){
+		alert('챌린지명을 입력해주세요.');
+		challengeName.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeCategoryCodeValue == 'none'){
+		alert('챌린지명 카테고리를 선택해주세요.');
+		challengeCategoryCode.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	/* if(challengeTag1Value == '' || challengeTag1Value == undefined || challengeTag1Value == null){
+		alert('챌린지 태그를 입력해주세요.');
+		challengeTag1.focus();
+		submitFlag = false;
+		return submitFlag;
+	} 
+	
+	if(challengeTag2Value == '' || challengeTag2Value == undefined || challengeTag2Value == null){
+		alert('챌린지 태그를 입력해주세요.');
+		challengeTag2.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeTag3Value == '' || challengeTag3Value == undefined || challengeTag3Value == null){
+		alert('챌린지 태그를 입력해주세요.');
+		challengeTag3.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeTag4Value == '' || challengeTag4Value == undefined || challengeTag4Value == null){
+		alert('챌린지 태그를 입력해주세요.');
+		challengeTag4.focus();
+		submitFlag = false;
+		return submitFlag;
+	}*/
+
+	if(challengeScopeValue  == 'none'){
+		alert('챌린지 공개범위를 선택해주세요.');
+		challengeScope.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeScopeValue == '비공개' && challengeParticipationPasswordValue == '' || challengeParticipationPasswordValue == undefined || challengeParticipationPasswordValue == null){
+		alert('챌린지 참여 비밀번호를 입력해주세요.');
+		challengeParticipationPassword.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeIntroduceValue == '' || challengeIntroduceValue == undefined || challengeIntroduceValue == null){
+		alert('챌린지 소개를 입력해주세요.');
+		challengeIntroduce.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	
+	if(challengeMaximumPeopleValue == '' || challengeMaximumPeopleValue == undefined || challengeMaximumPeopleValue == null){
+		alert('챌린지 참여 최대 인원수를 입력해주세요.');
+		challengeMaximumPeople.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeBetAmountValue == '' || challengeBetAmountValue == undefined || challengeBetAmountValue == null){
+		alert('챌린지 베팅금액을 입력해주세요.');
+		challengeBetAmount.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	
+	if(challengeCertificationMethodValue == 'none'){
+		alert('챌린지 인증방법을 선택해주세요.');
+		challengeCertificationMethod.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeCertificationContentsValue == '' || challengeCertificationContentsValue == undefined || challengeCertificationContentsValue == null){
+		alert('챌린지 인증내용을 입력해주세요.');
+		challengeCertificationContents.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeCertificationFrequencyValue == 'none'){
+		alert('챌린지 인증빈도를 선택해주세요.');
+		challengeCertificationFrequency.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeStartDateValue == '' || challengeStartDateValue == undefined || challengeStartDateValue == null){
+		alert('챌린지 시작일을 입력해주세요.');
+		challengeStartDate.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
+	if(challengeEndDateValue == '' || challengeEndDateValue == undefined || challengeEndDateValue == null){
+		alert('챌린지 종료일을 입력해주세요.');
+		challengeEndDate.focus();
+		submitFlag = false;
+		return submitFlag;
+	}
+	
 	if(submitFlag)challengeInsertForm.submit();
 	
 });

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="challengeModalCategoryAdd" class="challengeModalContents">
+	
+	<!-- modal --> 
+	 <form id="addChallengeCategoryForm" th:action="@{/adminChallenge}" method="post">
+	<div class="modal fade" id="modal-ChallengeModalCategoryAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		<div class="modal-dialog modal-lg" >
+			  <div class="modal-content">
+				<div class="modal-header">
+				 <h3 class="modal-title" id="myModalLabel">챌린지 카테고리 추가</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+				<div class="modal-body">
+				<div class="form-group">
+                        <label for="modalAddChallengeCategory">챌린지 카테고리명</label>
+                        <input type="text" id="challengeCategoryName" th:value="${challengeCategoryName}" name="challengeCategoryName" class="form-control" style="background-color: white;">
+			 	</div>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default" id="addChallengeModalCategoryBtn" data-dismiss="modal">카테고리 추가</button>
+			    </div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	<!-- /.modal -->
+	</div>
+	</div>
+	</form>
+	
+</th:block>
+</html>

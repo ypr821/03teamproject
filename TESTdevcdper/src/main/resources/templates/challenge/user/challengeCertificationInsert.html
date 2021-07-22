@@ -5,7 +5,7 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">!챌린지 인증하기</h1>
+		<h1 class="m-0">!챌린지 인증 등록하기</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
@@ -39,28 +39,28 @@
         <div class="col-md-12">
           <div class="card card-default" id="challengeCertificationInsertform">
 	<article>
-		<div class="container" id="challengeCertificationInsertform" role="main">
+		<div class="container" id="challengeCertificationInsertform" role="main" th:if="${#lists.size(challengeCertificationInsert) > 0}" th:each="l, idx : ${challengeCertificationInsert}">
 	<form id="challengeCertificationInsertform" th:action method="post">
-			<h2 class="challengeCertificationInsertformTitle">챌린지 인증하기</h2>
+			<h2 class="challengeCertificationInsertformTitle">챌린지 인증 등록</h2>
 				<div class="mb-3">
 					<label for="title">제목</label>
 					<input type="text" class="form-control" name="challengeCertificationTitle" id="challengeCertificationTitle" placeholder="제목을 입력해주세요.">
 				</div>
 				<div class="mb-3">
 					<label for="reg_id">작성자</label>
-					<input type="text" class="form-control" th:value="${challengeParticipation.challengeParticipationEmail}" name="challengeParticipationEmail" id="challengeParticipationEmail" placeholder="이메일을 입력해주세요.">
+					<input type="text" class="form-control" th:value="${challengeCertificationInsert.challengeParticipationEmail}" name="challengeParticipationEmail" id="challengeParticipationEmail" placeholder="이메일을 입력해주세요.">
 				</div>
 			  <div class="form-group">
                 <label for="challengeName">챌린지명</label>
-                <input type="text" name="challengeName" th:value="${challengeParticipation.challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white;">
+                <input type="text" name="challengeName" th:value="${challengeCertificationInsert.challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
              <div class="form-group">
                 <label for="challengeName">챌린지 카테고리</label>
-                <input type="text" name="challengeCategory" th:value="${challengeParticipation.challengeCategory.challengeCategoryName}" class="form-control" readonly="readonly" style="background-color: white;">
+                <input type="text" name="challengeCategory" th:value="${challengeCertificationInsert.challengeCategory.challengeCategoryName}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
 				<div class="form-group">
                 <label for="challengeName">챌린지 인증방법</label>
-                <input type="text" name="challengeCategory" th:value="${challengeParticipation.challenge.challengeCertificationMethod}" class="form-control" readonly="readonly" style="background-color: white;">
+                <input type="text" name="challengeCategory" th:value="${challengeCertificationInsert.challenge.challengeCertificationMethod}" class="form-control" readonly="readonly" style="background-color: white;">
               </div>
 				<div class="form-group">
                 	<label for="challengeCertificationContents">챌린지 인증내용</label>

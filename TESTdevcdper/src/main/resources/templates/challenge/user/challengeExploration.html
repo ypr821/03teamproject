@@ -44,7 +44,7 @@
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
 			        <div class="container-fluid">
-			            <h2 class="text-center display-5">챌린지 탐색하기</h2>
+			            <h2 class="text-center display-5">챌린지 상세검색</h2>
 			            <form action="enhanced-results.html">
 			                <div class="row">
 			                
@@ -201,7 +201,7 @@
 		        <i class="fas fa-user-tie"></i>경력
 		    </button>
    		</div>
-            <div class="row">
+            <div class="row" id="challengeExplorationCardRow">
              <div th:each="l: ${challengeExplorationList}" id="challengeExplorationCard" class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column">
 	          <div class="card bg-light d-flex flex-fill">
 	             <div class="card-header text-muted border-bottom-0">
@@ -212,6 +212,7 @@
 	                   <h2 th:text="${l.challengeName}" id="challengeName" class="lead"></h2>
 	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
 	                   <p class="text-muted text-sm" id="challengeTag" th:text="${l.challengeTag}"></p>       
+	                   <p style="display: none;" class="text-muted text-sm" id="challengeCategoryCode" th:text="${l.challengeCategoryCode}"></p>       
 	                 </div>
 	               </div>
 	             </div>
@@ -232,38 +233,18 @@
 
 <th:block layout:fragment="pageJavascript">
 <script type="text/javascript">
-	/* $(function(){
-		$('.btn-app').click(function(){
-			
-			var categoryVal = $(this).val();
-			console.log(categoryVal + "<--categoryVal");
-			
-			if(categoryVal != ''){
-					var request = $.ajax({
-						   url: "/byCategory",
-						   method: "Post",
-						   data: { categoryVal : categoryVal },
-						   dataType : "JSON"
-					});
-					request.done(function( data ) {
-							console.log(data);
-							// $('body').html(data);
-					});
-					request.fail(function( jqXHR, textStatus ) {
-					  	 	alert( "Request failed: " + textStatus );
-					});
-			}
-		});
-	}); */
+	
 	
 	$(function(){
-	$('.btn-app').click(function(){
+		
+	var exploationBtn = $('.exploationBtnGroup').find('button');
+		
+	$.each(exploationBtn, function(e){
 		
 		var challengeCategoryCodeValue = $(this).val();
 		console.log("챌린지 카테고리 코드 : " + challengeCategoryCodeValue);
 		
-		
-		
+		$(this).click(function(e){
 		if(challengeCategoryCodeValue != ''){
 				jQuery.ajax({ 
 			        type: "POST", 
@@ -271,27 +252,55 @@
 			        data: { challengeCategoryCode : challengeCategoryCodeValue },
 			        dataType : 'json',
 			        success: function (data) { 
-			           console.log('data : ',data,'- 잘 받았음')
-			           console.log('type check data : ',typeof(data))//String이네
-			           console.log(data);
-			           //console.log(Object.values(data));
-			           //console.log(Object.keys(data)[3]);
-			           //console.log(data.length);
-			           //var challengeName = data.filter(function (getChallenge) { return getChallenge.challengeName});
-			           //console.log(challengeName[0].challengeName);
-			           //$('#challengeName.lead').text(challengeName[0].challengeName);
-			           $('#challengeName.lead').text(data);
-			          	//$('p#challengeTag').text(data[i]);
+			           console.log('data : ',data,'- 잘 받았음');
+			           console.log('type check data : ',typeof(data));//String이네
+			           
+			           console.log(data.length);
+
+			 
+		        	 $("#challengeExplorationCardRow").children().remove();
+		        	 if(data != null && data != undefined && data != '' && data.length > 0){
+		        		 var html = '';
+	        			$.each(data, function(index, item){
+	        				html += "<div th:each='l: ${challengeExplorationList}' id='challengeExplorationCard' class='col-12 col-sm-6 col-md-3 d-flex align-items-stretch flex-column'>";
+	        				html += "<div class='card bg-light d-flex flex-fill'>";
+	        				html += "<div class='card-header text-muted border-bottom-0'>";
+	        				html += "</div>";
+	        				html += "<div class='card-body pt-0'>";
+	        				html += "<div class='row'>";
+	        				html += "<div class='col-12'>";
+	        				html += "<h2 id='challengeName' class='lead'>";
+	        				html += item.challengeName;
+	        				html += "</h2>";
+	        				html += "<p class='text-muted text-sm' id='challengeTag'>";
+	        				html += item.challengeTag;
+	        				html += "</p>";
+	        				html += "</div>";
+	        				html += "</div>";
+	        				html += "</div>";
+	        				html += "<div class='card-footer'>";
+	        				html += "<a th:href='@{/challengeExplorationDetailInfo(challengeName=${l.challengeName})}' class='btn btn-sm btn-primary'>";
+	        				html += "챌린지 정보보기";
+	        				html += "</a></div></div></div></div>";
+				        	
+	        			})
+		        		 
+		        	 }else{
+		        		 html += "없습니다.";
+		        	 }
+		        	 $("#challengeExplorationCardRow").html(html);
+				        
+			        
 			        }, 
 			        error: function (xhr, status, error) { 
 			        	alert('error');
 			        } 
 					});
-					}
-			     });
-	
+				}
+		  });
 	});
+});
 	
-	</script>	
+</script>	
 </th:block>
 </html>

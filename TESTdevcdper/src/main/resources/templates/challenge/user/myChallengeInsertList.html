@@ -44,7 +44,7 @@
            </div>
              <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
-                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참가중</button>
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참여중</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeCompleteList}'|" style="color: white;">1<br>완료</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeInsertList}'|" style="color: white;">1<br>개설</button>
                     </div>
@@ -54,7 +54,7 @@
          </div>
          <!-- /.card -->
          
-        <div th:replace="/fragments/myChallengeSearchForm :: myChallengeSearchForm"></div>
+        <div th:replace="/fragments/challengeSearchForm/myChallengeCommonSearchForm :: myChallengeCommonSearchForm"></div>
          
          <div class="row">
           <div class="col-12">
@@ -62,7 +62,7 @@
               <div class="card-header">
                 <h3 class="card-title">
 					<ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; <b>개설 챌린지 전체보기</b>
+					&emsp; <b>개설한 나의 챌린지 목록</b>
 				</h3>
 
                 <div class="card-tools">
@@ -84,14 +84,15 @@
 								<th>태그</th>
 								<th>참가인원</th>
 								<th>베팅금액</th>
-								<th>챌린지 기간</th>
+								<th>챌린지 시작일</th>
+								<th>챌린지 종료일</th>
 								<th>진행율</th>
 		                     	<th>상세보기</th>
 		                     	<th>챌린지 설정</th>
 		                    </tr>
                   </thead>
                   <tbody>
-                   	<tr th:if="${#lists.size(modifyChallengeList) > 0}" th:each="l, idx : ${modifyChallengeList}">
+                   	<tr th:if="${#lists.size(insertChallengeList) > 0}" th:each="l, idx : ${insertChallengeList}">
 							<td th:text="${idx.count}"></td>
 							<!-- <td style="display: none;" th:text="${l.challengeCode}"></td> -->
 							<td th:text="${l.challengeName}"></td>
@@ -101,7 +102,8 @@
 							<td th:text="${l.challengeMaximumPeople}"></td>
 							<td th:text="${l.challengeBetAmount}"></td>
 							<td>10,000원</td>
-							<td th:text="|${l.challengeStartDate} ~ ${l.challengeEndDate}|"></td>
+							<td th:text="${l.challengeStartDate}"></td>
+							<td th:text="${l.challengeEndDate}"></td>
 							<td>
 							   <div class="progress progress-sm">
 							     <div class="progress-bar progress-bar bg-primary" style="width: 50%"></div>

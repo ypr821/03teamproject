@@ -9,10 +9,12 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.devcdper.challenge.domain.Challenge;
+import com.devcdper.challenge.domain.ChallengeCategory;
 import com.devcdper.challenge.service.ChallengeService;
 
 
@@ -46,41 +48,48 @@ public class AdminChallengeController {
 	}
 	/*-------------------------------------AdminChallengeControllerInit 메서드 끝----------------------------------------*/
 	
-	
-	/*------------------------------------------------챌린지 가이드 시작-----------------------------------------------------*/
-	@GetMapping("/mainChallenge")
-	public String mainChallenge(Model model) {
-		
-		List<Challenge> challengeExplorationList = challengeService.getChallengeExplorationList();
-		
-		model.addAttribute("title", "두배러 챌린지 메인");
-		model.addAttribute("radioCheck", "mainChallenge");
-		model.addAttribute("challengeExplorationList", challengeExplorationList);
-		return "challenge/mainChallenge";
-	}
-	/*------------------------------------------------챌린지 가이드 끝-----------------------------------------------------*/
-	
-	
 
 	/*------------------------------------------------챌린지 관리 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallenge")
-	public String adminChallenge(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1") int currentPage, String challengeName) {
+	public String adminChallenge(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1") int currentPage, 
+											  String challengeName) {
+		
 		
 		List<Challenge> challengeList = challengeService.getChallengeList(currentPage, challengeName);
-		System.out.println("challengeList : "+ challengeList);
+		List<ChallengeCategory> challengeCategoryList = challengeService.getChallengeCategoryList();
 		
-		model.addAttribute("title", "챌린지 개설 관리");
+		System.out.println("challengeList : "+ challengeList);
+		System.out.println("challengeCategoryList : "+ challengeCategoryList);
+
 		/*
 			model.addAttribute("currentPage", 					currentPage);
 		 * model.addAttribute("lastPage", resultMap.get("lastPage"));
 		 * model.addAttribute("pageStartNum", resultMap.get("pageStartNum"));
 		 * model.addAttribute("pageEndNum", resultMap.get("pageEndNum"));
 		 */
+		model.addAttribute("title", "챌린지 개설 관리");
 		model.addAttribute("challengeList", challengeList);
+		model.addAttribute("challengeCategoryList", challengeCategoryList);
 		model.addAttribute("radioCheck", "adminChallenge");
 		return "challenge/admin/adminChallenge";
 	}
-
+	
+	
+	@PostMapping("/adminChallenge")
+	@ResponseBody
+	public String adminChallenge(@RequestParam(name = "challengeCategoryCode", required = false) String challengeCategoryCode, ChallengeCategory challengeCategory) {
+	
+		
+		int modifyChallengeCategoryName = challengeService.modifyChallengeCategoryName(challengeCategory);
+		System.out.println("챌린지 카테고리 이름 변경 처리 완료 [modifyChallengeCategoryName] : " + modifyChallengeCategoryName);
+		
+		//int addChallengeCategory = challengeService.addChallengeCategory(challengeCategory);
+		//System.out.println("챌린지 카테고리 추가 처리 완료 [addChallengeCategory] : " + addChallengeCategory);
+		
+		return "challenge/admin/adminChallenge";
+	
+	}
+	
 	@GetMapping("/challengeModalInsertDetail")
 	public String challengeModalInsertDetail(Model model) {
 		

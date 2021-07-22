@@ -45,7 +45,7 @@
            </div>
              <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
-                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참가중</button>
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참여중</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeCompleteList}'|" style="color: white;">1<br>완료</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeInsertList}'|" style="color: white;">1<br>개설</button>
                     </div>
@@ -55,7 +55,7 @@
          </div>
          <!-- /.card -->
          
-        <div th:replace="/fragments/myChallengeSearchForm :: myChallengeSearchForm"></div>
+        <div th:replace="/fragments/challengeSearchForm/myChallengeCommonSearchForm :: myChallengeCommonSearchForm"></div>
          
          <div class="row">
           <div class="col-12">
@@ -63,7 +63,7 @@
               <div class="card-header">
                 <h3 class="card-title">
 					<ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; <b>완료 챌린지 전체보기</b>
+					&emsp; <b>완료된 나의 챌린지 목록</b>
 				</h3>
 
                 <div class="card-tools">

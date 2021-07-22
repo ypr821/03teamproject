@@ -26,7 +26,7 @@
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeAchievement'}"> 챌린지 달성율 관리
 					</a>
 					<a th:href="@{/adminChallengeRanking}" class="btn btn-outline-info">
-						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeRanking'}"> 챌린지 최종순위 리스트 관리
+						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeRanking'}"> 챌린지 최종순위 관리
 					</a>
 					<a th:href="@{/adminChallengeCompensation}" class="btn btn-outline-info">
 						<input type="radio" name="options" id="option_a3" autocomplete="off" th:checked="${radioCheck == 'adminChallengeCompensation'}"> 챌린지 보상지급 관리
@@ -49,7 +49,7 @@
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
 			        <div class="container-fluid">
-			            <h2 class="text-center display-5">챌린지 개설 내역 조회</h2>
+			            <h2 class="text-center display-5">챌린지 개설내역 상세검색</h2>
 			            <form action="enhanced-results.html">
 			                <div class="row">
 			                
@@ -181,7 +181,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                 <ion-icon size="small" name="list-outline"></ion-icon>
-					&emsp; 개설 챌린지 관리</h3>
+					&emsp; 개설 챌린지 목록 </h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -252,7 +252,6 @@
 			<!-- 코치 list 페이지번호  -->
 			
 			<div class="card-footer clearfix">
-						<button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
 						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
@@ -286,99 +285,19 @@
                 <table class="table table-striped text-nowrap">
                   <thead>
 	                    	<tr>
-	                      		<th>카테고리 번호</th>
+	                      		<th>번호</th>
 								<th>카테고리명</th>
 							 	<th>수정</th>
                       		 	<th>삭제</th>
 	                    	</tr>
 		                  </thead>
 		                  <!--tbody start  -->
-		                  <tbody>
-		                    <tr>
-			                    <td>1.</td>
-			                    <td>학력</td>
+		                  <tbody id="challengeCategoryTableBody">
+		                    <tr th:if="${#lists.size(challengeCategoryList) > 0}" th:each="l, idx : ${challengeCategoryList}">
+		                    	<td id="indexCount" th:text="${idx.count}"></td>
+			                    <td id="challengeCategoryName" th:text="${l.challengeCategoryName}"></td>
 			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>2.</td>
-			                    <td>프로젝트</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>3.</td>
-			                    <td>자격증</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>4.</td>
-			                    <td>공인어학(외국어능력)</td>
-			                   <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>5.</td>
-			                    <td>기술스택</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>6.</td>
-			                    <td>직종전문교육과정</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>7.</td>
-			                    <td>인턴십</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>8.</td>
-			                    <td>공모전</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
-								</td>
-								<td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
-								</td>
-		                    </tr>
-		                    <tr>
-			                    <td>9.</td>
-			                    <td>경력</td>
-			                    <td>
-									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">수정</button>
+									<button type="button" class="btn btn-block btn-default btn-xs challengeCategoryNameModifyBtn" th:id="challengeCategoryNameModifyBtn" data-toggle="modal" data-target="#modal-ChallengeModalCategoryNameModify" th:data-count="${i}" th:data-ChallengeCategoryCode="${l.getChallengeCategoryCode()}" th:data-ChallengeCategoryName="${l.getChallengeCategoryName()}" style="display: inline; width: 200px;">수정</button>
 								</td>
 								<td>
 									<button type="button" class="btn btn-block btn-default btn-xs" style="display: inline; width: 200px;">삭제</button>
@@ -391,7 +310,7 @@
 			<!-- 코치 list 페이지번호  -->
 			
 			<div class="card-footer clearfix">
-						<button type="button" id="addCoachingCategory" class="btn btn-block btn-outline-primary btn-xs"> 카테고리 추가 </button>
+						<button type="button" id="addChallengeCategoryBtn" class="btn btn-block btn-outline-primary btn-xs addChallengeCategoryBtn">카테고리 추가</button>
 						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
@@ -412,7 +331,15 @@
 	<!-- challenge Modal 영역 시작-->
 	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalInsertDetail -->
 	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalInsertDetail :: challengeModalInsertDetail"></th:block>
+	
+	<!-- 챌린지 카테고리 변경 Modal - challengeModalCategoryNameModify -->
+	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalCategoryNameModify :: challengeModalCategoryNameModify"></th:block>
+	
+	<!-- 챌린지 카테고리 추가 Modal - challengeModalCategoryAdd -->
+	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalCategoryAdd :: challengeModalCategoryAdd"></th:block>
+	
 	<!-- challenge Modal 영역 끝 -->
+	
 
 </th:block>
 
@@ -422,7 +349,8 @@
 <script th:src="@{/js/jquery-3.6.0.min.js}" type="text/javascript"></script>
 <script th:inline="javascript">
 	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalInsertDetail -->
-		
+	
+	$(function(){
 	/* Modal 영역  */
 	//상세정보 모달
 	$('.challengeModalInsertDetailBtn').click(function(){
@@ -493,10 +421,67 @@
 		
 	});
 	
-	
-	
-
+	//챌린지 카테고리 이름 수정 버튼 클릭시
+	$('.challengeCategoryNameModifyBtn').click(function(){
 		
-</script>
+		var challengeCategoryName = $(this).attr('data-ChallengeCategoryName');
+		var challengeCategoryCode = $(this).attr('data-ChallengeCategoryCode');
+		var countNumber = $(this).parents('tr').children()[0].innerText;
+		console.log("챌린지 카테고리 코드 : "+ challengeCategoryCode);	
+		console.log("챌린지 카테고리 이름 : "+ challengeCategoryName);	
+		console.log(countNumber);
+		
+		/*<![CDATA[*/ 
+		var challengeCategoryList = /*[[ ${challengeCategoryList} ]]*/;
+		console.log("challengeCategoryList : " + challengeCategoryList);
+		/*]]*/ 
+		console.log(challengeCategoryList[countNumber-1].challengeCategoryName);
+		
+		//모달 챌린지 카테고리 이름 값 전달
+		$('#modalModifyChallengeCategoryName').val(challengeCategoryList[countNumber-1].challengeCategoryName);
+		console.log("챌린지 카테고리 이름 : " + $('#modalModifyChallengeCategoryName').val(challengeCategoryList[countNumber-1].challengeCategoryName));
+		
+		/* ------------------------- 챌린지 태그 수정처리 Script 시작 -------------------------  */
+		
+		$("button#modifyChallengeModalCategoryNameBtn").click(function(){
+		var modalModifyChallengeCategoryName = $('#modalModifyChallengeCategoryName').val();
+		
+		
+		if(modalModifyChallengeCategoryName != ''){
+			var request = $.ajax({
+				   url: "/adminChallenge",
+				   method: "POST",
+				   data: {
+					 			challengeCategoryCode : challengeCategoryCode,
+					   			challengeCategoryName : modalModifyChallengeCategoryName
+				   		},
+				   dataType: "html"
+			});
+			request.done(function( data ) {
+					console.log(data + "<<<< data");
+					location.href="/adminChallenge"; 	
+			});
+			request.fail(function( jqXHR, textStatus ) {
+					alert( "Request failed: " + textStatus );
+			});
+		};
+	});
+		
+		/* ------------------------- 챌린지 태그 수정처리 Script 끝 -------------------------  */
+		
+		
+	});
+	
+	$('#addChallengeCategoryBtn').click(function(){
+		
+		var challengeCategoryTableBody = $('#challengeCategoryTableBody');
+		var newChallengeCategoryRow = $('#challengeCategoryTableBody').find('tr').eq(9).clone();
+		challengeCategoryTableBody.append(newChallengeCategoryRow);
+	
+	});
+	
+});
+	
+</script>	
 </th:block>
 </html>
