@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="com.devcdper.user_admin.dao.NormalUserMapper">
-
+	
 	<resultMap type="NormalUser" id="normalUserResultMap">
+	
 		<result property="userEmail" 				column="user_email"/>
 		<result property="userPassword" 			column="user_password"/>
 		<result property="userName" 				column="user_name"/>
+		<result property="userProfilePicture" 		column="user_profile_picture"/>
 		<result property="userBirth" 				column="user_birth"/>
 		<result property="userAddr" 				column="user_addr"/>
 		<result property="userAddrDetail" 			column="user_addr_detail"/>
@@ -21,6 +25,15 @@
 		<result property="userJoinDate" 			column="user_join_date"/>
 		<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 	</resultMap>
+	
+	<update id="modifyProfilePicture" parameterType="NormalUser">
+		UPDATE 
+			user
+		SET
+			user_profile_picture=#{userProfilePicture}
+		WHERE 
+			user_email = #{userEmail};
+	</update>
 	
 	<update id="modifyNormalUser" parameterType="NormalUser">
 		UPDATE user
@@ -61,7 +74,8 @@
 		SELECT 
 				user_email							
 				, user_password						
-				, user_name							
+				, user_name	
+				, user_profile_picture						
 				, user_birth						
 				, user_addr							
 				, user_addr_detail					
@@ -87,6 +101,7 @@
 				(user_email
 				, user_password
 				, user_name
+				, user_profile_picture
 				, user_birth
 				, user_addr
 				, user_addr_detail
@@ -103,6 +118,7 @@
 				 #{userEmail}
 				,#{userPassword}
 				,#{userName}
+				,NULL
 				,#{userBirth}
 				,#{userAddr}
 				,#{userAddrDetail}
@@ -114,7 +130,7 @@
 				,#{userJoinPath}
 				,#{userRecommendEmail}
 				,CURDATE()
-				,#{userWithdrawStatus});	
+				,'N');	
 	</insert>
 	
 	<select id="getNormalUserList" resultType="NormalUser">
@@ -122,6 +138,7 @@
 				user_email							AS userEmail
 				, user_password						AS userPassword
 				, user_name							AS userName
+				, user_profile_picture				AS userProfilePicture
 				, user_birth						AS userBirth
 				, user_addr							AS userAddr
 				, user_addr_detail					AS userAddrDetail

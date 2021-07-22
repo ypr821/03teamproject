@@ -5,6 +5,7 @@ public class NormalUser {
 	private String userEmail;
 	private String userPassword;
 	private String userName;
+	private String userProfilePicture;
 	private String userBirth;
 	private String userAddr;
 	private String userAddrDetail;
@@ -17,6 +18,7 @@ public class NormalUser {
 	private String userRecommendEmail;
 	private String userJoinDate;
 	private String userWithdrawStatus;
+	
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -35,6 +37,12 @@ public class NormalUser {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getUserProfilePicture() {
+		return userProfilePicture;
+	}
+	public void setUserProfilePicture(String userProfilePicture) {
+		this.userProfilePicture = userProfilePicture;
 	}
 	public String getUserBirth() {
 		return userBirth;
@@ -111,13 +119,13 @@ public class NormalUser {
 	
 	@Override
 	public String toString() {
-		return "AdminNormal [userEmail=" + userEmail + ", userPassword=" + userPassword + ", userName=" + userName
-				+ ", userBirth=" + userBirth + ", userAddr=" + userAddr + ", userAddrDetail=" + userAddrDetail
-				+ ", userGender=" + userGender + ", userMoblie=" + userMoblie + ", userJob=" + userJob
-				+ ", userIsReceiveMarketing=" + userIsReceiveMarketing + ", userJoinMotivation=" + userJoinMotivation
-				+ ", userJoinPath=" + userJoinPath + ", userRecommendEmail=" + userRecommendEmail + ", userJoinDate="
-				+ userJoinDate + ", userWithdrawStatus=" + userWithdrawStatus + "]";
+		return "NormalUser [userEmail=" + userEmail + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userProfilePicture=" + userProfilePicture + ", userBirth=" + userBirth + ", userAddr=" + userAddr
+				+ ", userAddrDetail=" + userAddrDetail + ", userGender=" + userGender + ", userMoblie=" + userMoblie
+				+ ", userJob=" + userJob + ", userIsReceiveMarketing=" + userIsReceiveMarketing
+				+ ", userJoinMotivation=" + userJoinMotivation + ", userJoinPath=" + userJoinPath
+				+ ", userRecommendEmail=" + userRecommendEmail + ", userJoinDate=" + userJoinDate
+				+ ", userWithdrawStatus=" + userWithdrawStatus + "]";
 	}
 	
-
 }

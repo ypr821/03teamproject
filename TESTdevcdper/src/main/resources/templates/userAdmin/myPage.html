@@ -3,6 +3,7 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="@{layout/default}">
 	  
+	  
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">main title</title>
 	<div class="col-sm-6">
@@ -14,16 +15,35 @@
 			<li class="breadcrumb-item active">myPage.html</li>
 		</ol>
 	</div><!-- /.col -->
+	
 </th:block>
 
+		
 <th:block layout:fragment="container">
-	<div>
-		myPage
+	
+	<div th:if="${session.ULEVEL == '일반'}">
+		<div>프로필 이미지</div>
+		<div class="input-group mb-3">
+			<form th:action="@{getProfilePicture}" method="post" enctype="multipart/form-data">
+				<input type="file" name="userProfilePicture"/>
+				<button type="submit">업로드1</button>
+			</form>
+		</div>
+	</div>
+	<div th:if="${session.ULEVEL == '코치'}">
+		<div>프로필 이미지</div>
+		<div class="input-group mb-3">
+			<form th:action="@{fileUpload}" method="post" enctype="multipart/form-data">
+				<input type="file" name="userProfilePicture"/>
+				<button type="submit">업로드2</button>
+			</form>
+		</div>
 	</div>
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
 
 </th:block>
+
 </html>
 

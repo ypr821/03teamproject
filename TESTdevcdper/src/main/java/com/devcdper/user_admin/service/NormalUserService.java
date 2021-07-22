@@ -25,6 +25,10 @@ public class NormalUserService {
 		System.out.println("========================================");
 	}
 	
+	//normalFindEmail				
+	//normalFindPassword		
+	
+	
 	public Map<String, Object> loginNomalUser(String userEmail, String userPassword){
 		
 		boolean loginCheck = false;
@@ -61,5 +65,10 @@ public class NormalUserService {
 	public int modifyNormalUser(NormalUser normalUser) {
 		
 		return normalUserMapper.modifyNormalUser(normalUser);
+	}
+	//회원 프로필 수정
+	public int modifyProfilePicture(Object userEmail,String userProfilePicture) {
+			
+		return normalUserMapper.modifyProfilePicture(userEmail ,userProfilePicture);
 	}
 }
