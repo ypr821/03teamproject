@@ -252,14 +252,14 @@
 			<!-- 코치 list 페이지번호  -->
 			<div class="card-footer clearfix">
 		                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" th:href="@{/adminChallengeParticipation}">«</a></li>
-		                  <li class="page-item"><a th:if="${currentPage > 1}" th:href="@{/adminChallengeParticipation(currentPage=${currentPage - 1})}">[이전]</a></li>
-		                  <th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
-		                  		<li class="page-item"><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallengeParticipation(currentPage=${num})}" th:text="${num}"></a></li>
-		                  		<span th:unless="${num != currentPage}" th:text="${'[' + num + ']'}"></span>
-		                  </th:block>
-		                  <li class="page-item"><a th:if="${currentPage < la	stPage}" th:href="@{/adminChallengeParticipation(currentPage=${currentPage + 1})}">[다음]</a></li>
-		                  <li class="page-item"><a class="page-link" th:href="@{/adminChallengeParticipation(currentPage=${lastPage})}">»</a></li>
+		                <li class="page-item"><a class="page-link" th:href="@{/adminChallengeParticipation}"> << </a></li>
+						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/adminChallengeParticipation(currentPage=${currentPage - 1})}">이전</a></li>
+							<th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+							<li class="page-item "><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallengeParticipation(currentPage=${num})}">[[${num}]]</a></li>
+							<li class="page-item active"><a class="page-link" th:unless="${num != currentPage}">[[${num}]]</a></li>
+							</th:block>
+						<li class="page-item"><a class="page-link" th:if="${currentPage < lastPage}" th:href="@{/adminChallengeParticipation(currentPage=${currentPage + 1})}">다음</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/adminChallengeParticipation(currentPage=${lastPage})}">>></a></li>
 		                </ul>
 			   </div>	
 		</div>

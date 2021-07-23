@@ -9,6 +9,7 @@ import com.devcdper.challenge.domain.Challenge;
 import com.devcdper.challenge.domain.ChallengeCategory;
 import com.devcdper.challenge.domain.ChallengeCertification;
 import com.devcdper.challenge.domain.ChallengeParticipation;
+import com.devcdper.paging.Pagination;
 
 
 @Mapper
@@ -18,10 +19,13 @@ public interface ChallengeMapper {
 	//-------------------------------- 관리자 Mapper 시작 --------------------------------
 	
 	//관리자 페이지 : 개설 챌린지 - 개설 챌린지 전체 리스트 조회
-	public List<Challenge> getChallengeList(String challengeName);
+	public List<Map<String, Challenge>> getChallengeList(Pagination paging);
 	
 	//관리자 페이지 : 개설 챌린지 - 챌린지 카테고리 전체 조회
 	public List<ChallengeCategory> getChallengeCategoryList();
+	
+	//관리자 페이지 : 챌린지 참여 관리 - 개설 테이블 행의 개수 조회(페이징 처리)
+	public int getChallengeCount();
 	
 	//관리자 페이지 : 개설 챌린지 - 수정할 카테고리 이름 조회
 	public ChallengeCategory getModifyChallengeCategoryInfo(String challengeCategoryCode);
@@ -36,7 +40,7 @@ public interface ChallengeMapper {
 	public int getChallengeParticipationCount();
 	
 	//관리자 페이지 : 챌린지 참여 관리 - 참여 챌린지 전체 리스트 조회
-	public List<Map<String, Challenge>> getChallengeParticipationList(Map<String, Object> paramMap);
+	public List<Map<String, Challenge>> getChallengeParticipationList(Pagination paging);
 
 	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 테이블 행의 개수 조회(페이징 처리)
 	public int getChallengeAchievementRateCount();

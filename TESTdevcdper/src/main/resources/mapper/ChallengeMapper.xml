@@ -64,6 +64,7 @@
 				  , challenge_certification_method
 				  , challenge_certification_contents
 				  , challenge_certification_frequency
+				  , challenge_progress_status
 				  , challenge_start_date
 				  , challenge_end_date
 				  , challenge_register_date
@@ -81,6 +82,7 @@
 				, #{challengeCertificationMethod}
 				, #{challengeCertificationContents}
 				, #{challengeCertificationFrequency}
+				, #{challengeProgressStatus}
 				, #{challengeStartDate}
 				, #{challengeEndDate}
 				, CURDATE());
@@ -135,16 +137,24 @@
 	
 	
 	
-	<!-- 관리자 페이지 : 개설 챌린지 전체 행 조회 -->
+	<!-- 관리자 페이지 : 개설 챌린지 전체 행 개수 조회 -->
 	<select id="getChallengeCount" resultType="int">
-			SELECT 
+			SELECT
 				COUNT(1)
-			FROM 
-				challenge;
+				FROM 
+						challenge AS c
+				INNER JOIN
+						user AS u
+				on
+					c.challenge_opener_email = u.user_email
+				INNER JOIN
+						challenge_category AS cc
+				on
+					c.challenge_category_code = cc.challenge_category_code
 	</select>
 	
 	<!-- 관리자 페이지 : 개설 챌린지 전체 조회 -->
-	<select id="getChallengeList" resultMap="ChallengeResultMap" parameterType="String">
+	<select id="getChallengeList" resultMap="ChallengeResultMap" parameterType="Map">
 				SELECT
 					c.challenge_name, 
 					cc.challenge_category_name,
@@ -170,6 +180,7 @@
 						challenge_category AS cc
 				on
 					c.challenge_category_code = cc.challenge_category_code
+				LIMIT #{rowStart}, #{rowPerPage};
 	</select>
 	
 	
@@ -435,10 +446,20 @@
 	
 	<!-- 관리자 페이지 : 참여 챌린지 전체 행 조회 -->
 	<select id="getChallengeParticipationCount" resultType="int">
-			SELECT 
+			 SELECT 
 				COUNT(1)
-			FROM 
-				challenge_participation;
+
+				FROM 
+						challenge_participation AS cp
+				INNER JOIN
+						challenge AS c
+				ON
+						cp.challenge_code = c.challenge_code
+
+				INNER JOIN
+						user AS u
+				ON
+						cp.challenge_participation_email = u.user_email;
 	</select>
 	
 	<!-- 관리자 페이지 : 챌린지 참여 전체 조회 -->
