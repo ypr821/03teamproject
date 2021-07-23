@@ -1,5 +1,9 @@
 package com.devcdper.challenge.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +15,7 @@ import com.devcdper.challenge.domain.Challenge;
 import com.devcdper.challenge.domain.ChallengeCategory;
 import com.devcdper.challenge.domain.ChallengeCertification;
 import com.devcdper.challenge.domain.ChallengeParticipation;
+import com.devcdper.paging.Pagination;
 
 @Service
 public class ChallengeService {
@@ -28,46 +33,12 @@ public class ChallengeService {
 	
 	
 	//관리자 페이지 : 개설 챌린지 - 개설 챌린지 전체 리스트 조회
-	public List<Challenge> getChallengeList(int currentPage, String challengeName){
-		
-		
-		/*
-		 * //보여줄 행의 갯수 int rowPerPage = 10;
-		 * 
-		 * //table에서 보여질 행의 시작점 초기화 int rowStart = 0;
-		 * 
-		 * //페이지 번호 초기화 int pageStartNum = 1; int pageEndNum = 10;
-		 * 
-		 * //rowStart = 페이지알고리즘(현재페이지 - 1) * 보여줄 행의 갯수 rowStart = (currentPage - 1) *
-		 * rowPerPage;
-		 * 
-		 * Map<String, Object> paramMap = new HashMap<String, Object>();
-		 * paramMap.put("rowStart", rowStart); paramMap.put("rowPerPage", rowPerPage);
-		 */
-		
-		List<Challenge> challengeList = challengeMapper.getChallengeList(challengeName);
-		
-		/*
-		 * double rowCount = challengeMapper.getChallengeCount();
-		 * 
-		 * int lastPage = (int) Math.ceil(rowCount/rowPerPage);
-		 * 
-		 * if(currentPage > 6) { pageStartNum = currentPage - 5; pageEndNum =
-		 * currentPage + 4;
-		 * 
-		 * if(pageEndNum >= lastPage) { pageStartNum = lastPage - 9; pageEndNum =
-		 * lastPage; } }
-		 */
-		
-		/*
-		 * Map<String, Object> resultMap = new HashMap<String, Object>();
-		 * resultMap.put("challengeList", challengeList); resultMap.put("lastPage",
-		 * lastPage); resultMap.put("pageStartNum", pageStartNum);
-		 * resultMap.put("pageEndNum", pageEndNum);
-		 */
-		
-		return challengeList;
-		
+	public List<Map<String, Challenge>> getChallengeList(Pagination paging){
+		return challengeMapper.getChallengeList(paging);
+	}
+	
+	public int getChallengeCount() {
+		return challengeMapper.getChallengeCount();
 	}
 	
 	//관리자 페이지 : 개설 챌린지 - 챌린지 카테고리 전체 조회
@@ -87,7 +58,6 @@ public class ChallengeService {
 	 * challengeMapper.addChallengeCategory(challengeCategory); }
 	 */
 	
-	
 	//관리자 페이지 : 개설 챌린지 - 챌린지 카테고리 이름 수정
 	public int modifyChallengeCategoryName(ChallengeCategory challengeCategory) {
 		return challengeMapper.modifyChallengeCategoryName(challengeCategory);
@@ -95,49 +65,15 @@ public class ChallengeService {
 	
 	
 	//관리자 페이지 : 챌린지 참여 관리 - 참여 챌린지 전체 리스트 조회
-	public Map<String, Object> getChallengeParticipationList(int currentPage){
-			
-		//보여줄 행의 갯수
-		int rowPerPage = 10;
-		
-		//table에서 보여질 행의 시작점 초기화
-		int rowStart = 0;
-		
-		//페이지 번호 초기화
-		int pageStartNum = 1;
-		int pageEndNum = 10;
-				
-		//rowStart = 페이지알고리즘(현재페이지 - 1) * 보여줄 행의 갯수
-		rowStart = (currentPage - 1) * rowPerPage;
-
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("rowStart", rowStart);
-		paramMap.put("rowPerPage", rowPerPage);
-		
-		List<Map<String, Challenge>> challengeParticipationList = challengeMapper.getChallengeParticipationList(paramMap);
-		
-		double rowCount = challengeMapper.getChallengeParticipationCount();
-		
-		int lastPage = (int) Math.ceil(rowCount/rowPerPage);
-		
-		if(currentPage > 6) {
-			pageStartNum = currentPage - 5;
-			pageEndNum = currentPage + 4;
-			
-			if(pageEndNum >= lastPage) {
-				pageStartNum = lastPage - 9;
-				pageEndNum = lastPage;
-			}
-		}
-		
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("challengeParticipationList", challengeParticipationList);
-		resultMap.put("lastPage", lastPage);
-		resultMap.put("pageStartNum", pageStartNum);
-		resultMap.put("pageEndNum", pageEndNum);
-		
-		return resultMap;
+	public List<Map<String, Challenge>> getChallengeParticipationList(Pagination paging) {
+		return challengeMapper.getChallengeParticipationList(paging);
 	}
+	
+	//관리자 페이지 : 챌린지 참여 관리 - 참여 챌린지 전체 행 개수 조회
+	public int getChallengeParticipationCount(){
+		return challengeMapper.getChallengeParticipationCount();
+	}
+	
 	
 	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 전체 리스트 조회(페이징 처리)
 	public Map<String, Object> getChallengeAchievementRateList(int currentPage){
@@ -210,7 +146,54 @@ public class ChallengeService {
 	}
 	
 	//챌린지 개설하기 : 챌린지 개설 등록 처리
-	public int addChallenge(Challenge challenge) {
+	public int addChallenge(Challenge challenge)  {
+		
+		Calendar cal = Calendar.getInstance();
+		Date toDate = cal.getTime();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String toDateformat = formatter.format(toDate);
+		Date formatTodayDate = null;
+		
+		String[] startArray = challenge.getChallengeStartDate().split("-");
+		String[] endArray = challenge.getChallengeEndDate().split("-");
+		
+		cal.set(Integer.parseInt(startArray[0]), Integer.parseInt(startArray[1])-1, Integer.parseInt(startArray[2]));
+		Date startDate = cal.getTime();
+		String startDateformat = formatter.format(startDate);
+		Date formatStartDate = null;
+		
+		cal.set(Integer.parseInt(endArray[0]), Integer.parseInt(endArray[1])-1, Integer.parseInt(endArray[2]));
+		Date endDate = cal.getTime();
+		String endDateformat = formatter.format(endDate);
+		Date formatEndDate = null;
+		
+		try {
+			formatTodayDate = formatter.parse(toDateformat);
+			System.out.println("현재일 : " + formatTodayDate); 
+			formatStartDate = formatter.parse(startDateformat);
+			System.out.println("시작일 : " + formatStartDate);
+			formatEndDate = formatter.parse(endDateformat);
+			System.out.println("종료일 : " + formatEndDate);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(formatStartDate.after(formatTodayDate));
+		System.out.println(formatStartDate.before(formatTodayDate) && formatEndDate.after(formatTodayDate));
+		System.out.println(formatEndDate.before(formatTodayDate));
+		
+		if(formatStartDate.after(formatTodayDate) == true) {
+			challenge.setChallengeProgressStatus("진행예정");
+			System.out.println("상태 : " + challenge.getChallengeProgressStatus());
+		}else if(formatStartDate.before(formatTodayDate) && formatEndDate.after(formatTodayDate) == true) {
+			challenge.setChallengeProgressStatus("진행중");
+			System.out.println("상태 : " + challenge.getChallengeProgressStatus());
+		}else if(formatEndDate.before(formatTodayDate) == true) {
+			challenge.setChallengeProgressStatus("완료");
+			System.out.println("상태 : " + challenge.getChallengeProgressStatus());
+		}
+		
 		int result = challengeMapper.addChallenge(challenge);
 		return result;
 	}

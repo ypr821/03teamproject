@@ -4,7 +4,7 @@
 	  layout:decorate="@{layout/challengeAdminDefault}">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
-	<div class="col-sm-6">
+	<div class="col-sm-6">	
 		<h1 class="m-0">!챌린지 관리</h1>
 	</div>
 	<br><br>
@@ -254,13 +254,14 @@
 			<div class="card-footer clearfix">
 						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                <li class="page-item"><a class="page-link" th:href="@{/adminChallenge}"> << </a></li>
+						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/adminChallenge(currentPage=${currentPage - 1})}">이전</a></li>
+							<th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+							<li class="page-item "><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallenge(currentPage=${num})}">[[${num}]]</a></li>
+							<li class="page-item active"><a class="page-link" th:unless="${num != currentPage}">[[${num}]]</a></li>
+							</th:block>
+						<li class="page-item"><a class="page-link" th:if="${currentPage < lastPage}" th:href="@{/adminChallenge(currentPage=${currentPage + 1})}">다음</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/adminChallenge(currentPage=${lastPage})}">>></a></li>
 		                </ul>
 			   </div>	
 		</div>
@@ -313,13 +314,14 @@
 						<button type="button" id="addChallengeCategoryBtn" class="btn btn-block btn-outline-primary btn-xs addChallengeCategoryBtn">카테고리 추가</button>
 						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                <li class="page-item"><a class="page-link" th:href="@{/adminChallenge}"> << </a></li>
+						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/adminChallenge(currentPage=${currentPage - 1})}">이전</a></li>
+							<th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+							<li class="page-item "><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallenge(currentPage=${num})}">[[${num}]]</a></li>
+							<li class="page-item active"><a class="page-link" th:unless="${num != currentPage}">[[${num}]]</a></li>
+							</th:block>
+						<li class="page-item"><a class="page-link" th:if="${currentPage < lastPage}" th:href="@{/adminChallenge(currentPage=${currentPage + 1})}">다음</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/adminChallenge(currentPage=${lastPage})}">>></a></li>
 		                </ul>
 			   </div>	
 		</div>

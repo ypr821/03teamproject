@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.devcdper.challenge.domain.Challenge;
 import com.devcdper.challenge.domain.ChallengeCategory;
 import com.devcdper.challenge.service.ChallengeService;
+import com.devcdper.paging.PageMaker;
+import com.devcdper.paging.Pagination;
 
 
 @Controller
@@ -51,22 +53,30 @@ public class AdminChallengeController {
 
 	/*------------------------------------------------챌린지 관리 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallenge")
-	public String adminChallenge(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1") int currentPage, 
-											  String challengeName) {
+	public String adminChallenge(Model model,  Pagination paging) {
 		
 		
-		List<Challenge> challengeList = challengeService.getChallengeList(currentPage, challengeName);
+		//PageMaker 객체를 생성함.
+		PageMaker pageMaker = new PageMaker();
+		
+		paging.setRowPerPage(10);
+		//currentPage(현재 페이지 번호)와 rowPerPage(한 페이지당 보여줄 게시글 행의 개수)를 세팅해준다.
+	    pageMaker.setPaging(paging);
+	   
+	    //총 게시글 수 세팅 : 챌린지 참여 리스트 총 개수를 세는 쿼리를 호출하여 세팅해줌.
+	    pageMaker.setTotalCount(challengeService.getChallengeCount());
+				
+	    List<Map<String, Challenge>> challengeList = challengeService.getChallengeList(paging);
 		List<ChallengeCategory> challengeCategoryList = challengeService.getChallengeCategoryList();
 		
 		System.out.println("challengeList : "+ challengeList);
 		System.out.println("challengeCategoryList : "+ challengeCategoryList);
 
-		/*
-			model.addAttribute("currentPage", 					currentPage);
-		 * model.addAttribute("lastPage", resultMap.get("lastPage"));
-		 * model.addAttribute("pageStartNum", resultMap.get("pageStartNum"));
-		 * model.addAttribute("pageEndNum", resultMap.get("pageEndNum"));
-		 */
+		model.addAttribute("currentPage", 	paging.getCurrentPage());
+		model.addAttribute("lastPage", pageMaker.getLastPage());
+		model.addAttribute("pageStartNum", pageMaker.getPageStartNum());
+		model.addAttribute("pageEndNum", pageMaker.getPageEndNum());
+		
 		model.addAttribute("title", "챌린지 개설 관리");
 		model.addAttribute("challengeList", challengeList);
 		model.addAttribute("challengeCategoryList", challengeCategoryList);
@@ -100,21 +110,29 @@ public class AdminChallengeController {
 	/*------------------------------------------------챌린지 관리 끝-----------------------------------------------------*/
 	
 	
-	
-	
 	/*------------------------------------------------챌린지 참여 관리 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallengeParticipation")
-	public String adminChallengeParticipation(Model model, @RequestParam(value="currentPage", required = false, defaultValue = "1") int currentPage) {
+	public String adminChallengeParticipation(Model model, Pagination paging) {
 		
-		Map<String, Object> resultMap = challengeService.getChallengeParticipationList(currentPage);
+		//PageMaker 객체를 생성함.
+		PageMaker pageMaker = new PageMaker();
+		
+		//currentPage(현재 페이지 번호)와 rowPerPage(한 페이지당 보여줄 게시글 행의 개수)를 세팅해준다.
+	    pageMaker.setPaging(paging);
+	   
+	    //총 게시글 수 세팅 : 챌린지 참여 리스트 총 개수를 세는 쿼리를 호출하여 세팅해줌.
+	    pageMaker.setTotalCount(challengeService.getChallengeParticipationCount());
+		
+	    List<Map<String, Challenge>> challengeParticipationList = challengeService.getChallengeParticipationList(paging);
+	    
+		model.addAttribute("currentPage", 	paging.getCurrentPage());
+		model.addAttribute("lastPage", pageMaker.getLastPage());
+		model.addAttribute("pageStartNum", pageMaker.getPageStartNum());
+		model.addAttribute("pageEndNum", pageMaker.getPageEndNum());
 		
 		model.addAttribute("title", "챌린지 참여 관리");
-		model.addAttribute("currentPage", 					currentPage);
-		model.addAttribute("lastPage", 						resultMap.get("lastPage"));
-		model.addAttribute("pageStartNum", 					resultMap.get("pageStartNum"));
-		model.addAttribute("pageEndNum", 					resultMap.get("pageEndNum"));
-		model.addAttribute("challengeParticipationList", 	resultMap.get("challengeParticipationList"));
 		model.addAttribute("radioCheck", "adminChallengeParticipation");
+		model.addAttribute("challengeParticipationList", challengeParticipationList);
 		return "challenge/admin/adminChallengeParticipation";
 	}
 	/*------------------------------------------------챌린지 참여 관리 끝-----------------------------------------------------*/
