@@ -45,7 +45,8 @@
 		<result property="planCareerJoinTargetDate" 			column="plan_career_join_target_date"/>
 	</resultMap>
 	
-	<!-- SELECT 영역 시작 -->
+<!-- SELECT 영역 시작 -->
+	<!-- 통합계획 SELECT -->
 	<select id="getTotalPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
 		SELECT 
 			total_plan_code						AS planCode
@@ -64,7 +65,232 @@
 		WHERE 
 			${searchKey} = #{searchValue};
 	</select>
-	<!-- SELECT 영역 종료 -->
+	<!-- ./통합계획 SELECT -->
+	
+	<!-- 학력계획 SELECT -->
+	<select id="getEducationalHistoryPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_educational_history_code				AS planCode
+			, total_plan_code							AS totalPlanCode
+			, user_email								AS userEmail
+			, plan_educational_title					AS planTitle
+			, plan_educational_choice					
+			, plan_educational_school
+			, plan_educational_department
+			, plan_educational_credit
+			, plan_educational_contents					AS planContents
+			, plan_educational_start_date				AS startDate
+			, plan_educational_end_date					AS endDate
+			, plan_educational_degree					AS planDegree
+			, plan_educational_degree_change_reason		AS degreeChangeReason
+			, plan_educational_status					AS planStatus
+			, plan_educational_created_date				AS registerDate
+		FROM 
+			ypr821.plan_educational_history
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./학력계획 SELECT -->
+	
+	<!-- 프로젝트계획 SELECT -->
+	<select id="getProjectPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_project_code							AS planCode
+			, total_plan_code							AS totalPlanCode
+			, user_email								AS userEmail
+			, plan_project_title						AS planTitle
+			, plan_project_name							AS planName
+			, plan_project_contents						AS planContents
+			, plan_project_start_date					AS startDate
+			, plan_project_end_date						AS endDate
+			, plan_project_development_environment
+			, plan_project_url
+			, plan_project_degree						AS planDegree		
+			, plan_project_degree_change_reason			AS degreeChangeReason
+			, plan_project_status						AS planStatus
+			, plan_project_created_date					AS registerDate	
+		FROM 
+			ypr821.plan_project
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./프로젝트계획 SELECT -->
+	
+	<!-- 자격증 SELECT -->
+	<select id="getCertificatePlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_certificate_code							AS planCode
+			, total_plan_code								AS totalPlanCode
+			, user_email									AS userEmail
+			, plan_certificate_title						AS planTitle
+			, plan_certificate_name							AS planName
+			, plan_certificate_contents						AS planContents
+			, plan_certificate_start_date					AS startDate
+			, plan_certificate_end_date						AS endDate
+			, plan_certificate_degree						AS planDegree		
+			, plan_certificate_degree_change_reason			AS degreeChangeReason
+			, plan_certificate_status						AS planStatus
+			, plan_certificate_created_date					AS registerDate	
+		FROM 
+			ypr821.plan_certificate
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./자격증 SELECT -->
+	
+	<!-- 공인어학 SELECT -->
+	<select id="getCertifiedLanguagePlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_certified_language_code							AS planCode
+			, total_plan_code										AS totalPlanCode
+			, user_email											AS userEmail
+			, plan_certified_language_title							AS planTitle
+			, plan_certified_language_name							AS planName
+			, plan_certified_language_test_name
+			, plan_certified_language_test_date
+			, plan_certified_language_score
+			, plan_certified_language_contents						AS planContents
+			, plan_certified_language_test_start_date				AS startDate
+			, plan_certified_language_test_end_date					AS endDate
+			, plan_certified_language_degree						AS planDegree		
+			, plan_certified_language_degree_change_reason			AS degreeChangeReason
+			, plan_certified_language_status						AS planStatus
+			, plan_certified_language_created_date					AS registerDate	
+		FROM 
+			ypr821.plan_certified_language
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./공인어학 SELECT -->
+	
+	<!-- 기술스택 SELECT -->
+	<select id="getTechnologyStackPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_technology_stack_code						AS planCode
+			, total_plan_code								AS totalPlanCode
+			, user_email									AS userEmail
+			, plan_technology_stack_title					AS planTitle
+			, plan_technology_name							AS planName
+			, plan_technology_stack_contents				AS planContents
+			, plan_technology_stack_start_date				AS startDate
+			, plan_technology_stack_end_date				AS endDate
+			, plan_technology_stack_degree					AS planDegree		
+			, plan_technology_stack_degree_change_reason	AS degreeChangeReason
+			, plan_technology_stack_status					AS planStatus
+			, plan_technology_stack_created_date			AS registerDate	
+		FROM 
+			ypr821.plan_technology_stack
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./기술스택 SELECT -->
+	
+	<!-- 직종전문교육과정 SELECT -->
+	<select id="getJobTrainingPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_job_training_code							AS planCode
+			, total_plan_code								AS totalPlanCode
+			, user_email									AS userEmail
+			, plan_job_training_title						AS planTitle
+			, plan_job_training_name						AS planName
+			, plan_job_training_academy_name
+			, plan_job_training_cost
+			, plan_job_training_curriculum
+			, plan_job_training_contents					AS planContents
+			, plan_job_training_start_date					AS startDate
+			, plan_job_training_end_date					AS endDate
+			, plan_job_training_degree						AS planDegree		
+			, plan_job_training_degree_change_reason		AS degreeChangeReason
+			, plan_job_training_status						AS planStatus
+			, plan_job_training_created_date				AS registerDate	
+		FROM 
+			ypr821.plan_job_training
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./직종전문교육과정 SELECT -->
+	
+	<!-- 인턴십 SELECT -->
+	<select id="getInternshipPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_internship_code							AS planCode
+			, total_plan_code								AS totalPlanCode
+			, user_email									AS userEmail
+			, plan_internship_title							AS planTitle
+			, plan_internship_company_name
+			, plan_internship_Internship_period
+			, plan_internship_working_hours
+			, plan_internship_business_contents
+			, plan_internship_activity_goal
+			, plan_internship_contents						AS planContents
+			, plan_internship_start_date					AS startDate
+			, plan_internship_end_date						AS endDate
+			, plan_internship_degree						AS planDegree		
+			, plan_internship_degree_change_reason			AS degreeChangeReason
+			, plan_internship_status						AS planStatus
+			, plan_internship_created_date					AS registerDate	
+		FROM 
+			ypr821.plan_internship
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./인턴십 SELECT -->
+	
+	<!-- 공모전 SELECT -->
+	<select id="getContestPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_contest_code							AS planCode
+			, total_plan_code							AS totalPlanCode
+			, user_email								AS userEmail
+			, plan_contest_title						AS planTitle
+			, plan_contest_name							AS planName
+			, plan_contest_field
+			, plan_contest_period_start_date
+			, plan_contest_period_end_date
+			, plan_contest_host_organization
+			, plan_contest_topic
+			, plan_contest_contents						AS planContents
+			, plan_contest_start_date					AS startDate
+			, plan_contest_end_date						AS endDate
+			, plan_contest_degree						AS planDegree		
+			, plan_contest_degree_change_reason			AS degreeChangeReason
+			, plan_contest_status						AS planStatus
+			, plan_contest_created_date					AS registerDate	
+		FROM 
+			ypr821.plan_contest
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./공모전 SELECT -->
+	
+	<!-- 경력 SELECT -->
+	<select id="getCareerPlan" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto" resultMap="planDtoResultMap">
+		SELECT 
+			plan_career_code							AS planCode
+			, total_plan_code							AS totalPlanCode
+			, user_email								AS userEmail
+			, plan_career_title							AS planTitle
+			, plan_career_company_name
+			, plan_career_occupation
+			, plan_career_department
+			, plan_career_position
+			, plan_career_employment_period_start_date
+			, plan_career_employment_period_end_date
+			, plan_career_join_target_date
+			, plan_career_contents						AS planContents
+			, plan_career_start_date					AS startDate
+			, plan_career_end_date						AS endDate
+			, plan_career_degree						AS planDegree		
+			, plan_career_degree_change_reason			AS degreeChangeReason
+			, plan_career_status						AS planStatus
+			, plan_career_created_date					AS registerDate	
+		FROM 
+			ypr821.plan_career
+		WHERE 
+			${searchKey} = #{searchValue};
+	</select>
+	<!-- ./경력 SELECT -->
+	<!-- ./SELECT 영역 종료 -->
 	
 	<!-- INSERT 영역 시작 -->
 	<insert id="addTotalPlan" parameterType="com.devcdper.plan.domain.PlanDto">

@@ -1,7 +1,9 @@
 package com.devcdper.plan.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -83,19 +85,53 @@ public class PlanController {
 	}
 	
 	
-	/* 나의 계획 한눈에 보기 AJAX */
-	@ResponseBody
+	/* 나의 계획 한눈에 보기 AJAX 통합계획 하위 계획 전체 조회*/
 	@RequestMapping(value="/totalPlanSelect", method=RequestMethod.POST)
-	public List<PlanDto> totalPlanSelect(@RequestParam(value="totalPlanCodeValue" , required = true)String totalPlanCodeValue) {
-		List<PlanDto> planDto = null;
+	@ResponseBody
+	public Map<String, Object> totalPlanSelect(@RequestParam(value = "totalPlanCodeValue" , required = true)String totalPlanCodeValue) {
+			
+		Map<String, Object> planMap = new HashMap<String, Object>();
+		
+		
 		System.out.println(totalPlanCodeValue + " <<- selectedTotalPlanCode : /totalPlanSelect PostMapping ( 사용자가 select한 totalPlanCode )");
 		if(totalPlanCodeValue != null && !"".equals(totalPlanCodeValue)) {
 			String searchKey = "total_plan_code";
 			String searchValue = totalPlanCodeValue;
-			planDto = planService.getTotalPlan(searchKey, searchValue);
-			System.out.println(planDto + " <<- planDto : /totalPlanSelect PostMapping ( 조회 후 담간 PlanDto List )");
+			planMap.put("getEducationalHistoryPlan", planService.getEducationalHistoryPlan(searchKey, searchValue));
+			planMap.put("getProjectPlan", planService.getProjectPlan(searchKey, searchValue));
+			planMap.put("getCertificatePlan", planService.getCertificatePlan(searchKey, searchValue));
+			planMap.put("getCertifiedLanguagePlan", planService.getCertifiedLanguagePlan(searchKey, searchValue));
+			planMap.put("getTechnologyStackPlan", planService.getTechnologyStackPlan(searchKey, searchValue));
+			planMap.put("getJobTrainingPlan", planService.getJobTrainingPlan(searchKey, searchValue));
+			planMap.put("getInternshipPlan", planService.getInternshipPlan(searchKey, searchValue));
+			planMap.put("getContestPlan", planService.getContestPlan(searchKey, searchValue));
+			planMap.put("getCareerPlan", planService.getCareerPlan(searchKey, searchValue));
 		}
-
+		return planMap;
+	}
+	
+	/* 나의 계획 한눈에 보기 AJAX 통합계획 하위 계획 카테고리별 조회 */
+	@RequestMapping(value="/planCateSelect", method=RequestMethod.POST)
+	@ResponseBody
+	public List<PlanDto> planCateSelect(@RequestParam(value = "totalPlanCodeValue" , required = true)String totalPlanCodeValue
+									  , @RequestParam(value = "planCateSelect" , required = false)String planCateSelect) {
+		List<PlanDto> planDto = null;
+		String searchKey = "total_plan_code";
+		String searchValue = totalPlanCodeValue;
+		System.out.println("planController/planCateSelect : -> "+totalPlanCodeValue);
+		System.out.println("planController/planCateSelect : -> "+planCateSelect);
+		if(totalPlanCodeValue != null && !"".equals(totalPlanCodeValue) && planCateSelect != null && !"".equals(planCateSelect)) {
+			if(planCateSelect.equals("getEducationalHistoryPlan"))planDto = planService.getEducationalHistoryPlan(searchKey, searchValue);
+			if(planCateSelect.equals("getProjectPlan"))planDto = planService.getProjectPlan(searchKey, searchValue);
+			if(planCateSelect.equals("getCertificatePlan"))planDto = planService.getCertificatePlan(searchKey, searchValue);
+			if(planCateSelect.equals("getCertifiedLanguagePlan"))planDto = planService.getCertifiedLanguagePlan(searchKey, searchValue);
+			if(planCateSelect.equals("getTechnologyStackPlan"))planDto = planService.getTechnologyStackPlan(searchKey, searchValue);
+			if(planCateSelect.equals("getJobTrainingPlan"))planDto = planService.getJobTrainingPlan(searchKey, searchValue);
+			if(planCateSelect.equals("getInternshipPlan"))planDto = planService.getInternshipPlan(searchKey, searchValue);
+			if(planCateSelect.equals("getContestPlan"))planDto = planService.getContestPlan(searchKey, searchValue);
+			if(planCateSelect.equals("getCareerPlan"))planDto = planService.getCareerPlan(searchKey, searchValue);
+			return planDto;
+		};
 		return planDto;
 	}
 	
