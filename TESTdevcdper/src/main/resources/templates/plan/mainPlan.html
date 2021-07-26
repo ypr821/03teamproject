@@ -15,232 +15,167 @@
 		<div class="container-fluid" th:align="center">
 			<!-- Default box -->
 			<div class="card col-md-8">
-				<div class="card-header">
-					<h3 class="card-title">나의 계획 한눈에보기</h3>
+				<div class="card-header" style="color: gray; text-align: right;">
+					<span style="vertical-align : middle;">* 통합계획을 선택하면 계획을, 계획을 선택하면 상세 계획을 보여줍니다.</span>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body table-responsive p-0">
 					<table class="table table-hover text-nowrap">
 						<thead style="text-align: center;">
 							<tr>
-								<th style="text-align: left;" class="col-2">통합계획선택</th>
-								<th class="col-8">
-									<select class="form-control select2 select2-hidden-accessible" id="totalPlanSelect" style="vertical-align : middle; width: 100%;" aria-hidden="true">
+								<th style="text-align: center;" class="col-3">
+									<h3>통합계획선택</h3>
+								</th>
+								<th class="col-9">
+									<select class="form-control select2 select2-hidden-accessible" id="totalPlanSelect"
+										style="vertical-align : middle; width: 100%;" aria-hidden="true">
 										<option selected disabled>통합계획제목을 선택해주세요.</option>
-										<option class="totalPlanTitle" th:each="tpl :${totalPlanList}" th:text="${tpl.planTitle}"></option>
+										<option class="totalPlanTitle" th:each="tpl :${totalPlanList}"
+											th:text="${tpl.planTitle}"></option>
 									</select>
-									
-									<!-- 제목과 일치하는 코드를 찾아 담아두기 위해 hidden type의 input 생성 -->
-									<input type="hidden" class="totalPlanCode" th:each="tpl :${totalPlanList}" th:value="${tpl.planCode}"></div>
-								</th>
-								<th class="col-2">
-									차수
-								</th>
-							</tr>
-							<tr>
-								<th style="text-align: left;">
-									계획카테고리
-								</th>
-								<th>
 
-								</th>
-							</tr>
-						</thead>
-						<tbody class="col-9">
-							<tr>
-								<th>학력 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planEducationalHistory}">
-											<li>컴퓨터공학전공해서 취업하자</li>
-										</a>
-										<a th:href="@{/planEducationalHistory}">
-											<li>컴퓨터공학과 석사학위 취득</li>
-										</a>
-										<a th:href="@{/planEducationalHistory}">
-											<li>보안공학과를 통해서 보안쪽을 공부하자</li>
-										</a>
-										<a th:href="@{/planEducationalHistory}">
-											<li>독학학위제로 학위마련해서 정처기 따자</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>프로젝트 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planProject}">
-											<li>무료 캠핑장 정보를 얻을 수 있는 플랫폼</li>
-										</a>
-										<a th:href="@{/planProject}">
-											<li>드론을 활용해서 얻은 데이터로 정밀농업실현</li>
-										</a>
-										<a th:href="@{/planProject}">
-											<li>자바 기본문법을 활용한 계산기 만들기</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-										<li>2차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>자격증 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planCertificate}">
-											<li>취업에 정처기가 필수</li>
-											<li>정보보안기사취득해서 취업하고싶다.</li>
-											<li>네트워크관리사 2급 따자</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>공인어학 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planCertifiedLanguage}">
-											<li>토익 스피킹 170점 달성이 목표</li>
-											<li>대기업입사를 위한 오픽 준비</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>기술스택 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planTechnologyStack}">
-											<li>프로젝트를 완성하기 위한 JAVA 공부</li>
-										</a>
-										<a th:href="@{/planTechnologyStack}">
-											<li>프로젝트를 완성하기 위한 JAVASCRIPT 공부</li>
-										</a>
-										<a th:href="@{/planTechnologyStack}">
-											<li>DB전문 기술자가 되기위한 준비</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>직종전문교육과정 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planJobTraining}">
-											<li>백앤드 개발자가 되기위한 과정</li>
-										</a>
-										<a th:href="@{/planJobTraining}">
-											<li>데이터 사이언티스트 취업에 꼭 필요한 핵심을 배울 수 있다.</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>인턴십 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planInternship}">
-											<li>당근마켓 정규직전환을 목표</li>
-										</a>
-										<a th:href="@{/planInternship}">
-											<li>업무경험으로 실무취약점 보완</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>공모전 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planContest}">
-											<li>KOPIS 빅데이터 분석 공모전</li>
-										</a>
-										<a th:href="@{/planContest}">
-											<li>2021 AI 블록체인 기술사업화 아이디어 경진대회</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>2차</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<th>경력 계획</th>
-								<td>
-									<ul>
-										<a th:href="@{/planCareer}">
-											<li>우아한 형제들에 백엔드 개발자로 입사 목표</li>
-										</a>
-										<a th:href="@{/planCareer}">
-											<li>사내 시스템관련 어플리케이션 개발</li>
-										</a>
-										<a th:href="@{/planCareer}">
-											<li>카카오 근무</li>
-										</a>
-									</ul>
-								</td>
-								<td>
-									<ul>
-										<li>1차</li>
-										<li>1차</li>
-									</ul>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+									<!-- 통합계획 제목과 일치하는 코드를 찾기위해 조회한 통합계획코드 hidden type의 input -->
+									<input type="hidden" class="totalPlanCode" th:each="tpl :${totalPlanList}"
+										th:value="${tpl.planCode}">
 				</div>
-				<!-- /.card-body -->
+				<!-- selected된 통합계획 코드를 담아두는 hidden type의 input -->
+				<input type="hidden" class="selectTotalPlanCode">
 			</div>
-			<!-- /.card -->
+			</th>
+			<th></th>
+			</tr>
+			<tr>
+				<th>
+					<select class="form-control select2 select2-hidden-accessible" id="planCateSelect"
+						style="vertical-align : middle; width: 100%;" aria-hidden="true" disabled>
+						<option value="" selected disabled>계획 카테고리선택</option>
+						<option value="getEducationalHistoryPlan">학력 계획</option>
+						<option value="getProjectPlan">프로젝트 계획</option>
+						<option value="getCertificatePlan">자격증 계획</option>
+						<option value="getCertifiedLanguagePlan">공인어학 계획</option>
+						<option value="getTechnologyStackPlan">기술스택 계획</option>
+						<option value="getJobTrainingPlan">직종전문교육과정 계획</option>
+						<option value="getInternshipPlan">인턴십 계획</option>
+						<option value="getContestPlan">공모전 계획</option>
+						<option value="getCareerPlan">경력 계획</option>
+					</select>
+				</th>
+				<th>
+					<select class="form-control select2 select2-hidden-accessible" id="planTitleSelect"
+						style="vertical-align : middle; width: 100%;" aria-hidden="true" disabled>
+						<option value="" selected disabled>계획카테고리를 선택하세요.</option>
+					</select>
+				</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody class="col-9 tableBody">
+				<tr id="getEducationalHistoryPlan" hidden>
+					<th>학력 계획</th>
+					<td>
+						<ul id="getEducationalHistoryPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getEducationalHistoryPlanStatus">
+
+						</ul>
+					</td>
+				</tr>
+				<tr id="getProjectPlan" hidden>
+					<th>프로젝트 계획</th>
+					<td>
+						<ul id="getProjectPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getProjectPlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getCertificatePlan" hidden>
+					<th>자격증 계획</th>
+					<td>
+						<ul id="getCertificatePlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getCertificatePlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getCertifiedLanguagePlan" hidden>
+					<th>공인어학 계획</th>
+					<td>
+						<ul id="getCertifiedLanguagePlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getCertifiedLanguagePlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getTechnologyStackPlan" hidden>
+					<th>기술스택 계획</th>
+					<td>
+						<ul id="getTechnologyStackPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getTechnologyStackPlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getJobTrainingPlan" hidden>
+					<th>직종전문교육과정 계획</th>
+					<td>
+						<ul id="getJobTrainingPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getJobTrainingPlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getInternshipPlan" hidden>
+					<th>인턴십 계획</th>
+					<td>
+						<ul id="getInternshipPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getInternshipPlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getContestPlan" hidden>
+					<th>공모전 계획</th>
+					<td>
+						<ul id="getContestPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getContestPlanStatus">
+						</ul>
+					</td>
+				</tr>
+				<tr id="getCareerPlan" hidden>
+					<th>경력 계획</th>
+					<td>
+						<ul id="getCareerPlanTitle">
+						</ul>
+					</td>
+					<td>
+						<ul id="getCareerPlanStatus">
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+		<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
 		</div>
 	</section>
 
@@ -265,69 +200,155 @@
 			$('table').find('th').css({
 				'vertical-align': 'middle'
 			})
-			$('#totalPlanSelect').change(function(){
-				
-				// select에서 선택한 option의 인덱스를 추출하여 변수에 담는다.
-				// select에서 선택한 option의 인덱스와 input의 인덱스를 맞추기 위해 -1을 해주었다.		
-				var selectIndex = $(this).children('option:selected').index()-1;
-				
+			var selectIndex = '';
+			var totalPlanCodeValue = '';
+
+			// 통합계획 change시 선택한 통합계획의 모든 하위 계획 카테고리 전체 계획 한 눈에 보여주는 메서드
+			$(document).on('change', '#totalPlanSelect', function () {
+				$('.tableBody').children().removeAttr('hidden');
+				$('#planCateSelect').prop('disabled', false);
+
+				// 통합계획 변경 시 계획 카테고리 및 계획 선택 초기화 작업
+				$('#planCateSelect').children().remove();
+				$('#planCateSelect').html('<option value="" selected disabled>계획 카테고리선택</option>'
+					+ '<option value="getEducationalHistoryPlan">학력 계획</option>'
+					+ '<option value="getProjectPlan">프로젝트 계획</option>'
+					+ '<option value="getCertificatePlan">자격증 계획</option>'
+					+ '<option value="getCertifiedLanguagePlan">공인어학 계획</option>'
+					+ '<option value="getTechnologyStackPlan">기술스택 계획</option>'
+					+ '<option value="getJobTrainingPlan">직종전문교육과정 계획</option>'
+					+ '<option value="getInternshipPlan">인턴십 계획</option>'
+					+ '<option value="getContestPlan">공모전 계획</option>'
+					+ '<option value="getCareerPlan">경력 계획</option>');
+				$('#planTitleSelect').children().remove();
+				$('#planTitleSelect').html('<option value="" selected disabled>계획카테고리를 선택하세요.</option>');
+				$('#planTitleSelect').attr('disabled', true);
+
+				// select에서 선택한 option의 인덱스를 추출하여 변수에 담는다.(select에서 선택한 option의 인덱스와 input의 인덱스를 맞추기 위해 -1을 해주었다)
+				selectIndex = $(this).children('option:selected').index() - 1;
+
 				// 해당 option의 부모로 이동하여 자식중에 code를 담고있는 input을 찾아 같은 인덱스를 가진 input의 코드값을 추출하여 변수에 담는다.
-				var totalPlanCodeValue = $(this).parent().find('.totalPlanCode').eq(selectIndex).val();
-				
-				console.log('선택한 통합계획 제목 : ' + $('#totalPlanSelect').val());
-				console.log('선택한 select option의 index 번호 : ' + selectIndex);
-				console.log('선택한 통합계획의 totalPlanCode : ' + totalPlanCodeValue);
-				
-				// ajax를 사용 dataType은 text로 하니까 되길래 text로 하고있다.
+				totalPlanCodeValue = $(this).parent().find('.totalPlanCode').eq(selectIndex).val();
+				$('.selectTotalPlanCode').val(totalPlanCodeValue);
+
+				// 잘 받아오는지 체크
+				console.log('선택한 통합계획 제목 : ', $('#totalPlanSelect').val());
+				console.log('선택한 select option의 index 번호 : ', selectIndex);
+				console.log('선택한 통합계획의 totalPlanCode : ', totalPlanCodeValue);
+				console.log('선택하여 담아둔 totalPlanCode : ', $('.selectTotalPlanCode').val());
+
+				/* totalPlanSelectn AJAX */
 				var request = $.ajax({
 					url: "/totalPlanSelect",
 					method: "POST",
-					data: { totalPlanCodeValue : totalPlanCodeValue },
+					data: {totalPlanCodeValue: totalPlanCodeValue},
 					dataType: "json"
 				});
-				
+
+				// 선택에 따라 변경 된 html 삽입을 위한 사전 remove 처리
+				$('#planEducationalHistory').children().remove();
+				$('#planProject').children().remove();
+
+				// Ajax 요청하여 응답받은 리스트 객체 이름과 화면에 뿌려줄 각 계획 카테고리를 맞추기 위해 배열에 일치하는 문자열을 담아 반복문을 사용하여 각 카테고리 영역에 해당하는 계획을 조회한 리스트를 뿌려줌
+				var planCate = ['getEducationalHistoryPlan', 'getProjectPlan', 'getCertificatePlan', 'getCertifiedLanguagePlan', 'getTechnologyStackPlan', 'getJobTrainingPlan', 'getInternshipPlan', 'getContestPlan', 'getCareerPlan'];
+
 				// 서버 요청 후 정상적으로 응답받은 데이터 활용하는 메서드
-				request.done(function( planDto ) {
-					console.log(planDto[0].planCode + " <<- planDto : /mainPlan Ajax ( 사용자가 select한 totalPlanCode totalPlanSelect로 요청 후 응답 data )");
-					
-					
-					
+				request.done(function (resultPlan) {
+					var titleLi = '';
+					var statusLi = '';
+					var planTitleHtml = '';
+					var planStatusHtml = '';
+					$.each(planCate, function (index, planItem) {
+						if (resultPlan['getEducationalHistoryPlan'] != null && resultPlan['getEducationalHistoryPlan'] != undefined && resultPlan['getEducationalHistoryPlan'] != '' && resultPlan['getEducationalHistoryPlan'].length > 0) {
+							$.each(resultPlan[planItem], function (index, item) {
+								//console.log('item',item);
+								titleLi += '<a href="/planEducationalHistory">';
+								titleLi += '<li style="list-style: none; text-align: center; padding-left: 0px;">';
+								titleLi += item.planTitle;
+								titleLi += '</li>';
+								titleLi += '</a>';
+								statusLi += '<li style="list-style: none; text-align: center; padding-left: 0px;">';
+								statusLi += item.planStatus;
+								statusLi += '</li>';
+							});
+							planTitleHtml = '#' + planItem + 'Title';
+							planStatusHtml = '#' + planItem + 'Status';
+							$(planTitleHtml).html(titleLi);
+							$(planStatusHtml).html(statusLi);
+							titleLi = '';
+							statusLi = '';
+							planTitleHtml = '';
+							planStatusHtml = '';
+
+						} else {
+							titleLi += '<li style="list-style: none; text-align: center; padding-left: 0px;">';
+							titleLi += '등록된 계획이 없습니다.';
+							titleLi += '</li>';
+							planTitleHtml = '#' + planItem + 'Title';
+							planStatusHtml = '#' + planItem + 'Status';
+							$(planTitleHtml).html(titleLi);
+							$(planStatusHtml).html(statusLi);
+							titleLi = '';
+							statusLi = '';
+							planTitleHtml = '';
+							planStatusHtml = '';
+						};
+					});
 				});
-				
+
 				// 서버 요청 후 응답이 정상적이지 않았을 경우 실행되는 메서드
-				request.fail(function( jqXHR, textStatus ) {
-				alert( "Request failed: " + textStatus ); 
+				request.fail(function (jqXHR, textStatus) {
+					alert("Request failed: " + textStatus);
+				});
 			});
-			});
-			/*
-			var request = $.ajax({
-				url: "@{/totalPlan}",
-				method: "POST",
-				data: { totalPlanCode :  },
-				dataType: "json"
-			});
-			$('.totalPlanSelect').children().remove();
-			request.done(function( data ) {
-				console.log(data);
-				var html = '';
-				if(data != null && data != undefined && data != '' && data.length > 0){
-					for(var i=0; i<data.length; i++){
-						//guguPrint.append("<li>"+ data[i] +"</li>"+"<br/>");
-						html += '<li>';
-						html += data[i];
-						html += '</li>';
+
+
+			// 계획 카테고리 change시 선택한 통합계획 하위의 해당 카테고리 계획 타이틀 노출
+			$(document).on('change', '#planCateSelect', function () {
+				var planCateSelect = $('#planCateSelect').val();
+				var selectTotalPlanCode = $('.selectTotalPlanCode').val();
+				$('#planTitleSelect').prop('disabled', false);
+
+				var request = $.ajax({
+					url: "/planCateSelect",
+					method: "POST",
+					data: {totalPlanCodeValue: selectTotalPlanCode, planCateSelect: planCateSelect},
+					dataType: "json"
+				});
+
+				// 선택에 따라 변경 된 html 삽입을 위한 사전 remove 처리
+				$('#planTitleSelect').children().remove();
+
+				// 서버 요청 후 정상적으로 응답받은 데이터 활용하는 메서드 (선택된 통합계획 하위 계획 카테고리 선택시 응답받은 계획리스트객체)
+				request.done(function (resultPlan) {
+					var cateHtml = '<option selected disabled>계획을 선택하세요.</option>';
+					if (resultPlan[0].planTitle != null && resultPlan[0].planTitle != undefined && resultPlan[0].planTitle != '' && resultPlan[0].planTitle.length > 0) {
+						$.each(resultPlan, function (index, item) {
+							cateHtml += '<option>';
+							cateHtml += item.planTitle;
+							cateHtml += '</option>';
+							console.log('cateHtml : -> ', cateHtml);
+						});
+					} else {
+						$('#planTitleSelect').children().remove();
+						cateHtml += '<option selected>선택한 계획 카테고리에 등록된 계획이 없습니다.</option>';
 					};
-				}else{
-					var html = '★[단수와 배수를 선택해 주세요]★';
-				};
-				$('#result').html(html);
+					$('#planTitleSelect').html(cateHtml);
+
+				});
+
+				// 서버 요청 후 응답이 정상적이지 않았을 경우 실행되는 메서드
+				request.fail(function (jqXHR, textStatus) {
+					alert("Request failed: " + textStatus);
+				});
 			});
-			//서버요청 후 응답이 정상적이지 않았을 경우 실행되는 메서드
-			request.fail(function( jqXHR, textStatus ) {
-				alert( "Request failed: " + textStatus ); 
+
+			$(document).on('change', '#planCateSelect', function () {
+				$('.tableBody').children().attr('hidden', 'hidden');
+				console.log($(this).val());
 			});
-			*/
 		});
+
 	</script>
 </th:block>
 
