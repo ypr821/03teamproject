@@ -5,7 +5,7 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">나의 챌린지</h1>
+		<h1 class="m-0">!나의 개설 챌린지</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
@@ -38,12 +38,13 @@
 		
          <div class="card">
            <div class="card-header">
-             <h3 class="card-title">개설한 챌린지</h3>
+             <h3 class="card-title">챌린지 현황</h3>
              <div class="card-tools">
              </div>
            </div>
              <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallenge}'|" style="color: white;">3<br>전체</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참여중</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeCompleteList}'|" style="color: white;">1<br>완료</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeInsertList}'|" style="color: white;">1<br>개설</button>
@@ -77,22 +78,22 @@
                 <table class="table table-striped text-nowrap">
                   <thead>
                      <tr>
-		                      <th>번호</th>
-								<th>챌린지명</th>
-								<th>카테고리</th>
-								<th>공개범위</th>
-								<th>태그</th>
-								<th>참가인원</th>
-								<th>베팅금액</th>
-								<th>챌린지 시작일</th>
-								<th>챌린지 종료일</th>
-								<th>진행율</th>
-		                     	<th>상세보기</th>
-		                     	<th>챌린지 설정</th>
-		                    </tr>
+	                      <th>번호</th>
+							<th>챌린지명</th>
+							<th>카테고리</th>
+							<th>공개범위</th>
+							<th>태그</th>
+							<th>참가인원</th>
+							<th>베팅금액</th>
+							<th>챌린지 시작일</th>
+							<th>챌린지 종료일</th>
+							<th>진행율</th>
+	                     	<th>상세보기</th>
+	                     	<th>챌린지 설정</th>
+                    </tr>
                   </thead>
                   <tbody>
-                   	<tr th:if="${#lists.size(insertChallengeList) > 0}" th:each="l, idx : ${insertChallengeList}">
+                   	<tr th:if="${#lists.size(myChallengeInsertList) > 0}" th:each="l, idx : ${myChallengeInsertList}">
 							<td th:text="${idx.count}"></td>
 							<!-- <td style="display: none;" th:text="${l.challengeCode}"></td> -->
 							<td th:text="${l.challengeName}"></td>
@@ -101,7 +102,6 @@
 			                <td th:text="${l.challengeTag}"></td>
 							<td th:text="${l.challengeMaximumPeople}"></td>
 							<td th:text="${l.challengeBetAmount}"></td>
-							<td>10,000원</td>
 							<td th:text="${l.challengeStartDate}"></td>
 							<td th:text="${l.challengeEndDate}"></td>
 							<td>
@@ -113,6 +113,15 @@
 								</small>
 							</td>
 		                     <td>
+		                    <a th:href="@{/myChallengeEdit(challengeCode=${l.challengeCode},challengeName=${l.challengeName})}">
+										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
+											<i class="fas fa-cog">
+											</i>
+											상세보기
+										</button>
+							</a>
+							</td>
+							<td>
 		                    <a th:href="@{/myChallengeEdit(challengeCode=${l.challengeCode},challengeName=${l.challengeName})}">
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
 											<i class="fas fa-cog">

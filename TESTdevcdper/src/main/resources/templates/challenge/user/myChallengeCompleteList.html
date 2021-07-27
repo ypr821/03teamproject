@@ -5,7 +5,7 @@
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}"></title>
 	<div class="col-sm-6">
-		<h1 class="m-0">나의 챌린지</h1>
+		<h1 class="m-0">!나의 완료 챌린지</h1>
 	</div><!-- /.col -->
 	<div class="col-sm-12">
 		<ol class="breadcrumb float-sm-right">
@@ -38,13 +38,14 @@
 		
          <div class="card">
            <div class="card-header">
-             <h3 class="card-title">완료된 챌린지</h3>
+            <h3 class="card-title">챌린지 현황</h3>
 
              <div class="card-tools">
              </div>
            </div>
              <div class="card-body">
             		<div class="btn-group" id="myChallengeStatus">
+                        <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallenge}'|" style="color: white;">3<br>전체</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeParticipationList}'|" style="color: white;">1<br>참여중</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeCompleteList}'|" style="color: white;">1<br>완료</button>
                         <button type="button" class="btn btn-info" th:onclick="|location.href='@{/myChallengeInsertList}'|" style="color: white;">1<br>개설</button>

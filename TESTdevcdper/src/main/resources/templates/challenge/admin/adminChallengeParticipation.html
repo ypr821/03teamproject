@@ -221,7 +221,7 @@
 		                    <tr th:if="${#lists.size(challengeParticipationList) > 0}" th:each="l, idx : ${challengeParticipationList}">
 		                    <td th:text="${idx.count}"></td>
 		                    <td th:text="${l.challenge.challengeName}"></td>
-		                    <td th:text="${l.normalUser.userEmail}"></td>
+		                    <td th:text="${l.challenge.challengeOpenerEmail}"></td>
 		                    <td th:text="${l.normalUser.userEmail}"></td>
 		                    <td th:text="${#numbers.formatDecimal(l.challenge.challengeBetAmount, 0, 'COMMA', 0, 'POINT')}+'원'"></td>
 		                    <td th:text="${l.challengeParticipationDate}"></td>
@@ -239,7 +239,7 @@
 								<span class="badge bg-primary">참여중</span>
 							</td>
 							 <td>
-								<button type="button" class="btn btn-block btn-default btn-xs challengeModalParticipationDetail" data-toggle="modal" data-target="#modal-ChallengeParticipationDetail">상세보기</button>
+								<button type="button" class="btn btn-block btn-default btn-xs challengeModalParticipationDetail" data-toggle="modal" data-target="#modal-ChallengeParticipationDetail" th:data-count="${i}" th:data-ChallengeName="${l.challenge.getChallengeName()}">상세보기</button>
 							</td>
 		                      <td>
 								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
@@ -276,15 +276,101 @@
 <th:block layout:fragment="pageJavascript">
 <script type="text/javascript" th:inline="javascript">
 	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalInsertDetail -->
+	
+	
+	$(function(){
 		
-		var challengeModalParticipationDetail = $('.challengeModalParticipationDetail');
-		
-		/* Modal 영역 */
-		$(function(){
-			challengeModalParticipationDetail.click(function(){
-			$("#modal-ChallengeParticipationDetail").modal();
+		$('.challengeModalParticipationDetail').click(function(){
+			
+			var ChallengeName = $(this).attr('data-ChallengeName');
+			var countNumber = $(this).parents('tr').children()[0].innerText;
+			console.log(countNumber);
+			console.log(ChallengeName);
+			
+			/*<![CDATA[*/ 
+			var challengeParticipationList= /*[[ ${challengeParticipationList} ]]*/;
+			/*]]*/ 
+			
+			console.log(challengeParticipationList);
+			console.log(challengeParticipationList[countNumber-1].challenge.challengeName);
+			
+			//모달 챌린지명 값 전달
+			$('#modalChallengeName').val(challengeParticipationList[countNumber-1].challenge.challengeName);
+			console.log("챌린지명 : " + $('#modalChallengeName').val(challengeParticipationList[countNumber-1].challenge.challengeName));
+
+			//모달 챌린지 카테고리 값 전달
+			$('#modalChallengeCategory').val(challengeParticipationList[countNumber-1].challengeCategory.challengeCategoryName);
+			console.log("챌린지 카테고리 : " + $('#modalChallengeCategory').val(challengeParticipationList[countNumber-1].challengeCategory.challengeCategoryName));
+
+			//모달 챌린지 개설자 값 전달
+			$('#modalChallengeOpener').val(challengeParticipationList[countNumber-1].challenge.challengeOpenerEmail);
+			console.log("챌린지 개설자 이메일 : " + $('#modalChallengeOpener').val(challengeParticipationList[countNumber-1].challenge.challengeOpenerEmail));
+
+			//모달 챌린지 참여자 값 전달
+			$('#modalChallengeParticipant').val(challengeParticipationList[countNumber-1].normalUser.userEmail);
+			console.log("챌린지 참여자 이메일 : " + $('#modalChallengeParticipant').val(challengeParticipationList[countNumber-1].normalUser.userEmail));
+			
+			//모달 챌린지 공개범위 값 전달
+			$('#modalChallengeScope').val(challengeParticipationList[countNumber-1].challenge.challengeScope);
+			console.log("챌린지 공개범위 : " + $('#modalChallengeScope').val(challengeParticipationList[countNumber-1].challenge.challengeScope));
+			
+			//모달 챌린지 참여비밀번호 값 전달
+			$('#modalCallengePassword').val(challengeParticipationList[countNumber-1].challenge.challengeParticipationPassword);
+			console.log("챌린지 참여비밀번호 : " + $('#modalCallengePassword').val(challengeParticipationList[countNumber-1].challenge.challengeParticipationPassword));
+			
+			//모달 챌린지 최대참여인원수 값 전달
+			$('#modalChallengeMaxPeople').val(challengeParticipationList[countNumber-1].challenge.challengeMaximumPeople);
+			console.log("챌린지 최대인원수 : " + $('#modalChallengeMaxPeople').val(challengeParticipationList[countNumber-1].challenge.challengeMaximumPeople));
+			
+			//모달 챌린지 베팅금액 값 전달
+			$('#modalChallengeBetAmount').val(challengeParticipationList[countNumber-1].challenge.challengeBetAmount);
+			console.log("챌린지 베팅금액 : " + $('#modalChallengeBetAmount').val(challengeParticipationList[countNumber-1].challenge.challengeBetAmount));
+			
+			//모달 챌린지 인증방법 값 전달
+			$('#modalChallengeCertificationMethods').val(challengeParticipationList[countNumber-1].challenge.challengeCertificationMethod);
+			console.log("챌린지 인증방법 : " + $('#modalChallengeCertificationMethods').val(challengeParticipationList[countNumber-1].challenge.challengeCertificationMethod));
+			
+			//모달 챌린지 인증내용 값 전달
+			$('#modalChallengeCertificationContents').val(challengeParticipationList[countNumber-1].challenge.challengeCertificationContents);
+			console.log("챌린지 인증내용 : " + $('#modalChallengeCertificationContents').val(challengeParticipationList[countNumber-1].challenge.challengeCertificationContents));
+			
+			//모달 챌린지 인증빈도 값 전달
+			$('#modalChallengeCertificationFrequency').val(challengeParticipationList[countNumber-1].challenge.challengeCertificationFrequency);
+			console.log("챌린지 인증빈도 : " + $('#modalChallengeCertificationFrequency').val(challengeParticipationList[countNumber-1].challenge.challengeCertificationFrequency));
+			
+			//모달 챌린지 시작일 값 전달
+			$('#modalChallengeStartDate').val(challengeParticipationList[countNumber-1].challenge.challengeStartDate);
+			console.log("챌린지 시작일 : " + $('#modalChallengeStartDate').val(challengeParticipationList[countNumber-1].challenge.challengeStartDate));
+
+			//모달 챌린지 종료일 값 전달
+			$('#modalChallengeEndDate').val(challengeParticipationList[countNumber-1].challenge.challengeEndDate);
+			console.log("챌린지 종료일 : " + $('#modalChallengeEndDate').val(challengeParticipationList[countNumber-1].challenge.challengeEndDate));
+
+			//모달 챌린지 등록일 값 전달
+			$('#modalChallengeRegDate').val(challengeParticipationList[countNumber-1].challenge.challengeRegisterDate);
+			console.log("챌린지 등록일 : " + $('#modalChallengeRegDate').val(challengeParticipationList[countNumber-1].challenge.challengeRegisterDate));
+
+			/* /* //모달 챌린지 결제방법 값 전달
+			$('#modalChallengePaymentOption').val(challengeParticipationList[countNumber-1].payment.paymentOption);
+			console.log("챌린지 결제방법 : " + $('#modalChallengePaymentOption').val(challengeParticipationList[countNumber-1].payment.paymentOption));
+			
+			//모달 챌린지 결제여부 값 전달
+			$('#modalChallengePaymentWhether').val(challengeParticipationList[countNumber-1].payment.paymentStatus);
+			console.log("챌린지 결제여부 : " + $('#modalChallengePaymentWhether').val(challengeParticipationList[countNumber-1].payment.paymentStatus));
+			
+			//모달 챌린지 결제금액 값 전달
+			$('#modalChallengePaymentPrice').val(challengeParticipationList[countNumber-1].payment.paymentPrice);
+			console.log("챌린지 결제금액 : " + $('#modalChallengePaymentPrice').val(challengeParticipationList[countNumber-1].payment.paymentPrice));
+			
+			//모달 챌린지 결제일자 값 전달
+			$('#modalChallengePaymentDate').val(challengeParticipationList[countNumber-1].payment.paymentDate);
+			console.log("챌린지 결제일자 : " + $('#modalChallengePaymentDate').val(challengeParticipationList[countNumber-1].payment.paymentDate)); */
+			
+			
 		});
-				
+			
+			
+		
 	});
 </script>
 </th:block>

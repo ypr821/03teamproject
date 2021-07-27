@@ -206,34 +206,34 @@
 			<div class="card-body">
 			<div class="exploationBtnGroup" >
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_all">
-		       <i class="fas fa-list"></i><span>전체</span> 
+		       <i class="fas fa-list"></i><span id="전체">전체</span> 
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_01">
-		       <i class="fas fa-graduation-cap" ></i><span>학력</span>
+		       <i class="fas fa-graduation-cap" ></i><span id="학력">학력</span>
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_02">
-		        <i class="fas fa-file-code"></i><span>프로젝트</span>
+		        <i class="fas fa-file-code"></i><span id="">프로젝트</span>
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_03">
-		         <i class="fas fa-certificate"></i>자격증 
+		         <i class="fas fa-certificate"></i><span id="자격증">자격증</span> 
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_04">
-		         <i class="fas fa-atlas"></i>공인어학
+		         <i class="fas fa-atlas"></i><span id="공인어학">공인어학</span> 
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_05">
-		        <i class="fab fa-dev"></i>기술스택 
+		        <i class="fab fa-dev"></i><span id="기술스택">기술스택</span>  
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_06">
-		        <i class="fas fa-university"></i>직종전문교육과정
+		        <i class="fas fa-university"></i><span id="직종전문교육과정">직종전문교육과정</span>  
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_07">
-		        <i class="fas fa-briefcase"></i>인턴십 
+		        <i class="fas fa-briefcase"></i><span id="인턴십">인턴십</span>  
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_08">
-		       <i class="fas fa-pen-alt"></i>공모전
+		       <i class="fas fa-pen-alt"></i><span id="공모전">공모전</span>  
 		    </button>
 			<button class="btn btn-app challengeCategory" id="byCategory" name="button" value="challenge_category_code_09">
-		        <i class="fas fa-user-tie"></i>경력
+		        <i class="fas fa-user-tie"></i><span id="경력">경력</span>  
 		    </button>
    		</div>
             <div class="row" id="challengeExplorationCardRow">
@@ -279,12 +279,16 @@
 		var challengeCategoryCodeValue = $(this).val();
 		console.log("챌린지 카테고리 코드 : " + challengeCategoryCodeValue);
 		
+		var categoryBtnName = $(this).find('span').text();
+		console.log("챌린지 카테고리 버튼명 : " + categoryBtnName);
+		
 		$(this).click(function(e){
-		if(challengeCategoryCodeValue != ''){
+		if(challengeCategoryCodeValue != '' && categoryBtnName != ''){
 				jQuery.ajax({ 
 			        type: "POST", 
 			        url: "/byCategory", 
-			        data: { challengeCategoryCode : challengeCategoryCodeValue },
+			        data: { challengeCategoryCode : challengeCategoryCodeValue,
+			        	challengeCategoryName : categoryBtnName},
 			        dataType : 'json',
 			        success: function (data) { 
 			           console.log('data : ',data,'- 잘 받았음');
@@ -314,14 +318,17 @@
 	        				html += "</div>";
 	        				html += "</div>";
 	        				html += "<div class='card-footer'>";
-	        				html += "<a href='" + "/challengeExplorationDetailInfo?challengeName=" + "' class='btn btn-sm btn-primary'>";
+	        				html += "<a href='" + "/challengeExplorationDetailInfo?challengeName="
+	        				html += item.challengeName;
+	        				html +=	"' class='btn btn-sm btn-primary'>";
 	        				html += "챌린지 정보보기";
 	        				html += "</a></div></div></div></div>";
 				        	
 	        			})
 		        		 
 		        	 }else{
-		        		 html += "없습니다.";
+		        		 html = "<span>" + categoryBtnName + " 카테고리에 해당하는 챌린지가 없습니다." +"</span>";
+		        		 //$("#challengeExplorationCardRow").css('text-align','center');
 		        	 }
 		        	 $("#challengeExplorationCardRow").html(html);
 				        

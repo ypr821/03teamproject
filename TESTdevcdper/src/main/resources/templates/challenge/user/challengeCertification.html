@@ -208,7 +208,7 @@
 			                <td th:text="${l.challenge.challengeCertificationMethod}"></td>
 							<td th:text="|${l.challenge.challengeStartDate} ~ ${l.challenge.challengeEndDate}|"></td>
 		                     <td>
-		                    <a th:href="@{/challengeCertificationInsert(challengeName=${l.challenge.challengeName})}">
+		                    <a th:href="@{/challengeCertificationInsert(challengeCode=${l.challenge.challengeCode})}">
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
 											<i class="fas fa-folder">
 											</i>

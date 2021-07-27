@@ -1,11 +1,12 @@
 package com.devcdper.challenge.domain;
 
+import com.devcdper.payment.domain.Payment;
 import com.devcdper.user_admin.domain.CoachUser;
 import com.devcdper.user_admin.domain.NormalUser;
 
 public class ChallengeParticipation {
 
-	private String challengeParticipantCode;
+	private String challengeParticipationCode;
 	private String challengeCategoryCode;
 	private String challengeCode;
 	private String challengeParticipationEmail;
@@ -34,6 +35,9 @@ public class ChallengeParticipation {
 	
 	//챌린지 
 	private Challenge challenge;
+
+	//결제
+	private Payment payment;
 	
 	//계획상세코드 들어가야함!!
 	//plan_detail_code
@@ -53,11 +57,11 @@ public class ChallengeParticipation {
 	//챌린지 참여 회원이메일
 	private CoachUser coachUser;
 	private NormalUser normalUser;
-	public String getChallengeParticipantCode() {
-		return challengeParticipantCode;
+	public String getChallengeParticipationCode() {
+		return challengeParticipationCode;
 	}
-	public void setChallengeParticipantCode(String challengeParticipantCode) {
-		this.challengeParticipantCode = challengeParticipantCode;
+	public void setChallengeParticipationCode(String challengeParticipationCode) {
+		this.challengeParticipationCode = challengeParticipationCode;
 	}
 	public String getChallengeCategoryCode() {
 		return challengeCategoryCode;
@@ -189,19 +193,31 @@ public class ChallengeParticipation {
 	}
 	
 	
+	
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "ChallengeParticipation [challengeParticipantCode=" + challengeParticipantCode + ", challengeCategoryCode=" + challengeCategoryCode
-				+ ", challengeCode=" + challengeCode + ", challengeParticipationEmail=" + challengeParticipationEmail + ", planDetailCode="
-				+ planDetailCode + ", planEducationalHistoryDetailCode=" + planEducationalHistoryDetailCode + ", planProjectDetailCode="
-				+ planProjectDetailCode + ", planCertificateDetailCode=" + planCertificateDetailCode + ", planCertifiedLanguageDetailCode="
-				+ planCertifiedLanguageDetailCode + ", planTechnologyStackDetailCode=" + planTechnologyStackDetailCode
-				+ ", planJobTrainingDetailCode=" + planJobTrainingDetailCode + ", planInternshipDetailCode=" + planInternshipDetailCode
+		return "ChallengeParticipation [challengeParticipantionCode=" + challengeParticipationCode
+				+ ", challengeCategoryCode=" + challengeCategoryCode + ", challengeCode=" + challengeCode
+				+ ", challengeParticipationEmail=" + challengeParticipationEmail + ", planDetailCode=" + planDetailCode
+				+ ", planEducationalHistoryDetailCode=" + planEducationalHistoryDetailCode + ", planProjectDetailCode="
+				+ planProjectDetailCode + ", planCertificateDetailCode=" + planCertificateDetailCode
+				+ ", planCertifiedLanguageDetailCode=" + planCertifiedLanguageDetailCode
+				+ ", planTechnologyStackDetailCode=" + planTechnologyStackDetailCode + ", planJobTrainingDetailCode="
+				+ planJobTrainingDetailCode + ", planInternshipDetailCode=" + planInternshipDetailCode
 				+ ", planContestDetailCode=" + planContestDetailCode + ", planCareerDetailCode=" + planCareerDetailCode
-				+ ", allPaymentConnectGroupCode=" + allPaymentConnectGroupCode + ", challengeParticipationDate=" + challengeParticipationDate
-				+ ", challengeServiceStartDate=" + challengeServiceStartDate + ", challengeServiceEndDate=" + challengeServiceEndDate
-				+ ", challengeCategory=" + challengeCategory + ", challenge=" + challenge + ", coachUser=" + coachUser + ", normalUser=" + normalUser
-				+ "]";
+				+ ", allPaymentConnectGroupCode=" + allPaymentConnectGroupCode + ", challengeParticipationDate="
+				+ challengeParticipationDate + ", challengeServiceStartDate=" + challengeServiceStartDate
+				+ ", challengeServiceEndDate=" + challengeServiceEndDate + ", challengeCategory=" + challengeCategory
+				+ ", challenge=" + challenge + ", payment=" + payment + ", coachUser=" + coachUser + ", normalUser="
+				+ normalUser + "]";
 	}
 	
 	

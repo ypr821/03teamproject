@@ -1,6 +1,5 @@
 package com.devcdper.coaching.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -147,8 +146,6 @@ public class CoachingService {
 			//System.out.println("coachingRFQResult===>>>>>"+coachingRFQResult);
 			
 			int result = coachingMapper.insertCoachingRFQResult(coachingRFQResult);
-			
-			
 			
 			return 0;
 		}

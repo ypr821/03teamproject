@@ -249,15 +249,14 @@
                       <td id="challengeAchievementRateTotalTimes" th:text="${l.challengeAchievementRateTotalTimes}"></td>
                       <td class="project_progress">
                           <div class="progress progress-sm">
-                              <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                              <div class="progress-bar bg-blue" role="progressbar" th:attr="aria-valuenow=${l.challengeAchievementRate}" aria-valuemin="0" aria-valuemax="100" th:style="'width:'+ ${l.challengeAchievementRate}+'%;'">
                               </div>
                           </div>
-                          <small th:text="${#numbers.formatDecimal((l.challengeAchievementRateSuccesCount/l.challengeAchievementRateTotalTimes*100),1,1)}">
-                              50% Complete
+                          <small th:text="${l.challengeAchievementRate}+'% 달성'">
                           </small>
                       </td>
-                      <td>3위</td>
-                      <td>2021년 04월 28일</td>
+                      <td id="challengeFinalRank" th:text="${l.challengeFinalRank}+'위'"></td>
+                      <td id="challengeAchievementRateUpdateDate" th:text="${l.challengeAchievementRateUpdateDate}"></td>
                       <td>
 						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
 					  </td>
@@ -269,225 +268,22 @@
 			<!-- 코치 list 페이지번호  -->
 			<div class="card-footer clearfix">
 		                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                <li class="page-item"><a class="page-link" th:href="@{/adminChallengeAchievement}"> << </a></li>
+						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/adminChallengeAchievement(currentPage=${currentPage - 1})}">이전</a></li>
+							<th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+							<li class="page-item "><a class="page-link" th:if="${num != currentPage}" th:href="@{/adminChallengeAchievement(currentPage=${num})}">[[${num}]]</a></li>
+							<li class="page-item active"><a class="page-link" th:unless="${num != currentPage}">[[${num}]]</a></li>
+							</th:block>
+						<li class="page-item"><a class="page-link" th:if="${currentPage < lastPage}" th:href="@{/adminChallengeAchievement(currentPage=${currentPage + 1})}">다음</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/adminChallengeAchievement(currentPage=${lastPage})}">>></a></li>
 		                </ul>
 			   </div>	
 		</div>
 		</div>
 		</div>
-		
-		
-		<div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">달성율 한눈에 보기</h3>
-
-                <div class="card-tools">
-                </div>
-              </div>
-              <div class="card-body">
-					<div class="wrapper">
-					<canvas id="myChart4"></canvas>
-					</div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-		<style>
-			
-			canvas{
-			  background:#fff;
-			  height:400px;
-			}
-		</style>
-		
-		<!-- <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">달</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-					<div class="wrapper">
-					<canvas id="bar-chart" width="600" height="350"></canvas>
-					</div>
-              </div>
-              /.card-body
-            </div> -->
-		
-				
-
-<!-- challenge Modal 영역 시작-->
-	<!-- 챌린지 달성율정보 상세보기 Modal - challengeModalAchievementDetail -->
-	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalAchievementDetail :: challengeModalAchievementDetail"></th:block>
-	<!-- challenge Modal 영역 끝 -->
-
 </th:block>
 
 
 <th:block layout:fragment="pageJavascript">
-<script type="text/javascript" th:inline="javascript">
-	<!-- 챌린지 달성율정보 상세보기 Modal - challengeModalAchievementDetail -->
-		
-		var challengeModalAchievementDetail = $('.challengeModalAchievementDetail');
-		
-		/* Modal 영역 */
-		$(function(){
-			challengeModalAchievementDetail.click(function(){
-			$("#modal-ChallengeModalAchievementDetail").modal();
-		});
-	});
-</script>
-
-<script type="text/javascript" th:inline="javascript">
-
-
-var ctx = document.getElementById("myChart4").getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-    datasets: [{
-      label: '총횟수',
-      backgroundColor: "#caf270",
-      data: [12, 59, 5, 56, 58,12, 59, 87, 45, 30, 40, 50],
-    }, {
-      label: '성공횟수',
-      backgroundColor: "#008d93",
-      data: [12, 59, 5, 56, 58,12, 59, 65, 51, 60, 70, 80],
-    }, {
-      label: '달성율',
-      backgroundColor: "#2e5468",
-      data: [12, 59, 5, 56, 58, 12, 59, 12, 74, 90, 80, 70],
-    }],
-  },
-options: {
-    tooltips: {
-      displayColors: true,
-      callbacks:{
-        mode: 'x',
-      },
-    },
-    scales: {
-      xAxes: [{
-        stacked: true,
-        gridLines: {
-          display: false,
-        }
-      }],
-      yAxes: [{
-        stacked: true,
-        ticks: {
-          beginAtZero: true,
-        },
-        type: 'linear',
-      }]
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-    legend: { position: 'bottom' },
-  }
-});
-
-		
-</script>
-
-<!-- <script type="text/javascript" th:inline="javascript">
-// Return with commas in between
-var numberWithCommas = function(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
-
-var dataPack1 = [40, 47, 44, 38, 27];
-var dataPack2 = [10, 12, 7, 5, 4];
-var dataPack3 = [17, 11, 22, 18, 12];
-var dates = ["Some l-o-o-o-o-o-o-o-o-o-o-o-n-n-n-n-n-n-g-g-g-g-g-g-g label", "AAA", "BBB", "CCC", "DDDDDDDDD"];
-
-var bar_ctx = document.getElementById('bar-chart');
-
-var bar_chart = new Chart(bar_ctx, {
-  type: 'bar',
-  data: {
-      labels: dates,
-      datasets: [
-      {
-          label: 'Bad Style',
-          data: dataPack1,
-						backgroundColor: "#512DA8",
-						hoverBackgroundColor: "#7E57C2",
-						hoverBorderWidth: 0
-      },
-      {
-          label: 'Warning',
-          data: dataPack2,
-						backgroundColor: "#FFA000",
-						hoverBackgroundColor: "#FFCA28",
-						hoverBorderWidth: 0
-      },
-      {
-          label: 'Error',
-          data: dataPack3,
-						backgroundColor: "#D32F2F",
-						hoverBackgroundColor: "#EF5350",
-						hoverBorderWidth: 0
-      },
-      ]
-  },
-  options: {
-   		animation: {
-      	duration: 10,
-      },
-      tooltips: {
-					mode: 'label',
-        callbacks: {
-        label: function(tooltipItem, data) { 
-        	return data.datasets[tooltipItem.datasetIndex].label + ": " + numberWithCommas(tooltipItem.yLabel);
-        }
-        }
-       },
-      scales: {
-        xAxes: [{ 
-        	stacked: true, 
-          gridLines: { display: false },
-          }],
-        yAxes: [{ 
-        	stacked: true, 
-          ticks: {
-      			callback: function(value) { return numberWithCommas(value); },
-   				}, 
-          }],
-      },
-      legend: {display: true}
-  },
-  plugins: [{
-  beforeInit: function (chart) {
-    chart.data.labels.forEach(function (value, index, array) {
-      var a = [];
-      a.push(value.slice(0, 5));
-      var i = 1;
-      while(value.length > (i * 5)){
-      	a.push(value.slice(i * 5, (i + 1) * 5));
-          i++;
-      }
-      array[index] = a;
-    })
-  }
-}]
- }
-);
-
-</script>
- -->
 </th:block>
 </html>
