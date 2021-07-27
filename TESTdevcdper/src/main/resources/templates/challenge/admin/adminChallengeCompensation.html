@@ -163,6 +163,7 @@
 		                      <th>참여자 이메일</th>
 		                      <th>챌린지 달성율</th>
 		                      <th>보상금액</th>
+		                      <th>보상금액 지급은행</th>
 		                      <th>보상금액 지급계좌</th>
 		                      <th>보상금액 지급일자</th>
 		                      <th>보상지급정보</th>
@@ -171,74 +172,29 @@
 		                  </thead>
 		                  <!--tbody start  -->
 		                  <tbody>
-		                    <tr>
-		                    <td>1.</td>
-		                    <td>깃허브 잔디심기</td>
-		                    <td>tae01@gmail.com</td>
-		                    <td class="project_progress">
-	                          <div class="progress progress-sm">
-	                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-	                          </div>
-	                          </div>
-	                          <small>
-	                              57% Complete
-	                          </small>
-	                      	</td>
-							<td>10,000</td>
-							<td>농협</td>
-							<td>2021년 5월 6일</td>
-							 <td>
-						<button type="button" class="btn btn-block btn-default btn-xs challengeModalCompensationDetailBtn" data-toggle="modal" data-target="#modal-ChallengeModalCompensationDetail">상세보기</button>
-					</td>
-		                      <td>
-								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
-							</td>
-		                    </tr>
-		                    <tr>
-		                    <td>2.</td>
-		                    <td>깃허브 잔디심기</td>
-		                    <td>tae01@gmail.com</td>
-		                    <td class="project_progress">
-	                          <div class="progress progress-sm">
-	                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-	                          </div>
-	                          </div>
-	                          <small>
-	                              57% Complete
-	                          </small>
-	                      	</td>
-							<td>10,000</td>
-							<td>농협</td>
-							<td>2021년 5월 6일</td>
-							 <td>
-								<button type="button" class="btn btn-block btn-default btn-xs challengeModalCompensationDetailBtn" data-toggle="modal" data-target="#modal-ChallengeModalCompensationDetail">상세보기</button>
-							</td>
-		                    <td>
-								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
-							</td>
-		                    </tr>
-		                    <tr>
-		                    <td>3.</td>
-		                    <td>깃허브 잔디심기</td>
-		                    <td>tae01@gmail.com</td>
-			                <td class="project_progress">
-	                          <div class="progress progress-sm">
-	                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-	                          </div>
-	                          </div>
-	                          <small>
-	                              57% Complete
-	                          </small>
-	                      	</td>
-							<td>10,000</td>
-							<td>농협</td>
-							<td>2021년 5월 6일</td>
-							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs challengeModalCompensationDetailBtn" data-toggle="modal" data-target="#modal-ChallengeModalCompensationDetail">상세보기</button>
-							</td>
-		                    <td>
-								<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
-							</td>
+		                    <tr th:if="${#lists.size(challengeCompensationList) > 0}" th:each="l, idx : ${challengeCompensationList}">
+			                    <td id="indexCount" th:text="${idx.count}"></td>
+			                   	<td id="challengeName" th:text="${l.challenge.challengeName}"></td>
+			                   	<td id="challengeParticipationEmail" th:text="${l.challengeParticipationEmail}"></td>
+			                    <td class="project_progress">
+		                          <div class="progress progress-sm">
+		                              <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+		                          </div>
+		                          </div>
+		                          <small>
+		                              57% Complete
+		                          </small>
+		                      	</td>
+								<td id="challengeRewardPrice" th:text="${l.challengeRewardPrice}"></td>
+								<td id="challengeRewardBank" th:text="${l.challengeRewardBank}"></td>
+								<td id="challengeRewardAccount" th:text="${l.challengeRewardAccount}"></td>
+								<td id="challengeRewardDate" th:text="${l.challengeRewardDate}"></td>
+								 <td>
+									<button type="button" class="btn btn-block btn-default btn-xs challengeModalCompensationDetailBtn" data-toggle="modal" data-target="#modal-ChallengeModalCompensationDetail">상세보기</button>
+								</td>
+			                      <td>
+									<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
+								</td>
 		                    </tr>
 		                 </tbody>
 				</table>
@@ -296,5 +252,13 @@
 			});	
 				
 	});
+		
+		
+		
+		/*<![CDATA[*/ 
+		var challengeCompensationList = /*[[ ${challengeCompensationList} ]]*/;
+		/*]]*/ 
+		
+		console.log(challengeCompensationList);
 </script>
 </th:block>

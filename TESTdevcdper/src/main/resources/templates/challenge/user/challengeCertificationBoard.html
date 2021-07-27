@@ -38,7 +38,7 @@
 
 			<div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">오늘의 챌린지 인증</h3>
+                <h3 class="card-title">챌린지 인증</h3>
                 <div class="card-tools">
                 </div>
               </div>
@@ -55,29 +55,16 @@
 							<th>조회수</th>
 	                    </tr>
                     </thead>
-                    <tbody class="myChallengeBody">
-						<tr>
-							<td>1.</td>
-							<td><a th:href=@{/challengeCertificationBoardView}>인증합니다.</a></td>
-							<td>tae01@gmail.com</td>
-							<td>2021년 4월 22일</td>
+                    <tbody class="challengeCertificationBoardList">
+						<tr th:if="${#lists.size(challengeCertificationBoardList) > 0}" th:each="l, idx : ${challengeCertificationBoardList}">
+							 <td id="indexCount" th:text="${idx.count}"></td>
+							 <td id="challengeCertificationTitle" th:text="${l.challengeCertificationTitle}"><a th:href=@{/challengeCertificationBoardView}></a></td>
+							 <td id="challengeParticipationEmail" th:text="${l.challengeParticipation.challengeParticipationEmail}"></td>
+							 <td id="challengeCertificationDate" th:text="${l.challengeCertificationDate}"></td>
 							<td>10</td>
 						</tr>
-						<tr>
-							<td>2.</td>
-							<td><a th:href=@{/challengeCertificationBoardView}>인증합니다.</a></td>
-							<td>tae01@gmail.com</td>
-							<td>2021년 4월 23일</td>
-							<td>7</td>
-						</tr>
-						<tr>
-							<td>3.</td>
-							<td><a th:href=@{/challengeCertificationBoardView}>인증합니다.</a></td>
-							<td>tae01@gmail.com</td>
-							<td>2021년 4월 24일</td>
-							<td>24</td>
-						</tr>
-					</tbody>                  </table>
+					</tbody>                  
+					</table>
                 </div>
                 <!-- /.table-responsive -->
               </div>

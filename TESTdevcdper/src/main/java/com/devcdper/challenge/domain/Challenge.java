@@ -107,8 +107,8 @@ public class Challenge {
 	public String getChallengeProgressStatus() {
 		return challengeProgressStatus;
 	}
-	public void setChallengeProgressStatus(String challengeProgressStatus) {
-		this.challengeProgressStatus = challengeProgressStatus;
+	public String setChallengeProgressStatus(String challengeProgressStatus) {
+		return this.challengeProgressStatus = challengeProgressStatus;
 	}
 	public String getChallengeStartDate() {
 		return challengeStartDate;

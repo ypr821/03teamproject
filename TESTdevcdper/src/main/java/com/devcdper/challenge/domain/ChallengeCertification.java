@@ -29,7 +29,6 @@ public class ChallengeCertification {
 		//챌린지 참여 회원이메일
 		private CoachUser coachUser;
 		private NormalUser normalUser;
-		
 		public String getChallengeCertificationCode() {
 			return challengeCertificationCode;
 		}
@@ -60,7 +59,6 @@ public class ChallengeCertification {
 		public void setChallengeParticipationEmail(String challengeParticipationEmail) {
 			this.challengeParticipationEmail = challengeParticipationEmail;
 		}
-		
 		public String getChallengeCertificationTitle() {
 			return challengeCertificationTitle;
 		}
@@ -121,13 +119,15 @@ public class ChallengeCertification {
 		public void setCoachUser(CoachUser coachUser) {
 			this.coachUser = coachUser;
 		}
-		
 		public NormalUser getNormalUser() {
 			return normalUser;
 		}
 		public void setNormalUser(NormalUser normalUser) {
 			this.normalUser = normalUser;
 		}
+		
+		
+		
 		
 		@Override
 		public String toString() {
@@ -143,6 +143,8 @@ public class ChallengeCertification {
 					+ challenge + ", challengeParticipation=" + challengeParticipation + ", coachUser=" + coachUser
 					+ ", normalUser=" + normalUser + "]";
 		}
+		
+		
 		
 		
 

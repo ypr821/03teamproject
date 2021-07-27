@@ -109,7 +109,8 @@
               </div>
               <div class="form-group">
                 <label for="challengeIntroduce">챌린지 소개</label>
-                <textarea id="challengeIntroduce" name="challengeIntroduce" class="form-control" rows="3"></textarea>
+                <textarea id="challengeIntroduce" name="challengeIntroduce" class="form-control" rows="3" onKeyUp="javascript:fnChkIntroduceByte(this,'1000')"></textarea>
+                <div style="float: right;"><span id="introduceByteInfo">0</span> / 1000글자</div>
               </div>
               </div>
             </div>
@@ -148,7 +149,8 @@
 			 </div>
 			<div class="form-group">
                 <label for="challengeCertificationContents">챌린지 인증내용</label>
-                <textarea id="challengeCertificationContents" name="challengeCertificationContents"  class="form-control" rows="3"></textarea>
+                <textarea id="challengeCertificationContents" name="challengeCertificationContents" class="form-control" rows="3" onKeyUp="javascript:fnChkContentsByte(this,'500')"></textarea>
+              	<div style="float: right;"><span id="contentsByteInfo">0</span> / 500글자</div>
               </div>
               <div class="form-group">
                         <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
@@ -200,6 +202,7 @@
 
 <th:block layout:fragment="pageJavascript">
 <script>
+
 $('#challengeInsertBtn').click(function(){
 	
 	//태그 글자수 제한 정규식 (한글, 숫자 1~10자리)
@@ -387,6 +390,82 @@ $('#challengeInsertBtn').click(function(){
 	if(submitFlag)challengeInsertForm.submit();
 	
 });
+
+
+
+	//챌린지 소개 글자수 제한(1000자)
+	function fnChkIntroduceByte(obj, maxByte){
+    var str = obj.value;
+    var str_len = str.length;
+
+    var rbyte = 0;
+    var rlen = 0;
+    var one_char = "";
+    var str2 = "";
+
+    for(var i=0; i<str_len; i++){
+        one_char = str.charAt(i);
+        if(escape(one_char).length > 4){
+            rbyte += 2;                                         //한글2Byte
+        }
+        else{
+            rbyte++;                                            //영문 등 나머지 1Byte
+        }
+        if(rbyte <= maxByte){
+            rlen = i+1;                                          //return할 문자열 갯수
+        }
+     }
+     if(rbyte > maxByte){
+  // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+  alert("챌린지 소개는 최대 " + maxByte + "글자를 초과할 수 없습니다.")
+  str2 = str.substr(0,rlen);                                  //문자열 자르기
+  obj.value = str2;
+  fnChkIntroduceByte(obj, maxByte);
+  }else{
+        document.getElementById('introduceByteInfo').innerText = rbyte;
+    }
+};
+
+
+
+	//챌린지 인증내용 글자수 제한(500자)
+	function fnChkContentsByte(obj, maxByte){
+    var str = obj.value;
+    var str_len = str.length;
+
+    var rbyte = 0;
+    var rlen = 0;
+    var one_char = "";
+    var str2 = "";
+
+    for(var i=0; i<str_len; i++){
+        one_char = str.charAt(i);
+        if(escape(one_char).length > 4){
+            rbyte += 2;                                         //한글2Byte
+        }
+        else{
+            rbyte++;                                            //영문 등 나머지 1Byte
+        }
+        if(rbyte <= maxByte){
+            rlen = i+1;                                          //return할 문자열 갯수
+        }
+     }
+     if(rbyte > maxByte){
+  // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+  alert("챌린지 소개는 최대 " + maxByte + "글자를 초과할 수 없습니다.")
+  str2 = str.substr(0,rlen);                                  //문자열 자르기
+  obj.value = str2;
+  fnChkContentsByte(obj, maxByte);
+  }else{
+        document.getElementById('contentsByteInfo').innerText = rbyte;
+    }
+};
+     
+     
+     
+	
+	
+
 </script>
 </th:block>
 

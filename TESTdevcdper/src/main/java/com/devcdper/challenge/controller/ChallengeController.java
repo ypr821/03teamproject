@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.devcdper.challenge.domain.Challenge;
 import com.devcdper.challenge.domain.ChallengeCertification;
-import com.devcdper.challenge.domain.ChallengeParticipation;
 import com.devcdper.challenge.service.ChallengeService;
+import com.devcdper.paging.Pagination;
 
 @Controller
 public class ChallengeController {
@@ -78,10 +78,14 @@ public class ChallengeController {
 	//챌린지 탐색하기 - 카테고리별 리스트 화면
 	@RequestMapping(value = "/byCategory", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Challenge> byCategory(@RequestParam(value="challengeCategoryCode") String challengeCategoryCodeValue) {
+	public List<Challenge> byCategory(@RequestParam(value="challengeCategoryCode") String challengeCategoryCodeValue,
+			@RequestParam(value="challengeCategoryName") String categoryBtnName) {
 		
-		System.out.println(challengeCategoryCodeValue + "<< challengeCategoryCodeValue");
-			List<Challenge> ChallengeByCategoryExplorationList = challengeService.getChallengeByCategoryExplorationList(challengeCategoryCodeValue);
+		System.out.println("challengeCategoryCode >>>" + challengeCategoryCodeValue);
+		System.out.println("categoryBtnName >>>" + categoryBtnName);
+		
+			System.out.println(challengeCategoryCodeValue + "<< challengeCategoryCodeValue");
+			List<Challenge> ChallengeByCategoryExplorationList = challengeService.getChallengeByCategoryExplorationList(challengeCategoryCodeValue, categoryBtnName);
 			System.out.println("ChallengeByCategoryExplorationList>>" + ChallengeByCategoryExplorationList);
 		
 		return ChallengeByCategoryExplorationList;
@@ -197,7 +201,7 @@ public class ChallengeController {
 
 	//챌린지 인증하기 등록 페이지 화면
 	@GetMapping("/challengeCertificationInsert")
-	public String challengeCertificationInsert(@RequestParam(name = "challengeName", required = false) String challengeName,
+	public String challengeCertificationInsert(@RequestParam(name = "challengeCode", required = false) String challengeCode,
 					Model model, HttpSession session) {
 		
 		
@@ -212,36 +216,40 @@ public class ChallengeController {
 		}
 		
 		System.out.println("============================================");
-		System.out.println("화면에 입력 받은 값(챌린지 인증 등록): " + challengeName.toString());
+		System.out.println("화면에 입력 받은 값(챌린지 인증 등록): " + challengeCode.toString());
 		System.out.println("============================================");
 		
-		ChallengeParticipation challengeCertificationInsert = challengeService.getChallengeCertificationInfo(challengeName, sessionEmail);
+		ChallengeCertification challengeCertificationInfo = challengeService.getChallengeCertificationInfo(challengeCode, sessionEmail);
 		
 		model.addAttribute("title", "챌린지 인증 등록");
 		model.addAttribute("radioCheck", "challengeCertificationInsert");
-		model.addAttribute("challengeCertificationInsert", challengeCertificationInsert);
+		model.addAttribute("challengeCertificationInfo", challengeCertificationInfo);
 		return "challenge/user/challengeCertificationInsert";
 	}
 	
 	//챌린지 인증하기 - 등록 처리
 	@PostMapping("/challengeCertificationInsert")
-	public String challengeCertificationInsert(ChallengeCertification challengeCertification) {
+	public String challengeCertificationInsert(@RequestParam Map<String, Object> challengeCertification) {
 
 		System.out.println("============================================");
 		System.out.println("화면에 입력 받은 값(챌린지 인증하기): " + challengeCertification.toString());
 		System.out.println("============================================");
 
 		challengeService.addChallengeCertification(challengeCertification);
-
 		return "challenge/user/challengeCertificationBoard";
+
 	}
 
 	
 	//챌린지 인증 게시판 화면
 	@GetMapping("/challengeCertificationBoard")
-	public String challengeCertificationBoard(Model model) {
+	public String challengeCertificationBoard(Model model, String challengeCode) {
+		
+		List<ChallengeCertification> challengeCertificationBoardList = challengeService.getChallengeCertificationBoardList(challengeCode);
+		
 		model.addAttribute("title", "챌린지 인증 게시판");
 		model.addAttribute("radioCheck", "challengeCertificationBoard");
+		model.addAttribute("challengeCertificationBoardList", challengeCertificationBoardList);
 		return "challenge/user/challengeCertificationBoard";
 	}
 
@@ -255,9 +263,7 @@ public class ChallengeController {
 	
 	//나의 챌린지 화면
 	@GetMapping("/myChallenge")
-	public String myChallenge(Model model, HttpSession session, HttpServletResponse response) {
-		model.addAttribute("title", "나의 챌린지");
-		model.addAttribute("radioCheck", "myChallenge");
+	public String myChallenge(Model model, HttpSession session, HttpServletResponse response, Pagination paging) {
 		
 		//가정 - 세션 아이디 : park01@hanmail.net (일반 회원)
 		String sessionEmail = (String) session.getAttribute("UEMAIL");
@@ -276,6 +282,20 @@ public class ChallengeController {
 			out.println("<script>alert('접근 권한이 없습니다. 로그인을 해주세요.'); location.href='/login';</script>");
 			out.flush();
 		}
+		
+		model.addAttribute("title", "나의 챌린지");
+		model.addAttribute("radioCheck", "myChallenge");
+		
+		Map<String, Object> resultMap = challengeService.getMyChallengeList(paging, sessionEmail);
+		System.out.println("resultMap >>>>>>>>>> : " + resultMap);
+		
+		model.addAttribute("myChallengeList", 				resultMap.get("myChallengeList"));
+		model.addAttribute("currentPage", 					resultMap.get("currentPage"));
+		model.addAttribute("lastPage", 						resultMap.get("lastPage"));
+		model.addAttribute("pageStartNum", 					resultMap.get("pageStartNum"));
+		model.addAttribute("pageEndNum", 					resultMap.get("pageEndNum"));
+		model.addAttribute("sessionEmail", 					resultMap.get("sessionEmail"));
+		
 		
 		return "challenge/user/myChallenge";
 	}
@@ -306,8 +326,8 @@ public class ChallengeController {
 			@RequestParam(name="categorySearchOption", required = false) String categorySearchOption,
 			@RequestParam(name="startDateSearchOption", required = false) String startDateSearchOption,
 			@RequestParam(name="endDateSearchOption", required = false) String endDateSearchOption,
-			@RequestParam(name="termSearchOption", required = false) String termSearchOption,
-			@RequestParam(name="dateSortOption", required = false) String dateSortOption,
+			@RequestParam(name="termSortOption", required = false) String termSortOption,
+			@RequestParam(name="sortOption", required = false) String sortOption,
 			@RequestParam(name="certificationFrequencySearchOption", required = false) String certificationFrequencySearchOption,
 			@RequestParam(name="myChallengeSearchKey", required = false) String myChallengeSearchKey,
 			@RequestParam(name="myChallengeSearchValue", required = false) String myChallengeSearchValue
@@ -329,23 +349,22 @@ public class ChallengeController {
 		System.out.println("categorySearchOption :" + categorySearchOption);
 		System.out.println("startDateSearchOption :" + startDateSearchOption);
 		System.out.println("endDateSearchOption :" + endDateSearchOption);
-		System.out.println("termSearchOption" + termSearchOption);
-		System.out.println("dateSortOption" + dateSortOption);
+		System.out.println("termSortOption" + termSortOption);
+		System.out.println("sortOption" + sortOption);
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("sessionEmail", sessionEmail);
 		paramMap.put("categorySearchOption", categorySearchOption);
 		paramMap.put("startDateSearchOption", startDateSearchOption);
 		paramMap.put("endDateSearchOption", endDateSearchOption);
-		paramMap.put("termSearchOption", termSearchOption);
-		paramMap.put("dateSortOption", dateSortOption);
+		paramMap.put("sortOption", sortOption);
 		paramMap.put("certificationFrequencySearchOption", certificationFrequencySearchOption);
 		paramMap.put("myChallengeSearchKey", myChallengeSearchKey);
 		paramMap.put("myChallengeSearchKey", myChallengeSearchKey);
 		paramMap.put("myChallengeSearchValue", myChallengeSearchValue);
 		
-		List<Challenge> insertChallengeList = challengeService.getInsertChallengeList(paramMap);
-		model.addAttribute("insertChallengeList", insertChallengeList);
+		List<Challenge> myChallengeInsertList = challengeService.getMyChallengeInsertList(paramMap);
+		model.addAttribute("myChallengeInsertList", myChallengeInsertList);
 		
 		return "challenge/user/myChallengeInsertList";
 	}
@@ -391,8 +410,6 @@ public class ChallengeController {
 	//나의 챌린지 - 개설 챌린지 수정 화면 
 	@GetMapping("/myChallengeEdit")
 	public String myChallengeEdit(Model model, HttpSession session, String challengeCode) {
-		model.addAttribute("title", "챌린지 설정");
-		model.addAttribute("radioCheck", "myChallengeEdit");
 		
 		System.out.println("챌린지 코드 : " + challengeCode);
 		
@@ -410,6 +427,8 @@ public class ChallengeController {
 		//Challenge modifyChallengePeriod = challengeService.getModifyChallengePeriod(challengeStartDate, challengeEndDate, challengeName);
 		System.out.println(modifyChallengeAttribute +"<<<< modifyChallengeAttribute");
 		//System.out.println(modifyChallengePeriod +"<<<< modifyChallengePeriod");
+		model.addAttribute("title", "챌린지 설정");
+		model.addAttribute("radioCheck", "myChallengeEdit");
 		model.addAttribute("modifyChallengeAttribute", modifyChallengeAttribute);
 		//model.addAttribute("modifyChallengePeriod", modifyChallengePeriod);
 				

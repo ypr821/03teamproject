@@ -13,6 +13,8 @@ public class ChallengeAchievementRate {
 		private String challengeParticipationEmail;
 		private int challengeAchievementRateSuccesCount;
 		private int challengeAchievementRateTotalTimes	;
+		private int challengeAchievementRate;
+		private int challengeFinalRank;
 		private String challengeAchievementRateUpdateDate;
 
 		//챌린지 카테고리
@@ -27,8 +29,6 @@ public class ChallengeAchievementRate {
 		//챌린지 참여 회원이메일
 		private CoachUser coachUser;
 		private NormalUser normalUser;
-		
-		
 		public String getChallengeAchievementRateCode() {
 			return challengeAchievementRateCode;
 		}
@@ -71,6 +71,19 @@ public class ChallengeAchievementRate {
 		public void setChallengeAchievementRateTotalTimes(int challengeAchievementRateTotalTimes) {
 			this.challengeAchievementRateTotalTimes = challengeAchievementRateTotalTimes;
 		}
+		public int getChallengeAchievementRate() {
+			return challengeAchievementRate;
+		}
+		public void setChallengeAchievementRate(int challengeAchievementRate) {
+			this.challengeAchievementRate = challengeAchievementRate;
+		}
+		
+		public int getChallengeFinalRank() {
+			return challengeFinalRank;
+		}
+		public void setChallengeFinalRank(int challengeFinalRank) {
+			this.challengeFinalRank = challengeFinalRank;
+		}
 		public String getChallengeAchievementRateUpdateDate() {
 			return challengeAchievementRateUpdateDate;
 		}
@@ -110,18 +123,16 @@ public class ChallengeAchievementRate {
 		
 		@Override
 		public String toString() {
-			return "ChallengeAchievement [challengeAchievementRateCode=" + challengeAchievementRateCode
+			return "ChallengeAchievementRate [challengeAchievementRateCode=" + challengeAchievementRateCode
 					+ ", challengeCategoryCode=" + challengeCategoryCode + ", challengeCode=" + challengeCode
 					+ ", challengeParticipationCode=" + challengeParticipationCode + ", challengeParticipationEmail="
 					+ challengeParticipationEmail + ", challengeAchievementRateSuccesCount="
 					+ challengeAchievementRateSuccesCount + ", challengeAchievementRateTotalTimes="
-					+ challengeAchievementRateTotalTimes + ", challengeAchievementRateUpdateDate="
+					+ challengeAchievementRateTotalTimes + ", challengeAchievementRate=" + challengeAchievementRate
+					+ ", challengeFinalRank=" + challengeFinalRank + ", challengeAchievementRateUpdateDate="
 					+ challengeAchievementRateUpdateDate + ", challengeCategory=" + challengeCategory + ", challenge="
 					+ challenge + ", challengeParticipation=" + challengeParticipation + ", coachUser=" + coachUser
 					+ ", normalUser=" + normalUser + "]";
 		}
 		
-		
-		
-
 }
