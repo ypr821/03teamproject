@@ -125,14 +125,25 @@ public class CoachingService {
 			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode("+tableName+"♡♡==>>"+ result);
 			return result;
 		}
+		//getNewCode
+		public String getNewCode2(String tableName) {
+			System.out.println("tableName=>"+tableName);
+			int codeMaxNum =  Integer.parseInt(commonMapper.getNewCode2(tableName));
+			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode(" + tableName+ "codeMaxNum♡♡==>>"+ codeMaxNum);
+			String newCode = tableName + "_code_" + (codeMaxNum+1);
+			System.out.println("getNewCode2메서드 newCode=>>" + newCode);
+			return newCode;
+		}
 
 		public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult) {
 			
 			System.out.println("insertCoachingRFQResult 서서서서비비비비스스스 실행");
 			
 			String newCode = getNewCode("coaching_RFQ_result");
+			String newCode2 = getNewCode2("coaching_RFQ_result");
 			System.out.println("newCode=>"+newCode);
-			coachingRFQResult.put("coachingRFQResultCode", newCode);
+			System.out.println("newCode2!!!!!!!!!!!!!=>"+newCode2);
+			coachingRFQResult.put("coachingRFQResultCode", newCode2);
 			//System.out.println("coachingRFQResult===>>>>>"+coachingRFQResult);
 			
 			int result = coachingMapper.insertCoachingRFQResult(coachingRFQResult);

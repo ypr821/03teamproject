@@ -121,7 +121,7 @@
 	          		<label for="plan-coaching"> 코치님과 내 계획짜기 </label>
 	              	 &nbsp; &nbsp;
 	              	 <div class="row">
-					 	<button type="button" class="btn btn-block btn-secondary btn-sm col-2" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>             
+					 	<button type="button" class="btn btn-block btn-secondary btn-sm col-2 coachingTotalPlanBtn" data-toggle="modal" data-target="#modal-coaching-totalPlan">계획 선택</button>             
 	             	    &nbsp; &nbsp;
 	            		 <input type="text" id="coachingTotalPlan" class="form-control col-9" value="선택한 통합계획">
 	              	 </div>
@@ -159,7 +159,7 @@
     <!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
 	<th:block th:replace="/coaching/coachingModal/modal-coaching-totalPlan :: modal-coaching-totalPlan"></th:block>
    	<input id="coachEmail" th:value="${coachEmail}" hidden="true"></input>
-   
+  
    
    
 </th:block>
@@ -168,7 +168,7 @@
 	<script type="text/javascript">
 		//controller model로 부터 넘겨받은 값을 이렇게 받는다.. 
 		console.log("coachEmail=>",$('#coachEmail').val());
-			
+		var planCode = null;	
 		<!--  코치님과 내 계획 짜기 통합계획 선택  Modal  -->
 		$(function(){
 			$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
@@ -179,6 +179,143 @@
 			$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
 				  $('#myInput').focus()
 				})
+				
+			
+			$('.coachingTotalPlanBtn').click(function(){
+				console.log('coachingTotalPlanBtn 클릭이벤트 확인');		
+				$('#modal-coaching-totalPlan').show();
+				jQuery.ajax({ 
+					type: "POST", 
+					url: "/chooseTotalPlan", 
+					cache: false, 
+					data: {}, 
+					datatype: "JSON", 
+					success: function (totalPlan) { 
+						console.log('totalPlan : ',totalPlan,'- 잘받았다 오버');
+						if(totalPlan != null && totalPlan != ''){
+							console.log("totalPlan.length=>",totalPlan.length)
+							//$('#coachingTotalPlan').val('선택한 통합계획이 없습니다.');
+							$('.planTable tbody').html("");
+							for(i=0;i<totalPlan.length;i++){
+								$('#totalPlanNum').val(i);
+								//$('#totalPlanTitle').text(totalPlan[].planTitle);
+								
+								var trSource =  '<tr> ' 
+												+'<td>'+(i+1)+'</td>'
+												+'<td>'
+												+	'<a>'
+												+ 		totalPlan[i].planTitle
+												+	'</a>'
+												+	'<br/>'
+												+	'<small>'
+												+	'	등록일 : '
+												+		 totalPlan[i].registerDate
+												+	'</small>'
+												+'</td>'
+												+'<td><button type="button" class="btn btn-default btn-sm planContentsBtn">'
+												+'계획내용보기</button></td>'
+												+'<td>'
+												+	'<a>'+totalPlan[i].startDate+'</a>'
+												+'</td>'
+												+'<td>'
+												+	'<a>'+totalPlan[i].endDate+'</a>'
+												+'</td>'
+												+'<td>'
+												+	'<span class="badge badge-danger planStatus">'
+												+ 		totalPlan[i].planStatus
+												+	'</span>'
+												+'</td>'
+												+'<td>'
+												+		totalPlan[i].totalPlanDivision
+												+'</td>'
+												+'<td>'
+												+	'<a>'
+												+		totalPlan[i].planDegree
+												+	'</a>'
+												+'</td>'
+												+'<td>'
+												+	'<a class="degreeChangeReason"'+ totalPlan[i].all_plan_degree_change_reason +'></a>'
+												+	'<button type="button" class="btn btn-default btn-sm degreeChangeReasonBtn">'
+												+		'<i class="far fa-comment-alt">&nbsp;<small>상세보기</small></i>'
+												+	'</button>'
+												+'</td>'
+												+'<td>'
+												+'	<button class="btn btn-default btn-xs choiceTotalPlanBtn">'
+												+'		<ion-icon name="checkmark-outline"></ion-icon>'
+												+'		선택'
+												+'	</button>'
+												+'</td>'
+												+'</tr>'
+									
+								$('.planTable tbody').append(trSource)
+								console.log(totalPlan[i].planContents);
+							}
+							
+							$('.planContentsBtn').click(function(){
+								console.log('planContentsBtn 클릭확인');
+								console.log('첫번째 td innerText()확인=>',($(this).parents('tr').children().first().text())-1);
+								var countNum = ($(this).parents('tr').children().first().text())-1;
+								
+								
+								$("#myModal").modal();
+								$(".modalContents").text(totalPlan[countNum].planContents);					
+								
+							});
+							$('.degreeChangeReasonBtn').click(function(){
+								console.log('degreeChangeReasonBtn 클릭확인');
+								console.log('첫번째 td .innerText()확인=>',($(this).parents('tr').children().first().text())-1);
+								var countNum = ($(this).parents('tr').children().first().text())-1;
+								
+								$("#myModal2").modal();
+								$(".degreeChangeReasonModal").text(totalPlan[countNum].degreeChangeReason);
+							});
+							
+							
+							$('.choiceTotalPlanBtn').click(function(){
+								console.log('choiceTotalPlanBtn 클릭확인');
+								//console.log('첫번째 td .innerText()확인=>',($(this).parents('tr').children().first().text())-1);
+								var countNum = ($(this).parents('tr').children().first().text())-1;
+								console.log('planCode =>',totalPlan[countNum].planCode);
+								var totalPlanCode = totalPlan[countNum].planCode;
+								planCode = totalPlanCode;
+								//코치 통합계획 ajax 제목 보여주기
+								if(totalPlanCode != null && totalPlanCode != ''){
+									jQuery.ajax({ 
+										type: "POST", 
+										url: "/coachingTotalPlan", 
+										cache: false, 
+										data: { totalPlanCode: totalPlanCode}, 
+										datatype: "JSON", 
+										success: function (obj) { 
+											console.log('obj : ',obj,'- 잘받았다 오버');
+											//console.log('type check obj : ',typeof(obj))//String이네
+											console.log("obj[0].planTitle : ",obj[0].planTitle,'- 잘받았다 오버');
+											if(obj != null && obj != ''){
+												$('#coachingTotalPlan').val(obj[0].planTitle);
+												planCode = totalPlanCode;
+											}
+											$('#modal-coaching-totalPlan .justify-content-between [type=button]:not(:disabled)').click();
+											//location.reload();
+											
+											
+										}, 
+										error: function (xhr, status, error) { 
+											//console.log("ERROR!!!"); 
+											$('#coachingTotalPlan').val('선택한 통합계획이 없습니다.');
+										} 
+									});
+								}else{
+									$('#coachingTotalPlan').val('선택한 통합계획이 없습니다.');
+								}
+							});
+						}
+					}, 
+					error: function (xhr, status, error) { 
+						console.log("ERROR!!!"); 
+					} 
+				});
+			})	
+				
 		});
 		
 	
@@ -200,7 +337,7 @@
 					coachingType = '컨설턴트';
 				}
 				
-				
+			
 				//카테고리코드값
 				//console.log($('#coachingCategory').val());
 				//카테고리 유효성 검사
@@ -276,7 +413,7 @@
 									
 								//모든 데이터 입력완료후 ajax 발동	
 								}else{
-									
+									console.log('planCode==>>' ,planCode);
 									//코치 통합계획 ajax
 									jQuery.ajax({ 
 										type: "POST", 
@@ -284,7 +421,7 @@
 										cache: false, 
 										data: { coachingRFQCode         : null
 											,coachingCategoryCode       : $('#coachingCategory').val()
-											,totalPlanCode              : null
+											,totalPlanCode              : planCode  
 											,planDetailCode             : null
 										 	,coachUserEmail             : $('#coachEmail').val()
 											,userEmail                  : null
@@ -300,7 +437,7 @@
 										success: function (obj) { 
 											console.log('obj : ',obj,'- 잘받았다 오버')
 											console.log('type check obj : ',typeof(obj))//String이네
-											
+											location.replace('/myCoachingClient');
 											//연결은 시킴 이후 토탈플랜 리스트 넘겨주고 받아서 화면단에 뿌려주는 작업필요 
 											
 											//var data = JSON.parse(obj); 

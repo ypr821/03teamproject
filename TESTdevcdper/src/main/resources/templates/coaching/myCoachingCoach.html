@@ -453,13 +453,19 @@
 </th:block>
 
 <th:block layout:fragment="pageJavascript">
+
 <!-- 모달 script단 -->
-	
 	<!-- 견적요청 상세보기 Modal Js -->
-	<th:block th:replace="/coaching/coachingJs/coachingRFQJs  ::  coachingRFQJs"></th:block>
+	<script th:inline="javascript">
+	/*<![CDATA[*/ 
+	var myCoachingList = /*[[ ${myCoachingList} ]]*/;
+	/*]]*/ 
+	</script>
+	
+	<script type="text/javascript" src="coachingJs/coachingRFQJs.js"></script>
 	
 	<!-- 견적결과 상세보기 Modal Js -->
-	<th:block th:replace="/coaching/coachingJs/coachingRFQResultJs  ::  coachingRFQResultJs"></th:block>
+	<script type="text/javascript" src="coachingJs/coachingRFQResultJs.js"></script>
 	
 	<script th:inline="javascript">
 			
@@ -479,9 +485,7 @@
 
 			
 			$(function(){
-				
-			
-		
+	
 				/*  중단 경고 메시지 */
 				$('#coaching-stopModalBtn').click(function(){
 					alert('코칭을 중단하시겠습니까')

@@ -9,4 +9,9 @@
 							#{tableName, mode=IN,  jdbcType=VARCHAR}
 							)}
 	</select>
+	<select id="getNewCode2" parameterType="String" resultType="String" statementType="CALLABLE">
+		SELECT
+			MAX(cast(SUBSTRING_INDEX(c.${tableName}_code,'_code_',-1)AS INT))
+		FROM ${tableName} AS  c
+	</select>
 </mapper>
