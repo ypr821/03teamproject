@@ -169,6 +169,25 @@ public class CoachingController {
 	}
 	
 	
+	//통합계획선택하기 모달창 통합계획 리스트 넘겨주기
+	@PostMapping("/chooseTotalPlan")
+	@ResponseBody
+	public List<PlanDto> chooseTotalPlan(Model model, HttpSession session) {
+		System.out.println("controller chooseTotalPlan메서드 ");
+		System.out.println("session UEMAIL=>" + session.getAttribute("UEMAIL")); 
+		String sessionId = (String) session.getAttribute("UEMAIL");
+		List<PlanDto> totalPlan = planService.getTotalPlan("user_email",sessionId);
+		
+		System.out.println("totalPlan=>" + totalPlan); 
+		model.addAttribute("totalPlan", totalPlan);
+	
+		return totalPlan;
+	}
+	
+	
+	
+	
+	
 	
 	//나의 코칭 (일반회원) 페이지 화면
 	@GetMapping("/myCoachingClient")
@@ -196,20 +215,21 @@ public class CoachingController {
 		return "coaching/myCoachingClient";
 	}
 	
-	
-	
+
 	
 	//코칭 견적결과 등록 화면
 	@PostMapping("/insertCoachingRFQResult")
 	@ResponseBody
-	public int insertCoachingRFQResult(Model model
-			, HttpSession session, @RequestParam Map<String, Object> coachingRFQResult
+	public int insertCoachingRFQResult(@RequestParam Map<String, Object> coachingRFQResult
 			) {
-		
+		int result = -1;
 		System.out.println("coachingRFQResult =>>"+coachingRFQResult);
 		System.out.println("======insertCoachingRFQResult 메서드 실행==========");
-		int result = coachingService.insertCoachingRFQResult(coachingRFQResult);
-		return 0;
+		if(!"".equals(coachingRFQResult) && coachingRFQResult != null ) {			
+			result = coachingService.insertCoachingRFQResult(coachingRFQResult);
+			System.out.println("result=>>"+result);
+		}
+		return result;
 	}
 	
 	//코칭 견적요청 update 처리

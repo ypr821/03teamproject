@@ -272,10 +272,20 @@
 
 	
 	<th:block layout:fragment="pageJavascript">
+		
+		<!-- 견적요청 상세보기 Modal Js -->
+		<script th:inline="javascript">
+		/*<![CDATA[*/ 
+		var myCoachingList = /*[[ ${myCoachingList} ]]*/;
+		/*]]*/ 
+		</script>
+		
+		<script type="text/javascript" src="coachingJs/coachingRFQJs.js"></script>
+		
+		<!-- 견적결과 상세보기 Modal Js -->
+		<script type="text/javascript" src="coachingJs/coachingRFQResultJs.js"></script>
+
 	
-		<!-- 모달 script단 -->
-		<!-- <script type="text/javascript" th:inline="javascript" th:src="@{/coachingJs/coachingRFQJs.js}"></script> -->
-	    <th:block th:replace="/coaching/coachingJs/coachingRFQJs  ::  coachingRFQJs"></th:block>
 		<script th:inline="javascript">
 				<!-- 견적요청 상세보기 Modal -->
 				$(function(){
@@ -285,8 +295,8 @@
 						$('.checkbox').removeAttr("checked");
 						$('.checkbox1').removeAttr("checked");
 						//$('.container-fluid').css("pointer-events","auto");
-						
 						location.reload();
+						
 					})
 					
 					
@@ -341,9 +351,7 @@
 					<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
 					
 				});
-				
-				
-				
+			
 		</script>
 	</th:block>
 </html>

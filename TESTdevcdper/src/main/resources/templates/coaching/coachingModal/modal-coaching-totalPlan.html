@@ -18,231 +18,64 @@
 	            <div class="modal-body">
 	            	
 					<br>
-					<!-- 검색 -->
-					<div class="card card-default">
-						<div class="card-body">
-						    <section class="content" id="">
-						        <div class="container-fluid">
-						            <form action="coachingAdminPage">
-						                <div class="row">
-						                    <div class="col-md-10 offset-md-1">
-						                        <div class="row">
-						                            <div class="col-3">
-						                                <div class="form-group">
-						                                    <label>구분</label>
-						                                    <select class="js-example-placeholder-single js-states form-control">
-						  										<option>전체</option>
-						  										<option>멘토링</option>
-						  										<option>컨설팅</option>
-															</select>
-						                                </div>
-						                            </div>
-						                            <div class="col-3">
-						                                <div class="form-group">
-						                                    <label>상태</label>
-						                                    <select class="js-example-placeholder-single js-states form-control">
-						  										<option selected="" >전체</option>
-						  										<option>계획중</option>
-						                                        <option>진행중</option>
-						                                        <option>중단</option>
-						                                        <option>완료</option>
-															</select>
-						                                </div>
-						                            </div>
-						                            <div class="col-3">
-						                                <div class="form-group">
-						                                    <label>기간선택</label>
-						                                    <select class="js-example-placeholder-single js-states form-control">
-						                                        <option selected="">전체</option>
-						                                        <option>지난 1일</option>
-						                                        <option>지난 1주</option>
-						                                        <option>지난 1개월</option>
-						                                        <option>지난 1년</option>
-						                                        <!-- <option>기간 설정</option> -->
-															</select>
-						                                </div>
-						                            </div>
-						                            <div class="col-3">
-						                                <div class="form-group">
-						                                    <label>정렬</label>
-						                                    <select class="js-example-placeholder-single js-states form-control">
-						  										<option selected="" data-select2-id="8">최신순</option>
-						                                        <option>오래된순</option>
-															</select>
-						                                </div>
-						                            </div>
-						                        
-						                        </div>
-						                        <div class="form-group">
-						                            <div class="input-group input-group-lg">
-						                            	<div class="col-2">
-							                                <div class="form-group">
-							                                    <label>검색옵션</label>
-							                                    <select class="js-example-placeholder-single js-states form-control">
-							  										 <option selected="">전체</option>
-								                                        <option>차수</option>
-								                                      	<option>내용</option>
-								                                        <option>제목</option>
-								                                        <option>제목+내용</option>
-								                                        <option>등록일자</option>
-																</select>
-							                                </div>
-							                            </div>
-						                                <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="Type your keywords here" value="검색어를 입력해주세요">
-						                                <div class="input-group-append">
-						                                    <button  class="btn btn-lg btn-default btn-sm" style="height : 49px;margin-top : 25px;">
-						                                        <i class="fa fa-search"></i>
-						                                    </button>
-						                                </div>
-						                            </div>
-						                        </div>
-						                    </div>
-						                </div>
-						            </form>
-						        </div>
-			    			</section>
-			   			</div>
-			    	</div>
-			    	<!-- /검색-->
-					
-
-	            	<table class="table table-striped projects">
-						<thead>
-							<tr style="text-align: center;">
-								<th>
-									순번
-								</th>
-								<th>
-									통합계획명
-								</th>
-								<th>
-									계획내용
-								</th>
-								<th>
-									시작일자
-								</th>
-								<th>
-									종료일자
-								</th>
-								<th>
-									진행율
-								</th>
-								<th>
-									상태
-								</th>
-								<th>
-									차수
-								</th>
-								<th>
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">
+								통합계획
+							</h3>
+							
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+									<i class="fas fa-minus"></i>
+								</button>
+							</div>
+						</div>
+						<div class="card-body p-0" style="overflow: scroll; white-space: nowrap;">
+							<table class="table table-striped planTable">
+								<thead>
+									<tr>
+										<th>
+											순번
+										</th>
+										<th>
+											통합계획제목
+										</th>
+										<th>
+											통합계획내용
+										</th>
+										<th>
+											시작일자
+										</th>
+										<th>
+											종료일자
+										</th>
+										<th>
+											진행상태
+										</th>
+										<th>
+											구분
+										</th>
+										<th>
+											차수
+										</th>
+										<th>
+											차수변경사유
+										</th>
+										<th>
+										
+										</th>
+									</tr>
+								</thead>
+								<tbody>
 									
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr style="text-align: center;">
-								<td>
-									1
-								</td>
-								<td>
-									<a>
-									통합계획 팀프로젝트구현하기
-									</a>
-									<br/>
-									<small>
-										Created 2021.06.19
-									</small>
-								</td>
-								<td>
-									<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
-								</td>
-								<td> 
-									<a>2021.06.20</a>
-								</td>
-								<td>
-									<a>2021.08.06</a>
-								</td>
-								<td class="project_progress">
-									<div class="progress progress-sm">
-										<div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-										</div>
-									</div>
-									<small>
-										57% Complete
-									</small>
-								</td>
-								<td class="project-state">
-									<span class="badge badge-danger">
-										중단됨
-									</span>
-								</td>
-								<td>
-									<a>
-										1차
-									</a>
-								</td>
-		  						<td class="project-actions text-center">
-									<a class="btn btn-primary btn-sm autoScroll" th:href="@{#}">
-										<ion-icon name="checkbox-outline"></ion-icon>
-										선택
-									</a>
-								</td>
-							</tr>
-							<tr style="text-align: center;">
-								<td>
-									2
-								</td>
-								<td>
-									<a>
-										통합계획 팀프로젝트구현하기
-									</a>	
-									<br/>
-									<small>
-										Created 2021.06.20
-									</small>
-								</td>
-								<td>
-									<textarea class="form-control" cols="30" rows="3" style="resize: none;" readonly>팀프로젝트 구현을 성공적으로 하기위한 계획</textarea>
-								</td>
-								<td>
-									<a>2021.06.20</a>
-								</td>
-								<td>
-									<a>2021.08.06</a>
-								</td>
-								<td class="project_progress">
-									<div class="progress progress-sm">
-										<div class="progress-bar bg-primary" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-										</div>
-									</div>
-									<small>
-										70% Complete
-									</small>
-								</td>
-								<td class="project-state">
-									<span class="badge badge-primary">
-										진행중
-									</span>
-								</td>
-								<td>
-									<a>
-										2차
-									</a>
-									<br/>
-									<small>
-										멘토링계약으로 인한차수변경
-									</small>
-								</td>
-		  						<td class="project-actions text-center">
-									<a class="btn btn-primary btn-sm" th:href="@{#}">
-										<ion-icon name="checkbox-outline"></ion-icon>
-										선택
-									</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+								</tbody>
+							</table>
+						</div>
+					<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
 					
-					<!-- 페이지번호 -->
+					<!-- Paging 영역 시작 -->
 					<ul class="pagination justify-content-center m-0">
 						<li class="page-item active"><a class="page-link" href="#">1</a></li>
 						<li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -253,18 +86,19 @@
 						<li class="page-item"><a class="page-link" href="#">7</a></li>
 						<li class="page-item"><a class="page-link" href="#">8</a></li>
 					</ul>
-					      	  
-
-
 	            </div>
 	            <div class="modal-footer justify-content-between">
 	              <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	              <button type="button" class="btn btn-primary">선택완료</button>
+	             
 	            </div>
 	          </div>
 	          <!-- /.modal-content -->
 	        </div>
 	</div>
+	<!-- planModalContents -->
+	<th:block th:replace="/fragments/planModal/planModalContents :: planModalContents"></th:block>
+	<!-- planModalDegree -->
+	<th:block th:replace="/fragments/planModal/planModalDegree :: planModalDegree"></th:block>
 
 </th:block>
 <!-- /코치님과 내 계획 짜기 통합계획 선택  Modal --> 

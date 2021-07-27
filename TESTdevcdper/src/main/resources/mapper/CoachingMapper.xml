@@ -149,7 +149,7 @@
 		UPDATE coaching_RFQ
 		SET
 			coaching_category_code= #{coachingCategoryCode},
-			total_plan_code = null,
+			total_plan_code = #{totalPlanCode},
 			plan_detail_code = null,
 			coaching_RFQ_day = #{coachingRFQDay},
 			coaching_RFQ_start_date= #{coachingRFQStartDate},
@@ -179,7 +179,7 @@
 			VALUES(
 			sf_createCode(),
 			#{coachingCategoryCode},
-			null,
+			#{totalPlanCode},
 			null,
 			#{coachUserEmail},
 			#{userEmail},
