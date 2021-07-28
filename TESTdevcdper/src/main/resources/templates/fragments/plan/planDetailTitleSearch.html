@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:fragment="planDetailTitleSearch">
 	<!-- 검색 -->
 	<div class="card card-default">
@@ -7,28 +8,27 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-10 offset-md-1">
+						
 						<div class="row">
 							<div class="form-group col-6" style="text-align: center;">
 								<label>통합계획 선택하기</label>
-								<select class="js-example-placeholder-single js-states form-control">
-									<option selected>통합계획을 선택해 주세요.</option>
-									<option>백엔드 개발자 취업준비</option>
-									<option>백엔드 취업 후 1~3년차</option>
-									<option>배달의 민족 취업하기</option>
+								<select class="js-example-placeholder-single js-states form-control" name="totalPlanSelect" id="totalPlan">
+									<option selected >통합계획을 선택해 주세요.</option>
+									<option class="totalPlanTitle" th:each="tpl:${totalPlanList}" th:text="${tpl.planTitle}" th:value="${tpl.planCode}"></option>
+									<!--planController 에서 totalPlanList  -->
 								</select>
 							</div>
-						</div>
-						<div class="row">
+						
+							
 							<div class="form-group col-6" style="text-align: center;">
 								<label>계획 선택하기</label>
-								<select class="js-example-placeholder-single js-states form-control">
-									<option selected>통합계획을 선택해 주세요.</option>
-									<option>백엔드 개발자 취업준비</option>
-									<option>백엔드 취업 후 1~3년차</option>
-									<option>배달의 민족 취업하기</option>
+								<select disabled class="js-example-placeholder-single js-states form-control" name="planSelect" id="plan">
+									<option selected >계획을 선택해 주세요.</option>
+									
 								</select>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -36,4 +36,11 @@
 	</div>
 	<!-- /검색-->
 </th:block>
+
+<th:bolck layout:fragment="pageJavascript">
+	<script type="text/javascript">
+	
+	
+	</script>
+</th:bolck>
 </html>
