@@ -7,6 +7,7 @@
 	<resultMap type="CoachUser" id="CoachUserResultMap">
 		<result property="coachEmail" 							column="coach_user_email"/>
 		<result property="coachPassword"				 		column="coach_password"/>
+		<result property="coachPasswordAnswer" 					column="coach_password_answer"/>
 		<result property="coachName" 							column="coach_name"/>
 		<result property="coachBirth" 							column="coach_birth"/>
 		<result property="coachAddr"					 		column="coach_addr"/>
@@ -30,11 +31,34 @@
 		<result property="coachWithdrawStatus" 					column="coach_withdraw_status"/>
 	</resultMap>
 	
+	<select id="coachForgotPassword" parameterType="String" resultMap="CoachUserResultMap">
+		SELECT 
+			coach_password
+		FROM 
+			coach_user
+		WHERE coach_user_email=#{coachEmail} AND coach_password_answer =#{coachPasswordAnswer};		
+	</select>
+	
+	<select id="coachForgotEmail" parameterType="String" resultMap="CoachUserResultMap">
+		SELECT 
+			coach_user_email
+		FROM 
+			coach_user
+		WHERE
+			coach_name = #{coachName} AND coach_mobile = #{coachMobile}
+	</select>
+	
 	<update id="modifyCoachUser" parameterType="CoachUser">
 		UPDATE coach_user
 		<trim prefix="SET" prefixOverrides=",">
+			<if test="coachEmail != null and coachEmail != ''.toString()">	
+			coach_user_email=#{coachEmail}
+			</if>
 			<if test="coachPassword != null and coachPassword != ''.toString()">	
 			coach_password=#{coachPassword}
+			</if>
+			<if test="coachPasswordAnswer != null and coachPasswordAnswer != ''.toString()">	
+			,coach_password_answer=#{coachPasswordAnswer}
 			</if>
 			<if test="coachName != null and coachName != ''.toString()">	
 				,coach_name=#{coachName}
@@ -80,7 +104,7 @@
 			</if>
 		</trim>
 		WHERE 
-			coach_user_email= #{coachEmail};
+			coach_user_email=#{coachEmail};
 		
 	</update>
 	
@@ -88,6 +112,7 @@
 		SELECT 
 			coach_user_email
 			,coach_password
+			,coach_password_answer
 			, coach_name
 			, coach_birth
 			, coach_addr
@@ -113,6 +138,7 @@
 		INSERT INTO coach_user
 			(coach_user_email
 			, coach_password
+			, coach_password_answer 
 			, coach_name
 			, coach_birth
 			, coach_addr
@@ -137,6 +163,7 @@
 		VALUES (
 			#{coachEmail}
 			, #{coachPassword}
+			, #{coachPasswordAnswer}
 			, #{coachName}
 			, #{coachBirth}
 			, #{coachAddr}

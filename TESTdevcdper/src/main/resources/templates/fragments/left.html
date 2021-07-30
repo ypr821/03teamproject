@@ -56,16 +56,16 @@
 				style="font-size: 14px;">
 				<!-- Add icons to the links using the .nav-icon class
 	           with font-awesome or any other icon font library -->
-				<li class="nav-item" th:if="${function == null}"><a
-					href="devcdper/introduce.html" th:if="${session.ULEVEL == null}"
-					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
+				<li class="nav-item" th:if="${function == null}">
+				<a th:href="@{/}" th:if="${session.ULEVEL == null}" class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
 						<p>DEV-CDPER 소개</p>
-				</a></li>
-				<li class="nav-item" th:if="${function == null}"><a
+				</a>
+				</li>
+				<!-- <li class="nav-item" th:if="${function == null}"><a
 					href="devcdper/guide.html" th:if="${session.ULEVEL == null}"
 					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
 						<p>DEV-CDPER 가이드</p>
-				</a></li>
+				</a></li> -->
 				
 				
 			<li class="nav-item has-treeview" th:if="${function == null}">
@@ -419,7 +419,7 @@
 					<a th:href="@{/mainCoaching}" class="nav-link">
 						<i class="nav-icon fab fa-dev"></i>
 						<p>
-							코칭 푸름 !
+							코칭
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
@@ -427,31 +427,31 @@
 						<li class="nav-item mentoring">
 							<a th:href="@{/mentoring}" class="nav-link">
 								<i class="nav-icon fab fa-dev"></i>
-								<p>1.멘토링 푸름 !</p>
+								<p>1.멘토링 </p>
 							</a>
 						</li>
 						<li class="nav-item consulting">
 							<a th:href="@{/consulting}" class="nav-link">
 								<i class="nav-icon fab fa-dev"></i>
-								<p>2.컨설팅 푸름!</p>
+								<p>2.컨설팅</p>
 							</a>
 						</li>
 						<li class="nav-item myCoachingClient">
 							<a th:href="@{/myCoachingClient}" class="nav-link">
 								<i class="nav-icon fab fa-dev"></i>
-								<p>3.나의 코칭(일반) 푸름!</p>
+								<p>3.나의 코칭(일반)</p>
 							</a>
 						</li>
 						<li class="nav-item myCoachingCoach">
 							<a th:href="@{/myCoachingCoach}" class="nav-link">
 								<i class="nav-icon fab fa-dev"></i>
-								<p>4.나의 코칭(코치) 푸름!</p>
+								<p>4.나의 코칭(코치)</p>
 							</a>
 						</li>
 						<li class="nav-item coachingAdminPage">
 							<a th:href="@{/coachingAdminPage}" class="nav-link">
 								<i class="nav-icon fab fa-dev"></i>
-								<p>5.코칭 관리자 페이지 푸름!</p>
+								<p>5.코칭 관리자 페이지 </p>
 							</a>
 						</li>
 					</ul>

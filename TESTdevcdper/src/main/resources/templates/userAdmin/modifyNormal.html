@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/addDefault}">
+	  layout:decorate="@{layout/add&ModifyDefault}">
 	  
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">main title</title>
@@ -59,6 +59,15 @@
 														</div>
 													</div>
 												</div>
+												<div>패스워드 찾기 답변</div>
+												<div class="input-group mb-3">
+													<input type="text" name="userPasswordAnswer" class="form-control" th:value="${normalUser.userPasswordAnswer}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
 												<div>이름</div>
 												<div class="input-group mb-3">
 													<input type="text" name="userName" class="form-control" th:value="${normalUser.userName}"/>
@@ -107,28 +116,15 @@
 												
 												<div>연락처</div>
 												<div class="input-group mb-3">
-													<select name="userMoblie" style="width: 7%;"  class="form-control" th:selected = "${normalUser.userMoblie}">
-						                                <option value="">선택</option>
-						                                
-						                                    <option value="010">010</option>
-						                                
-						                                    <option value="011">011</option>
-						                                
-						                                    <option value="016">016</option>
-						                                
-						                                    <option value="017">017</option>
-						                                
-						                                    <option value="018">018</option>
-						                                
-						                                    <option value="019">019</option>
-						                                
-						                            </select>-
-												     <input type="text" name="userMoblie"  class="form-control" th:value="${normalUser.userMoblie}" size="5" /> - 
-												     <input type="text" name="userMoblie"  class="form-control" th:value="${normalUser.userMoblie}" size="5" /><br />
+													<input type="text" name="userMoblie" class="form-control" maxlength="13" id="Mobile" 
+														th:value="${normalUser.userMoblie}" />
+													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
 														</div>
 													</div>
+												</div>
+												
 												<div>직업</div>
 												<div class="input-group mb-3">
 													<input type="text" class="form-control" name="userJob" th:value="${normalUser.userJob}">
@@ -159,8 +155,8 @@
 													</div>
 													<!-- /.col -->
 												</div>
-												</div>
 											</form>
+												</div>
 										</div>
 										<!-- /.form-box -->
 									</div>

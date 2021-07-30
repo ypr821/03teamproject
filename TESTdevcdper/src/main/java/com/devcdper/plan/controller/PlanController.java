@@ -27,15 +27,16 @@ public class PlanController {
 	public PlanController(PlanService planService) {
 		this.planService = planService;
 	}
-	
-	
+
 	/*---------------------------------------------:::: 통합계획 Start ::::-----------------------------------------------------*/
 	/* 통합계획 조회 */
 	@GetMapping("/totalPlan")
 	public String totalPlan(Model model, HttpSession session, @RequestParam(name="userEmail", required = false)String userEmail) {
 		
-//		String sessionEmail = (String) session.getAttribute("UEMAIL");
-		String sessionEmail = "park01@hanmail.net";
+		String sessionEmail = (String) session.getAttribute("UEMAIL");
+		System.out.println("sessionEmailCheck : " + sessionEmail);
+		
+		// 추후에 관리자가 화면에서 입력한 이메일을 넣을예정
 		userEmail = "park01@hanmail.net";
 		System.out.println(sessionEmail + " <<- sessionEmail : /totalPlan GetMapping ( 사용자 session에 등록되어있는 UEMAIL확인  )");
 		System.out.println(userEmail + " <<- userEmail : /totalPlan GetMapping ( 관리자가 화면에서 입력한 회원이메일 )");
@@ -56,7 +57,6 @@ public class PlanController {
 			List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
 			model.addAttribute("totalPlanList", totalPlanList);
 		}
-		
 		
 		model.addAttribute("title", "통합계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출

@@ -1,5 +1,8 @@
 /*AJAX*/
 
+var planName=$('.planName').val();
+console.log($('.planName').val());
+
 
 $('#totalPlan').on('change',function(){
 		var firstSelect = $("#totalPlan option:eq(0)").prop("selected"); //첫번째 option 선택
@@ -24,8 +27,8 @@ $('#totalPlan').on('change',function(){
 			var request=$.ajax({
 				url: "/totalPlanSelected",
 				method: "POST",
-				data: {stotalPlanCode:stotalPlanCode},
-				dataType: "json",   //리턴타입, 무조건 json으로 넘기려고하니 에러나지... 리턴타입을 잘 보라구~
+				data: {stotalPlanCode:stotalPlanCode, planName:planName},
+				dataType: "json",   
 				
 				
 				
@@ -33,26 +36,31 @@ $('#totalPlan').on('change',function(){
 					$('#plan').children().remove();
 					console.log("응답받은 data = ",data);
 					var htmlOption ='';
-					if(data != null && data != undefined && data !='' && data.length > 0){
-						htmlOption+="<option selected>계획을 선택해 주세요.</option>";
-						$.each(data,function(index,item){
-							htmlOption+='<option value="';
-							htmlOption+=item.planCode;
-							htmlOption+='">';
-							htmlOption+= item.planTitle;
+					
+					$.each(data,function(index,planItem){
+						console.log("ppppp",planItem);
+						if(data[planName] != null && data[planName] != undefined && data[planName] !='' && data[planName].length > 0){
+							console.log("접근성공");
+							htmlOption+="<option selected>계획을 선택해 주세요.</option>";
+							$.each(planItem,function(index,item){
+								htmlOption+='<option value="';
+								htmlOption+=item.planCode;
+								htmlOption+='">';
+								htmlOption+= item.planTitle;
+								htmlOption+='</option>';
+								
+							});
+						}else{
+							console.log('접근실패');
+							htmlOption+='<option>';
+							htmlOption+= "계획이 없습니다. 계획을 만들어주세요.";
 							htmlOption+='</option>';
-							//$('#plan').html(htmlOption);
-						});
-					}	else{
-						htmlOption+='<option>';
-						htmlOption+= "계획이 없습니다. 계획을 만들어주세요.";
-						htmlOption+='</option>';
-						//$('#plan').html(htmlOption);
-					}
-					
-					$('#plan').html(htmlOption);
-					
-					
+							
+						}
+						
+						$('#plan').html(htmlOption);
+						
+					});//바깥each문
 				},
 				error : function(xhr,status,error) {
 					console.log("xhr: " + xhr);
@@ -88,124 +96,163 @@ $("#searchBtn").on('click',function(){
 	var request=$.ajax({
 		url: "/totalAndPlanSelected",
 		method: "POST",
-		data: {totalPlanCode:totalPlanCode, planCode:planCode},
+		data: {totalPlanCode:totalPlanCode, planCode:planCode, planName:planName},
 		dataType: "json",   
 		
 		success : function(data) {
 			//$('#card-tbody').children().remove();
 			console.log("응답받은 data = ",data);
+			//상세 계획이 없을 경우 상세 계획을 등록해달라는 alert
+			if(data[planName] <= 0 ){
+				console.log(data[planName].length);
+				alert("상세 계획을 등록해 주세요.");
+			}
 			var htmltrtd ='';
 			
-			if(data != null && data != undefined && data !='' && data.length > 0){
-				$.each(data,function(index,item){
-					var color='';
-					if(item.planDetailStatus=='진행예정'){
-						color +='<span class="badge bg-warning">';
-						console.log(color);
-					}else if(item.planDetailStatus=='진행중'){
-						color +='<span class="badge bg-primary">';
-						console.log(color);
-					}else if(item.planDetailStatus=='완료'){
-						color +='<span class="badge bg-success">';
-						console.log(color);
-					}else{
-						color +='<span class="badge bg-danger">';
-						console.log(color);
+			$.each(data,function(index,planItem){
+					if(data[planName] != null && data[planName] != undefined && data[planName] !='' && data[planName].length > 0){
+						//console.log(data[planName],"data");
+						$.each(planItem,function(index,item){
+							//console.log(planItem);
+							
+							
+							var color='';
+							if(item.planDetailStatus=='진행예정'){
+								color +='<span class="badge bg-warning">';
+								console.log(color);
+							}else if(item.planDetailStatus=='진행중'){
+								color +='<span class="badge bg-primary">';
+								console.log(color);
+							}else if(item.planDetailStatus=='완료'){
+								color +='<span class="badge bg-success">';
+								console.log(color);
+							}else{
+								color +='<span class="badge bg-danger">';
+								console.log(color);
+							}
+							
+							var planCertificateDetailTypeTd=''
+							var planCertificateDetailTestDateTd=''
+							var tdClose='</td>';
+							if(item.planCertificateDetailType != null){
+								planCertificateDetailTypeTd+='<td id="planCertificateDetailType">';
+								var planCertificateDetailType=item.planCertificateDetailType;
+								console.log(planCertificateDetailType);
+								console.log(planCertificateDetailTypeTd);
+							}else{
+								$('#planCertificateDetailType').attr('style',"display:none;");
+							}
+							if(item.planCertificateDetailTestDate != null){
+								planCertificateDetailTestDateTd+='<td id="planCertificateDetailTestDate" >';
+								var planCertificateDetailTestDate=item.planCertificateDetailTestDate;
+								console.log(planCertificateDetailTestDate);
+							}else{
+								$('#planCertificateDetailTestDate').attr('style',"display:none;");
+							}	
+							
+							
+							htmltrtd+='<tr>';
+							
+							htmltrtd+='<td>';
+							htmltrtd+=index+1;
+							htmltrtd+='</td>';
+								
+							htmltrtd+='<td>';
+							htmltrtd+= item.planDetailTitle;
+							htmltrtd+='</td>';
+							
+							htmltrtd+='<td>';
+							htmltrtd+='<button type="button" class="btn btn-default btn-sm planContents" value="';
+							htmltrtd+=item.planDetailContents;
+							htmltrtd+='">상세 계획 내용보기</button>';		
+							htmltrtd+='</td>';
+							
+							
+							htmltrtd+=planCertificateDetailTypeTd;
+							htmltrtd+=planCertificateDetailType;
+							htmltrtd+=tdClose;
+							htmltrtd+=planCertificateDetailTestDateTd;
+							htmltrtd+=planCertificateDetailTestDate;
+							htmltrtd+=tdClose;
+							
+	
+							htmltrtd+='<td>';
+							htmltrtd+=item.planDetailStartDate;
+							htmltrtd+='</td>';	
+								
+							htmltrtd+='<td>';
+							htmltrtd+=item.planDetailEndDate;
+							htmltrtd+='</td>';		
+							
+							htmltrtd+='<td>';
+							htmltrtd+='<div class="progress progress-sm">';
+							htmltrtd+='<div class="progress-bar progress-bar bg-primary"';
+							htmltrtd+='role="progressbar" aria-valuenow="50" aria-valuemin="0"';
+							htmltrtd+='aria-valuemax="100" style="width: 50%"></div>';
+							htmltrtd+='</div> <small> 50% Complete </small>';
+							htmltrtd+='</td>';	
+							
+							htmltrtd+='<td>';
+							htmltrtd+=color;
+							htmltrtd+=item.planDetailStatus;
+							htmltrtd+='</span>';
+							htmltrtd+='</td>';	
+								
+							htmltrtd+='<td>';
+							htmltrtd+=item.planDetailDegree;
+							htmltrtd+='</td>';	
+								
+							htmltrtd+='<td>';
+							htmltrtd+='<button type="button" class="btn btn-default btn-sm planDegree" value="';
+							htmltrtd+= item.planDetailDegreeChangeReason;
+							htmltrtd+='">';
+							htmltrtd+='<i class="far fa-comment-alt"> 자세히 보기</i>';	
+							htmltrtd+='</button>';
+							htmltrtd+='</td>';				
+								
+							htmltrtd+='<td>';
+							htmltrtd+=item.planDetailCreatedDate;
+							htmltrtd+='</td>';	
+							
+							
+							
+							htmltrtd+='<td>';
+							htmltrtd+='<a href="/mainCoaching">'
+							htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="callHelp">';	
+							htmltrtd+='<i class="fas fa-pencil-alt"> </i> 도움받기';	
+							htmltrtd+='</button>';
+							htmltrtd+='</a>';
+							
+							htmltrtd+='<a href="#">'
+							htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="modifyPlan">';	
+							htmltrtd+='<i class="fas fa-pencil-alt"> </i> 수정';	
+							htmltrtd+='</button>';
+							htmltrtd+='</a>';
+							
+		
+							htmltrtd+='<a href="#>'
+							htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="deletePlan">';	
+							htmltrtd+='<i class="fas fa-pencil-alt"> </i> 삭제';	
+							htmltrtd+='</button>';
+							htmltrtd+='</a>';	
+							htmltrtd+='</td>';	
+								
+							htmltrtd+='</tr>';
+						});
 					}
 					
-					htmltrtd+='<tr>';
 					
-					htmltrtd+='<td>';
-					htmltrtd+=index+1;
-					htmltrtd+='</td>';
-						
-					htmltrtd+='<td>';
-					htmltrtd+= item.planDetailTitle;
-					htmltrtd+='</td>';
+					$('#card-tbody').html(htmltrtd);
 					
-					htmltrtd+='<td>';
-					htmltrtd+='<button type="button" class="btn btn-default btn-sm planContents" value="';
-					htmltrtd+=item.planDetailContents;
-					htmltrtd+='">학력 상세 계획 내용보기</button>';		
-					htmltrtd+='</td>';
-						
-					htmltrtd+='<td>';
-					htmltrtd+=item.planDetailStartDate;
-					htmltrtd+='</td>';	
-						
-					htmltrtd+='<td>';
-					htmltrtd+=item.planDetailEndDate;
-					htmltrtd+='</td>';		
-					
-					htmltrtd+='<td>';
-					htmltrtd+='<div class="progress progress-sm">';
-					htmltrtd+='<div class="progress-bar progress-bar bg-primary"';
-					htmltrtd+='role="progressbar" aria-valuenow="50" aria-valuemin="0"';
-					htmltrtd+='aria-valuemax="100" style="width: 50%"></div>';
-					htmltrtd+='</div> <small> 50% Complete </small>';
-					htmltrtd+='</td>';	
-					
-					htmltrtd+='<td>';
-					htmltrtd+=color;
-					htmltrtd+=item.planDetailStatus;
-					htmltrtd+='</span>';
-					htmltrtd+='</td>';	
-						
-					htmltrtd+='<td>';
-					htmltrtd+=item.planDetailDegree;
-					htmltrtd+='</td>';	
-						
-					htmltrtd+='<td>';
-					htmltrtd+='<button type="button" class="btn btn-default btn-sm planDegree" value="';
-					htmltrtd+= item.planDetailDegreeChangeReason;
-					htmltrtd+='">';
-					htmltrtd+='<i class="far fa-comment-alt"> 자세히 보기</i>';	
-					htmltrtd+='</button>';
-					htmltrtd+='</td>';				
-						
-					htmltrtd+='<td>';
-					htmltrtd+=item.planDetailCreatedDate;
-					htmltrtd+='</td>';	
-					
-					
-					
-					htmltrtd+='<td>';
-					htmltrtd+='<a href="/mainCoaching">'
-					htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="callHelp">';	
-					htmltrtd+='<i class="fas fa-pencil-alt"> </i> 도움받기';	
-					htmltrtd+='</button>';
-					htmltrtd+='</a>';
-					
-					htmltrtd+='<a href="#">'
-					htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="modifyPlan">';	
-					htmltrtd+='<i class="fas fa-pencil-alt"> </i> 수정';	
-					htmltrtd+='</button>';
-					htmltrtd+='</a>';
-					
-
-					htmltrtd+='<a href="#>'
-					htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="deletePlan">';	
-					htmltrtd+='<i class="fas fa-pencil-alt"> </i> 삭제';	
-					htmltrtd+='</button>';
-					htmltrtd+='</a>';	
-					htmltrtd+='</td>';	
-						
-					htmltrtd+='</tr>';
-				});
-			}
+					$("table").find("td").css({
+						'vertical-align' : 'middle'
+						,'text-align' : 'center'
+						});
+					$("table").find("small").css({
+						'color' : '#969696'
+					});
 			
-			
-			$('#card-tbody').html(htmltrtd);
-			
-			$("table").find("td").css({
-				'vertical-align' : 'middle'
-				,'text-align' : 'center'
-				});
-			$("table").find("small").css({
-				'color' : '#969696'
-			});
-			
-			
+				});//바깥each문
 			},
 			error : function(xhr,status,error) {
 				console.log("xhr: " + xhr);

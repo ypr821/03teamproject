@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.devcdper.coaching.domain.CoachingApplyAndPayment;
 import com.devcdper.coaching.domain.CoachingRFQ;
 import com.devcdper.coaching.domain.CoachingRFQResult;
+import com.devcdper.coaching.domain.CoachingReview;
 import com.devcdper.coaching.domain.CoachingUser;
 import com.devcdper.user_admin.domain.CoachUser;
 
@@ -45,6 +46,10 @@ public interface CoachingMapper {
 	
 	//견적결과 insert
 	public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult);
+
+	
+	//코칭 리뷰 조회
+	public List<CoachingReview> getCoachingReview(String searchKey, String searchValue);
 	
 	
 	

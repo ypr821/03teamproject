@@ -43,10 +43,10 @@ public class NormalUserController {
 										, HttpSession session) {
 
 		log.info("프로필 수정에 대한 부분 file: {}", file);
-		
 		System.out.println(file.getOriginalFilename());
 		try {
-
+			
+		   
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             
@@ -54,16 +54,21 @@ public class NormalUserController {
 
             System.out.println(local.getHostAddress());
             
+        	
+            int random = (int)(Math.random()*100);
+            
             //localhost용
-//            Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ file.getOriginalFilename() );
+           
+            //Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ random + file.getOriginalFilename());
            
             //cafe24용
-            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/") + file.getOriginalFilename());
+            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/") + random + file.getOriginalFilename());
             Files.write(path, bytes);
             
-            System.out.println(file.getOriginalFilename());
-            
-        	normalUserService.modifyProfilePicture(session.getAttribute("UEMAIL"),file.getOriginalFilename());
+            System.out.println(random + file.getOriginalFilename());
+    
+        	normalUserService.modifyProfilePicture(session.getAttribute("UEMAIL"),random+ file.getOriginalFilename());
+          
         	
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,15 +88,29 @@ public class NormalUserController {
 		return "userAdmin/myPage";
 	}
 	
+	
 	@PostMapping("/normalForgotEmail")
-	public String normalForgotEmail() {
+	public String normalForgotEmail(@RequestParam(name="userName",required = false) String userName
+									,@RequestParam(name="userMoblie",required = false) String userMoblie, Model model) {
 		
-		return "redirect:/normalForgotPassword";
+		NormalUser normalUser = normalUserService.normalForgotEmail(userName, userMoblie);
+		
+		if(normalUser != null) model.addAttribute("userEmail",normalUser.getUserEmail());
+		
+		return "userAdmin/normalForgotPassword";
 	}
+	
+	
 	@PostMapping("/normalForgotPassword")
-	public String normalForgotPassword() {
+	public String normalForgotPassword(@RequestParam(name="userEmail",required = false) String userEamil
+									  ,@RequestParam(name="userPasswordAnswer",required = false) String userPasswordAnswer
+									  , Model model) {
 		
-		return "redirect:/normalForgotPassword";
+		NormalUser normalUser = normalUserService.normalForgotPassword(userEamil, userPasswordAnswer);
+
+		if(normalUser != null) model.addAttribute("userPassword",normalUser.getUserPassword());
+		
+		return "userAdmin/normalForgotPassword";
 	}
 	
 	@GetMapping("/normalForgotPassword")
@@ -121,17 +140,21 @@ public class NormalUserController {
 		return EmailCheck;
 	}
 	
+	
 	@PostMapping("/normalLogin") 
 	public String normalLogin(@RequestParam(value="userEmail", required = false) String userEmail
 			   ,@RequestParam(value="userPassword", required = false) String userPassword
-			   ,HttpSession session
-			   ,RedirectAttributes reAttr) {
+			   ,HttpSession session ,RedirectAttributes reAttr)
+		{
 		if(userEmail != null && !"".equals(userEmail) && userPassword != null && !"".equals(userPassword)) {
 			System.out.println(userEmail +"" +userPassword);
+			
 			Map<String, Object> resultMap = normalUserService.loginNomalUser(userEmail, userPassword);
 			
 			boolean loginCheck = (boolean) resultMap.get("loginCheck");
+			
 			NormalUser normalLogin = (NormalUser) resultMap.get("loginNormalUser");
+			
 			System.out.println(resultMap);
 			
 			if(loginCheck) {
@@ -200,12 +223,12 @@ public class NormalUserController {
 	
 	@GetMapping("/normalList")
 	public String normalList(Model model) {
-		List<NormalUser> normalUserList = normalUserService.getNormalUserList();
+		List<NormalUser> normalList = normalUserService.getNormalUserList();
 		
-		log.info("★ - 전체회원 조회 결과 : {}"+ normalUserList);
+		log.info("★ - 전체회원 조회 결과 : {}"+ normalList);
 		
 		model.addAttribute("title", "일반회원리스트");
-		model.addAttribute("normalList", normalUserList);
+		model.addAttribute("normalList", normalList);
 		
 		return "userAdmin/normalList";
 	}

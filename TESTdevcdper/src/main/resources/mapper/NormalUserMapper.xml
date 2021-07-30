@@ -10,6 +10,7 @@
 	
 		<result property="userEmail" 				column="user_email"/>
 		<result property="userPassword" 			column="user_password"/>
+		<result property="userPasswordAnswer" 		column="user_password_answer"/>
 		<result property="userName" 				column="user_name"/>
 		<result property="userProfilePicture" 		column="user_profile_picture"/>
 		<result property="userBirth" 				column="user_birth"/>
@@ -26,6 +27,23 @@
 		<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 	</resultMap>
 	
+	<select id="normalForgotPassword" parameterType="String" resultMap="normalUserResultMap">
+		SELECT 
+			user_password
+		FROM 
+			user
+		WHERE user_email = #{userEmail} AND user_password_answer =#{userPasswordAnswer}	
+	</select>
+	
+	<select id="normalForgotEmail" parameterType="String" resultMap="normalUserResultMap">
+		SELECT 
+			user_email
+		FROM 
+			user
+		WHERE 
+			user_name=#{userName} AND user_mobile = #{userMoblie};
+	</select>
+	
 	<update id="modifyProfilePicture" parameterType="NormalUser">
 		UPDATE 
 			user
@@ -40,6 +58,9 @@
 		<trim prefix="SET" prefixOverrides=",">
 			<if test="userPassword != null and userPassword != ''.toString()">	
 			user_password= #{userPassword}
+			</if>
+			<if test="userPasswordAnswer != null and userPasswordAnswer != ''.toString()">	
+			 ,user_password_answer= #{userPasswordAnswer}
 			</if>
 			<if test="userName != null and userName != ''.toString()">	
 				,user_name=#{userName}
@@ -73,7 +94,8 @@
 	<select id="getNormalInfoById" parameterType="String" resultMap="normalUserResultMap">
 		SELECT 
 				user_email							
-				, user_password						
+				, user_password			
+				, user_password_answer			
 				, user_name	
 				, user_profile_picture						
 				, user_birth						
@@ -95,13 +117,12 @@
 	</select>
 	
 	
-	
 	<insert id="addNormalUser" parameterType="NormalUser">
 			INSERT INTO user
 				(user_email
 				, user_password
+				, user_password_answer
 				, user_name
-				, user_profile_picture
 				, user_birth
 				, user_addr
 				, user_addr_detail
@@ -117,8 +138,8 @@
 				)VALUES (
 				 #{userEmail}
 				,#{userPassword}
+				,#{userPasswordAnswer}
 				,#{userName}
-				,NULL
 				,#{userBirth}
 				,#{userAddr}
 				,#{userAddrDetail}

@@ -25,8 +25,25 @@ public class NormalUserService {
 		System.out.println("========================================");
 	}
 	
-	//normalFindEmail				
-	//normalFindPassword		
+	//normalFindEmail	
+	public NormalUser normalForgotEmail(String userName, String userMoblie) {
+		
+		System.out.println(userName +  userMoblie);
+		
+		NormalUser normalUser = normalUserMapper.normalForgotEmail(userName, userMoblie);
+		
+		return normalUser;
+	}
+	//normalFindPassword	
+	public NormalUser normalForgotPassword(String userEmail, String userPasswordAnswer) {
+	
+		System.out.println(userEmail +  userPasswordAnswer);
+		
+		NormalUser normalUser = normalUserMapper.normalForgotPassword(userEmail, userPasswordAnswer);
+		
+		return normalUser;
+	}
+	
 	
 	
 	public Map<String, Object> loginNomalUser(String userEmail, String userPassword){
@@ -38,7 +55,6 @@ public class NormalUserService {
 		NormalUser normalUser = normalUserMapper.getNormalInfoById(userEmail);
 //		System.out.println(nomalUser);
 		if(normalUser != null && userPassword.equals(normalUser.getUserPassword())) {
-			System.out.println("hi@");
 			loginCheck = true;
 			normalUserInfoMap.put("loginNormalUser", normalUser);
 		}
@@ -51,24 +67,30 @@ public class NormalUserService {
 	public List<NormalUser> getNormalUserList(){
 		return normalUserMapper.getNormalUserList();
 	}
+	
 	//회원가입
 	public int addNormalUser(NormalUser normalUser) {
 		int result = normalUserMapper.addNormalUser(normalUser);
 		return result;
 	}
+	
 	//회원 수정폼까지
 	public NormalUser getNormalInfoById(String userEmail) {
 		
 		return normalUserMapper.getNormalInfoById(userEmail);
 	}
+	
 	//회원정보수정
 	public int modifyNormalUser(NormalUser normalUser) {
 		
 		return normalUserMapper.modifyNormalUser(normalUser);
 	}
+	
 	//회원 프로필 수정
 	public int modifyProfilePicture(Object userEmail,String userProfilePicture) {
 			
 		return normalUserMapper.modifyProfilePicture(userEmail ,userProfilePicture);
 	}
+
+
 }

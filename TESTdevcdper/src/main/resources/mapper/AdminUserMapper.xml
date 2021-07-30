@@ -11,9 +11,19 @@
 		<result property="adminLevel"				column="admin_level"/>
 		<result property="adminMobile"				column="admin_mobile"/>
 		<result property="adminJoinDate"			column="admin_join_date"/>
+		<result property="adminPasswordAnswer"		column="admin_password_answer"/>
 	</resultMap>
 	
-	<select id="FindAdminEmail" parameterType="String" resultMap="AdminUserResultMap">
+	<select id="adminForgotPassword" parameterType="String" resultMap="AdminUserResultMap">
+		SELECT 
+			admin_password
+		FROM 
+			admin
+		WHERE admin_email=#{adminEmail} AND admin_password_answer=#{adminPasswordAnswer};
+		
+	</select>
+	
+	<select id="adminForgotEmail" parameterType="String" resultMap="AdminUserResultMap">
 		SELECT 
 			admin_email
 		FROM 
@@ -21,7 +31,7 @@
 		WHERE 
 			admin_name = #{adminName} 
 		AND 
-			admin_mobile = #{adminMobile}
+			admin_mobile = #{adminMobile};
 		
 	</select>
 	
@@ -31,6 +41,7 @@
 		SET
 			admin_email = #{adminEmail}
 			,admin_password=#{adminPassword}
+			,admin_password_answer=#{adminPasswordAnswer}
 			,admin_name=#{adminName}
 			,admin_level=#{adminLevel}
 			,admin_mobile=#{adminMobile}
@@ -42,6 +53,7 @@
 			SELECT 
 			admin_email
 			, admin_password
+			, admin_password_answer
 			, admin_name
 			, admin_level
 			, admin_mobile
@@ -56,6 +68,7 @@
 		INSERT INTO admin
 			(admin_email
 			, admin_password
+			, admin_password_answer
 			, admin_name
 			, admin_level
 			, admin_mobile
@@ -63,6 +76,7 @@
 			)VALUES(
 			#{adminEmail}
 			, #{adminPassword}
+			, #{adminPasswordAnswer}
 			, #{adminName}
 			, #{adminLevel}
 			, #{adminMobile}

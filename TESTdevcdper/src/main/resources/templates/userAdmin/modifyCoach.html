@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/addDefault}">
+	  layout:decorate="@{layout/add&ModifyDefault}">
 	  
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">main title</title>
@@ -43,7 +43,7 @@
 											<form id="addForm" th:action="@{/modifyCoach}" method="post">
 												<div>회원일메일</div>
 												<div class="input-group mb-3">
-													<input type="text" name="coachUser"  class="form-control" th:value="${coachUser.coachEmail}" readonly="readonly"/>
+													<input type="text" name="coachEmail"  class="form-control" th:value="${coachUser.coachEmail}" readonly="readonly"/>
 													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-user"></span>
@@ -53,6 +53,15 @@
 												<div>패스워드</div>
 												<div class="input-group mb-3">
 													<input type="password" name="coachPassword" class="form-control" th:value="${coachUser.coachPassword}"/>
+													<div class="input-group-append">
+														<div class="input-group-text">
+															<span class="fas fa-lock"></span>
+														</div>
+													</div>
+												</div>
+												<div>패스워드 찾기 답변</div>
+												<div class="input-group mb-3">
+													<input type="text" name="coachPasswordAnswer" class="form-control" th:value="${coachUser.coachPasswordAnswer}"/>
 													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
@@ -109,30 +118,14 @@
 												
 												<div>연락처</div>
 												<div class="input-group mb-3">
-													<select name="coachMobile" class="form-control" th:selected="${coachUser.coachMobile}">
-						                                <option value="">선택</option>
-						                                
-						                                    <option value="010">010</option>
-						                                
-						                                    <option value="011">011</option>
-						                                
-						                                    <option value="016">016</option>
-						                                
-						                                    <option value="017">017</option>
-						                                
-						                                    <option value="018">018</option>
-						                                
-						                                    <option value="019">019</option>
-						                                
-						                            </select>-
-												     <input type="tel" name="coachMobile" class="form-control" size="5" th:value="${coachUser.coachMobile}"  /> - 
-												     <input type="tel" name="coachMobile" class="form-control" size="5" th:value="${coachUser.coachMobile}"  /><br />
-												     
+													<input type="text" name="coachMobile" class="form-control" maxlength="13" id="Mobile" 
+														th:value="${coachUser.coachMobile}" />
+													<div class="input-group-append">
 														<div class="input-group-text">
 															<span class="fas fa-lock"></span>
 														</div>
 													</div>
-													
+												</div>
 													
 												<div>권한</div>
 												<div class="input-group mb-3">
