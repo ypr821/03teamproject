@@ -8,9 +8,9 @@ public class CoachingRFQResult {
 	private String planDetailCode;
 	private String coachUserEmail;	
 	private String userEmail;
-	private int coachingRFQResultCost;	
+	private int	   coachingRFQResultCost;	
 	private String coachingRFQResultDay;	
-	private int coachingRFQResultCostPerHour;
+	private int    coachingRFQResultCostPerHour;
 	private String coachingRFQResultTime;
 	private String coachingRFQResultMethod;
 	private String coachingRFQResultArea;

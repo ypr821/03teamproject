@@ -1,6 +1,5 @@
 package com.devcdper.coaching.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,16 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.devcdper.coaching.domain.CoachingRFQ;
-import com.devcdper.coaching.domain.CoachingRFQResult;
+import com.devcdper.coaching.domain.CoachingReview;
 import com.devcdper.coaching.domain.CoachingUser;
 import com.devcdper.coaching.service.CoachingService;
 import com.devcdper.plan.domain.PlanDto;
 import com.devcdper.plan.service.PlanService;
-
-import groovyjarjarpicocli.CommandLine.Parameters;
 
 
 @Controller
@@ -105,6 +101,11 @@ public class CoachingController {
 		model.addAttribute("coachList", coachList);
 		return "coaching/coachProfileUpdate";
 	}
+	//
+	
+	
+	
+	
 	//코치  프로필 화면
 	@GetMapping("/coachProfile")
 	public String coachProfile(Model model
@@ -115,11 +116,20 @@ public class CoachingController {
 		//System.out.println("=======myCoachingCoach 메서드 실행=================");
 		model.addAttribute("title", "코치  프로필 ");
 		
-		
+		//코치정보
 		System.out.println("coachEmail ==> "+ coachEmail);
 		List<CoachingUser> coachList = coachingService.getCoachProfile(coachEmail);
 		System.out.println("coachList ==> "+ coachList);
 		model.addAttribute("coachList", coachList);
+		
+		//코치리뷰리스트
+		
+		List<CoachingReview> coachingReviewList = coachingService.getCoachingReview("coach_user_email",coachEmail);
+		model.addAttribute("coachingReviewList", coachingReviewList);
+		System.out.println("controller coachingReviewList ==> "+ coachingReviewList);
+		
+		
+		
 		return "coaching/coachProfile";
 	}
 	
@@ -133,17 +143,20 @@ public class CoachingController {
 		
 		model.addAttribute("title", "나의 코칭 화면");
 		model.addAttribute("radioCheck", "myCoachingCoach");
-
+	
 		//가정 - 세션 아이디 park01@hanmail.net 권한 일반 전달
 		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
+		if("".equals(sessionLevel) || sessionLevel ==null) {
+			sessionLevel = "비회원";
+		}
 		System.out.println("sessionLevel : " + sessionLevel);
 		
 		List<CoachingRFQ> myCoachingList = coachingService.getMyCoachingList(null,sessionEmail);
 		System.out.println("======컨트롤==myCoachingList :  "+ myCoachingList + "==========");
-
-		model.addAttribute("sessionLevel", sessionLevel);
+	
+		model.addAttribute("sessionLevel", sessionLevel.trim());
 		model.addAttribute("myCoachingList", myCoachingList);
 	
 		return "coaching/myCoachingCoach";
@@ -205,11 +218,15 @@ public class CoachingController {
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
 		
+		if("".equals(sessionLevel) || sessionLevel ==null) {
+			sessionLevel = "비회원";
+		}
+		
 		List<CoachingRFQ> myCoachingList = coachingService.getMyCoachingList(sessionEmail,null);
 		System.out.println("======컨트롤==myCoachingList :  "+ myCoachingList + "==========");
 		
 		
-		model.addAttribute("sessionLevel", sessionLevel);
+		model.addAttribute("sessionLevel", sessionLevel.trim());
 		model.addAttribute("myCoachingList", myCoachingList);
 		
 		return "coaching/myCoachingClient";
@@ -246,7 +263,7 @@ public class CoachingController {
 		model.addAttribute("title", "견적요청 등록 화면");
 		return "coaching/coachingRFQ";
 	}	
-
+	
 	
 	//코칭 견적요청 insert 처리
 	@PostMapping("/coachingRFQ")

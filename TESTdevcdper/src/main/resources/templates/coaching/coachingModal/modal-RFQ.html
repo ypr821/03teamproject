@@ -32,19 +32,20 @@
 	                  <option value="coaching_category_06">직종전문교육과정</option>
 	                  <option value="coaching_category_07" >인턴쉽</option>
 	                  <option value="coaching_category_08">공모전</option>
+	                  <option value="coaching_category_09">경력</option>
 	                  
 	                  <!-- 컨설팅카테고리 -->
-	                  <option value="coaching_category_09">진로설정·취업전략</option>
-	                  <option value="coaching_category_10">취업준비 스펙(자격증, 포트폴리오)</option>
-	                  <option value="coaching_category_11">기업·직무 분석</option>
-	                  <option value="coaching_category_12">자기소개서 + 이력서</option>
-	                  <option value="coaching_category_13">면접</option>
-	                  <option value="coaching_category_14">인적성검사 대비</option>
-	                  <option value="coaching_category_15">대기업 취업준비</option>
-	                  <option value="coaching_category_16">공기업 취업준비·NCS</option>
-	                  <option value="coaching_category_17">경력관리</option>
-	                  <option value="coaching_category_18">경력기술서</option>
-	                  <option value="coaching_category_19">경력분석·이전직</option>
+	                  <option value="coaching_category_10">진로설정·취업전략</option>
+	                  <option value="coaching_category_11">취업준비 스펙(자격증, 포트폴리오)</option>
+	                  <option value="coaching_category_12">기업·직무 분석</option>
+	                  <option value="coaching_category_13">자기소개서 + 이력서</option>
+	                  <option value="coaching_category_14">면접</option>
+	                  <option value="coaching_category_15">인적성검사 대비</option>
+	                  <option value="coaching_category_16">대기업 취업준비</option>
+	                  <option value="coaching_category_17">공기업 취업준비·NCS</option>
+	                  <option value="coaching_category_18">경력관리</option>
+	                  <option value="coaching_category_19">경력기술서</option>
+	                  <option value="coaching_category_20">경력분석·이전직</option>
 	                </select>
 	              </div>
 	              <!--/ 코칭구분, 카테고리  -->
@@ -119,8 +120,8 @@
 	              </div>
 
 	              
-	              <button th:if="${'코치회원'==sessionLevel and sessionLevel == null}" th:remove="ture" type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
-	              <button th:if="${'일반사용자'==sessionLevel }" type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">요청 수정</button>
+	             
+	              <button  type="button" id="coachingRFQUpdate" class="btn btn-block bg-gradient-primary btn-sm">수정</button>
 	              <span th:if="${sessionLevel == null}" th:text="${sessionLevel}"></span>
 		      </div>
 		      <div class="modal-footer">

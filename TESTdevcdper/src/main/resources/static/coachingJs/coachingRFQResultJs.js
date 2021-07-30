@@ -11,6 +11,7 @@ $(function(){
 		var totalPlanCode = null;
 		var checkDay = null;
 		var checkDaySplitArray = null;
+		console.log("권한체크===>",sessionLevel);
 		
 		console.log('myCoachingList=>>',myCoachingList);
 		
@@ -326,20 +327,8 @@ $(function(){
 														
 													}else{
 														alert('견적결과가 등록됐습니다.');
-														
-														
 													}
-													
-													
 													location.reload();
-													//console.log('type check obj : ',typeof(obj))//String이네
-													
-													//연결은 시킴 이후 토탈플랜 리스트 넘겨주고 받아서 화면단에 뿌려주는 작업필요 
-													
-													//var data = JSON.parse(obj); 
-													/* $.each(data, function (k, v) { 
-														$('<option></option>').val(k).text(v).appendTo($('#exhibition_id')); 
-														}); */ 
 												}, 
 												error: function (xhr, status, error) { 
 													console.log("ERROR!!!"); 
