@@ -128,11 +128,11 @@
 
 									<div class="social-auth-links text-center mb-3">
 										<p>- OR -</p>
-										<a href="#" class="btn btn-block btn-primary"> <i
-											class="fab fa-facebook mr-2"></i> Sign in using Facebook
-										</a> <a href="#" class="btn btn-block btn-danger"> <i
-											class="fab fa-google-plus mr-2"></i> Sign in using Google+
-										</a>
+										<span th:if="${userId == null}">
+											<a href="https://kauth.kakao.com/oauth/authorize?client_id=f11795431391ba3dd703300962b6fd06&redirect_uri=http://localhost:8070/login&response_type=code">
+												<img th:src="@{/AdminLTE3/dist/img/kakaoLogin/kakao_login_medium_wide.png}">
+											</a>
+										</span>
 									</div>
 									
 									<p class="mb-0">
@@ -191,11 +191,11 @@
 									</form>
 									<div class="social-auth-links text-center mb-3">
 										<p>- OR -</p>
-										<a href="#" class="btn btn-block btn-primary"> <i
-											class="fab fa-facebook mr-2"></i> Sign in using Facebook
-										</a> <a href="#" class="btn btn-block btn-danger"> <i
-											class="fab fa-google-plus mr-2"></i> Sign in using Google+
-										</a>
+										<span th:if="${userId == null}">
+											<a href="https://kauth.kakao.com/oauth/authorize?client_id=f11795431391ba3dd703300962b6fd06&redirect_uri=http://localhost:8070/login&response_type=code">
+												<img th:src="@{/AdminLTE3/dist/img/kakaoLogin/kakao_login_medium_wide.png}">
+											</a>
+										</span>
 									</div>
 									<p class="mb-0">
 										<a th:href="@{/addCoach}" class="text-center">코치 회원가입</a>

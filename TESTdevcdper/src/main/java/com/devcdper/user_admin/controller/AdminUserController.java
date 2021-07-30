@@ -25,33 +25,29 @@ public class AdminUserController {
 		this.adminUserService = adminUserService;
 	}
 	
-
-	@PostMapping("/adminForgotEmail") //아직 안됨
-	public String adminForgotEmail(@RequestParam(value = "adminName",required = false)String adminName
-								  ,@RequestParam(value = "adminMobile", required = false)String adminMobile
+	
+	@PostMapping("/adminForgotEmail") 
+	
+	public String adminForgotEmail(@RequestParam(name="adminName",required = false)String adminName
+								  ,@RequestParam(name="adminMobile", required = false)String adminMobile
 								  ,Model model) {
-		if(adminName != null && !"".equals(adminName) && adminMobile != null && !"".equals(adminMobile)) {
-			System.out.println(adminName + adminMobile);
-			Map<String, Object> resultMap = adminUserService.adminFindEmail(adminName, adminMobile);
-			
-			boolean FindEmailcheck = (boolean) resultMap.get("FindEmailcheck");
-			AdminUser AdminFindEmail = (AdminUser) resultMap.get("AdminFindEmail");
-			System.out.println(resultMap);
-			
-			if(FindEmailcheck) {
-				model.addAttribute("userEmail", AdminFindEmail);
-				
-				return "userAdmin/adminForgotEmail";
-			}
-		}
+		AdminUser adminUser = adminUserService.adminForgotEmail(adminName, adminMobile);
 		
-		return "redirect:/adminForgotEmail";
+		if(adminUser != null) model.addAttribute("adminEmail", adminUser.getAdminEmail());
+		
+		
+		return "userAdmin/adminForgotPassword";
 	}
 	
 	@PostMapping("/adminForgotPassword")
-	public String adminForgotPassword() {
+	public String adminForgotPassword(@RequestParam(name="adminEmail",required = false)String adminEmail
+									  ,@RequestParam(name="adminPasswordAnswer", required = false)String adminPasswordAnswer
+									  ,Model model) {
+		AdminUser adminUser = adminUserService.adminForgotPassword(adminEmail, adminPasswordAnswer);
 		
-		return "";
+		if(adminUser != null) model.addAttribute("adminPassword", adminUser.getAdminPassword());
+		
+		return "userAdmin/adminForgotPassword";
 	}
 	
 	
@@ -76,9 +72,9 @@ public class AdminUserController {
 	
 	@PostMapping("/adminLogin") 
 	public String adminLogin(@RequestParam(value="adminEmail", required = false) String adminEmail
-			   ,@RequestParam(value="adminPassword", required = false) String adminPassword
-			   ,HttpSession session
-			   ,RedirectAttributes reAttr) {
+							   ,@RequestParam(value="adminPassword", required = false) String adminPassword
+							   ,HttpSession session
+							   ,RedirectAttributes reAttr) {
 		if(adminEmail != null && !"".equals(adminEmail) && adminPassword != null && !"".equals(adminPassword)) {
 			System.out.println(adminEmail +"" + adminPassword);
 			Map<String, Object> resultMap = adminUserService.loginAdminUser(adminEmail, adminPassword);

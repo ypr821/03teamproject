@@ -25,26 +25,23 @@ public class AdminUserService {
 		System.out.println("========================================");
 	}
 	
-	//adminFindPassword				
+	//패스워드 찾기		
+	public AdminUser adminForgotPassword(String adminEmail, String adminPasswordAnswer) {
+		System.out.println(adminEmail +  adminPasswordAnswer);
+		
+		AdminUser adminUser = adminUserMapper.adminForgotPassword(adminEmail, adminPasswordAnswer);
+		
+		return adminUser;
+	}
 	
 	//이메일 찾기
-	public Map<String, Object> adminFindEmail(String adminName, String adminMobile){
+	public AdminUser adminForgotEmail(String adminName, String adminMobile) {
 		
-		boolean FindEmailcheck = false;
-		System.out.println(adminName +"==="+adminMobile);
-		Map<String, Object> FindEmailInfoMap = new HashMap<String, Object>();
+		System.out.println(adminName +  adminMobile);
 		
-		AdminUser AdminUser = (com.devcdper.user_admin.domain.AdminUser) adminUserMapper.adminFindEmail(adminName, adminMobile);
-		System.out.println(AdminUser);
+		AdminUser adminUser = adminUserMapper.adminForgotEmail(adminName, adminMobile);
 		
-		if(AdminUser != null && adminName.equals(AdminUser.getAdminName()) && adminMobile.equals(AdminUser.getAdminMobile())) {
-			System.out.println("AdminFindEmail@@@@@@");
-			FindEmailcheck = true;
-			FindEmailInfoMap.put("AdminFindEmail", AdminUser);
-		}
-		FindEmailInfoMap.put("FindEmailcheck", FindEmailcheck);
-		
-		return FindEmailInfoMap;
+		return adminUser;
 	}
 	
 	//로그인
@@ -72,7 +69,8 @@ public class AdminUserService {
 				
 		return result;
 	}
-	//수정폼까지
+	
+	//수정폼까지 //이메일 중복체크
 	public AdminUser getAdminInfoById(String adminEmail) {
 		
 		return adminUserMapper.getAdminInfoById(adminEmail);
@@ -92,4 +90,7 @@ public class AdminUserService {
 		return adminUserMapper.getAdminUserList();
 
 	}
+
+
+
 }

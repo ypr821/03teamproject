@@ -4,6 +4,7 @@ public class CoachUser {
 
 	private String coachEmail;
 	private String coachPassword;
+	private String coachPasswordAnswer;
 	private String coachName;
 	private String coachBirth;
 	private String coachAddr;
@@ -26,6 +27,12 @@ public class CoachUser {
 	private String coachJoinDate;
 	private String coachWithdrawStatus;
 	
+	public String getCoachPasswordAnswer() {
+		return coachPasswordAnswer;
+	}
+	public void setCoachPasswordAnswer(String coachPasswordAnswer) {
+		this.coachPasswordAnswer = coachPasswordAnswer;
+	}
 	public String getCoachEmail() {
 		return coachEmail;
 	}
@@ -167,18 +174,17 @@ public class CoachUser {
 	
 	@Override
 	public String toString() {
-		return "CoachUser [coachEmail=" + coachEmail + ", coachPassword=" + coachPassword + ", coachName="
-				+ coachName + ", coachBirth=" + coachBirth + ", coachAddr=" + coachAddr + ", coachAddrDetail="
-				+ coachAddrDetail + ", coachGender=" + coachGender + ", coachMobile=" + coachMobile
-				+ ", coachAuthority=" + coachAuthority + ", coachJob=" + coachJob + ", coachProfileCareer="
-				+ coachProfileCareer + ", coachProfileTechStack=" + coachProfileTechStack + ", coachCertificate="
-				+ coachCertificate + ", coachCareerDocumentaryEvidence=" + coachCareerDocumentaryEvidence
-				+ ", coachCertificateDocumentaryEvidence=" + coachCertificateDocumentaryEvidence
-				+ ", coachJoinApproval=" + coachJoinApproval + ", coachApproverEmail=" + coachApproverEmail
-				+ ", coachIsReceiveMarketing=" + coachIsReceiveMarketing + ", coachJoinMotivation="
-				+ coachJoinMotivation + ", coachJoinPath=" + coachJoinPath + ", coachRecommendEmail="
-				+ coachRecommendEmail + ", coachJoinDate=" + coachJoinDate + ", coachWithdrawStatus="
-				+ coachWithdrawStatus + "]";
+		return "CoachUser [coachEmail=" + coachEmail + ", coachPassword=" + coachPassword + ", coachName=" + coachName
+				+ ", coachBirth=" + coachBirth + ", coachAddr=" + coachAddr + ", coachAddrDetail=" + coachAddrDetail
+				+ ", coachGender=" + coachGender + ", coachMobile=" + coachMobile + ", coachAuthority=" + coachAuthority
+				+ ", coachJob=" + coachJob + ", coachProfileCareer=" + coachProfileCareer + ", coachProfileTechStack="
+				+ coachProfileTechStack + ", coachCertificate=" + coachCertificate + ", coachCareerDocumentaryEvidence="
+				+ coachCareerDocumentaryEvidence + ", coachCertificateDocumentaryEvidence="
+				+ coachCertificateDocumentaryEvidence + ", coachJoinApproval=" + coachJoinApproval
+				+ ", coachApproverEmail=" + coachApproverEmail + ", coachIsReceiveMarketing=" + coachIsReceiveMarketing
+				+ ", coachJoinMotivation=" + coachJoinMotivation + ", coachJoinPath=" + coachJoinPath
+				+ ", coachRecommendEmail=" + coachRecommendEmail + ", coachJoinDate=" + coachJoinDate
+				+ ", coachWithdrawStatus=" + coachWithdrawStatus + ", coachPasswordAnswer=" + coachPasswordAnswer + "]";
 	}
 	
 	

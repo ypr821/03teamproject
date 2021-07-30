@@ -30,16 +30,28 @@ public class CoachUserController {
 		this.coachUserService = coachUserService;
 	}
 	
-	@PostMapping("/coachForgotEmail")
-	public String coachForgotEmail() {
 		
-		return "";
+	@PostMapping("/coachForgotEmail")
+	public String coachForgotEmail(@RequestParam(name="coachName",required = false) String coachName
+			,@RequestParam(name="coachMobile",required = false) String coachMobile, Model model) {
+		
+		CoachUser coachUser = coachUserService.coachForgotEmail(coachName, coachMobile);
+		
+		if(coachUser != null) model.addAttribute("coachEmail", coachUser.getCoachEmail());
+		
+		return "userAdmin/coachForgotPassword";
 	}
 	
 	@PostMapping("/coachForgotPassword")
-	public String coachForgotPassword() {
-		
-		return "";
+	public String coachForgotPassword(@RequestParam(name="coachEmail",required = false) String coachEmail
+									  ,@RequestParam(name="coachPasswordAnswer",required = false) String coachPasswordAnswer
+									  , Model model) {
+			
+			CoachUser coachUser = coachUserService.coachForgotPassword(coachEmail, coachPasswordAnswer);
+			
+			if(coachUser != null) model.addAttribute("coachPassword", coachUser.getCoachPassword());
+			
+		return "userAdmin/coachForgotPassword";
 	}
 	
 	@GetMapping("/coachForgotPassword")
@@ -90,9 +102,10 @@ public class CoachUserController {
 	
 	@PostMapping("/modifyCoach")
 	public String modifyCoachUser(CoachUser coachUser) {
+		
 		coachUserService.modifyCoachUser(coachUser);
 		
-		return  "redirect:/modifyCoach";
+		return  "redirect:/coachList";
 	}
 	
 	@GetMapping("/modifyCoach")

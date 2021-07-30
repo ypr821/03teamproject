@@ -25,5 +25,11 @@ public interface NormalUserMapper {
 	//회원 프로필 수정
 	public int modifyProfilePicture(Object userEmail,String userProfilePicture);
 	
+	//회원 이메일 찾기
+	public NormalUser normalForgotEmail(String userName, String userMoblie);
+	
+	//회원 패스워드 찾기
+	public NormalUser normalForgotPassword(String userEmail, String userPasswordAnswer);
+	
 }
 
