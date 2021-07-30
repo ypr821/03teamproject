@@ -12,6 +12,9 @@ public interface PlanMapper {
 	// 통합계획 등록
 	public int addTotalPlan(PlanDto planDto);
 	
+	// 학력계획 등록
+	public int addEducationalHistoryPlan(PlanDto planDto, String totalPlanCode);
+	
 	// 한명회원 통합계획 조회
 	public List<PlanDto> getTotalPlan(String searchKey, String searchValue);
 	
