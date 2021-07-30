@@ -18,7 +18,7 @@ public class NormalUser {
 	private String userRecommendEmail;
 	private String userJoinDate;
 	private String userWithdrawStatus;
-	
+	private String userPasswordAnswer;
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -116,6 +116,12 @@ public class NormalUser {
 	public void setUserWithdrawStatus(String userWithdrawStatus) {
 		this.userWithdrawStatus = userWithdrawStatus;
 	}
+	public String getUserPasswordAnswer() {
+		return userPasswordAnswer;
+	}
+	public void setUserPasswordAnswer(String userPasswordAnswer) {
+		this.userPasswordAnswer = userPasswordAnswer;
+	}
 	
 	@Override
 	public String toString() {
@@ -125,7 +131,7 @@ public class NormalUser {
 				+ ", userJob=" + userJob + ", userIsReceiveMarketing=" + userIsReceiveMarketing
 				+ ", userJoinMotivation=" + userJoinMotivation + ", userJoinPath=" + userJoinPath
 				+ ", userRecommendEmail=" + userRecommendEmail + ", userJoinDate=" + userJoinDate
-				+ ", userWithdrawStatus=" + userWithdrawStatus + "]";
+				+ ", userWithdrawStatus=" + userWithdrawStatus + ", userPasswordAnswer=" + userPasswordAnswer + "]";
 	}
 	
 }

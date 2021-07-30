@@ -8,7 +8,14 @@ public class AdminUser {
 	private String adminLevel;
 	private String adminMobile;
 	private String adminJoinDate;
+	private String adminPasswordAnswer;
 	
+	public String getAdminPasswordAnswer() {
+		return adminPasswordAnswer;
+	}
+	public void setAdminPasswordAnswer(String adminPasswordAnswer) {
+		this.adminPasswordAnswer = adminPasswordAnswer;
+	}
 	public String getAdminEmail() {
 		return adminEmail;
 	}
@@ -50,7 +57,7 @@ public class AdminUser {
 	public String toString() {
 		return "AdminUser [adminEmail=" + adminEmail + ", adminPassword=" + adminPassword + ", adminName=" + adminName
 				+ ", adminLevel=" + adminLevel + ", adminMobile=" + adminMobile + ", adminJoinDate=" + adminJoinDate
-				+ "]";
+				+ ", adminPasswordAnswer=" + adminPasswordAnswer + "]";
 	}
 	
 }

@@ -61,5 +61,20 @@ public class CoachUserService {
 		
 		return coachUserMapper.modifyCoachUser(coachUser);
 	}
+	
+
+	public CoachUser coachForgotEmail(String coachName, String coachMobile) {
+		
+		CoachUser coachUser = coachUserMapper.coachForgotEmail(coachName, coachMobile);
+		
+		return coachUser;
+	}
+
+	public CoachUser coachForgotPassword(String coachEmail, String coachPasswordAnswer) {
+		
+		CoachUser coachUser = coachUserMapper.coachForgotPassword(coachEmail,coachPasswordAnswer);
+				
+		return coachUser;
+	}
 
 }

@@ -25,4 +25,8 @@ public interface AdminUserMapper {
 	
 	//관리자 전체리스트
 	public List<AdminUser> getAdminUserList();
+
+	public AdminUser adminForgotEmail(String adminName, String adminMobile);
+
+	public AdminUser adminForgotPassword(String adminEmail, String adminPasswordAnswer);
 }

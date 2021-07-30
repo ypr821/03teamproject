@@ -18,4 +18,8 @@ public interface CoachUserMapper {
 	public CoachUser getCoachInfoById(String coachEmail);
 	//코치 수정
 	public int modifyCoachUser(CoachUser coachUser);
+	//코치 이메일 찾기
+	public CoachUser coachForgotEmail(String coachName, String coachMobile);
+	//코치 패스워드 찾기
+	public CoachUser coachForgotPassword(String coachEmail, String coachPasswordAnswer);
 }
