@@ -50,7 +50,7 @@ public class AdminChallengeController {
 	/*-------------------------------------AdminChallengeControllerInit 메서드 끝----------------------------------------*/
 	
 
-	/*------------------------------------------------챌린지 관리 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallenge")
 	public String adminChallenge(Model model,  Pagination paging) {
 		
@@ -88,10 +88,10 @@ public class AdminChallengeController {
 	}
 	
 	
-	/*------------------------------------------------챌린지 관리 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 관리 Controller 끝-----------------------------------------------------*/
 	
 	
-	/*------------------------------------------------챌린지 참여 관리 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 참여 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallengeParticipation")
 	public String adminChallengeParticipation(Model model, Pagination paging) {
 		
@@ -107,23 +107,23 @@ public class AdminChallengeController {
 		model.addAttribute("radioCheck", "adminChallengeParticipation");
 		return "challenge/admin/adminChallengeParticipation";
 	}
-	/*------------------------------------------------챌린지 참여 관리 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 참여 관리 Controller 끝-----------------------------------------------------*/
 	
 	
 	
 	
-	/*------------------------------------------------챌린지 신고 관리 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 신고 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallengeReport")
 	public String adminChallengeReport(Model model) {
 		model.addAttribute("title", "챌린지 신고 관리");
 		model.addAttribute("radioCheck", "adminChallengeReport");
 		return "challenge/admin/adminChallengeReport";
 	}
-	/*------------------------------------------------챌린지 신고 관리 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 신고 관리 Controller 끝-----------------------------------------------------*/
 
 	
 	
-	/*------------------------------------------------챌린지 달성율 관리 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 달성율 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallengeAchievement")
 	public String adminChallengeAchievement(Model model, Pagination paging) {
 		
@@ -138,20 +138,20 @@ public class AdminChallengeController {
 		model.addAttribute("radioCheck", "adminChallengeAchievement");
 		return "challenge/admin/adminChallengeAchievement";
 	}
-	/*------------------------------------------------챌린지 달성율 관리 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 달성율 관리 Controller 끝-----------------------------------------------------*/
 	
 	
-	/*------------------------------------------------챌린지 최종순위 리스트 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 최종순위 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallengeRanking")
 	public String adminChallengeRanking(Model model) {
 		model.addAttribute("title", "챌린지 최종순위 관리");
 		model.addAttribute("radioCheck", "adminChallengeRanking");
 		return "challenge/admin/adminChallengeRanking";
 	}
-	/*------------------------------------------------챌린지 최종순위 리스트 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 최종순위 관리 Controller 끝-----------------------------------------------------*/
 
 	
-	/*------------------------------------------------챌린지 보상지급 관리 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 보상지급 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallengeCompensation")
 	public String challengeCompensation(Model model) {
 		
@@ -162,5 +162,5 @@ public class AdminChallengeController {
 		model.addAttribute("challengeCompensationList", challengeCompensationList);
 		return "challenge/admin/adminChallengeCompensation";
 	}
-	/*------------------------------------------------챌린지 보상지급 관리 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 보상지급 관리 Controller 끝-----------------------------------------------------*/
 }

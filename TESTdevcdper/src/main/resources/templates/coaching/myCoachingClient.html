@@ -5,7 +5,7 @@
 	<th:block layout:fragment="pageTitle">
 		<title th:text="${title}">main title</title>
 		<div class="col-sm-6">
-			<h1 class="m-0">my coachingClient page</h1>
+			<h1 class="m-0">나의 코칭</h1>
 		</div><!-- /.col -->
 		<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block>
 		
@@ -213,12 +213,12 @@
 								</button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-RFQResult">
+								<button type="button" class="btn btn-block btn-default btn-xs RFQResultBtn" data-toggle="modal" data-target="#modal-RFQResult"  th:data-count="${i}" th:data-RFQResultCode="${l.getCoachingRFQResult().getCoachingRFQResultCode()}">
 			                  		상세보기
 				                </button>
 							</td>
 							<td>
-								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-Review">
+								<button type="button" class="btn btn-block btn-default btn-xs reviewBtn" data-toggle="modal" data-target="#modal-Review">
 			                  		상세보기
 				                </button>
 							</td>
@@ -249,11 +249,11 @@
 
 		<!-- Modal -->
 		<!-- 견적요청 Modal -->
-		<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>"
+		<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>
 		<!-- /견적요청 Modal -->
 		
 		<!-- 견적결과 상세보기  Modal  -->			
-		<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>"
+		<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>
 		<!-- /견적결과 상세보기  Modal  -->			
 
 		<!-- 후기 상세보기  Modal  -->			
@@ -273,11 +273,17 @@
 	
 	<th:block layout:fragment="pageJavascript">
 		
-		<!-- 견적요청 상세보기 Modal Js -->
 		<script th:inline="javascript">
-		/*<![CDATA[*/ 
-		var myCoachingList = /*[[ ${myCoachingList} ]]*/;
-		/*]]*/ 
+			/*<![CDATA[*/ 
+			var myCoachingList = /*[[ ${myCoachingList} ]]*/;
+			var sessionLevel = /*[[ ${sessionLevel} ]]*/;
+			/*]]*/ 
+			
+			if(sessionLevel == '비회원'){
+			console.log('비회원체크');
+			location.replace('/login');
+			}
+		
 		</script>
 		
 		<script type="text/javascript" src="coachingJs/coachingRFQJs.js"></script>
@@ -285,7 +291,7 @@
 		<!-- 견적결과 상세보기 Modal Js -->
 		<script type="text/javascript" src="coachingJs/coachingRFQResultJs.js"></script>
 
-	
+		
 		<script th:inline="javascript">
 				<!-- 견적요청 상세보기 Modal -->
 				$(function(){
@@ -296,31 +302,9 @@
 						$('.checkbox1').removeAttr("checked");
 						//$('.container-fluid').css("pointer-events","auto");
 						location.reload();
-						
 					})
-					
-					
-					
-					/* 		
-					//모달이 활셩화 상태에서 esc 키보드 입력시 닫힐 때 요일 체크박스 초기화 
-					$(document).keydown(function (e) {
-						var code = e.keyCode||e.which;
-						if(code == 27){
-							console.log('모달 esc 닫기 이벤트 확인1');
-							$('.checkbox').removeAttr("checked");
-							$('.container-fluid').css("pointer-events","auto");
-						}
-					})
-			 		*/
-					/* 
-					$('.fade').click(function(){
-						//console.log($('#modal-RFQ').css( 'display' ));
-						console.log('닫기 클릭이벤트2')
-						$('.checkbox').removeAttr("checked");
-						//$('.container-fluid').css("pointer-events","auto");
-					}); */
 				});
-	
+		
 				
 				$(function(){
 					<!-- 견적결과 상세보기 Modal -->

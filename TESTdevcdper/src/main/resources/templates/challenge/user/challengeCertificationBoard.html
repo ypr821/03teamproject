@@ -58,7 +58,7 @@
                     <tbody class="challengeCertificationBoardList">
 						<tr th:if="${#lists.size(challengeCertificationBoardList) > 0}" th:each="l, idx : ${challengeCertificationBoardList}">
 							 <td id="indexCount" th:text="${idx.count}"></td>
-							 <td id="challengeCertificationTitle" th:text="${l.challengeCertificationTitle}"><a th:href=@{/challengeCertificationBoardView}></a></td>
+							 <td id="challengeCertificationTitle"><a th:text="${l.challengeCertificationTitle}" th:href="@{/challengeCertificationBoardView(challengeCode=${challengeCode})}"></a></td>
 							 <td id="challengeParticipationEmail" th:text="${l.challengeParticipation.challengeParticipationEmail}"></td>
 							 <td id="challengeCertificationDate" th:text="${l.challengeCertificationDate}"></td>
 							<td>10</td>
@@ -73,23 +73,28 @@
                 <a th:href="@{/challengeCertificationInsert}">
                 <button type="button" class="btn btn-sm btn-primary float-right" style="float: right">인증 등록하기</button></a>         
                </div>
-                <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+               <div class="card-footer clearfix">
+		                <ul class="pagination pagination-sm m-0 float-right">
+		                <li class="page-item"><a class="page-link" th:href="@{/challengeCertificationBoard}"> << </a></li>
+						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/challengeCertificationBoard(challengeCode=${challengeCode},currentPage=${currentPage - 1})}">이전</a></li>
+							<th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+							<li class="page-item "><a class="page-link" th:if="${num != currentPage}" th:href="@{/challengeCertificationBoard(currentPage=${num}, challengeCode=${challengeCode})}">[[${num}]]</a></li>
+							<li class="page-item active"><a class="page-link" th:unless="${num != currentPage}">[[${num}]]</a></li>
+							</th:block>
+						<li class="page-item"><a class="page-link" th:if="${currentPage < lastPage}" th:href="@{/challengeCertificationBoard(currentPage=${currentPage + 1}, challengeCode=${challengeCode})}">다음</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/challengeCertificationBoard(currentPage=${lastPage})}">>></a></li>
 		                </ul>
-              </div>
+			   </div>	
               <!-- /.card-footer -->
             </div>
 			
 	</th:block>
 	
 	<th:block layout:fragment="pageJavascript">
+	<script th:inline="javascript">
+	$(function(){
+	});
+	</script>	
 	
 	</th:block>
 </html>

@@ -5,8 +5,31 @@
   
 <mapper namespace="com.devcdper.coaching.dao.CoachingMapper">
 
-<!-- coachingClient Mypage -->
-	<resultMap type="com.devcdper.coaching.domain.CoachingRFQ" id="CoachingListMap">
+<resultMap type="com.devcdper.coaching.domain.CoachingReview"  		id = "CoachingReviewListMap">
+		<result property="coachingCompletionReviewCode"				column="coaching_completion_review_code"/>
+		<result property="coachingCategoryCode"						column="coaching_category_code"/>
+		<result property="coachingCompletionCode"					column="coaching_completion_code"/>
+		<result property="coachUserEmail"							column="coach_user_email"/>
+		<result property="userEmail"								column="user_email"/>
+		<result property="coachingCompletionReviewTitle"			column="coaching_completion_review_title"/>
+		<result property="coachingCompletionReivewContents"			column="coaching_completion_reivew_contents"/>
+		<result property="coachingCompletionRate"					column="coaching_completion_rate"/>
+		<result property="coachingCompletionReivewRegisterDate"		column="coaching_completion_reivew_register_date"/>
+</resultMap>
+<select id="getCoachingReview" parameterType="String" resultMap="CoachingReviewListMap">
+		SELECT
+		*
+		FROM coaching_review
+		
+		<if test="searchKey != null and searchKey != ''.toString()">	
+			WHERE ${searchKey} = #{searchValue}
+		</if>		
+		ORDER BY coaching_completion_reivew_register_date DESC;
+	</select>
+
+
+<!-- coaching Mypage -->
+	<resultMap type="com.devcdper.coaching.domain.CoachingRFQ"  id = "CoachingListMap">
 		<result property="coachingRFQCode"						column="coaching_RFQ_code"/>
 		<result property="coachingCategoryCode"					column="coaching_category_code"/>
 		<result property="totalPlanCode"						column="total_plan_code"/>
@@ -137,14 +160,8 @@
 					, #{coachingRFQResultServiceEndDate}
 					, (SELECT DATE_FORMAT(CURDATE(),'%Y-%m-%d'))
 				)
-			
-	
-	
-	
 	</insert>
-	
-	
-	
+
 	<update id="updateCoachingRFQ" parameterType="Map">
 		UPDATE coaching_RFQ
 		SET
@@ -157,7 +174,6 @@
 			coaching_RFQ_wishful_thinking= #{coachingRFQWishfulThinking}
 		WHERE 
 			coaching_RFQ_code = #{coachingRFQCode};	
-	
 	</update>
 
 	 <insert id="insertCoachingRFQ" parameterType="Map">
@@ -190,12 +206,8 @@
 			#{coachingRFQWishfulThinking},
 			CURDATE()
 			);
-		
-	
+
 	</insert> 
-
-
-
 
 <!-- 마이코칭페이지 client 화면 -->
 	<select id="getMyCoachingList" parameterType="String" resultMap="CoachingListMap">
@@ -223,7 +235,6 @@
 		</if>		
 	</select>
 
-
 	<select id="getCoachingRFQTotalListById" resultMap="CoachingListMap">	
 		#견적요청 내역 전체 
 		SELECT
@@ -231,7 +242,6 @@
 		FROM coaching_RFQ
 		WHERE coaching_RFQ.user_email = #{sessionEmail};
 	</select>
-	
 	
 	
 	<select id="getCoachingRFQListById" resultType="com.devcdper.coaching.domain.CoachingRFQ">
@@ -281,9 +291,7 @@
 			LEFt JOIN  coaching_apply_and_payment
 			ON coaching_apply_and_payment.coaching_RFQ_result_code = coaching_RFQ_result.coaching_RFQ_result_code 
 		WHERE coaching_RFQ_result.user_email = #{sessionEmail} AND coaching_apply_and_payment.coaching_RFQ_result_code IS NULL;
-	</select>
-	
-	
+	</select>	
 	
 	<select id="getCoachingApplyAndPaymentListById" resultMap="CoachingListMap">
 	
@@ -307,10 +315,8 @@
 		from coaching_RFQ_result 
 			inner JOIN  coaching_apply_and_payment
 			ON coaching_apply_and_payment.coaching_RFQ_result_code = coaching_RFQ_result.coaching_RFQ_result_code 
-			WHERE coaching_RFQ_result.user_email = #{sessionEmail};
-		
+			WHERE coaching_RFQ_result.user_email = #{sessionEmail};		
 	</select>
-
 
 	<!-- 코치 리스트  (mentoring page) -->
 	<resultMap type="com.devcdper.coaching.domain.CoachingUser" id="CoachUserResultMap">
@@ -351,7 +357,6 @@
 		</association>
 	</resultMap>
 	
-	
 	<!-- 코치 프로필 수정 -->
 	<update id="coachProfileUpdateProcess" parameterType="Map" > 
 		UPDATE coach_management
@@ -360,10 +365,7 @@
 			coaching_introduce_contents=#{profileContents},
 			coach_blog_github_adress=#{coachBlogGithubAdress}
 		WHERE coach_user_email = #{coachUserEmail};
-		
 	</update> 
-
-
 
 	<select id="getCoachList" parameterType="String" resultMap="CoachUserResultMap">
 			SELECT
@@ -413,6 +415,4 @@
 				WHERE u.coach_user_email = #{coachUserEmail}
 			</if>
 		</select>
-
-
 </mapper>

@@ -43,10 +43,10 @@ public interface ChallengeMapper {
 	//관리자 페이지 : 챌린지 참여 관리 - 참여 챌린지 전체 리스트 조회
 	public List<Map<String, ChallengeParticipation>> getChallengeParticipationList(Map<String, Object> paramMap);
 
-	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 테이블 행의 개수 조회(페이징 처리)
+	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 테이블 행의 개수 조회
 	public int getChallengeAchievementRateCount();
 	
-	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 전체 리스트 조회(페이징 처리)
+	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 전체 리스트 조회
 	public List<Map<String, Challenge>> getChallengeAchievementRateList(Map<String, Object> paramMap);
 	
 	//관리자 페이지 : 챌린지 보상지급 관리 - 챌린지 보상지급 전체 리스트 조회
@@ -80,17 +80,18 @@ public interface ChallengeMapper {
 	public int addChallengeCertification(Map<String, Object> challengeCertification);
 	
 	//챌린지 인증게시판 : 챌린지 인증등록 후 게시판 전체 리스트 조회
-	public List<ChallengeCertification> getChallengeCertificationBoardList(String challengeCode);
+	public List<Map<String, ChallengeCertification>> getChallengeCertificationBoardList(Map<String, Object> paramMap);
+	
+	public int getChallengeCertificationBoardCount(String challengeCode);
 	
 	/* 나의 챌린지 : 개설 챌린지 설정(수정) */
-	
-	//나의 챌린지 전체 리스트 조회
+	//나의 챌린지 : 전체 리스트 조회
 	public List<Map<String, Challenge>> getMyChallengeList(Map<String, Object> paramMap);
 	
-	//나의 챌린지 테이블 행의 개수 조회
+	//나의 챌린지 : 테이블 행의 개수 조회
 	public int getMyChallengeCount(String sessionEmail);
 	
-	//나의 개설 챌린지 전체 리스트 조회(수정할 개설 챌린지 리스트)
+	////나의 챌린지 : 개설 챌린지 전체 리스트 조회
 	public List<Challenge> getMyChallengeInsertList(Map<String, Object> paramMap);
 	
 	//수정할 개설 챌린지 변경 요소 리스트 조회 (챌린지명/챌린지 기간/챌린지 인증방법/챌린지 소개/챌린지 태그)

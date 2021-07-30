@@ -35,8 +35,12 @@ public class ChallengeService {
 	}
 	
 	
-	//-------------------------------- 관리자 Service 시작 --------------------------------
+	//----------------------------------------------- <관리자 Service> 시작 -----------------------------------------------
 	
+	
+	/*-----------------------------------------------------챌린지 관리 Service 시작-----------------------------------------------------*/
+	
+	/*------------------------------------------------개설 챌린지 관리 Service 시작-----------------------------------------------------*/
 	
 	//관리자 페이지 : 개설 챌린지 - 개설 챌린지 전체 리스트 조회
 	public Map<String, Object> getChallengeList(Pagination paging){
@@ -69,9 +73,15 @@ public class ChallengeService {
 		
 	}
 	
+	
 	public int getChallengeCount() {
 		return challengeMapper.getChallengeCount();
 	}
+
+	/*------------------------------------------------개설 챌린지 관리 Service 끝-----------------------------------------------------*/
+
+	/*------------------------------------------------ 챌린지 카테고리 관리 Service 시작-----------------------------------------------------*/
+
 	
 	//관리자 페이지 : 개설 챌린지 - 챌린지 카테고리 전체 조회
 	public List<ChallengeCategory> getChallengeCategoryList() {
@@ -95,6 +105,14 @@ public class ChallengeService {
 		return challengeMapper.modifyChallengeCategoryName(challengeCategory);
 	}
 	
+	/*------------------------------------------------ 챌린지 카테고리 관리 Service 끝-----------------------------------------------------*/
+	
+	/*------------------------------------------------챌린지 관리 Service 끝-----------------------------------------------------*/
+	
+	
+	
+	/*------------------------------------------------챌린지 참여 관리 Service 시작-----------------------------------------------------*/
+
 	
 	//관리자 페이지 : 챌린지 참여 관리 - 참여 챌린지 전체 리스트 조회
 	public Map<String, Object> getChallengeParticipationList(Pagination paging) {
@@ -126,11 +144,9 @@ public class ChallengeService {
 		return resultMap;
 	}
 	
-	//관리자 페이지 : 챌린지 참여 관리 - 참여 챌린지 전체 행 개수 조회
-	public int getChallengeParticipationCount(){
-		return challengeMapper.getChallengeParticipationCount();
-	}
-	
+	/*------------------------------------------------챌린지 참여 관리 Service 끝-----------------------------------------------------*/
+
+	/*------------------------------------------------챌린지 달성율 관리 Service 시작-----------------------------------------------------*/
 	
 	//관리자 페이지 : 챌린지 달성율 관리 - 챌린지 달성율 전체 리스트 조회(페이징 처리)
 	public Map<String, Object> getChallengeAchievementRateList(Pagination paging){
@@ -162,16 +178,26 @@ public class ChallengeService {
 		return resultMap;
 	}
 	
+	/*------------------------------------------------챌린지 달성율 관리 Service 끝-----------------------------------------------------*/
+
+	/*------------------------------------------------챌린지 보상지급 관리 Service 시작-----------------------------------------------------*/
+	
 	//관리자 페이지 : 챌린지 보상지급 관리 - 챌린지 보상지급 전체 리스트 조회
 	public List<Map<String, ChallengeCompensation>> getChallengeCompensationList(){
 		return challengeMapper.getChallengeCompensationList();
 	}
 	
-	//-------------------------------- 관리자 Service 끝 --------------------------------
+	/*------------------------------------------------챌린지 보상지급 관리 Service 끝-----------------------------------------------------*/
+	
+	//----------------------------------------------- <관리자 Service> 끝 -----------------------------------------------
 
-	//-------------------------------- 일반회원 Service 시작 --------------------------------
+	
+	//----------------------------------------------- <일반회원 Service> 시작 -----------------------------------------------
 
-	//챌린지 탐색하기 - 전체 챌린지 카드 리스트
+	//------------------------------------------------ 메인 챌린지 Service 시작 ------------------------------------------------
+	//------------------------------------------------ 챌린지 탐색하기 Service 시작 ------------------------------------------------
+
+	//메인 챌린지&챌린지 탐색하기 - 전체 챌린지 카드 리스트
 	public List<Challenge> getChallengeExplorationList(){
 			return challengeMapper.getChallengeExplorationList();
 	}
@@ -182,7 +208,7 @@ public class ChallengeService {
 		return challengeMapper.getChallengeExplorationDetailInfoByChallengeName(challengeName);
 	}
 	
-	//챌린지 탐색하기 - 카테고리별 챌린지 리스트 조회
+	//메인 챌린지&챌린지 탐색하기 - 카테고리별 챌린지 리스트 조회
 	public List<Challenge> getChallengeByCategoryExplorationList(String challengeCategoryCode, String categoryBtnName){
 		
 		System.out.println("챌린지 카테고리 코드 (ChallengeService):"+ challengeCategoryCode);
@@ -192,6 +218,12 @@ public class ChallengeService {
 		return ChallengeByCategoryExplorationList;
 	}
 	
+	//------------------------------------------------ 챌린지 탐색하기 Service 끝 ------------------------------------------------
+	//------------------------------------------------ 메인 챌린지 Service 끝 ------------------------------------------------
+
+	
+	//------------------------------------------------ 챌린지 개설하기 Service 시작 ------------------------------------------------
+
 	//챌린지 개설하기 : 챌린지 개설 등록 처리
 	public int addChallenge(Challenge challenge)  {
 		
@@ -245,6 +277,10 @@ public class ChallengeService {
 		return result;
 	}
 	
+	//------------------------------------------------ 챌린지 개설하기 Service 끝 ------------------------------------------------
+
+	//------------------------------------------------ 챌린지 인증하기 Service 시작 ------------------------------------------------
+
 	//챌린지 인증하기 : 인증가능한 챌린지 전체 리스트 조회
 	public ChallengeCertification getChallengeCertificationInfo(String challengeCode, String sessionEmail) {
 		return challengeMapper.getChallengeCertificationInfo(challengeCode, sessionEmail);
@@ -277,15 +313,50 @@ public class ChallengeService {
 		
 	}
 	
-	//챌린지 인증게시판 : 챌린지 인증등록 후 게시판 전체 리스트 조회
-		public List<ChallengeCertification> getChallengeCertificationBoardList(String challengeCode){
-			return challengeMapper.getChallengeCertificationBoardList(challengeCode);
+		//챌린지 인증게시판 : 챌린지 인증등록 후 게시판 전체 리스트 조회
+		public Map<String, Object> getChallengeCertificationBoardList(Pagination paging, String challengeCode){
+			
+			System.out.println("challengeCode ChallengeService : " + challengeCode);
+			
+			//PageMaker 객체를 생성함.
+			PageMaker pageMaker = new PageMaker();
+			
+			paging.setRowPerPage(10);
+			//currentPage(현재 페이지 번호)와 rowPerPage(한 페이지당 보여줄 게시글 행의 개수)를 세팅해준다.
+		    pageMaker.setPaging(paging);
+		   
+		    //총 게시글 수 세팅 : 나의 챌린지 전체 리스트 총 개수를 세는 쿼리를 호출하여 세팅해줌.
+		    pageMaker.setTotalCount(challengeMapper.getChallengeCertificationBoardCount(challengeCode));
+		    
+		    Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("rowStart", paging.getRowStart());
+			paramMap.put("rowPerPage", paging.getRowPerPage());
+			paramMap.put("challengeCode", challengeCode);
+			System.out.println("paramMap ChallengeService : " + paramMap);
+			
+			List<Map<String, ChallengeCertification>> challengeCertificationBoardList = challengeMapper.getChallengeCertificationBoardList(paramMap);
+			System.out.println("challengeCertificationBoardList ChallengeService : >>>> " + challengeCertificationBoardList);
+			
+			Map<String, Object> resultMap = new HashMap<String, Object>();
+			resultMap.put("currentPage", paging.getCurrentPage());
+			resultMap.put("challengeCertificationBoardList", challengeCertificationBoardList);
+			resultMap.put("lastPage", pageMaker.getLastPage());
+			resultMap.put("pageStartNum", pageMaker.getPageStartNum());
+			resultMap.put("pageEndNum", pageMaker.getPageEndNum());
+			System.out.println("challengeCertificationBoardList resultMap : >>>> " + resultMap);
+			
+			return resultMap;
 		}
+		
+		//------------------------------------------------ 챌린지 인증하기 Service 끝 ------------------------------------------------
 
-	//나의 챌린지 전체 리스트 조회
+		//------------------------------------------------ 나의 챌린지 Service 시작 ------------------------------------------------
+	
+		//나의 챌린지 전체 리스트 조회
 		public Map<String, Object> getMyChallengeList(Pagination paging, String sessionEmail){
 			
 			System.out.println("sessionEmail ChallengeService : " + sessionEmail);
+			
 			//PageMaker 객체를 생성함.
 			PageMaker pageMaker = new PageMaker();
 			
@@ -316,26 +387,19 @@ public class ChallengeService {
 			return resultMap;
 		}
 		
-	
-	/* 나의 챌린지 : 개설 챌린지 설정(수정) */
-		
-	
-	//0. 수정할 챌린지 리스트
+	//나의 챌린지 : 개설 챌린지 전체 리스트 조회
 	public List<Challenge> getMyChallengeInsertList(Map<String, Object> paramMap){
 		return challengeMapper.getMyChallengeInsertList(paramMap);
 	}
 	
-	
-	
+	/* 나의 챌린지 : 개설 챌린지 설정(수정) */
 	//1. 수정할 챌린지 정보 리스트 - 챌린지명, 챌린지 시작일, 챌린지 종료일, 챌린지 인증방법, 챌린지 소개, 챌린지 태그 
 	public Challenge getModifyInsertChallengeAttributeList(String challengeCode) {
 		System.out.println("챌린지 코드 : " + challengeCode);
 		return challengeMapper.getModifyInsertChallengeAttributeList(challengeCode);
 	}
 	
-	
 		//---------------- 나의 챌린지 : 개설 챌린지 설정 정보 수정 시작-------------------- 
-	
 		//1. 챌린지명 수정 
 		public int modifyChallengeName(Challenge challenge) { 
 			System.out.println("챌린지 서비스 - modifyChallengeName : " + challenge);
@@ -365,7 +429,9 @@ public class ChallengeService {
 		}
 	
 		//---------------- 나의 챌린지 : 개설 챌린지 설정 정보 수정 끝-------------------- 
+		
+		//------------------------------------------------ 나의 챌린지 Service 끝 ------------------------------------------------
 
-	//-------------------------------- 일반회원 Service 끝 --------------------------------
+		//----------------------------------------------- <일반회원 Service> 끝 -----------------------------------------------
 	
 }
