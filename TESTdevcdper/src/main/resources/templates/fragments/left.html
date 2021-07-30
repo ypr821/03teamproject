@@ -56,16 +56,16 @@
 				style="font-size: 14px;">
 				<!-- Add icons to the links using the .nav-icon class
 	           with font-awesome or any other icon font library -->
-				<li class="nav-item" th:if="${function == null}"><a
-					href="devcdper/introduce.html" th:if="${session.ULEVEL == null}"
-					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
+				<li class="nav-item" th:if="${function == null}">
+				<a th:href="@{/}" th:if="${session.ULEVEL == null}" class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
 						<p>DEV-CDPER 소개</p>
-				</a></li>
-				<li class="nav-item" th:if="${function == null}"><a
+				</a>
+				</li>
+				<!-- <li class="nav-item" th:if="${function == null}"><a
 					href="devcdper/guide.html" th:if="${session.ULEVEL == null}"
 					class="nav-link"> <i class="nav-icon fas fad fa-scroll"></i>
 						<p>DEV-CDPER 가이드</p>
-				</a></li>
+				</a></li> -->
 				
 				
 			<li class="nav-item has-treeview" th:if="${function == null}">
