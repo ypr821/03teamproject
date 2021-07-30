@@ -71,19 +71,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="tpl : ${totalPlanList}">
+					<tr th:each="tpl, idx : ${totalPlanList}">
 						<a th:text="${tpl.planCode}" hidden></a>
-						<td >
-							1
+						<td th:text="${idx.count}">
 						</td>
 						<td>
-							<a th:text="${tpl.planTitle}">
-								백엔드 개발자 취업 준비
-							</a>
+							<a th:text="${tpl.planTitle}"></a>
 							<br/>
-							<small th:text="'등록일 : ' + ${tpl.registerDate}">
-								등록일 : 2021.04.21
-							</small>
+							<small th:text="'등록일 : ' + ${tpl.registerDate}"></small>
 						</td>
 						<td>
 							<a class="planContents" th:text="${tpl.planContents}" hidden></a>
@@ -107,17 +102,11 @@
 							</small>
 						</td>
 						<td>
-							<span class="badge badge-danger planStatus" th:text="${tpl.planStatus}">
-								중단됨
-							</span>
+							<span class="badge badge-danger planStatus" th:text="${tpl.planStatus}"></span>
 						</td>
-						<td th:text="${tpl.totalPlanDivision}">
-							도움받기
-						</td>
+						<td th:text="${tpl.totalPlanDivision}"></td>
 						<td>
-							<a th:text="${tpl.planDegree}">
-								1차
-							</a>
+							<a th:text="${tpl.planDegree}"></a>
 						</td>
 						<td>
 							<a class="degreeChangeReason" th:text="${tpl.degreeChangeReason}" hidden></a>
@@ -131,7 +120,7 @@
 								</i>
 								계획보기
 							</a>
-							<a class="btn btn-default btn-xs modifyTotalPlan" th:href="@{/modifyTotalPlan(planCode=${tpl.planCode})}">
+							<a class="btn btn-default btn-xs modifyTotalPlan" th:href="@{/modifyTotalPlan(planCode=${tpl.planCode},planName='totalPlan')}">
 								<i class="fas fa-pencil-alt">
 								</i>
 								수정
@@ -216,7 +205,15 @@
 			table.find('small').css({
 				'color' : '#969696'
 			});
-			
+			$.each($('.planStatus'),function(index, item){
+				if($('.planStatus').eq(index).text()=='진행중'){
+					$(this).attr('class','badge badge-primary planStatus');
+				}else if($('.planStatus').eq(index).text()=='진행예정'){
+					$(this).attr('class','badge badge-secondary planStatus');
+				}else if($('.planStatus').eq(index).text()=='완료'){
+					$(this).attr('class','badge badge-success planStatus');
+				}
+			})
 		});
 	</script>
 </th:block>

@@ -59,10 +59,10 @@ public class NormalUserController {
             
             //localhost용
            
-            	Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ random + file.getOriginalFilename());
+            //Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ random + file.getOriginalFilename());
            
             //cafe24용
-//            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/") + file.getOriginalFilename());
+            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/") + random + file.getOriginalFilename());
             Files.write(path, bytes);
             
             System.out.println(random + file.getOriginalFilename());

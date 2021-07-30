@@ -307,7 +307,7 @@
 			,all_plan_degree_change_reason
 			,all_plan_status
 		) VALUES (
-			 sf_newTotalPlanCode()
+			 #{planCode}
 			,#{userEmail}
 			,#{planTitle}
 			,#{planContents}
@@ -317,9 +317,109 @@
 			,1
 			,#{totalPlanDivision}
 			,''
-			,#{status}
+			,#{planStatus}
 		);
 	</insert>
+	<insert id="addEducationalHistoryPlan" parameterType="com.devcdper.plan.domain.PlanDto">
+		INSERT INTO plan_educational_history
+			 (plan_educational_history_code
+			, total_plan_code
+			, user_email
+			, plan_educational_title
+			, plan_educational_choice
+			, plan_educational_school
+			, plan_educational_department
+			, plan_educational_credit
+			, plan_educational_contents
+			, plan_educational_start_date
+			, plan_educational_end_date
+			, plan_educational_degree
+			, plan_educational_degree_change_reason
+			, plan_educational_status
+			, plan_educational_created_date)
+		VALUES
+			 (#{planCode}
+			, #{totalPlanCode}
+			, #{userEmail}
+			, #{planTitle}
+			, #{planEducationalChoice}
+			, #{planEducationalSchool}
+			, #{planEducationalDepartment}
+			, #{planEducationalCredit}
+			, #{planContents}
+			, #{startDate}
+			, #{endDate}
+			, 1
+			, ''
+			, #{planStatus}
+			, NOW()
+		);
+	</insert>
+	<insert id="addProjectPlan" parameterType="com.devcdper.plan.domain.PlanDto">
+		INSERT INTO plan_project
+			 (plan_project_code
+			, total_plan_code
+			, user_email
+			, plan_project_title
+			, plan_project_name
+			, plan_project_contents
+			, plan_project_start_date
+			, plan_project_end_date
+			, plan_project_development_environment
+			, plan_project_url
+			, plan_project_degree
+			, plan_project_degree_change_reason
+			, plan_project_status
+			, plan_project_created_date)
+		VALUES(
+			 (#{planCode}
+			, #{totalPlanCode}
+			, #{userEmail}
+			, #{planTitle}
+			, #{planName}
+			, #{planContents}
+			, #{startDate}
+			, #{endDate}
+			, #{planProjectDevelopmentEnvironment}
+			, #{planProjectUrl}
+			, 1
+			, ''
+			, #{planStatus}
+			, NOW()
+		);
+	</insert>
+	<insert id="addCertificatePlan" parameterType="com.devcdper.plan.domain.PlanDto">
+		INSERT INTO plan_certificate
+			(plan_certificate_code
+			, total_plan_code
+			, user_email
+			, plan_certificate_title
+			, plan_certificate_name
+			, plan_certificate_start_date
+			, plan_certificate_end_date
+			, plan_certificate_contents
+			, plan_certificate_degree
+			, plan_certificate_degree_change_reason
+			, plan_certificate_status
+			, plan_certificate_created_date
+		)VALUES(
+			 (#{planCode}
+			, #{totalPlanCode}
+			, #{userEmail}
+			, #{planName}
+			, #{startDate}
+			, #{endDate}
+			, #{planContents}
+			, 1
+			, ''
+			, #{planStatus}
+			, NOW()
+		);
+	</insert>
+	<insert id="addCertifiedLanguagePlan" parameterType="com.devcdper.plan.domain.PlanDto">
+	
+	</insert>
+
 	<!-- INSERT 영역 종료 -->
 	
 
