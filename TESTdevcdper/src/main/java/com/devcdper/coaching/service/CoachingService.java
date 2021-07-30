@@ -1,5 +1,6 @@
 package com.devcdper.coaching.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import com.devcdper.coaching.dao.CoachingMapper;
 import com.devcdper.coaching.domain.CoachingApplyAndPayment;
 import com.devcdper.coaching.domain.CoachingRFQ;
 import com.devcdper.coaching.domain.CoachingRFQResult;
+import com.devcdper.coaching.domain.CoachingReview;
 import com.devcdper.coaching.domain.CoachingUser;
 import com.devcdper.user_admin.dao.CoachUserMapper;
 import com.devcdper.user_admin.dao.CommonMapper;
@@ -48,8 +50,8 @@ public class CoachingService {
 	}
 
 	//멘토 리스트 (mentoring 화면)
-	public List<CoachingUser> getCoachList(String mento){
-		List<CoachingUser> coachList = coachingMapper.getCoachList(mento,null);
+	public List<CoachingUser> getCoachList(String coach){
+		List<CoachingUser> coachList = coachingMapper.getCoachList(coach,null);
 		
 		System.out.println("coachList ==> " + coachList);
 		return coachList;
@@ -124,7 +126,8 @@ public class CoachingService {
 			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode("+tableName+"♡♡==>>"+ result);
 			return result;
 		}
-		//getNewCode
+		
+	//getNewCode
 		public String getNewCode2(String tableName) {
 			System.out.println("tableName=>"+tableName);
 			int codeMaxNum =  Integer.parseInt(commonMapper.getNewCode2(tableName));
@@ -134,20 +137,26 @@ public class CoachingService {
 			return newCode;
 		}
 
+	//견적결과 insert
 		public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult) {
-			
 			System.out.println("insertCoachingRFQResult 서서서서비비비비스스스 실행");
-			
 			String newCode = getNewCode("coaching_RFQ_result");
 			String newCode2 = getNewCode2("coaching_RFQ_result");
 			System.out.println("newCode=>"+newCode);
 			System.out.println("newCode2!!!!!!!!!!!!!=>"+newCode2);
 			coachingRFQResult.put("coachingRFQResultCode", newCode2);
 			//System.out.println("coachingRFQResult===>>>>>"+coachingRFQResult);
-			
 			int result = coachingMapper.insertCoachingRFQResult(coachingRFQResult);
-			
 			return 0;
+		}
+
+	//코칭리뷰조회
+		public List<CoachingReview> getCoachingReview(String searchKey, String searchValue) {
+			System.out.println("service searchKey=>"+searchKey);
+			System.out.println("service searchValue=>"+searchValue);
+			List<CoachingReview> coachingReviewList = coachingMapper.getCoachingReview(searchKey, searchValue);
+			System.out.println("service coachingReviewList=>"+coachingReviewList);
+			return coachingReviewList;
 		}
 	
 	

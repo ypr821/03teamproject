@@ -296,8 +296,6 @@
 											}
 											$('#modal-coaching-totalPlan .justify-content-between [type=button]:not(:disabled)').click();
 											//location.reload();
-											
-											
 										}, 
 										error: function (xhr, status, error) { 
 											//console.log("ERROR!!!"); 
@@ -336,8 +334,7 @@
 				else if(true == $($('.coachingType').children()[2]).children().is(":checked")){
 					coachingType = '컨설턴트';
 				}
-				
-			
+	
 				//카테고리코드값
 				//console.log($('#coachingCategory').val());
 				//카테고리 유효성 검사
@@ -372,8 +369,6 @@
 						}else if(startDate > endDate){
 							alert('종료일자는 시작일자 이전 날짜로 입력이 불가능합니다. 입력을 확인해주세요!');						
 						}else{
-							
-
 							//진행요일 입력받은 데이터 변수에 담기 
 							//console.log($($(".checkbox")[1]).is(":checked"));
 							var dayStr = '';
@@ -426,12 +421,12 @@
 										 	,coachUserEmail             : $('#coachEmail').val()
 											,userEmail                  : null
 											,coachClassification        : coachingType
- 											,coachingRFQStartDate       : startDate
+												,coachingRFQStartDate       : startDate
 											,coachingRFQEndDate         : endDate
 											,coachingRFQDay             : dayStr
 											,coachingRFQWishfulThinking : $('#RFQRequestContents').val()
 											,coachingRFQRequestDate     : nowDate
-
+	
 										}, 
 										datatype: "JSON", 
 										success: function (obj) { 
@@ -448,37 +443,21 @@
 										error: function (xhr, status, error) { console.log("ERROR!!!"); 
 										alert('로그인해주세요!')
 										} 
-									});
-									
-									
-									
-									
-									
+									});				
 								}
 							}
 							//계획 선택 받기 통합, 계획
-							
-							
-							
 						}
-						
 					}
 				}
-			
 				
 			//코칭 타입에 둘 다 선택이 안된 경우 	
 			}else{
 				alert('코칭 타입을 선택해주세요')
 			}
 			console.log(coachingType);
-			
-			
 		});
-				
 	</script>
-
-
-
 </th:block>
 </html>
 

@@ -11,14 +11,11 @@
 		
 		<!-- /.col -->
 	</th:block>
-	<th:block layout:fragment="container">
 	
-
-		
+	<th:block layout:fragment="container">
 		<!-- 정렬 row 클래스 - 코치 프로필 전체시작과 끝에 태그위치시킴 -->
 		<div class="row">
 	          <div class="col-md-3">
-	
 	            <!-- Profile Image -->
 	            <div class="card card-primary card-outline">
 	              <div class="card-body box-profile">
@@ -57,13 +54,10 @@
 	                		<b><i class="fas fa-user"></i> &nbsp;!견적요청</b>
 	                	</button>
 	                </a>
-	               
 	              </div>
 	              <!-- /.card-body -->
 	            </div>
 	            <!-- /.card -->
-	
-
 	          </div>
 	          <!-- /.col -->
 	          <div class="col-md-9">
@@ -71,31 +65,26 @@
 	              <!-- card-header -->
 	              <div class="card-header p-2">
 	                <ul class="nav nav-pills">
-	                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">!소개</a></li>
-	                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">#후기</a></li>
-	                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">?</a></li>
+	                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">소개</a></li>
+	                  <li class="nav-item"><a class="nav-link reviewMenu" href="#timeline" data-toggle="tab">#후기</a></li>
 	                </ul>
 	              </div>
 	              <!-- /.card-header -->
 	              
 	              <div class="card-body">
 	                <div class="tab-content">
-	                 
-	                 <!-- 소개 -->
+	                  <!-- 소개 -->
 	                  <div class="tab-pane active" id="activity">
-	                  	
 	                  	 <div class="post clearfix">
-	                      
 	                    	<!-- post 1 -->
-		                     <b>
-		                     	<p th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceSubject()}"> </p>
+		                    <b>
+		                    	<p th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceSubject()}"> </p>
 							</b> 
 							<p th:text="${coachList.get(0).getCoachManagement().getCoachingIntroduceContents()}"> </p>
 		                 </div>
-	                    
 	                    <!-- /.post 1 -->
 	
-	                    <!-- Post 2-->
+	                       <!-- Post 2-->
 		                   <div class="post">
 					              <div class="card-body">
 	
@@ -115,157 +104,53 @@
 										<span id="coachGitHubAddress"> 
 											
 										</span>
-										
 					                </p>
 					              </div>
 					              <!-- /.card-body -->
-					            <!-- /.card -->
-		                  </div>
-						 <!-- / Post 2-->
+		                   </div>
+						   <!-- / Post 2-->
 	                  </div>
 	                  <!-- /소개 -->
 	                  
+	                  <!-- 후기 -->
 	                  <div class="tab-pane" id="timeline">
 	                    <!-- The timeline -->
 	                    <div class="timeline timeline-inverse">
 	                      <!-- timeline time label -->
 	                      <div class="time-label">
-	                        <span class="">
-	                          10 Feb. 2021
+	                        <span class="today">
+	                        </span>
+	                        <span class="nonReview">
 	                        </span>
 	                      </div>
 	                      <!-- /.timeline-label -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
-	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 12:05 </span>
-	
-	                          <h3 class="timeline-header"> 글쓴이: 최성구 / 강의명: 실무자가 알려주는 Git - 입문편/평점 ⭐⭐⭐⭐⭐</h3>
-	
-	                          <div class="timeline-body">
-								 <small> 정말  배운점이 많았고 좋았습니다. 멘토링동안 수업방식도 너무 좋았습니다.</small>
-	                          </div>
 	                      
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <!-- timeline item -->
-	                      <div>
+	                      <!-- 후기 내용 timeline item -->
+	                      <div th:each="rl,i : ${coachingReviewList}">
+	                      
 	                        <i class="fas fa-comments bg-warning"></i>
 	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-	
-	                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request  평점 ⭐⭐⭐⭐
-	                          </h3>
+	                        <div class="timeline-item" >
+	                          <i class="time far fa-clock regDate">
+	                         	 <span class="time" th:text="${rl.coachingCompletionReivewRegisterDate}"> </span>
+	                          </i> 
+	                          <h3 class="timeline-header reviewTitle" th:text="${rl.coachingCompletionReviewTitle}"> </h3>
+							  <small > 
+								     🌕달점: <span class="coachingRate"  th:text="${rl.coachingCompletionRate}+'/5.0'">평점</span>
+		                          <div style="padding-left: 10px;" class="timeline-body reviewContents" th:text="${rl.coachingCompletionReivewContents}"></div>
+							  </small>
 	                        </div>
 	                      </div>
-	                      <!-- END timeline item -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
-	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 3days ago</span>
-	
-	                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post 평점 ⭐⭐⭐</h3>
-	
-	                          <div class="timeline-body">
-	                          	 <small> 
-		                            Take me to your leader!
-		                            Switzerland is small and neutral!
-		                            We are more like Germany, ambitious and misunderstood!
-
-								</small>
-	                          </div>
 	                     
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <!-- timeline time label -->
-	                      <div class="time-label">
-	                        <span class="">
-	                          3 Jan. 2020
-	                        </span>
-	                      </div>
-	                      <!-- /.timeline-label -->
-	                      <!-- timeline item -->
-	                      <div>
-	                        <i class="fas fa-comments bg-warning"></i>
-	
-	                        <div class="timeline-item">
-	                          <span class="time"><i class="far fa-clock"></i> 1year ago</span>
-	
-	                          <h3 class="timeline-header"> 글쓴이: 최성구    강의명: 실무자가 알려주는 Git - 입문편</h3>
-	
-	                          <div class="timeline-body">
-								 정말  배운점이 많았고 좋았습니다. 멘토링동안 수업방식도 너무 좋았습니다.
-	                          </div>
-
-	                        </div>
-	                      </div>
-	                      <!-- END timeline item -->
-	                      <div>
-	                        <i class="far fa-clock bg-gray"></i>
-	                      </div>
+	                      <!-- END 후기 내용 timeline item -->
 	                    </div>
 	                  </div>
-	                  <!-- /.tab-pane -->
+	                  <!-- / 후기 -->
 	
-	                  <div class="tab-pane" id="settings">
-	                    <form class="form-horizontal">
-	                      <div class="form-group row">
-	                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-	                        <div class="col-sm-10">
-	                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-	                        <div class="col-sm-10">
-	                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-	                        <div class="col-sm-10">
-	                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-	                        <div class="col-sm-10">
-	                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-	                        <div class="col-sm-10">
-	                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <div class="offset-sm-2 col-sm-10">
-	                          <div class="checkbox">
-	                            <label>
-	                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-	                            </label>
-	                          </div>
-	                        </div>
-	                      </div>
-	                      <div class="form-group row">
-	                        <div class="offset-sm-2 col-sm-10">
-	                          <button type="submit" class="btn btn-danger">Submit</button>
-	                        </div>
-	                      </div>
-	                    </form>
-	                  </div>
-	                  <!-- /.tab-pane -->
 	                </div>
 	                <!-- /.tab-content -->
-	              </div><!-- /.card-body -->
+	              </div>
+	              <!-- /.card-body -->
 	            </div>
 	            <!-- /.card -->
 	          </div>
@@ -278,21 +163,41 @@
 		<script th:inline="javascript">
 			/* /*<![CDATA[*/ 
 				var coachBlogGithubAddress = /*[[ ${coachList.get(0).getCoachManagement().getCoachBlogGithubAdress()} ]]*/
+				var coachingReviewList = /*[[ ${coachingReviewList} ]]*/
+			
 			/*]]*/ 
-			console.log('coachBlogGithubAddress ==> ' + coachBlogGithubAddress);
-			var coachBlogGithubAddressArray = coachBlogGithubAddress.split(',');
-			console.log(coachBlogGithubAddressArray);
-			var coachBlogAddress = coachBlogGithubAddressArray[0]
-			var coachGithubAddress = coachBlogGithubAddressArray[1]
-			console.log('coachBlogAddress : ',coachBlogAddress);
-			console.log('coachGithubAddress : ',coachGithubAddress);
 			
 			$(function(){
+				
+				//DB 깃허브블로그주소 화면출력 기준에 맞게 가공
+				console.log('coachBlogGithubAddress ==> ' + coachBlogGithubAddress);
+				if( '' != coachBlogGithubAddress && coachBlogGithubAddress != null ){
+					var coachBlogGithubAddressArray = coachBlogGithubAddress.split(',');
+					console.log(coachBlogGithubAddressArray);
+					var coachBlogAddress = coachBlogGithubAddressArray[0]
+					var coachGithubAddress = coachBlogGithubAddressArray[1]
+					console.log('coachBlogAddress : ',coachBlogAddress);
+					console.log('coachGithubAddress : ',coachGithubAddress);
+				}
+			
 				$('#coachBlogAddress').html(coachBlogAddress);
 				$('#coachGitHubAddress').html(coachGithubAddress);
 				
+				if(coachingReviewList.length == 0){
+					$('.nonReview').text("아직 등록된 후기가 없습니다.");
+				}
 			}); 
 			
+			
+			$(function(){ 
+				$('.reviewMenu').click(function(){
+					
+					console.log('coachingReviewList ==>' ,coachingReviewList);
+					var today = new Date(); 
+					today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+					$('.today').text(today);
+				});
+			})
 			
 		</script>
 	</th:block>
