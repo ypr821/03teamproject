@@ -30,6 +30,8 @@ public class PlanService {
 		return result;
 	};
 	
+	
+	
 	// 한명회원 통합계획 조회
 	public List<PlanDto> getTotalPlan(String searchKey, String searchValue){
 		List<PlanDto> planDto = null;

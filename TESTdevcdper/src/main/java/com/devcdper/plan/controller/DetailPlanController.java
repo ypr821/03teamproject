@@ -130,34 +130,96 @@ public class DetailPlanController {
 	//AJAX1 통합계획 선택시//
 	@RequestMapping(value = "/totalPlanSelected", method=RequestMethod.POST)
 	@ResponseBody
-	public List<PlanDto> totalPlanSelected(@RequestParam(value="stotalPlanCode",required=true)String stotalPlanCode){
+	public Map<String, Object> totalPlanSelected(@RequestParam(value="stotalPlanCode",required=true)String stotalPlanCode
+										  ,@RequestParam(value="planName",required = true)String planName){
 		System.out.println(stotalPlanCode+" <- AJAX1 controller");
 		//String result = totalPlanCode+ "AJAX return 성공";
+		System.out.println(planName+"  palnNameController");
+		Map<String, Object> detailPlanMap = new HashMap<String, Object>();
 		
-		//List<PlanDto> planDto = null;
 		
-		List<PlanDto> getEduTitleSearch = detailPlanService.getEduTotalTitleSearch(stotalPlanCode);
-		//if(stotalPlanCode.equals(anObject))
+		if(planName.equals("planEducationalHistoryDetail") && planName != null && !"".equals(planName)) {
+			System.out.println("planEducationalHistoryDetail 컨트롤러1 접근성공");
+			detailPlanMap.put("planEducationalHistoryDetail", detailPlanService.getEducationalHistoryTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planProjectDetail")&& planName != null && !"".equals(planName)){
+			System.out.println("planProjectDetail 컨트롤러1 접근성공");
+			detailPlanMap.put("planProjectDetail",detailPlanService.getProjectTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planCertificateDetail")&& planName != null && !"".equals(planName)) {
+			System.out.println("자격증 컨트롤러 ajax접근성공");
+			detailPlanMap.put("planCertificateDetail",detailPlanService.getCertificateTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planCertifiedLanguageDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planCertifiedLanguageDetail",detailPlanService.getCertifiedLanguageTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planTechnologyStackDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planTechnologyStackDetail",detailPlanService.getTechnologyStackTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planJobTrainingDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planJobTrainingDetail",detailPlanService.getJobTrainingTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planInternshipDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planInternshipDetail",detailPlanService.getInternshipTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planContestDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planContestDetail",detailPlanService.getContestTotalTitleSearch(stotalPlanCode));
+			
+		}else if(planName.equals("planCareerDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planCareerDetail",detailPlanService.getCareerTotalTitleSearch(stotalPlanCode));
+			
+		}
+		//okay 임의의 Email값 넘겨(각 화면의 컨트롤러) totalPlan의 모든 값중 Code와 Title가져오면된다.
 		//List<PlanDto> getProjTitleSearch = detailPlanService.getProjTotalTitleSearch(stotalPlanCode);
-		//어떻게하면 페이지에 따라 서치 타이틀을 쓸 수 있을 가? 서치키벨류?
-		return  getEduTitleSearch;///planDto;
-				
+		
+		return  detailPlanMap;
 	}
 	
 	
 	//AJAX2 계획 선택후 검색 클릭시//
 	@RequestMapping(value = "/totalAndPlanSelected", method=RequestMethod.POST)
 	@ResponseBody
-	public List<DetailPlanDto> totalAndPlanSelected(@RequestParam(value="totalPlanCode",required=true)String totalPlanCode
-											 ,@RequestParam(value="planCode",required =true )String planCode){
+	public Map<String, Object> totalAndPlanSelected(@RequestParam(value="totalPlanCode",required=true)String totalPlanCode
+											 ,@RequestParam(value="planCode",required =true )String planCode
+											 ,@RequestParam(value="planName",required = true)String planName){
 		System.out.println(totalPlanCode+" <- AJAX2 controller");
 		System.out.println(planCode+" <- AJAX2 controller");
+		System.out.println(planName+"palnNameAJAX2Controller");
+		Map<String, Object> detailPlanMap = new HashMap<String, Object>();
 		
+		if(planName.equals("planEducationalHistoryDetail")&& planName != null && !"".equals(planName)) {
+			System.out.println("planEducationalHistoryDetail AJAX2 컨트롤러 접근성공");
+			detailPlanMap.put("planEducationalHistoryDetail",detailPlanService.getEducationalHistoryDetailPlanList(totalPlanCode,planCode));
+			
+		}else if(planName.equals("planProjectDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planProjectDetail",detailPlanService.getProjectDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planCertificateDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planCertificateDetail",detailPlanService.getCertificateDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planCertifiedLanguageDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planCertifiedLanguageDetail",detailPlanService.getCertifiedLanguageDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planTechnologyStackDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planTechnologyStackDetail",detailPlanService.getTechnologyStackDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planJobTrainingDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planJobTrainingDetail",detailPlanService.getJobTrainingDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planInternshipDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planInternshipDetail",detailPlanService.getInternshipDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planContestDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planContestDetail",detailPlanService.getContestDetailPlanList(totalPlanCode, planCode));
+			
+		}else if(planName.equals("planCareerDetail")&& planName != null && !"".equals(planName)) {
+			detailPlanMap.put("planCareerDetail",detailPlanService.getCareerDetailPlanList(totalPlanCode, planCode));
+			
+		}
 		
-		List<DetailPlanDto> detailPlanList = detailPlanService.getDetailPlanList(totalPlanCode,planCode);
+		//List<DetailPlanDto> detailPlanList = detailPlanService.getDetailPlanList(totalPlanCode,planCode);
 		
-		
-		return detailPlanList;
+		return detailPlanMap;
 	}
 
 	
@@ -176,26 +238,26 @@ public class DetailPlanController {
 	/*--------------------------------------::: 프로젝트 상세 계획 관리 Start :::----------------------------*/
 	//프로젝트 상세 계획 관리
 	@GetMapping("/planProjectDetail")
-	public String planProjectDetail(Model model, String paramList) {
+	public String planProjectDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planProjectDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planProjectDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailProjectjPlanList = detailPlanService.getProjectDetailPlanList(paramList);
+		//List<DetailPlanDto> detailProjectjPlanList = detailPlanService.getProjectDetailPlanList(paramList);
 		
 		
-//		String userEmail= "park01@hanmail.net";
-//		String searchKey="user_email";
-//		String searchValue=userEmail;
-//		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
 		
 		
 		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		//model.addAttribute("totalPlanList",totalPlanList);
-		model.addAttribute("detailProjectjPlanList",detailProjectjPlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailProjectjPlanList",detailProjectjPlanList);
 		
 		return "plan/detailPlan/planProjectDetail";
 	}
@@ -226,37 +288,30 @@ public class DetailPlanController {
 	/*--------------------------------------::: 자격증 상세 계획 관리 Start :::-------------------------*/
 	//자격증 상세 계획 관리
 	@GetMapping("/planCertificateDetail")
-	public String planCertificateDetail(Model model, String paramList) {
+	public String planCertificateDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planCertificateDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planCertificateDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailCertificatePlanList = detailPlanService.getCertificateDetailPlanList(paramList);
+		//List<DetailPlanDto> detailCertificatePlanList = detailPlanService.getCertificateDetailPlanList(paramList);
+		
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
 		
 		
-		
-		
-		model.addAttribute("title", "자격증 상세 계획");
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailCertificatePlanList",detailCertificatePlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailCertificatePlanList",detailCertificatePlanList);
 		
 		
 		return "plan/detailPlan/planCertificateDetail";
 	}
-	/*----------------------------------------- 자격증 상세 계획 관리 등록 Start ----------------------------*/
-	@GetMapping("/addPlanCertificateDetail")
-	public String addPlanCertificateDetail(Model model) {
-		model.addAttribute("title", "자격증 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanCertificateDetail";
-	}
-	@PostMapping("/addPlanCertificateDetail")
-	public String addPlanCertificateDetail() {
-		return "redirect:/planCertificateDetail";
-	}
-	/*----------------------------------------- 자격증 상세 계획 관리 등록 End ----------------------------*/
+	
 	/*----------------------------------------- 자격증 상세 계획 관리 수정 Start ----------------------------*/
 	@GetMapping("/modifyPlanCertificateDetail")
 	public String modifyPlanCertificateDetail(Model model){
@@ -280,33 +335,29 @@ public class DetailPlanController {
 	/*--------------------------------------::: 공인어학 상세 계획 관리Start :::-------------------------*/
 	//공인어학 상세 계획 관리
 	@GetMapping("/planCertifiedLanguageDetail")
-	public String planCertifiedLanguageDetail(Model model, String paramList) {
+	public String planCertifiedLanguageDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planCertifiedLanguageDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planCertifiedLanguageDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailCertifiedLanguagePlanList=detailPlanService.getCertifiedLanguageDetailPlanList(paramList);
+		//List<DetailPlanDto> detailCertifiedLanguagePlanList=detailPlanService.getCertifiedLanguageDetailPlanList(paramList);
 		
-		model.addAttribute("title", "공인어학 상세 계획");
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		
+		
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailCertifiedLanguagePlanList",detailCertifiedLanguagePlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailCertifiedLanguagePlanList",detailCertifiedLanguagePlanList);
 		
 		return "plan/detailPlan/planCertifiedLanguageDetail";
 	}
-	/*----------------------------------------- 공인어학 상세 계획 관리 등록 Start ----------------------------*/
-	@GetMapping("/addPlanCertifiedLanguageDetail")
-	public String addPlanCertifiedLanguageDetail(Model model) {
-		model.addAttribute("title", "공인어학 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanCertifiedLanguageDetail";
-	}
-	@PostMapping("/addPlanCertifiedLanguageDetail")
-	public String addPlanCertifiedLanguageDetail() {
-		return "redirect:/planCertifiedLanguageDetail";
-	}
-	/*----------------------------------------- 공인어학 상세 계획 관리 등록 End ----------------------------*/
+	
 	/*----------------------------------------- 공인어학 상세 계획 관리 수정 Start ----------------------------*/
 	@GetMapping("/modifyPlanCertifiedLanguageDetail")
 	public String modifyPlanCertifiedLanguageDetail(Model model){
@@ -330,34 +381,30 @@ public class DetailPlanController {
 	/*--------------------------------------::: 기술스택 상세 계획 관리 Start :::------------------------*/
 	//기술스택 상세 계획 관리
 	@GetMapping("/planTechnologyStackDetail")
-	public String planTechnologyStackDetail(Model model, String paramList) {
+	public String planTechnologyStackDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planTechnologyStackDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planTechnologyStackDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailTechnologyStackPlanList=detailPlanService.getTechnologyStackDetailPlanList(paramList);
+		//List<DetailPlanDto> detailTechnologyStackPlanList=detailPlanService.getTechnologyStackDetailPlanList(paramList);
 		
-		model.addAttribute("title", "기술스택 상세 계획");
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		
+		
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailTechnologyStackPlanList",detailTechnologyStackPlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailTechnologyStackPlanList",detailTechnologyStackPlanList);
 		
 		
 		return "plan/detailPlan/planTechnologyStackDetail";
 	}
-	/*----------------------------------------- 기술스택 상세 계획 관리 등록 Start ---------------------------*/
-	@GetMapping("/addPlanTechnologyStackDetail")
-	public String addPlanTechnologyStackDetail(Model model) {
-		model.addAttribute("title", "기술스택 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanTechnologyStackDetail";
-	}
-	@PostMapping("/addPlanTechnologyStackDetail")
-	public String addPlanTechnologyStackDetail() {
-		return "redirect:/planTechnologyStackDetail";
-	}
-	/*----------------------------------------- 기술스택 상세 계획 관리 등록 End ---------------------------*/
+	
 	/*----------------------------------------- 기술스택 상세 계획 관리 수정 Start ---------------------------*/
 	@GetMapping("/modifyPlanTechnologyStackDetail")
 	public String modifyPlanTechnologyStackDetail(Model model){
@@ -380,34 +427,30 @@ public class DetailPlanController {
 	/*--------------------------------------::: 직종전문교육과정 상세 계획 관리 Start :::-------------------------*/
 	//직종전문교육과정 상세 계획 관리
 	@GetMapping("/planJobTrainingDetail")
-	public String planJobTrainingDetail(Model model, String paramList) {
+	public String planJobTrainingDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planJobTrainingDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planJobTrainingDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailJobTrainingPlanList=detailPlanService.getJobTrainingDetailPlanList(paramList);
+		//List<DetailPlanDto> detailJobTrainingPlanList=detailPlanService.getJobTrainingDetailPlanList(paramList);
 		
-		model.addAttribute("title", "직종전문교육과정 상세 계획");
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		
+		
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailJobTrainingPlanList", detailJobTrainingPlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailJobTrainingPlanList", detailJobTrainingPlanList);
 		
 		
 		return "plan/detailPlan/planJobTrainingDetail";
 	}
-	/*----------------------------------------- 직종전문교육과정 상세 계획 관리 등록 Start ----------------------------*/
-	@GetMapping("/addPlanJobTrainingDetail")
-	public String addPlanJobTrainingDetail(Model model) {
-		model.addAttribute("title", "직종전문교육과정 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanJobTrainingDetail";
-	}
-	@PostMapping("/addPlanJobTrainingDetail")
-	public String addPlanJobTrainingDetail() {
-		return "redirect:/planJobTrainingDetail";
-	}
-	/*----------------------------------------- 직종전문교육과정 상세 계획 관리 등록 End ----------------------------*/
+	
 	/*----------------------------------------- 직종전문교육과정 상세 계획 관리 수정 Start ----------------------------*/
 	@GetMapping("/modifyPlanJobTrainingDetail")
 	public String modifyPlanJobTrainingDetail(Model model){
@@ -431,34 +474,30 @@ public class DetailPlanController {
 	/*--------------------------------------::: 인턴십 상세 계획 관리 Start :::------------------------*/
 	//인턴십 상세 계획 관리
 	@GetMapping("/planInternshipDetail")
-	public String planInternshipDetail(Model model, String paramList) {
+	public String planInternshipDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planInternshipDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planInternshipDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailInternshipPlanList=detailPlanService.getInternshipDetailPlanList(paramList);
+		//List<DetailPlanDto> detailInternshipPlanList=detailPlanService.getInternshipDetailPlanList(paramList);
 		
-		model.addAttribute("title", "인턴십 상세 계획");
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		
+		
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailInternshipPlanList", detailInternshipPlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailInternshipPlanList", detailInternshipPlanList);
 		
 		
 		return "plan/detailPlan/planInternshipDetail";
 	}
-	/*----------------------------------------- 인턴십 상세 계획 관리 등록 Start ---------------------------*/
-	@GetMapping("/addPlanInternshipDetail")
-	public String addPlanInternshipDetail(Model model) {
-		model.addAttribute("title", "인턴십 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanInternshipDetail";
-	}
-	@PostMapping("/addPlanInternshipDetail")
-	public String addPlanInternshipDetail() {
-		return "redirect:/planInternshipDetail";
-	}
-	/*----------------------------------------- 인턴십 상세 계획 관리 등록 End ---------------------------*/
+	
 	/*----------------------------------------- 인턴십 상세 계획 관리 수정 Start ---------------------------*/
 	@GetMapping("/modifyPlanInternshipDetail")
 	public String modifyPlanInternshipDetail(Model model){
@@ -482,33 +521,29 @@ public class DetailPlanController {
 	/*--------------------------------------::: 공모전 상세 계획 관리 Start :::------------------------*/
 	//공모전 상세 계획 관리
 	@GetMapping("/planContestDetail")
-	public String planContestDetail(Model model, String paramList) {
+	public String planContestDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planContestDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planContestDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailContestPlanList=detailPlanService.getContestDetailPlanList(paramList);
+		//List<DetailPlanDto> detailContestPlanList=detailPlanService.getContestDetailPlanList(paramList);
 		
-		model.addAttribute("title", "공모전 상세 계획");
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		
+		
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailContestPlanList", detailContestPlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailContestPlanList", detailContestPlanList);
 		
 		return "plan/detailPlan/planContestDetail";
 	}
-	/*----------------------------------------- 공모전 상세 계획 관리 등록 Start ---------------------------*/
-	@GetMapping("/addPlanContestDetail")
-	public String addPlanContestDetail(Model model) {
-		model.addAttribute("title", "공모전 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanContestDetail";
-	}
-	@PostMapping("/addPlanContestDetail")
-	public String addPlanContestDetail() {
-		return "redirect:/planContestDetail";
-	}
-	/*----------------------------------------- 공모전 상세 계획 관리 등록 End ---------------------------*/
+	
 	/*----------------------------------------- 공모전 상세 계획 관리 수정 Start ---------------------------*/
 	@GetMapping("/modifyPlanContestDetail")
 	public String modifyPlanContestDetail(Model model){
@@ -532,33 +567,29 @@ public class DetailPlanController {
 	/*--------------------------------------::: 경력 상세 계획 관리 Start :::-------------------------*/
 	//경력 상세 계획 관리
 	@GetMapping("/planCareerDetail")
-	public String planCareerDetail(Model model, String paramList) {
+	public String planCareerDetail(Model model) {//, String paramList
 		//log.info("==============================================");
 		//log.info("planCareerDetail 메서드 실행");
 		//log.info("==============================================");
 		System.out.println("==============================================");
 		System.out.println("planCareerDetail 메서드 실행");
 		System.out.println("==============================================");
-		List<DetailPlanDto> detailCareerPlanList=detailPlanService.getCareerDetailPlanList(paramList);
+		//List<DetailPlanDto> detailCareerPlanList=detailPlanService.getCareerDetailPlanList(paramList);
 		
-		model.addAttribute("title", "경력 상세 계획");
+		String userEmail= "park01@hanmail.net";
+		String searchKey="user_email";
+		String searchValue=userEmail;
+		List<PlanDto> totalPlanList = planService.getTotalPlan(searchKey, searchValue);
+		
+		
+		model.addAttribute("title", "프로젝트 상세 계획");
 		model.addAttribute("function", "plan");			//기능별 left 메뉴노출
-		model.addAttribute("detailCareerPlanList", detailCareerPlanList);
+		model.addAttribute("totalPlanList",totalPlanList);
+		//model.addAttribute("detailCareerPlanList", detailCareerPlanList);
 		
 		return "plan/detailPlan/planCareerDetail";
 	}
-	/*----------------------------------------- 경력 상세 계획 관리 등록 Start ----------------------------*/
-	@GetMapping("/addPlanCareerDetail")
-	public String addPlanCareerDetail(Model model) {
-		model.addAttribute("title", "경력 상세 계획 ");
-		model.addAttribute("function", "none");
-		return "plan/detailPlan/addPlanCareerDetail";
-	}
-	@PostMapping("/addPlanCareerDetail")
-	public String addPlanCareerDetail() {
-		return "redirect:/planCareerDetail";
-	}
-	/*----------------------------------------- 경력 상세 계획 관리 등록 End ----------------------------*/
+	
 	/*----------------------------------------- 경력 상세 계획 관리 수정 Start ----------------------------*/
 	@GetMapping("/modifyPlanCareerDetail")
 	public String modifyPlanCareerDetail(Model model){

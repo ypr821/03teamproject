@@ -37,10 +37,7 @@
 	</div>
 </th:block>
 
-
-
 <th:block layout:fragment="container">
-
 		<div class="card card-default">
 			<div class="card-body">
 			    <section class="content" id="challengeExplorationSection">
@@ -48,7 +45,6 @@
 			            <h2 class="text-center display-5">챌린지 신고내역 상세검색</h2>
 			            <form action="enhanced-results.html">
 			                <div class="row">
-			                
 			                
                              <div class="col-md-10 offset-md-1">
                                  <div class="row">
@@ -259,33 +255,12 @@
 		</div>
 		</div>
 		</div>		
-		
-		
-		
-	<!-- challenge Modal 영역 시작-->
-	<!-- 챌린지 인증정보 상세보기 Modal - challengeModalInsertDetail -->
-	<th:block th:replace="/fragments/challengeModal/adminChallengeModal/challengeModalCertificationDetail :: challengeModalCertificationDetail"></th:block>
-	<!-- challenge Modal 영역 끝 -->
-
 </th:block>
 
+<th:block></th:block>
 
-
-<th:block layout:fragment="pageJavascript">
 <script type="text/javascript" th:inline="javascript">
-	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalCertificationDetail -->
-		
-		var challengeModalCertificationDetail = $('.challengeModalCertificationDetail');
-		
-		/* Modal 영역 */
-		$(function(){
-			challengeModalCertificationDetail.click(function(){
-			$("#modal-ChallengeModalCertificationDetail").modal();
-		});
-				
-	});
 </script>
-</th:block>
 
 </th:block>
 </html>

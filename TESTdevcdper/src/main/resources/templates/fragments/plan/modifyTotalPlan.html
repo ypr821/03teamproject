@@ -9,77 +9,359 @@
 	</div><!-- /.col -->
 </th:block>
 <th:block layout:fragment="container">
-	<section class="content">
-		<!-- Default box -->
-		<div class="card">
-			<div class="card-header">
-				<h3 class="card-title">
-					통합계획수정
-				</h3>
-    		</div>
-			
-			<!-- card-body -->
-			<!-- Content Wrapper. Contains page content -->
-			<div class="card-body" style="margin-left: unset; background-color: #F2F2F2;">
-				<form th:action="@{/modifyTotalPlan}" method="POST">
-					<div class="container-fluid" th:align="center">
-						<div class="col-md-6" style="text-align: left;">
-							<div class="card card-primary">
-								<div class="card-header">
-									<h3 class="card-title">통합계획정보수정</h3>
-								</div>
-								<div class="card-body">
-									<div class="form-group">
-										<label for="totlaPlanName">통합계획 명</label>
-										<input type="text" id="totlaPlanName" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="totlaPlanContent">통합계획 내용</label>
-										<textarea id="totlaPlanContent" class="form-control" rows="4"></textarea>
-									</div>
-									<div class="form-group">
-										<label for="totlaPlanStartDate">시작일자</label>
-										<input type="date" id="totlaPlanStartdate" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="totlaPlanEndDate">종료일자</label>
-										<input type="date" id="totlaPlanEndDate" class="form-control">
-									</div>
-									<div class="form-group">
-										<label for="totlaPlanStatus">상태</label>
-										<select id="totlaPlanStatus" class="form-control custom-select">
-											<option selected disabled>상태 선택</option>
-											<option>진행중</option>
-											<option>중단됨</option>
-											<option>완료</option>
-										</select>
-									</div>
-									<div hidden>
-										<label for="totalPlanDegree">차수</label>
-										<input type="number" id="totalPlanDegree" value="1" class="form-control">
-									</div>
-								</div>
-								<!-- /.card-body -->
+	<div class="card-body" style="margin-left: unset; background-color: #F2F2F2;">
+		<form th:action="@{/modifyTotalPlan}" method="POST">
+			<div class="container-fluid" align="center">
+				<div class="col-md-6" style="text-align: left;">
+					<div class="card card-primary">
+						<div class="card-header">
+							<h3 class="card-title" th:text="${title}+' 수정'"></h3>
+							<div class="card-tools">
+								<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+									<i class="fas fa-minus"></i>
+								</button>
 							</div>
-							<!-- /.card -->
+							
+							<!-- 페이지 경로 추출하여 PostMapping으로 보내기 위한 input [ 중요! ] -->
+							<input type="text" class="planName" name="planName" th:value="${planName}" hidden/>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<a th:href="@{/totalPlan}" class="btn btn-danger">취소</a>
-							<button type="submit" class="btn btn-primary float-right">수정완료</button>
+						<div class="card-body" th:each="tpl, idx : ${totalPlanList}">
+							<div class="form-group">
+								<label for="planTitle" th:text="${title}+' 제목'">제목</label>
+								<input type="text" class="form-control" id="planTitle" name="planTitle" th:value="${tpl.planTitle}" placeholder="제목을 입력하세요.">
+							</div>
+							<div class="form-group">
+								<label for="planContents" th:text="${title}+' 내용'">내용</label>
+								<textarea class="form-control" id="planContents" name="planContents" rows="4" th:text="${tpl.planContents}" placeholder="내용을 입력하세요."></textarea>
+							</div>
+							
+							<!-- 계획 및 통합계획 수정 시작 (박승민) -->
+							<!-- 통합계획 수정 시작 -->
+							<div class="totalPlan" hidden>
+								<div class="form-group">
+									<label for="totalPlanDivision">통합계획 구분</label>
+									<select class="form-control custom-select" id="totalPlanDivision" name="totalPlanDivision">
+										<option selected>구분을 선택해 주세요.</option>
+										<option th:selected="${tpl.totalPlanDivision == '혼자할게요'}">혼자할게요</option>
+										<option th:selected="${tpl.totalPlanDivision == '도움받기'}">도움받기</option>
+									</select>
+								</div>
+							</div>
+							<!-- 통합계획 수정 끝 -->
+							<!-- 학력 계획 수정 시작 -->
+							<div class="planEducationalHistory" hidden>
+								<div class="form-group">
+									<label for="planEducationalChoice">학력선택</label>
+									<select class="form-control custom-select" id="planEducationalChoice" name="planEducationalChoice">
+										<option selected>계획할 학력을 선택해 주세요.</option>
+										<option th:selected="${tpl.planEducationalChoice == '2년제 대학교'}">2년제 대학교</option>
+										<option th:selected="${tpl.planEducationalChoice == '3년제 대학교'}">3년제 대학교</option>
+										<option th:selected="${tpl.planEducationalChoice == '4년제 대학교'}">4년제 대학교</option>
+										<option th:selected="${tpl.planEducationalChoice == '대학원/석사'}">대학원/석사</option>
+										<option th:selected="${tpl.planEducationalChoice == '독학학위제'}">독학학위제</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="planEducationalSchool">학교명</label>
+									<input type="text" class="form-control" id="planEducationalSchool" name="planEducationalSchool" th:text="${tpl.planEducationalSchool}" placeholder="계획할 학교명을 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="planEducationalDepartment">전공학과</label>
+									<input type="text" class="form-control" id="planEducationalDepartment" name="planEducationalDepartment" th:text="${tpl.planEducationalDepartment}" placeholder="계획할 전공학과를 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="planEducationalCredit">학점</label>
+									<input type="number" step="0.1" class="form-control" id="planEducationalCredit" name="planEducationalCredit" th:text="${tpl.planEducationalCredit}" placeholder="계획할 학점을 입력하세요.">
+								</div>
+							</div>
+							<!-- 학력 계획 수정 끝 -->
+							<!-- 프로젝트 계획 수정 시작 -->
+							<div class="planProject" hidden>
+								<div class="form-group">
+									<label for="planProjectName">프로젝트명</label>
+									<input type="text" class="form-control" id="planProjectName" name="planProjectName" th:text="${tpl.planName}" placeholder="계획할 프로젝트명을 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="planProjectDevelopmentEnvironment">개발환경</label>
+									<input type="text" class="form-control" id="planProjectDevelopmentEnvironment" name="planProjectDevelopmentEnvironment" th:text="${tpl.planProjectDevelopmentEnvironment}" placeholder="계획할 프로젝트 개발환경을 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="planProjectUrl">프로젝트URL</label>
+									<input type="text" class="form-control" id="planProjectUrl" name="planProjectUrl" th:text="${tpl.planProjectUrl}" placeholder="계획할 프로젝트URL을 입력하세요.">
+								</div>
+							</div>
+							<!-- 프로젝트 계획 수정 끝 -->
+							<!-- 자격증 계획 수정 시작 -->
+							<div class="planCertificate" hidden>
+								<div class="form-group">
+									<label for="planCertificateName">자격증명</label>
+									<input type="text" class="form-control" id="planCertificateName" name="planCertificateName" th:text="${tpl.planName}" placeholder="계획할 자격증명을 입력하세요.">
+								</div>
+							</div>
+							<!-- 자격증 계획 수정 끝 -->
+							<!-- 공인어학 계획 수정 시작 -->
+							<div class="planCertifiedLanguage" hidden>
+								<div class="form-group">	
+									<label for="planCertifiedLanguageTestName">시험명</label>
+									<input type="text" class="form-control" id="planCertifiedLanguageTestName" name="planCertifiedLanguageTestName" th:text="${tpl.planCertifiedLanguageTestName}" placeholder="계획할 공인어학 시험명을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planCertifiedLanguageTestDate">시험일자</label>
+									<input type="date" class="form-control" id="planCertifiedLanguageTestDate" name="planCertifiedLanguageTestDate" th:text="${tpl.planCertifiedLanguageTestDate}" placeholder="해당 시험의 시험일자를 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planCertifiedLanguageScore">목표 점수(등급)</label>
+									<input type="text" class="form-control" id="planCertifiedLanguageScore" name="planCertifiedLanguageScore" th:text="${tpl.planCertifiedLanguageScore}" placeholder="목표 점수(등급)을 입력하세요.">
+								</div>
+							</div>
+							
+							<!-- 공인어학 계획 수정 끝 -->
+							<!-- 기술스택 계획 수정 시작 -->
+							<div class="planTechnologyStack" hidden>
+								<div class="form-group">
+									<label for="planTechnologyName">자격증명</label>
+									<input type="text" class="form-control" id="planTechnologyName" name="planTechnologyName" th:text="${tpl.planName}" placeholder="계획할 기술스택명을 입력하세요.">
+								</div>
+							</div>
+							<!-- 기술스택 계획 수정 끝 -->
+							<!-- 직종전문교육과정 계획 수정 시작 -->
+							<div class="planJobTraining" hidden>
+								<div class="form-group">	
+									<label for="planJobTrainingName">교육과정명</label>
+									<input type="text" class="form-control" id="planJobTrainingName" name="planJobTrainingName" th:text="${tpl.planName}" placeholder="계획할 교육과정 명을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planJobTrainingAcademyName">교육원명</label>
+									<input type="text" class="form-control" id="planJobTrainingAcademyName" name="planJobTrainingAcademyName" th:text="${tpl.planJobTrainingAcademyName}" placeholder="계획할 교육원 명을 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="radioCheck1">교육과정 분류</label>&ensp;&ensp;&ensp;
+									<input type="radio" th:checked="${tpl.planClassificationRadio == '국비'}" name="planClassificationRadio" id="radioCheck1"/>
+									<label for="radioCheck1">국비</label>&ensp;&ensp;&ensp;
+									
+									<input type="radio" th:checked="${tpl.planClassificationRadio == '사비'}" name="planClassificationRadio" id="radioCheck2"/>
+									<label for="radioCheck2">사비</label>&ensp;&ensp;&ensp;
+									
+									<input type="radio" th:checked="${tpl.planClassificationRadio != '국비' or tpl.planClassificationRadio != '사비'}" name="planClassificationRadio" id="radioCheck3"/>
+									<label for="radioCheck3">기타</label>&ensp;
+									<input type="text" name="planClassificationRadio" th:text="${tpl.planClassificationRadio}" placeholder="기타사항을 입력하세요."/>
+									<label for="radioCheck4"></label>
+								</div>
+								<div class="form-group">	
+									<label for="planJobTrainingCost" style="display: block;">교육과정 비용</label>
+									<input type="text" class="form-control col-8" id="planJobTrainingCost" th:text="${tpl.planJobTrainingCost}" name="planJobTrainingCost" placeholder="교육과정 비용을 입력하세요." value="0" style="display: inline-block; text-align: right; padding-right: 10px;"> &ensp;원
+								</div>
+								<div class="form-group">	
+									<label for="planJobTrainingCurriculum">커리큘럼</label>
+									<input type="text" class="form-control" id="planJobTrainingCurriculum" th:text="${tpl.planJobTrainingCurriculum}" name="planJobTrainingCurriculum" placeholder="계획할 커리큘럼을 입력하세요.">
+								</div>
+							</div>
+							<!-- 직종전문교육과정 계획 수정 끝 -->
+							<!-- 인턴십 계획 수정 시작 -->
+							<div class="planInternship" hidden>
+								<div class="form-group">	
+									<label for="planInternshipCompanyName">회사명</label>
+									<input type="text" class="form-control" id="planInternshipCompanyName" th:text="${tpl.planInternshipCompanyName}" name="planInternshipCompanyName" placeholder="계획할 회사명을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planInternshipPeriod">인턴기간(개월수)</label>
+									<input type="text" class="form-control" id="planInternshipPeriod" th:text="${tpl.planInternshipPeriod}" name="planInternshipPeriod" placeholder="계획할 인턴기간을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planInternshipWorkingHours">근무시간(하루)</label>
+									<input type="text" class="form-control" id="planInternshipWorkingHours" th:text="${tpl.planInternshipWorkingHours}" name="planInternshipWorkingHours" placeholder="계획할 근무시간을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planInternshipBusinessContents">업무내용</label>
+									<input type="text" class="form-control" id="planInternshipBusinessContents" th:text="${tpl.planInternshipBusinessContents}" name="planInternshipBusinessContents" placeholder="계획할 업무내용을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planInternshipActiveGoal">활동목표</label>
+									<input type="text" class="form-control" id="planInternshipActiveGoal" th:text="${tpl.planInternshipActiveGoal}" name="planInternshipActiveGoal" placeholder="계획할 활동목표를 입력하세요.">
+								</div>
+							</div>
+							<!-- 인턴십 계획 수정 끝 -->
+							<!-- 공모전 계획 수정 시작 -->
+							<div class="planContest" hidden>
+								<div class="form-group">	
+									<label for="planContestName">공모전명</label>
+									<input type="text" class="form-control" id="planContestName" name="planContestName" th:text="${tpl.planName}" placeholder="계획할 공모전명을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planContestTopic">공모주제</label>
+									<input type="text" class="form-control" id="planContestTopic" name="planContestTopic" th:text="${tpl.planContestTopic}" placeholder="계획할 공모주제를 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planContestField">공모전분야</label>
+									<input type="text" class="form-control" id="planContestField" name="planContestField" th:text="${tpl.planContestField}" placeholder="계획할 공모전분야 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="planContestPriodStartDate">공모기간 시작일</label>
+									<input type="date" class="form-control" id="planContestPriodStartDate" name="planContestPriodStartDate" th:text="${tpl.planContestPriodStartDate}">
+								</div>
+								<div class="form-group">
+									<label for="planContestPriodEndDate">공모기간 종료일</label>
+									<input type="date" class="form-control" id="planContestPriodEndDate" name="planContestPriodEndDate" th:text="${tpl.planContestPriodEndDate}">
+								</div>
+								<div class="form-group">	
+									<label for="planContestHostOrganization">주최기관</label>
+									<input type="text" class="form-control" id="planContestHostOrganization" name="planContestHostOrganization" placeholder="계획할 공모전의 주최기관을 입력하세요.">
+								</div>
+							</div>
+							<!-- 공모전 계획 수정 끝 -->
+							<!-- 경력 계획 수정 시작 -->
+							<div class="planCareer" hidden>
+								<div class="form-group">	
+									<label for="planCareerCompanyName">회사명</label>
+									<input type="text" class="form-control" id="planCareerCompanyName" name="planCareerCompanyName" th:text="${tpl.planCareerCompanyName}" placeholder="계획할 회사명을 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planCareerOccupation">직종(분야)</label>
+									<input type="text" class="form-control" id="planCareerOccupation" name="planCareerOccupation" th:text="${tpl.planCareerOccupation}" placeholder="계획할 직종(분야)를 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planCareerDepartment">부서</label>
+									<input type="text" class="form-control" id="planCareerDepartment" name="planCareerDepartment" th:text="${tpl.planCareerDepartment}" placeholder="계획할 부서를 입력하세요.">
+								</div>
+								<div class="form-group">	
+									<label for="planCareerPosition">직책</label>
+									<input type="text" class="form-control" id="planCareerPosition" name="planCareerPosition" th:text="${tpl.planCareerPosition}" placeholder="계획할 직책을 입력하세요.">
+								</div>
+								<div class="form-group">
+									<label for="planCareerEmploumentPeriodStartDate">근무기간시작</label>
+									<input type="date" class="form-control" id="planCareerEmploumentPeriodStartDate" name="planCareerEmploumentPeriodStartDate" th:text="${tpl.planCareerEmploumentPeriodStartDate}">
+								</div>
+								<div class="form-group">
+									<label for="planCareerEmploumentPeriodEndDate">근무기간종료</label>
+									<input type="date" class="form-control" id="planCareerEmploumentPeriodEndDate" name="planCareerEmploumentPeriodEndDate" th:text="${tpl.planCareerEmploumentPeriodEndDate}">
+								</div>
+								<div class="form-group">
+									<label for="planCareerJoinTargetDate">입사/이직 목표날짜</label>
+									<input type="date" class="form-control" id="planCareerJoinTargetDate" name="planCareerJoinTargetDate" th:text="${tpl.planCareerJoinTargetDate}">
+								</div>
+							</div>
+							<!-- 경력 계획 수정 끝 -->
+							<!-- 계획 및 통합계획 수정 끝 (박승민) -->
+							<!-- 상세계획 수정 시작 (류준혁) -->
+							
+							
+							<!-- 상세계획 수정 끝 (류준혁) -->
+							<!-- 계획실천 수정 시작 (김도연) -->
+							
+							
+							<!-- 계획실천 수정 끝 (김도연) -->
+							<div class="form-group">
+								<label for="startDate">시작일</label>
+								<input type="date" class="form-control" id="startDate" name="startDate" th:value="${tpl.startDate}">
+							</div>
+							<div class="form-group">
+								<label for="endDate">종료일</label>
+								<input type="date" class="form-control" id="endDate" name="endDate" th:value="${tpl.endDate}">
+							</div>
+							<div class="form-group">
+								<label for="planDegree">차수</label>
+								<!--<input type="text" class="form-control" id="planDegree" name="planDegree" th:value="${tpl.planDegree}+' -> '+(${tpl.planDegree}+1)" readonly>-->
+								<input type="radio" name="planDegree" th:value="${tpl.planDegree}" id="radioDegreeCheck1" checked/>
+								<label for="radioDegreeCheck1" th:text="${tpl.planDegree}"></label>&ensp;&ensp;&ensp;
+								<span> -> </span>&ensp;&ensp;&ensp;
+								<input type="radio" name="planDegree" th:value="${tpl.planDegree}+1" id="radioDegreeCheck2"/>
+								<label for="radioDegreeCheck2" th:text="${tpl.planDegree}+1"></label>
+							</div>
+							<div class="form-group">
+								<label for="degreeChangeReason" th:text="${title}+' 차수변경사유'">차수변경사유</label>
+								<textarea disabled class="form-control" id="degreeChangeReason" name="degreeChangeReason" rows="4" placeholder="차수변경사유를 입력하세요."></textarea>
+							</div>
+							<div class="form-group">
+								<label for="planStatus">진행상태</label>
+								<select class="form-control custom-select" id="planStatus" name="planStatus">
+									<option selected disabled>진행상태를 선택하세요.</option>
+									<option th:selected="${tpl.planStatus}=='진행예정'">진행예정</option>
+									<option th:selected="${tpl.planStatus}=='진행중'">진행중</option>
+									<option th:selected="${tpl.planStatus}=='완료'">완료</option>
+									<option th:selected="${tpl.planStatus}=='중단'">중단</option>
+								</select>
+							</div>
 						</div>
+						<div class="card-footer">
+							<a th:href="@{(${planName})}" role="button" class="btn btn-secondary">취소</a>
+							<button type="submit" class="btn btn-primary float-right" th:text="${title}+'수정'">
+								수정
+							</button>
+						</div>
+						<!-- /.card-body -->
 					</div>
-				</form>
-				<!-- /.content -->
+				</div>
 			</div>
-			<!-- /.content-wrapper -->
-			<!-- /.card-body -->
-		</div>
-		<!-- /.card -->
-	</section>
+		</form>
+	</div>
 </th:block>
 <th:block layout:fragment="pageJavascript">
-
+	<script type="text/javascript">
+		$(document).ready(function(){
+			/* <![CDATA[ */
+			var planName = "."+"[[${planName}]]"
+			/* ]]> */
+			console.log(planName);
+			$(planName).removeAttr('hidden');
+			
+			var planJobTrainingCost = $('#planJobTrainingCost');
+			
+			/* 금액 표기 기능 (콤마 제거, 3자리수 콤마생성) */
+			//포커스 잡은경우 해당 value 콤마(,)제거
+			planJobTrainingCost.focus(function(){
+				//입력값 가져오기
+				var val = planJobTrainingCost.val();
+				//가져온 입력값 null체크
+				if(!isEmpty(val)){
+					//콤마제거
+					val = val.replace(/,/g,'');
+					//콤마제거후 제거한 값으로 다시 세팅
+					planJobTrainingCost.val(val);
+				};
+			});
+			
+			//포커스를 빠져나오면 다시 세자리수마다 콤마(,) 생성 
+			planJobTrainingCost.blur(function(){
+				//입력값 가져오기
+				var val = planJobTrainingCost.val();
+				//null체크 및 숫자여부 체크 숫자일 경우에만 적용되도록
+				if(!isEmpty(val) && isNumeric(val)){
+					//3자리수 콤마 생성 정규표현식 사용
+					val = val.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					//콤마 생성후 콤마 포함된 값으로 다시 셋팅
+					planJobTrainingCost.val(val);
+				}else{
+					//문자열이 하나라도 포함된 경우 경고 후 초기값으로 변환
+					alert('숫자를 제대로 입력해주세요.');
+					planJobTrainingCost.val(0);
+				};
+			});
+			
+			//입력 받은 값 공백문자 여부 및 null값 여부 체크 후 boolean type으로 return
+			function isEmpty(value){
+				if(value.length == 0 || value == null){
+					return true;
+				}else{
+					return false;
+				};
+			};
+			
+			//숫자 값 여부 체크 boolean type으로 return
+			function isNumeric(value){
+				var regExp = /^[0-9]+$/g;
+				return regExp.test(value);
+			};
+			
+			$(document).on('click','radioDegreeCheck2',function(){
+				if($('#radioDegreeCheck2').attr('checked') == undefined){
+					$('#degreeChangeReason').removeAttr('disabled');
+				}
+			})
+			$(document).on('click','radioDegreeCheck1',function(){
+				
+			})
+			
+		});
+	</script>
 </th:block>
 </html>
