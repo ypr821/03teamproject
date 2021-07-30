@@ -48,7 +48,7 @@ public class ChallengeController {
 	/*-------------------------------------ChallengeControllerInit 메서드 끝----------------------------------------*/
 
 	
-	/*------------------------------------------------두배러 챌린지 메인화면 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 메인화면 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/mainChallenge")
 	public String mainChallenge(Model model) {
 		
@@ -60,10 +60,10 @@ public class ChallengeController {
 		model.addAttribute("challengeExplorationList", challengeExplorationList);
 		return "challenge/mainChallenge";
 	}
-	/*------------------------------------------------두배러 챌린지 메인화면 끝-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 메인화면 Controller 끝-----------------------------------------------------*/
 	
 	
-	/*------------------------------------------------챌린지 탐색하기 화면 시작-----------------------------------------------------*/
+	/*------------------------------------------------챌린지 탐색하기 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/challengeExploration")
 	public String challengeExploration(Model model) {
 		List<Challenge> challengeExplorationList = challengeService.getChallengeExplorationList();
@@ -73,9 +73,9 @@ public class ChallengeController {
 		model.addAttribute("challengeExplorationList", challengeExplorationList);
 		return "challenge/user/challengeExploration";
 	}
-	/*------------------------------------------------챌린지 탐색하기 화면 끝-----------------------------------------------------*/
+	
 
-	//챌린지 탐색하기 - 카테고리별 리스트 화면
+	//메인 챌린지&챌린지 탐색하기 - 카테고리별 리스트 화면
 	@RequestMapping(value = "/byCategory", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Challenge> byCategory(@RequestParam(value="challengeCategoryCode") String challengeCategoryCodeValue,
@@ -92,21 +92,25 @@ public class ChallengeController {
 	}
 	
 	//챌린지 탐색하기 - 상세정보 화면
-		@GetMapping("/challengeExplorationDetailInfo")
-		public String challengeExplorationDetailInfo(
-				@RequestParam(name = "challengeName", required = false) String challengeName, Model model) {
+	@GetMapping("/challengeExplorationDetailInfo")
+	public String challengeExplorationDetailInfo(
+			@RequestParam(name = "challengeName", required = false) String challengeName, Model model) {
 
-			System.out.println("============================================");
-			System.out.println("화면에 입력 받은 값(챌린지 탐색 : 상세정보): " + challengeName.toString());
-			System.out.println("============================================");
+		System.out.println("============================================");
+		System.out.println("화면에 입력 받은 값(챌린지 탐색 : 상세정보): " + challengeName.toString());
+		System.out.println("============================================");
 
-			Challenge challenge = challengeService.getChallengeExplorationDetailInfoByChallengeName(challengeName);
+		Challenge challenge = challengeService.getChallengeExplorationDetailInfoByChallengeName(challengeName);
 
-			model.addAttribute("challenge", challenge);
-			model.addAttribute("title", "챌린지 상세 정보");
-			model.addAttribute("radioCheck", "challengeExplorationDetailInfo");
-			return "challenge/user/challengeExplorationDetailInfo";
-		}
+		model.addAttribute("challenge", challenge);
+		model.addAttribute("title", "챌린지 상세 정보");
+		model.addAttribute("radioCheck", "challengeExplorationDetailInfo");
+		return "challenge/user/challengeExplorationDetailInfo";
+	}
+		
+		/*------------------------------------------------챌린지 탐색하기 Controller 끝-----------------------------------------------------*/
+		
+		/*------------------------------------------------챌린지 개설하기 Controller 시작-----------------------------------------------------*/
 
 	//챌린지 개설하기 화면
 	@GetMapping("/challengeInsert")
@@ -150,8 +154,9 @@ public class ChallengeController {
 		return "challenge/user/myChallenge";
 	}
 	
-	
+	/*------------------------------------------------챌린지 개설하기 Controller 끝-----------------------------------------------------*/
 
+	/*------------------------------------------------챌린지 참여하기 Controller 시작-----------------------------------------------------*/
 	//챌린지 참여하기 화면
 	@GetMapping("/challengeParticipation")
 	public String challengeParticipation(@RequestParam(name = "challengeName", required = false) String challengeName, Model model) {
@@ -167,6 +172,10 @@ public class ChallengeController {
 		model.addAttribute("radioCheck", "challengeParticipation");
 		return "challenge/user/challengeParticipation";
 	}
+
+	/*------------------------------------------------챌린지 참여하기 Controller 끝-----------------------------------------------------*/
+
+	/*------------------------------------------------챌린지 인증하기 Controller 시작-----------------------------------------------------*/
 
 	//챌린지 인증하기 화면
 	@GetMapping("/challengeCertification")
@@ -231,6 +240,7 @@ public class ChallengeController {
 	@PostMapping("/challengeCertificationInsert")
 	public String challengeCertificationInsert(@RequestParam Map<String, Object> challengeCertification) {
 
+		
 		System.out.println("============================================");
 		System.out.println("화면에 입력 받은 값(챌린지 인증하기): " + challengeCertification.toString());
 		System.out.println("============================================");
@@ -240,16 +250,25 @@ public class ChallengeController {
 
 	}
 
-	
 	//챌린지 인증 게시판 화면
 	@GetMapping("/challengeCertificationBoard")
-	public String challengeCertificationBoard(Model model, String challengeCode) {
+	public String challengeCertificationBoard(Model model, HttpSession session,
+			@RequestParam(name="challengeCode", required = false) String challengeCode,
+			Pagination paging) {
 		
-		List<ChallengeCertification> challengeCertificationBoardList = challengeService.getChallengeCertificationBoardList(challengeCode);
+		
+		Map<String, Object> resultMap = challengeService.getChallengeCertificationBoardList(paging, challengeCode);
 		
 		model.addAttribute("title", "챌린지 인증 게시판");
 		model.addAttribute("radioCheck", "challengeCertificationBoard");
-		model.addAttribute("challengeCertificationBoardList", challengeCertificationBoardList);
+		model.addAttribute("challengeCertificationBoardList", 		resultMap.get("challengeCertificationBoardList"));
+		model.addAttribute("currentPage", 							resultMap.get("currentPage"));
+		model.addAttribute("lastPage", 								resultMap.get("lastPage"));
+		model.addAttribute("pageStartNum", 							resultMap.get("pageStartNum"));
+		model.addAttribute("pageEndNum", 							resultMap.get("pageEndNum"));
+		model.addAttribute("challengeCode", 						resultMap.get("challengeCode"));
+		
+		
 		return "challenge/user/challengeCertificationBoard";
 	}
 
@@ -261,6 +280,10 @@ public class ChallengeController {
 		return "challenge/user/challengeCertificationBoardView";
 	}
 	
+	/*------------------------------------------------챌린지 인증하기 Controller 끝-----------------------------------------------------*/
+
+	/*------------------------------------------------나의 챌린지 Controller 시작-----------------------------------------------------*/
+
 	//나의 챌린지 화면
 	@GetMapping("/myChallenge")
 	public String myChallenge(Model model, HttpSession session, HttpServletResponse response, Pagination paging) {
@@ -304,6 +327,7 @@ public class ChallengeController {
 	//나의 챌린지 - 상세정보 화면
 	@GetMapping("/myChallengeDetailInfo")
 	public String myChallengeDetailInfo(Model model, HttpSession session) {
+		
 		model.addAttribute("title", "챌린지 상세 정보");
 		model.addAttribute("radioCheck", "myChallengeDetailInfo");
 		
@@ -470,6 +494,10 @@ public class ChallengeController {
 		
 	}
 	
+	/*------------------------------------------------나의 챌린지 Controller 끝-----------------------------------------------------*/
+
+	/*------------------------------------------------결제 및 환불 Controller 시작-----------------------------------------------------*/
+
 	//결제 화면
 	@GetMapping("/payment")
 	public String payment(Model model) {
@@ -484,4 +512,6 @@ public class ChallengeController {
 		return "paymentRefund/refund";
 	}
 
+	/*------------------------------------------------결제 및 환불 Controller 끝-----------------------------------------------------*/
+	
 }

@@ -237,6 +237,7 @@
                       <th style="width: 8%" class="text-center">
                        	달성율 업데이트일자
                       </th>
+                      <th>최종순위 전송</th>
                       <th>삭제</th>
                   </tr>
               </thead>
@@ -257,6 +258,9 @@
                       </td>
                       <td id="challengeFinalRank" th:text="${l.challengeFinalRank}+'위'"></td>
                       <td id="challengeAchievementRateUpdateDate" th:text="${l.challengeAchievementRateUpdateDate}"></td>
+                      <td>
+						<button type="button" class="btn btn-block btn-default btn-xs">최종순위 전송</button>
+					  </td>
                       <td>
 						<button type="button" class="btn btn-block btn-default btn-xs">삭제</button>
 					  </td>
