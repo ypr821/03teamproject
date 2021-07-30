@@ -249,7 +249,7 @@
 				</table>
 			</div>
 			<!-- /.card-body -->
-			<!-- 코치 list 페이지번호  -->
+			<!-- 참여 챌린지 페이지번호  -->
 			<div class="card-footer clearfix">
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                <li class="page-item"><a class="page-link" th:href="@{/adminChallengeParticipation}"> << </a></li>
@@ -275,9 +275,6 @@
 
 <th:block layout:fragment="pageJavascript">
 <script type="text/javascript" th:inline="javascript">
-	<!-- 챌린지 개설정보 상세보기 Modal - challengeModalInsertDetail -->
-	
-	
 	$(function(){
 		
 		$('.challengeModalParticipationDetail').click(function(){
