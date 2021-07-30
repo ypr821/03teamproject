@@ -57,8 +57,9 @@
 		FROM 
 			ypr821.plan_project_detail 
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_project_code='plan_project_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_project_code=#{planCode};
 	</select>
+	<!-- 'total_plan_code_01' 'plan_project_code_01'-->
 	
 	<!--자격증 상세 계획  -->
 	<select  id="getCertificateDetailPlanList" parameterType="String" resultType="com.devcdper.plan.domain.DetailPlanDto" resultMap ="detailPlanResultMap" fetchSize="1000">
@@ -81,7 +82,7 @@
 		FROM 
 			ypr821.plan_certificate_detail
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_certificate_code='plan_certificate_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_certificate_code=#{planCode};
 	</select>
 	
 	<!--공인어학 상세 계획  -->
@@ -103,7 +104,7 @@
 		FROM 
 			ypr821.plan_certified_language_detail
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_certified_language_code='plan_certified_language_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_certified_language_code=#{planCode};
 	</select>
 	
 	<!--기술스택 상세 계획  -->
@@ -125,7 +126,7 @@
 		FROM 
 			ypr821.plan_technology_stack_detail 
 		WHERE
-			total_plan_code='total_plan_code_01' AND plan_technology_stack_code='plan_technology_stack_code_01';
+			total_plan_code=#{totalPlanCode} AND plan_technology_stack_code=#{planCode};
 	</select>
 			 
 	<!--직종전문교육과정 상세 계획  -->
@@ -147,7 +148,7 @@
 		FROM 
 			ypr821.plan_job_training_detail 
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_job_training_code='plan_job_training_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_job_training_code=#{planCode};
 	</select>
 			 
 	<!--인턴십 상세 계획  -->
@@ -170,7 +171,7 @@
 		FROM 
 			ypr821.plan_internship_detail
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_internship_code='plan_internship_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_internship_code='plan_internship_code_01';
 	</select>
 			 
 	<!--공모전 상세 계획  -->
@@ -192,7 +193,7 @@
 		FROM 
 			ypr821.plan_contest_detail 
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_contest_code='plan_contest_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_contest_code=#{planCode};
 	</select>
 			 
 	<!--경력 상세 계획  -->
@@ -214,7 +215,7 @@
 		FROM 
 			ypr821.plan_career_detail
 		WHERE
-			 total_plan_code='total_plan_code_01' AND plan_career_code='plan_career_code_01';
+			 total_plan_code=#{totalPlanCode} AND plan_career_code=#{planCode};
 	</select>
 	<!--한명 회원의 상세 계획 조회 끝  -->
 	
@@ -223,7 +224,8 @@
 	
 	
 	<!--각 상세 계획의 통합계획 선택 AJAX  -->
-	<select id="getEduTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+	<!--학력  -->
+	<select id="getEducationalHistoryTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
 		SELECT
 				  plan_educational_history_code			AS planCode							
 				  ,plan_educational_title				AS planTitle
@@ -232,8 +234,8 @@
 		WHERE
 				total_plan_code=#{stotalPlanCode};	
 	</select>
-	
-	<select id="getProjTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+	<!--프로젝트  -->
+	<select id="getProjectTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
 		SELECT
 				  plan_project_code			AS planCode							
 				  ,plan_project_title		AS planTitle
@@ -243,12 +245,82 @@
 				total_plan_code=#{stotalPlanCode};	
 	</select>
 	
+	<!--자격증  -->
+	<select id="getCertificateTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_certificate_code			AS planCode							
+				  ,plan_certificate_title		AS planTitle
+		FROM
+				ypr821.plan_certificate
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
+	<!--공인어학  -->
+	<select id="getCertifiedLanguageTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_certified_language_code			AS planCode							
+				  ,plan_certified_language_title		AS planTitle
+		FROM
+				ypr821.plan_certified_language
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
+	
+	<!--기술스택  -->
+	<select id="getTechnologyStackTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_technology_stack_code			AS planCode							
+				  ,plan_technology_stack_title			AS planTitle
+		FROM
+				ypr821.plan_technology_stack
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
 	
 	
+	<!--직종전문교육과정  -->
+	<select id="getJobTrainingTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_job_training_code			AS planCode							
+				  ,plan_job_training_title			AS planTitle
+		FROM
+				ypr821.plan_job_training
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
+	<!--인턴십  -->
 	
+	<select id="getInternshipTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_internship_code			AS planCode							
+				  ,plan_internship_title		AS planTitle
+		FROM
+				ypr821.plan_internship
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
+	<!--공모전  -->
 	
+	<select id="getContestTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_contest_code			AS planCode							
+				  ,plan_contest_title		AS planTitle
+		FROM
+				ypr821.plan_contest
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
+	<!--경력  -->
 	
-	
+	<select id="getCareerTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
+		SELECT
+				  plan_career_code			AS planCode							
+				  ,plan_career_title		AS planTitle
+		FROM
+				ypr821.plan_career
+		WHERE
+				total_plan_code=#{stotalPlanCode};	
+	</select>
 	
 	
 	

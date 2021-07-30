@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devcdper.plan.dao.DetailPlanMapper;
 import com.devcdper.plan.domain.DetailPlanDto;
@@ -14,6 +15,7 @@ import com.devcdper.plan.domain.PlanDto;
 
 
 @Service
+@Transactional
 public class DetailPlanService {
 	
 	private final DetailPlanMapper detailPlanMapper;
@@ -41,54 +43,58 @@ public class DetailPlanService {
 //
 //	}
 	
-	//상세 계획 별(?)리스트 // 학력 상세 계획 
-	public List<DetailPlanDto> getDetailPlanList(String totalPlanCode,String planCode){// String totalPlanCode,String planCode                  
-		//if(request.){}
-		List<DetailPlanDto> detailPlanList = detailPlanMapper.getEducationalHistoryDetailPlanList(totalPlanCode, planCode);                   
+	//학력 상세 계획 리스트 
+	public List<DetailPlanDto> getEducationalHistoryDetailPlanList(String totalPlanCode,String planCode){// String totalPlanCode,String planCode                  
+		//if(request.getRUI...?){}
+		
+		List<DetailPlanDto> getEducationalHistoryDetailPlanList = detailPlanMapper.getEducationalHistoryDetailPlanList(totalPlanCode, planCode);
+		
 		System.out.println(totalPlanCode+" <- AJAX2 service");
 		System.out.println(planCode+" <- AJAX2 service");
-		return detailPlanList;
+		return getEducationalHistoryDetailPlanList;
 
 	}
 	
 	//프로젝트 상세 계획
-	public List<DetailPlanDto> getProjectDetailPlanList(String paramList){
-		List<DetailPlanDto> detailProjectPlanList = detailPlanMapper.getProjectDetailPlanList(paramList);
+	public List<DetailPlanDto> getProjectDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailProjectPlanList = detailPlanMapper.getProjectDetailPlanList(totalPlanCode, planCode);
+		//System.out.println("프로젝트상세계획 가져오남?");
 		return detailProjectPlanList;
 	}
+	
 	//자격증 상세 계획
-	public List<DetailPlanDto> getCertificateDetailPlanList(String paramList){
-		List<DetailPlanDto> detailCertificatePlanList=detailPlanMapper.getCertificateDetailPlanList(paramList);
+	public List<DetailPlanDto> getCertificateDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailCertificatePlanList=detailPlanMapper.getCertificateDetailPlanList(totalPlanCode,planCode);
 		return detailCertificatePlanList;
 	}
 	//공인어학 상세 계획
-	public List<DetailPlanDto> getCertifiedLanguageDetailPlanList(String paramList){
-		List<DetailPlanDto> detailCertifiedLanguagePlanList=detailPlanMapper.getCertifiedLanguageDetailPlanList(paramList);
+	public List<DetailPlanDto> getCertifiedLanguageDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailCertifiedLanguagePlanList=detailPlanMapper.getCertifiedLanguageDetailPlanList(totalPlanCode,planCode);
 		return detailCertifiedLanguagePlanList;
 	}
 	//기술스택 상세 계획
-	public List<DetailPlanDto> getTechnologyStackDetailPlanList(String paramList){
-		List<DetailPlanDto> detailTechnologyStackPlanList=detailPlanMapper.getTechnologyStackDetailPlanList(paramList);
+	public List<DetailPlanDto> getTechnologyStackDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailTechnologyStackPlanList=detailPlanMapper.getTechnologyStackDetailPlanList(totalPlanCode,planCode);
 		return detailTechnologyStackPlanList;
 	}
 	//직종전문교육과정 상세 계획
-	public List<DetailPlanDto> getJobTrainingDetailPlanList(String paramList){
-		List<DetailPlanDto> detailJobTrainingPlanList=detailPlanMapper.getJobTrainingDetailPlanList(paramList);
+	public List<DetailPlanDto> getJobTrainingDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailJobTrainingPlanList=detailPlanMapper.getJobTrainingDetailPlanList(totalPlanCode,planCode);
 		return detailJobTrainingPlanList;
 	}
 	//인턴십 상세 계획
-	public List<DetailPlanDto> getInternshipDetailPlanList(String paramList){
-		List<DetailPlanDto> detailInternshipPlanList=detailPlanMapper.getInternshipDetailPlanList(paramList);
+	public List<DetailPlanDto> getInternshipDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailInternshipPlanList=detailPlanMapper.getInternshipDetailPlanList(totalPlanCode,planCode);
 		return detailInternshipPlanList;
 	}
 	//공모전 상세 계획
-	public List<DetailPlanDto> getContestDetailPlanList(String paramList){
-		List<DetailPlanDto> detailContestPlanList=detailPlanMapper.getContestDetailPlanList(paramList);
+	public List<DetailPlanDto> getContestDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailContestPlanList=detailPlanMapper.getContestDetailPlanList(totalPlanCode,planCode);
 		return detailContestPlanList;
 	}
 	//경력 상세 계획
-	public List<DetailPlanDto> getCareerDetailPlanList(String paramList){
-		List<DetailPlanDto> detailCareerPlanList=detailPlanMapper.getCareerDetailPlanList(paramList);
+	public List<DetailPlanDto> getCareerDetailPlanList(String totalPlanCode,String planCode){
+		List<DetailPlanDto> detailCareerPlanList=detailPlanMapper.getCareerDetailPlanList(totalPlanCode,planCode);
 		return detailCareerPlanList;
 	}
 	
@@ -99,15 +105,51 @@ public class DetailPlanService {
 	
 	//통합계획 선택 서비스
 	//학력 상세 계획
-	public List<PlanDto> getEduTotalTitleSearch(String stotalPlanCode){
-		return detailPlanMapper.getEduTotalTitleSearch(stotalPlanCode);
+	public List<PlanDto> getEducationalHistoryTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getEducationalHistoryTotalTitleSearch(stotalPlanCode);
 	}
 	
 	//프로젝트 상세 계획
-	public List<PlanDto> getProjTotalTitleSearch(String stotalPlanCode){
-		return detailPlanMapper.getProjTotalTitleSearch(stotalPlanCode);
+	public List<PlanDto> getProjectTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getProjectTotalTitleSearch(stotalPlanCode);
 	}
 	
-	
+	//자격증 상세 계획
+	public List<PlanDto> getCertificateTotalTitleSearch(String stotalPlanCode){
+		System.out.println("자격증 서비스 서치 접근 성공");
+		return detailPlanMapper.getCertificateTotalTitleSearch(stotalPlanCode);
+	}
+	//공인어학 상세 계획
+	public List<PlanDto> getCertifiedLanguageTotalTitleSearch(String stotalPlanCode){
+		System.out.println("공인어학 서비스 서치 접근 성공");
+		return detailPlanMapper.getCertifiedLanguageTotalTitleSearch(stotalPlanCode);
+	}
+	//기술스택 상세 계획
+	public List<PlanDto> getTechnologyStackTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getTechnologyStackTotalTitleSearch(stotalPlanCode);
+	}
+	//직종전문교육과정 상세 계획
+	public List<PlanDto> getJobTrainingTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getJobTrainingTotalTitleSearch(stotalPlanCode);
+	}
+	//인턴십 상세 계획
+	public List<PlanDto> getInternshipTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getInternshipTotalTitleSearch(stotalPlanCode);
+	}
+	//공모전 상세 계획
+	public List<PlanDto> getContestTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getContestTotalTitleSearch(stotalPlanCode);
+	}
+	//경력 상세 계획
+	public List<PlanDto> getCareerTotalTitleSearch(String stotalPlanCode){
+		System.out.println("서비스 서치 접근 성공");
+		return detailPlanMapper.getCareerTotalTitleSearch(stotalPlanCode);
+	}
 	
 }

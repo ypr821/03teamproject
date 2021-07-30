@@ -32,7 +32,7 @@
                 </div>
 					
 					<div class="card-tools">
-					
+						<input type="hidden" class="planName" name="planName" value="planEducationalHistoryDetail"><!-- th:value="${planName}" -->
 
 						<!-- <a th:href="@{/addPlanEducationalHistoryDetail(planDetailName='학력 상세 계획')}"> -->
 						<a th:href="@{/addTotalPlan(planName='planEducationalHistoryDetail')}">  <!-- 인터셉터 인경우 사용:${pathName}  -->   <!--(planDetailName='학력 상세 계획')  -->
@@ -50,7 +50,10 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body  table-responsive p-0" style="overflow: scroll; white-space: nowrap;">
-              	
+              	 
+              	 <!-- <input type="hidden" name="realPathName" th:value="${realPathName}"> -->
+              	 
+              	 
                 <table class="table table-striped text-nowrap">
                   <thead>
                     <tr>
@@ -66,6 +69,7 @@
                       <th style="text-align: center;">작성일자</th>
                       
                       <th> </th>
+                     
                     </tr>
                   </thead>
 					<tbody id="card-tbody">
@@ -100,34 +104,15 @@
 
 <th:bolck layout:fragment="pageJavascript">
 	<script type="text/javascript">
-		/* $(document).ready(function(){
-			$('#modal-planEducationalHistoryDetail').on('shown.bs.modal',function(){
-				
-			});
-		}); */
-		
-		
-		//$(function(){
-			/* parameter 영역 */
-			//var planContents = $(".planContents");
-			//var planDegree = $(".planDegree");
-			
-			
-			/* ${detailPlanList.get(0).getPlanDetailContents()} */ //참고용
-			/* <![CDATA[ */
-			/* ]]> */
 			
 			
 			
-			///get(여기를 어떻게  풀지?)
-			/* for(var i=0;detailPlanList.size();i++){
-				detailPlanList.get(i).getPlanDetailContents();
-			} *///여기서 detailPlanList를 어떻게 정의 해야되는거지...
 			
 			
 			/* Modal 영역 */  //동적으로 하려면  (click뒤에다쓰고) DOM객체에 다시한번 언급해줘야되는 것임.
 			$(document).on('click',".planContents",function(){
 				$("#myModal").modal();
+				//$(".modal-title").text();
 				$(".modal-text").text($(this).val());
 			//console.log(planText);
 			});
@@ -159,12 +144,10 @@
 				'color' : '#969696'
 			});
 			
-			
-			/* //selected 출력			
-			$("#plan").change(function(){
-				var value = $("#plan option:checked").text(); //$(this).val();
-				$("#planSelected").text(value);
-			}); */ 
+			/*location.pathname을 이용해서 컨트롤러에 값을 주고 받아올 수 있나?*/
+			/* var locationPathName= location.pathname;
+			var realPathName=locationPathName.substring(1);
+			console.log(locationPathName+" , "+realPathName); */
 			
 			
 			
