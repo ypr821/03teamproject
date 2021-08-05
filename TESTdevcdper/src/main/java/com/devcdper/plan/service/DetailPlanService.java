@@ -105,51 +105,51 @@ public class DetailPlanService {
 	
 	//통합계획 선택 서비스
 	//학력 상세 계획
-	public List<PlanDto> getEducationalHistoryTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getEducationalHistoryTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getEducationalHistoryTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getEducationalHistoryTotalTitleSearch(totalPlanCode);
 	}
 	
 	//프로젝트 상세 계획
-	public List<PlanDto> getProjectTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getProjectTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getProjectTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getProjectTotalTitleSearch(totalPlanCode);
 	}
 	
 	//자격증 상세 계획
-	public List<PlanDto> getCertificateTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getCertificateTotalTitleSearch(String totalPlanCode){
 		System.out.println("자격증 서비스 서치 접근 성공");
-		return detailPlanMapper.getCertificateTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getCertificateTotalTitleSearch(totalPlanCode);
 	}
 	//공인어학 상세 계획
-	public List<PlanDto> getCertifiedLanguageTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getCertifiedLanguageTotalTitleSearch(String totalPlanCode){
 		System.out.println("공인어학 서비스 서치 접근 성공");
-		return detailPlanMapper.getCertifiedLanguageTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getCertifiedLanguageTotalTitleSearch(totalPlanCode);
 	}
 	//기술스택 상세 계획
-	public List<PlanDto> getTechnologyStackTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getTechnologyStackTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getTechnologyStackTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getTechnologyStackTotalTitleSearch(totalPlanCode);
 	}
 	//직종전문교육과정 상세 계획
-	public List<PlanDto> getJobTrainingTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getJobTrainingTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getJobTrainingTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getJobTrainingTotalTitleSearch(totalPlanCode);
 	}
 	//인턴십 상세 계획
-	public List<PlanDto> getInternshipTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getInternshipTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getInternshipTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getInternshipTotalTitleSearch(totalPlanCode);
 	}
 	//공모전 상세 계획
-	public List<PlanDto> getContestTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getContestTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getContestTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getContestTotalTitleSearch(totalPlanCode);
 	}
 	//경력 상세 계획
-	public List<PlanDto> getCareerTotalTitleSearch(String stotalPlanCode){
+	public List<PlanDto> getCareerTotalTitleSearch(String totalPlanCode){
 		System.out.println("서비스 서치 접근 성공");
-		return detailPlanMapper.getCareerTotalTitleSearch(stotalPlanCode);
+		return detailPlanMapper.getCareerTotalTitleSearch(totalPlanCode);
 	}
 	
 }

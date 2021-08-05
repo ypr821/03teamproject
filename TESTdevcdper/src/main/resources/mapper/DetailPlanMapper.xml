@@ -232,7 +232,7 @@
 		FROM
 				ypr821.plan_educational_history
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	<!--프로젝트  -->
 	<select id="getProjectTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
@@ -242,7 +242,7 @@
 		FROM
 				ypr821.plan_project
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	
 	<!--자격증  -->
@@ -253,7 +253,7 @@
 		FROM
 				ypr821.plan_certificate
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	<!--공인어학  -->
 	<select id="getCertifiedLanguageTotalTitleSearch" parameterType="String" resultType="com.devcdper.plan.domain.PlanDto">
@@ -263,7 +263,7 @@
 		FROM
 				ypr821.plan_certified_language
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	
 	<!--기술스택  -->
@@ -274,7 +274,7 @@
 		FROM
 				ypr821.plan_technology_stack
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	
 	
@@ -286,7 +286,7 @@
 		FROM
 				ypr821.plan_job_training
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	<!--인턴십  -->
 	
@@ -297,7 +297,7 @@
 		FROM
 				ypr821.plan_internship
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	<!--공모전  -->
 	
@@ -308,7 +308,7 @@
 		FROM
 				ypr821.plan_contest
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	<!--경력  -->
 	
@@ -319,7 +319,7 @@
 		FROM
 				ypr821.plan_career
 		WHERE
-				total_plan_code=#{stotalPlanCode};	
+				total_plan_code=#{totalPlanCode};	
 	</select>
 	
 	

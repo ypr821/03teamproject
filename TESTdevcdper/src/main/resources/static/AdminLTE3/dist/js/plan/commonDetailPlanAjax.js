@@ -12,7 +12,7 @@ $('#totalPlan').on('change',function(){
 			var value = $(this).children("option:selected").text(); //체인지(선택된) 텍스트값 가져와라
 			$("#totalPlanSelected").text(value); //선택된 값을 카드 헤더에서 출력
 			//console.log("체인지");  //체인지 됐을 시 출력
-			var stotalPlanCode= $(this).children("option:selected").val();   //이게 결국 xml쪽에서 바인딩 할수 있게 하는거다.
+			var totalPlanCode= $(this).children("option:selected").val();   //이게 결국 xml쪽에서 바인딩 할수 있게 하는거다.
 			//console.log(totalPlanCode);  //선택된 통합계획 코드 가져오기
 			
 			//selected 출력			
@@ -27,7 +27,7 @@ $('#totalPlan').on('change',function(){
 			var request=$.ajax({
 				url: "/totalPlanSelected",
 				method: "POST",
-				data: {stotalPlanCode:stotalPlanCode, planName:planName},
+				data: {totalPlanCode:totalPlanCode, planName:planName},
 				dataType: "json",   
 				
 				
@@ -217,20 +217,20 @@ $("#searchBtn").on('click',function(){
 							
 							
 							htmltrtd+='<td>';
-							htmltrtd+='<a href="/mainCoaching">'
+							htmltrtd+='<a href="/mainCoaching">';
 							htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="callHelp">';	
 							htmltrtd+='<i class="fas fa-pencil-alt"> </i> 도움받기';	
 							htmltrtd+='</button>';
 							htmltrtd+='</a>';
 							
-							htmltrtd+='<a href="#">'
+							htmltrtd+='<a href="#">';
 							htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="modifyPlan">';	
 							htmltrtd+='<i class="fas fa-pencil-alt"> </i> 수정';	
 							htmltrtd+='</button>';
 							htmltrtd+='</a>';
 							
 		
-							htmltrtd+='<a href="#>'
+							htmltrtd+='<a href="#">';
 							htmltrtd+='<button type="button" class="btn btn-default btn-xs" id="deletePlan">';	
 							htmltrtd+='<i class="fas fa-pencil-alt"> </i> 삭제';	
 							htmltrtd+='</button>';
@@ -243,6 +243,34 @@ $("#searchBtn").on('click',function(){
 					
 					
 					$('#card-tbody').html(htmltrtd);
+					
+					 //Modal 영역   //동적으로 하려면  (click뒤에다쓰고) DOM객체에 다시한번 언급해줘야되는 것임.
+					$(document).on('click','.planContents',function(){
+						$("#myModal").modal();
+						//$(".modal-title").text();
+						console.log('모달 접근');
+						//모달컨탠츠 타이틀
+						//console.log(planDetailTitle, "planDetailTitle");
+						$('.modalTitle').text($(this).parents('tr').find('.planDetailTitle').text());
+						
+						
+						$(".modal-text").text($(this).val());
+					//console.log(planText);
+					});
+					
+					
+					
+					$(document).on('click',".planDegree",function(){
+						$("#myModal2").modal();
+						if($(this).val() == 'null'){
+							//console.log($(this).val()+" null어쩌면 좋니");
+							$(".modal-text2").text('등록된 사유 없음.');			
+						}else{
+							$(".modal-text2").text($(this).val());	
+						}
+					});
+					
+
 					
 					$("table").find("td").css({
 						'vertical-align' : 'middle'
