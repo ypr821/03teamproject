@@ -38,7 +38,7 @@ public class NormalUserController {
 		this.normalUserService = normalUserService;
 	}
 	
-	@PostMapping("/getProfilePicture")
+	@PostMapping("/getNormalProfilePicture")
 	public String modifyProfilePicture(@RequestParam(name="userProfilePicture",required = false) MultipartFile file
 										, HttpSession session) {
 
@@ -59,10 +59,10 @@ public class NormalUserController {
             
             //localhost용
            
-            //Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ random + file.getOriginalFilename());
+//            Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Normal/"+ random + file.getOriginalFilename());
            
             //cafe24용
-            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/") + random + file.getOriginalFilename());
+            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/Normal/") + random + file.getOriginalFilename());
             Files.write(path, bytes);
             
             System.out.println(random + file.getOriginalFilename());
@@ -82,7 +82,6 @@ public class NormalUserController {
 	public String myPage(Model model, HttpSession session) {
 		
 		model.addAttribute("title","마이페이지");
-		model.addAttribute("function","myPage");
 		
 		
 		return "userAdmin/myPage";
@@ -169,6 +168,7 @@ public class NormalUserController {
 		
 		return "redirect:/login";
 	}
+	
 	
 	@GetMapping("/login")
 	public String normalLogin(Model model

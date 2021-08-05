@@ -76,5 +76,11 @@ public class CoachUserService {
 				
 		return coachUser;
 	}
+	
+	//회원 프로필 수정
+	public int modifyProfilePicture(Object coachEmail,String coachProfilePicture) {
+			
+		return coachUserMapper.modifyProfilePicture(coachEmail ,coachProfilePicture);
+	}
 
 }

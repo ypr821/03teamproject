@@ -24,7 +24,7 @@
 	<div th:if="${session.ULEVEL == '일반'}">
 		<div>프로필 이미지</div>
 		<div class="input-group mb-3">
-			<form th:action="@{getProfilePicture}" method="post" enctype="multipart/form-data">
+			<form th:action="@{getNormalProfilePicture}" method="post" enctype="multipart/form-data">
 				<input type="file" name="userProfilePicture"/>
 				<button type="submit">업로드1</button>
 			</form>
@@ -33,8 +33,8 @@
 	<div th:if="${session.ULEVEL == '코치'}">
 		<div>프로필 이미지</div>
 		<div class="input-group mb-3">
-			<form th:action="@{fileUpload}" method="post" enctype="multipart/form-data">
-				<input type="file" name="userProfilePicture"/>
+			<form th:action="@{getCoachProfilePicture}" method="post" enctype="multipart/form-data">
+				<input type="file" name="coachProfilePicture"/>
 				<button type="submit">업로드2</button>
 			</form>
 		</div>

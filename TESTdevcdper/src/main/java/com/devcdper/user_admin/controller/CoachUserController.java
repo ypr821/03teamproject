@@ -1,8 +1,15 @@
 package com.devcdper.user_admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.devcdper.user_admin.domain.CoachUser;
@@ -28,6 +36,46 @@ public class CoachUserController {
 	
 	public CoachUserController(CoachUserService coachUserService) {
 		this.coachUserService = coachUserService;
+	}
+	
+	@PostMapping("/getCoachProfilePicture")
+	public String modifyProfilePicture(@RequestParam(name="coachProfilePicture",required = false) MultipartFile file
+										, HttpSession session) {
+
+		log.info("프로필 수정에 대한 부분 file: {}", file);
+		System.out.println(file.getOriginalFilename());
+		try {
+			
+		   
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            
+            InetAddress local = InetAddress.getLocalHost();
+
+            System.out.println(local.getHostAddress());
+            
+        	
+            int random = (int)(Math.random()*100);
+            
+            //localhost용
+           
+            Path path = Paths.get(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/img/profilePicture/Coach/"+ random + file.getOriginalFilename());
+           
+            //cafe24용
+//            Path path = Paths.get(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/img/profilePicture/Coach/") + random + file.getOriginalFilename());
+            Files.write(path, bytes);
+            
+            System.out.println(random + file.getOriginalFilename());
+    
+            coachUserService.modifyProfilePicture(session.getAttribute("UEMAIL"),random+ file.getOriginalFilename());
+          
+        	
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	
+		return "redirect:/myPage";
 	}
 	
 		
@@ -78,7 +126,7 @@ public class CoachUserController {
 	public String coachLogin(@RequestParam(value="coachEmail", required = false) String coachEmail
 			   ,@RequestParam(value="coachPassword", required = false) String coachPassword
 			   ,HttpSession session
-			   ,RedirectAttributes reAttr) {
+			   ,RedirectAttributes reAttr)  {
 		System.out.println(coachEmail+ coachPassword);
 		if(coachEmail != null && !"".equals(coachEmail) && coachPassword != null && !"".equals(coachPassword)) {
 			Map<String, Object> resultMap = coachUserService.loginCoachUser(coachEmail, coachPassword);
@@ -87,11 +135,14 @@ public class CoachUserController {
 			System.out.println(loginCheck);
 			CoachUser coachLogin = (CoachUser) resultMap.get("loginCoachUser");
 			System.out.println(resultMap);
+			System.out.println(coachLogin + "testsetests");
 //			
 			if(loginCheck) {
-				session.setAttribute("UEMAIL",	coachLogin.getCoachEmail());
-				session.setAttribute("UNAME", 	coachLogin.getCoachName());
+				session.setAttribute("UEMAIL",   coachLogin.getCoachEmail());
+				session.setAttribute("UNAME", 	 coachLogin.getCoachName());
+				session.setAttribute("UPROFILE", coachLogin.getCoachProfilePicture());
 				session.setAttribute("ULEVEL", 	"코치");
+				
 				return "redirect:/";
 			}
 		}
