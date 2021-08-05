@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="@{layout/loginDefault}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="@{layout/loginDefault}">
 <th:block layout:fragment="pageTitle">
 	<title th:text="${title}">login title</title>
 	<div></div>
@@ -55,7 +53,7 @@
 											<div class="col-8">
 												<div class="icheck-primary">
 													<input type="checkbox" id="remember"> 
-													<label for="remember"> Remember Me </label>
+													<label> Remember Me </label>
 												</div>
 											</div>
 											<!-- /.col -->
@@ -114,8 +112,8 @@
 										<div class="row">
 											<div class="col-8">
 												<div class="icheck-primary">
-													<input type="checkbox" id="remember"> <label
-														for="remember"> Remember Me </label>
+													<input type="checkbox"> 
+													<label> Remember Me </label>
 												</div>
 											</div>
 											<!-- /.col -->
@@ -129,7 +127,7 @@
 									<div class="social-auth-links text-center mb-3">
 										<p>- OR -</p>
 										<span th:if="${userId == null}">
-											<a href="https://kauth.kakao.com/oauth/authorize?client_id=f11795431391ba3dd703300962b6fd06&redirect_uri=http://localhost:8070/login&response_type=code">
+											<a href="https://kauth.kakao.com/oauth/authorize?client_id=f11795431391ba3dd703300962b6fd06&redirect_uri=http://localhost/login&response_type=code">
 												<img th:src="@{/AdminLTE3/dist/img/kakaoLogin/kakao_login_medium_wide.png}">
 											</a>
 										</span>
@@ -179,9 +177,8 @@
 										<div class="row">
 											<div class="col-8">
 												<div class="icheck-primary">
-													<input type="checkbox" id="remember"> 
-													<label
-														for="remember">Remember Me </label>
+													<input type="checkbox"> 
+													<label>Remember Me </label>
 												</div>
 											</div>
 											<div class="col-4">

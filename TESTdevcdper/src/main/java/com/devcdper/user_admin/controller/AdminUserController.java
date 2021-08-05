@@ -66,6 +66,7 @@ public class AdminUserController {
 		//idcheck 중복된 아이디있는 경우에는 false
 		AdminUser adminUser = adminUserService.getAdminInfoById(adminEmail);
 		if(adminUser != null) EmailCheck = false;
+		System.out.println(EmailCheck + "testests");
 		
 		return EmailCheck;
 	}

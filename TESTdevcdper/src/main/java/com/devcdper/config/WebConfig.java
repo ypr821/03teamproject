@@ -48,6 +48,25 @@ public class WebConfig implements WebMvcConfigurer{
 		.excludePathPatterns("/vendor/**")
 		.excludePathPatterns("/js/**")
 		.excludePathPatterns("/login")
+		.excludePathPatterns("/adminEmailCheck")
+		.excludePathPatterns("/coachEmailCheck")
+		.excludePathPatterns("/normalEmailCheck")
+		.excludePathPatterns("/fileDownload")
+		
+		.excludePathPatterns("/adminForgotPassword")
+		.excludePathPatterns("/normalForgotPassword")
+		.excludePathPatterns("/coachForgotPassword")
+		
+		.excludePathPatterns("/adminForgotEmail")
+		.excludePathPatterns("/adminForgotPassword")
+		
+		.excludePathPatterns("/normalForgotEmail")
+		.excludePathPatterns("/normalForgotPassword")
+		
+		.excludePathPatterns("/coachForgotEmail")
+		.excludePathPatterns("/coachForgotPassword")
+		.excludePathPatterns("/fileDownload")
+		.excludePathPatterns("/")
 		.excludePathPatterns("/normalLogin")
 		.excludePathPatterns("/addNormal")
 		.excludePathPatterns("/adminLogin")

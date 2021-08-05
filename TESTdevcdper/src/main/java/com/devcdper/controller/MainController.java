@@ -50,8 +50,9 @@ public class MainController {
 	//다운로드
 	@RequestMapping("/fileDownload")
 	@ResponseBody
-	public ResponseEntity<Resource> fileDownload(HttpServletResponse response, HttpServletRequest request) throws IOException {
-		File file = new File(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/completionReport/"+"ksmart39_03team.hwp");
+	public ResponseEntity<Resource> fileDownload(HttpServletResponse response, HttpServletRequest request, HttpSession session) throws IOException {
+//		File file = new File(System.getProperty("user.dir") + "/src/main/resources/static/AdminLTE3/dist/completionReport/"+"ksmart39_03team.hwp");
+		File file = new File(session.getServletContext().getRealPath("/WEB-INF/classes/static/AdminLTE3/dist/completionReport/"+"ksmart39_통합구현_03team.hwp"));
 
 	        Path path = Paths.get(file.getAbsolutePath());
 	        Resource resource = new UrlResource(path.toUri());

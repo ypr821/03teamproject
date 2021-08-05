@@ -29,7 +29,17 @@
 		<result property="coachRecommendEmail" 					column="coach_recommend_email"/>
 		<result property="coachJoinDate" 						column="coach_join_date"/>
 		<result property="coachWithdrawStatus" 					column="coach_withdraw_status"/>
+		<result property="coachProfilePicture" 					column="coach_profile_picture"/>
 	</resultMap>
+	
+	<update id="modifyProfilePicture" parameterType="CoachUser">
+		UPDATE 
+			coach_user
+		SET
+			coach_profile_picture=#{coachProfilePicture}
+		WHERE 
+			coach_user_email = #{coachEmail};
+	</update>
 	
 	<select id="coachForgotPassword" parameterType="String" resultMap="CoachUserResultMap">
 		SELECT 
@@ -55,7 +65,7 @@
 			coach_user_email=#{coachEmail}
 			</if>
 			<if test="coachPassword != null and coachPassword != ''.toString()">	
-			coach_password=#{coachPassword}
+			,coach_password=#{coachPassword}
 			</if>
 			<if test="coachPasswordAnswer != null and coachPasswordAnswer != ''.toString()">	
 			,coach_password_answer=#{coachPasswordAnswer}
@@ -113,6 +123,7 @@
 			coach_user_email
 			,coach_password
 			,coach_password_answer
+			, coach_profile_picture
 			, coach_name
 			, coach_birth
 			, coach_addr

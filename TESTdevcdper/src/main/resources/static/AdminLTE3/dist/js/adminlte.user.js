@@ -64,6 +64,7 @@
 					if (data) {
 						alert('사용가능한 이메일입니다.');
 						console.log(data);
+						$('#adminCheckBtn').attr('data-check', 'true');
 					} else {
 						alert('중복된 이메일입니다.');
 						$('#Email').focus();
@@ -99,6 +100,7 @@
 				request.done(function(data) {
 					if (data) {
 						alert('사용가능한 이메일입니다.');
+						$('#coachCheckBtn').attr('data-check', 'true');
 						console.log(data);
 					} else {
 						alert('중복된 이메일입니다.');
@@ -135,6 +137,7 @@
 				request.done(function(data) {
 					if (data) {
 						alert('사용가능한 이메일입니다.');
+						$('#normalCheckBtn').attr('data-check', 'true');
 						console.log(data);
 					} else {
 						alert('중복된 이메일입니다.');
@@ -175,6 +178,11 @@
 			var addForm  = $('#addForm');
 			var inputObj = addForm.find('input');
 			
+//			var adminCheckFlag =$('#adminCheckBtn').attr('data-check');
+//			var coachCheckFlag =$('#coachCheckBtn').attr('data-check');
+//			var normalCheckFlag =$('#normalCheckBtn').attr('data-check');
+//			var emailCheckFlag = false;
+			
 			$.each(inputObj, function(e){
 				var inputId = $(this).attr('id');
 				var inputValue = $(this).val();
@@ -191,7 +199,7 @@
 						$(this).focus();
 						submitFlag = false;
 						return submitFlag;
-					}
+					}				
 				}else if(inputId == 'Password'){
 					if(inputValue == ''){
 						alert(inputLabel + '를 입력해주세요.');
@@ -299,8 +307,13 @@
 					}
 				}
 			});
-			
-			if(submitFlag) addForm.submit();
+//			if(adminCheckFlag == true || coachCheckFlag == true || normalCheckFlag == true){
+				if(submitFlag){
+					addForm.submit();
+				}
+//			}else {
+//				alert('이메일 중복 여부를 확인해주세요.');
+//			}
 		});
 	});
 	

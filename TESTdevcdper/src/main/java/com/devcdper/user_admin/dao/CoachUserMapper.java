@@ -22,4 +22,6 @@ public interface CoachUserMapper {
 	public CoachUser coachForgotEmail(String coachName, String coachMobile);
 	//코치 패스워드 찾기
 	public CoachUser coachForgotPassword(String coachEmail, String coachPasswordAnswer);
+	//코치 프로필 수정
+	public int modifyProfilePicture(Object coachEmail,String coachProfilePicture);
 }
