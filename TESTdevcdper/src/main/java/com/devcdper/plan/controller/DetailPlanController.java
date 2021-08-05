@@ -130,9 +130,9 @@ public class DetailPlanController {
 	//AJAX1 통합계획 선택시//
 	@RequestMapping(value = "/totalPlanSelected", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> totalPlanSelected(@RequestParam(value="stotalPlanCode",required=true)String stotalPlanCode
+	public Map<String, Object> totalPlanSelected(@RequestParam(value="totalPlanCode",required=true)String totalPlanCode
 										  ,@RequestParam(value="planName",required = true)String planName){
-		System.out.println(stotalPlanCode+" <- AJAX1 controller");
+		System.out.println(totalPlanCode+" <- AJAX1 controller");
 		//String result = totalPlanCode+ "AJAX return 성공";
 		System.out.println(planName+"  palnNameController");
 		Map<String, Object> detailPlanMap = new HashMap<String, Object>();
@@ -140,37 +140,37 @@ public class DetailPlanController {
 		
 		if(planName.equals("planEducationalHistoryDetail") && planName != null && !"".equals(planName)) {
 			System.out.println("planEducationalHistoryDetail 컨트롤러1 접근성공");
-			detailPlanMap.put("planEducationalHistoryDetail", detailPlanService.getEducationalHistoryTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planEducationalHistoryDetail", detailPlanService.getEducationalHistoryTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planProjectDetail")&& planName != null && !"".equals(planName)){
 			System.out.println("planProjectDetail 컨트롤러1 접근성공");
-			detailPlanMap.put("planProjectDetail",detailPlanService.getProjectTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planProjectDetail",detailPlanService.getProjectTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planCertificateDetail")&& planName != null && !"".equals(planName)) {
 			System.out.println("자격증 컨트롤러 ajax접근성공");
-			detailPlanMap.put("planCertificateDetail",detailPlanService.getCertificateTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planCertificateDetail",detailPlanService.getCertificateTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planCertifiedLanguageDetail")&& planName != null && !"".equals(planName)) {
-			detailPlanMap.put("planCertifiedLanguageDetail",detailPlanService.getCertifiedLanguageTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planCertifiedLanguageDetail",detailPlanService.getCertifiedLanguageTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planTechnologyStackDetail")&& planName != null && !"".equals(planName)) {
-			detailPlanMap.put("planTechnologyStackDetail",detailPlanService.getTechnologyStackTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planTechnologyStackDetail",detailPlanService.getTechnologyStackTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planJobTrainingDetail")&& planName != null && !"".equals(planName)) {
-			detailPlanMap.put("planJobTrainingDetail",detailPlanService.getJobTrainingTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planJobTrainingDetail",detailPlanService.getJobTrainingTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planInternshipDetail")&& planName != null && !"".equals(planName)) {
-			detailPlanMap.put("planInternshipDetail",detailPlanService.getInternshipTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planInternshipDetail",detailPlanService.getInternshipTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planContestDetail")&& planName != null && !"".equals(planName)) {
-			detailPlanMap.put("planContestDetail",detailPlanService.getContestTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planContestDetail",detailPlanService.getContestTotalTitleSearch(totalPlanCode));
 			
 		}else if(planName.equals("planCareerDetail")&& planName != null && !"".equals(planName)) {
-			detailPlanMap.put("planCareerDetail",detailPlanService.getCareerTotalTitleSearch(stotalPlanCode));
+			detailPlanMap.put("planCareerDetail",detailPlanService.getCareerTotalTitleSearch(totalPlanCode));
 			
 		}
 		//okay 임의의 Email값 넘겨(각 화면의 컨트롤러) totalPlan의 모든 값중 Code와 Title가져오면된다.
-		//List<PlanDto> getProjTitleSearch = detailPlanService.getProjTotalTitleSearch(stotalPlanCode);
+		//List<PlanDto> getProjTitleSearch = detailPlanService.getProjTotalTitleSearch(totalPlanCode);
 		
 		return  detailPlanMap;
 	}
