@@ -55,7 +55,7 @@
          </div>
          <!-- /.card -->
          
-        <div th:replace="/fragments/challengeSearchForm/myChallengeCommonSearchForm :: myChallengeCommonSearchForm"></div>
+        <div th:replace="/fragments/challengeSearchForm/myChallengeInsertSearchForm :: myChallengeInsertSearchForm"></div>
          
          <div class="row">
           <div class="col-12">
@@ -81,10 +81,8 @@
 	                      <th>번호</th>
 							<th>챌린지명</th>
 							<th>카테고리</th>
-							<th>공개범위</th>
 							<th>태그</th>
-							<th>참가인원</th>
-							<th>베팅금액</th>
+							<th>인증빈도</th>
 							<th>챌린지 시작일</th>
 							<th>챌린지 종료일</th>
 							<th>진행율</th>
@@ -98,10 +96,8 @@
 							<!-- <td style="display: none;" th:text="${l.challengeCode}"></td> -->
 							<td th:text="${l.challengeName}"></td>
 							<td th:text="${l.challengeCategory.challengeCategoryName}"></td>
-							<td th:text="${l.challengeScope}"></td>
 			                <td th:text="${l.challengeTag}"></td>
-							<td th:text="${l.challengeMaximumPeople}"></td>
-							<td th:text="${l.challengeBetAmount}"></td>
+							<td th:text="${l.challengeCertificationFrequency}"></td>
 							<td th:text="${l.challengeStartDate}"></td>
 							<td th:text="${l.challengeEndDate}"></td>
 							<td>
@@ -113,11 +109,11 @@
 								</small>
 							</td>
 		                     <td>
-		                    <a th:href="@{/myChallengeEdit(challengeCode=${l.challengeCode},challengeName=${l.challengeName})}">
+		                    <a th:href="@{/myChallengeInsertDetailInfo(challengeCode=${l.challengeCode},challengeName=${l.challengeName})}">
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
-											<i class="fas fa-cog">
+											<i class="fas fa-folder">
 											</i>
-											상세보기
+											상세정보
 										</button>
 							</a>
 							</td>
@@ -131,20 +127,25 @@
 							</a>
 							</td>
 						</tr>
+						<tr th:unless="${#lists.size(myChallengeInsertList) > 0}" style="text-align: center;">
+							<td colspan="10" th:text="${'검색 결과가 없습니다.'}" style="background-color: white;"></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
 			<!-- /.card-body -->
-			<!-- 코치 list 페이지번호  -->
+			<!-- 나의 챌린지 : 개설 챌린지 전체 리스트 조회 - 페이지번호  -->
 			<div class="card-footer clearfix">
+						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
-		                  <li class="page-item"><a class="page-link" href="#">«</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		                  <li class="page-item"><a class="page-link" href="#">»</a></li>
+		                <li class="page-item"><a class="page-link" th:href="@{/myChallengeInsertList}"> << </a></li>
+						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/myChallengeInsertList(currentPage=${currentPage - 1})}">이전</a></li>
+							<th:block th:each="num:${#numbers.sequence(pageStartNum, pageEndNum)}">
+							<li class="page-item "><a class="page-link" th:if="${num != currentPage}" th:href="@{/myChallengeInsertList(currentPage=${num})}">[[${num}]]</a></li>
+							<li class="page-item active"><a class="page-link" th:unless="${num != currentPage}">[[${num}]]</a></li>
+							</th:block>
+						<li class="page-item"><a class="page-link" th:if="${currentPage < lastPage}" th:href="@{/myChallengeInsertList(currentPage=${currentPage + 1})}">다음</a></li>
+						<li class="page-item"><a class="page-link" th:href="@{/myChallengeInsertList(currentPage=${lastPage})}">>></a></li>
 		                </ul>
 			   </div>	
 		</div>

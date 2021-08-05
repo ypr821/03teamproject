@@ -457,9 +457,9 @@
 					</ul>
 				</li>
 
-								<!-- 챌린지 관리 -->
+				<!-- 챌린지 관리 -->
 				<li class="nav-item has-treeview" th:if="${function == null}">
-					<a href="#" class="nav-link"> 
+					<a th:if="${session.ULEVEL == '관리자'}" th:href="@{/adminChallenge}" class="nav-link"> 
 					<i class="nav-icon fas fad fa-thumbs-up"></i>
 						<p>
 							챌린지 관리 <i class="right fas fa-angle-left"></i>
@@ -505,7 +505,7 @@
 				</li>
 				<!-- 결제 및 환불 관리 -->
 				<li class="nav-item has-treeview" th:if="${function == null}">
-					<a href="#" class="nav-link"> <i
+					<a th:if="${session.ULEVEL == '관리자'}" href="#" class="nav-link"> <i
 						class="nav-icon fas fa-credit-card"></i>
 						<p>
 							결제 및 환불 관리 <i class="right fas fa-angle-left"></i>
@@ -513,13 +513,13 @@
 						<span style="font-size: 10px;" class="badge badge-primary">#</span>
 				</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item"><a href="paymentRefund/payment.html"
-							class="nav-link"> <i class="nav-icon fas fa-credit-card"></i>
+						<li class="nav-item"><a th:href="@{/payment}" class="nav-link"> 
+						<i class="nav-icon fas fa-credit-card"></i>
 								<p>결제 관리</p>
 								<span style="font-size: 10px;" class="badge badge-primary">#</span>
 						</a></li>
-						<li class="nav-item"><a href="paymentRefund/refund.html"
-							class="nav-link"> <i class="nav-icon fas fa-credit-card"></i>
+						<li class="nav-item"><a th:href="@{/refund}" class="nav-link"> 
+						<i class="nav-icon fas fa-credit-card"></i>
 								<p>환불 관리</p>
 								<span style="font-size: 10px;" class="badge badge-primary">#</span>
 						</a></li>
