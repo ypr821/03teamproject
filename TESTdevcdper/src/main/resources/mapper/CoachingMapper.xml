@@ -78,7 +78,7 @@
 			<result property="coachingApplyAndPaymentRegisterDate"		column="coaching_apply_and_payment_register_date"/>
 			<result property="paymentCode"								column="payment_code"/>
 		</association>
-		<association property="coachingUser" 		javaType="com.devcdper.coaching.domain.CoachingUser">
+		<association property="coachingUser" 			javaType="com.devcdper.coaching.domain.CoachingUser">
 			<id property="coachEmail" 							column="coach_user_email"/>
 			<result property="coachPassword"				 		column="coach_password"/>
 			<result property="coachName" 							column="coach_name"/>
@@ -121,6 +121,19 @@
 			<result property="userWithdrawStatus" 		column="user_withdraw_status"/>
 		</association>
 	</resultMap>
+	
+	<select id="getCoachingRFQResult" parameterType="String" resultMap="CoachingListMap">
+		SELECT
+		*
+		FROM coaching_RFQ_result AS r
+		INNER JOIN coach_user AS c
+		ON c.coach_user_email = r.coach_user_email
+		WHERE r.coaching_RFQ_result_code = #{resultCode};
+	
+	</select>
+	
+	
+	
 	
 	<insert id="insertCoachingRFQResult" parameterType="Map">
 		INSERT INTO coaching_RFQ_result

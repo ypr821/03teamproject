@@ -298,6 +298,9 @@
 				<!-- 견적요청 상세보기 Modal -->
 				$(function(){
 					
+					console.log("==================================");
+					console.log("sessionLevel???-->",sessionLevel);
+					
 					$('#modal-RFQ, #modal-RFQResult, #modal-Review, #modal-coachingStop').on('hide.bs.modal', function () {
 						console.log('모달 닫기 이벤트 확인');
 						$('.checkbox').removeAttr("checked");

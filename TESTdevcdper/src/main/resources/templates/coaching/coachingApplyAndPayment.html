@@ -31,39 +31,34 @@
 
 											<!-- 코칭구분, 카테고리  -->
 											<div class="form-group">
-												<b>코칭구분</b>&emsp; <label id="coachingType"> <input
-													type="radio" name="coachingType" value="mentoring">
-													멘토링
-												</label>&nbsp; &nbsp; <label id="coachingType"> <input
-													type="radio" name="coachingType" value="consulting">
-													컨설팅
-												</label> <br>
+												
 												<!-- 코칭 카테고리  -->
-												<label for="coachingCategory">카테고리 선택</label> <select
-													id="coachingCategory" class="form-control custom-select">
-													<option>카테고리 선택</option>
-													<!-- 멘토링카테고리 -->
-													<option>학력</option>
-													<option>프로젝트</option>
-													<option>자격증</option>
-													<option>공인어학(외국어능력)</option>
-													<option>기술스택</option>
-													<option>직종전문교육과정</option>
-													<option>인턴쉽</option>
-													<option>공모전</option>
-
-													<!-- 컨설팅카테고리 -->
-													<option>진로설정·취업전략</option>
-													<option>취업준비 스펙(자격증, 포트폴리오)</option>
-													<option>기업·직무 분석</option>
-													<option>자기소개서 + 이력서</option>
-													<option>면접</option>
-													<option>인적성검사 대비</option>
-													<option>대기업 취업준비</option>
-													<option>공기업 취업준비·NCS</option>
-													<option>경력관리</option>
-													<option>경력기술서</option>
-													<option>경력분석·이전직</option>
+												<label for="coachingCategory">카테고리</label> 
+												<select id="coachingCategory"  class=" coachingResultCategory  custom-select selectProfile">
+								                  <option value="">카테고리선택</option>
+								                  <!-- 멘토링카테고리 -->
+								                  <option value="coaching_category_01">학력</option>
+								                  <option value="coaching_category_02">프로젝트</option>
+								                  <option value="coaching_category_03">자격증</option>
+								                  <option value="coaching_category_04">공인어학(외국어능력)</option>
+								                  <option value="coaching_category_05">기술스택</option>
+								                  <option value="coaching_category_06">직종전문교육과정</option>
+								                  <option value="coaching_category_07" >인턴쉽</option>
+								                  <option value="coaching_category_08">공모전</option>
+								                  <option value="coaching_category_09">경력</option>
+								                  
+								                  <!-- 컨설팅카테고리 -->
+								                  <option value="coaching_category_10">진로설정·취업전략</option>
+								                  <option value="coaching_category_11">취업준비 스펙(자격증, 포트폴리오)</option>
+								                  <option value="coaching_category_12">기업·직무 분석</option>
+								                  <option value="coaching_category_13">자기소개서 + 이력서</option>
+								                  <option value="coaching_category_14">면접</option>
+								                  <option value="coaching_category_15">인적성검사 대비</option>
+								                  <option value="coaching_category_16">대기업 취업준비</option>
+								                  <option value="coaching_category_17">공기업 취업준비·NCS</option>
+								                  <option value="coaching_category_18">경력관리</option>
+								                  <option value="coaching_category_19">경력기술서</option>
+								                  <option value="coaching_category_20">경력분석·이전직</option>
 												</select>
 												<!-- /코칭 카테고리  -->
 											</div>
@@ -72,61 +67,57 @@
 
 											<div class="form-group">
 												<label for="coachingStartDate">시작 일자</label> <input
-													type="date" id="coachingStartDate" class="form-control"
-													value="AdminLTE">
+													type="date" id="coachingStartDate" readonly="readonly"  class="coachingResultStartDate form-control"
+													value="">
 											</div>
 
 											<div class="form-group">
 												<label for="coachingEndDate">종료 일자</label> <input
-													type="date" id="coachingEndDate" class="form-control"
-													value="AdminLTE">
+													type="date" id="coachingEndDate" readonly="readonly" class="coachingResultEndDate form-control"
+													value="">
 											</div>
 
+											<div class="form-group resultCheckDay">
+								                <label>
+								                	진행 요일 
+								                </label>
+								                <br>
+								       			&nbsp;<span class="checkDaySplitArray"></span>
+								            </div>
 											<div class="form-group">
-												<label> 진행 요일 선택 </label> <br> <label> <input
-													type="checkbox" /> 월 &nbsp;&nbsp;
-												</label> <label> <input type="checkbox" /> 화 &nbsp;&nbsp;
-												</label> <label> <input type="checkbox" /> 수 &nbsp;&nbsp;
-												</label> <label> <input type="checkbox" /> 목 &nbsp;&nbsp;
-												</label> <label> <input type="checkbox" /> 금 &nbsp;&nbsp;
-												</label> <label> <input type="checkbox" /> 토 &nbsp;&nbsp;
-												</label> <label> <input type="checkbox" /> 일
-												</label>
-											</div>
-											<div class="form-group">
-												<label for="hourPerOneTime">1회당 진행 시간</label> <select
-													id="hourPerOneTime" class="form-control custom-select">
+												<label for="hourPerOneTime">1회당 진행 시간</label> <select readonly="readonly"
+													id="hourPerOneTime" class="form-control custom-select selectProfile">
 													<option disabled="" selected="">1회당 진행 시간 선택</option>
-													<option>1시간</option>
-													<option>2시간</option>
-													<option>3시간</option>
-													<option>4시간</option>
-													<option>5시간</option>
-													<option>6시간</option>
-													<option>7시간</option>
-													<option>8시간</option>
-													<option>9시간</option>
-													<option>10시간</option>
+													<option value="1">1시간</option>
+													<option value="2">2시간</option>
+													<option value="3">3시간</option>
+													<option value="4">4시간</option>
+													<option value="5">5시간</option>
+													<option value="6">6시간</option>
+													<option value="7">7시간</option>
+													<option value="8">8시간</option>
+													<option value="9">9시간</option>
+													<option value="10">10시간</option>
 												</select>
 											</div>
 											<div class="form-group">
 												<label for="pricePerHour"> 1시간당 코칭 금액 </label> <input
-													type="text" id="pricePerHour" class="form-control"
+													type="text" id="pricePerHour" class="form-control" readonly="readonly"
 													value="1시간당 코칭 금액">
 											</div>
 											<div class="form-group">
 												<label for="pricePerOneTime"> 1회 코칭 금액 </label> <input
-													type="text" id="pricePerOneTime" class="form-control"
+													type="text" id="pricePerOneTime" class="form-control" readonly="readonly"
 													value="1회 코칭 금액">
 											</div>
 											<div class="form-group">
 												<label for="totalCoachingPrice"> 코칭 총 금액 </label> <input
-													type="text" id="totalCoachingPrice" class="form-control"
+													type="text" id="totalCoachingPrice" class="form-control" readonly="readonly"
 													value="코칭 기간 총 금액">
 											</div>
 											<div class="form-group">
 												<label for="coachingMethod">진행방법 선택</label> <select
-													id="coachingMethod" class="form-control custom-select">
+													id="coachingMethod" class="form-control custom-select selectProfile">
 													<option disabled="" selected="">온/오프라인 선택</option>
 													<option>온라인</option>
 													<option>오프라인</option>
@@ -136,22 +127,22 @@
 											<!-- 계획 함께 짜기, 함께 짤 통합 계획 확인 -->
 											<div class="form-group">
 												<label for="plan-coaching"> 코치님과 내 계획짜기 </label> &nbsp;
-												&nbsp; <input type="text" id="pricePerHour"
+												&nbsp; <input type="text" id="coachingResultTotalPlan" readonly="readonly"
 													class="form-control col-9" value="선택한 통합계획">
 											</div>
 											<!-- /계획 함께 짜기, 함께 짤 통합 계획 확인  -->
 
 											<!-- 내 계획과 연결 확인 하기 -->
 											<div class="form-group">
-												<label for="plan-coaching">내 계획과 연결 하기 </label> <input
-													type="text" id="pricePerHour" class="form-control col-9"
+												<label for="plan-coaching">내 계획과 연결 하기 </label> <input 
+													type="text" id="plan" class="form-control col-9" readonly="readonly"
 													value="선택한 내 계획">
 											</div>
 											<!-- /내 계획과 연결 확인 하기 -->
 
 											<div class="form-group">
 												<label for="RFQResultContents">합의 및 목표 사항</label>
-												<textarea id="RFQResultContents" class="form-control"
+												<textarea id="RFQResultContents" class="form-control" readonly="readonly"
 													rows="4" placeholder="수강생과 합의 후 코칭 목표 및  진행할 내용등을 입력해주세요"></textarea>
 											</div>
 
@@ -164,15 +155,17 @@
 															src="/AdminLTE3/dist/img/홍길동.jpg" alt="User profile picture">
 													</div>
 
-													<h3 class="profile-username text-center">홍길동</h3>
+													<h3 class="profile-username text-center coachName"></h3>
 
 													<p class="text-muted text-center">
 														멘토/컨설턴트<br>
-														코치이메일@naver.com
+														<span class="coachEmail">
+															
+														</span> 
 													</p>
 													<!-- 코치 프로필 모달 버튼 -->
 													<button type="button"
-														class="btn btn-block btn-secondary btn-xs"
+														class="btn btn-block btn-secondary btn-xs profileBtn"
 														data-toggle="modal" data-target="#modal-coachProfile">
 														프로필</button>
 													<!-- / 코치 프로필  모달 버튼 -->
@@ -214,31 +207,23 @@
 						<div class="card-header">
 							<h3 class="card-title">코칭 결제수단</h3>
 						</div>
-
-						<div class="btnGroup">
-							<div class="btn btn-primary btn-lg btn-flat">
-								<i class="fas fa-credit-card fa-lg mr-2"></i> <a th:href="@{#}"
-									id="bookmarkBtn"> 신용/체크카드</a>
-							</div>
-							<div class="btn btn-primary btn-lg btn-flat">
-								<i class="fas fa-money-bill fa-lg mr-2"></i> <a th:href="@{#}"
-									id="bookmarkBtn"> 계좌이체</a>
-							</div>
+						
+						<div class="btn btn-danger btn-lg btn-flat" style="text-align: center;">
+							
+				    			<button class="btn btn-danger btn-lg btn-flat kakaoPayBtn">
+				    				<img alt="Kakao Pay" src="image/payment_icon_yellow_small.png">
+				    				카카오페이로 결제하기
+				    			</button>
+							
 						</div>
+
+						
 					</div>
 				</div>
 		</div>
 		<!-- /.card-body -->
-		<!-- 코칭 결제수단 카드 -->
 	</div>
 
-	<div class="btnGroup">
-		<div class="btn btn-danger btn-lg btn-flat" id="participationBtn">
-			<i class="fas fa-credit-card fa-lg mr-2"></i> <a
-				th:href="@{/myCoachingClient}" id="participationBtn">결제하기</a>
-		</div>
-	</div>
-	</div>
 
 	<!-- 코치 프로필 모달  -->
 	<th:block
@@ -247,21 +232,54 @@
 
 
 	</th:block>
-
 	<th:block layout:fragment="pageJavascript">
+		<script th:inline="javascript">
+			/*<![CDATA[*/ 
+			var result = /*[[ ${result} ]]*/;
+			var coachInfo = /*[[ ${coachInfo} ]]*/
+			/*]]*/ 
+			
+		</script>
+		<script type="text/javascript" src="coachingJs/coachingApplyAndPaymentJs.js"></script>
 		<script type="text/javascript">
-	<!-- 코치 프로필 모달 스크립트 -->
-	$(function(){
-			$('#modal-coachProfile').on('shown.bs.modal', function () {
-				  $('#myInput').focus()
+			$(function(){
+		
+				<!-- 코치 프로필 모달 스크립트 -->
+				$('#modal-coachProfile').on('shown.bs.modal', function () {
+					  $('#myInput').focus();
+					})
+				<!-- / 코치 프로필 모달 스크립트 -->
+				
+				$('.kakaoPayBtn').click(function(){
+				
+					console.log('클릭 결제 버튼 클릭 확인');
+					//updateCoachingRFQ
+					jQuery.ajax({ 
+						type: "POST", 
+						url: "/kakaoPay", 
+						cache: false, 
+						data: { 
+							result		: result
+						}, 
+						datatype: "JSON", 
+						success: function (obj) { 
+							console.log('obj : ',obj,'- 잘받았다 오버♥');
+							
+							
+							window.location.href=obj;
+							
+						}, 
+						error: function (xhr, status, error) { 
+							console.log("ERROR!!!"); 
+						} 
+					});	
+					
 				})
-	});
-	<!-- / 코치 프로필 모달 스크립트 -->
+		
+				
+			});
 
-
-</script>
-
-
+		</script>
 
 
 	</th:block>
