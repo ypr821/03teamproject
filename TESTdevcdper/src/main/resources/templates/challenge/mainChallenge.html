@@ -244,6 +244,7 @@
 	             <div class="card-body pt-0">
 	               <div class="row">
 	                 <div class="col-12">
+	                   <h2 th:text="${l.challengeCode}" id="challengeCode" class="lead" style="display: none;"></h2>
 	                   <h2 th:text="${l.challengeName}" id="challengeName" class="lead"></h2>
 	                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
 	                   <p class="text-muted text-sm" id="challengeTag" th:text="${l.challengeTag}"></p>       
@@ -253,7 +254,7 @@
 	             </div>
 	             <div class="card-footer">
 	               <div class="text-right">
-	               <a th:href="@{/challengeExplorationDetailInfo(challengeName=${l.challengeName})}" class="btn btn-sm btn-primary">챌린지 정보보기</a>
+	               <a th:href="@{/challengeExplorationDetailInfo(challengeCode=${l.challengeCode})}" class="btn btn-sm btn-primary">챌린지 정보보기</a>
 	               		</div>
 	            	 </div>
 	           		</div>
@@ -283,18 +284,16 @@
 		if(challengeCategoryCodeValue != '' && categoryBtnName != ''){
 				jQuery.ajax({ 
 			        type: "POST", 
-			        url: "/byCategory", 
+			        url: "/byCategoryMain", 
 			        data: { challengeCategoryCode : challengeCategoryCodeValue,
 			        	challengeCategoryName : categoryBtnName},
 			        dataType : 'json',
 			        success: function (data) { 
 			           console.log('data : ',data,'- 잘 받았음');
 			           console.log('type check data : ',typeof(data));//String이네
-			           
 			           console.log(data.length);
 
-			 
-		        	 $("#challengeExplorationCardRow").children().remove();
+			        	 $("#challengeExplorationCardRow").children().remove();
 		        	 if(data != null && data != undefined && data != '' && data.length > 0){
 		        		 var html = '';
 	        			$.each(data, function(index, item){
@@ -311,25 +310,23 @@
 	        				html += "<p class='text-muted text-sm' id='challengeTag'>";
 	        				html += item.challengeTag;
 	        				html += "</p>";
+	        				html += "<p style='display: none;' class='text-muted text-sm' id='challengeCategoryCode'>";
+	        				html += item.challengeCategoryCode;
+	        				html += "</p>";
 	        				html += "</div>";
 	        				html += "</div>";
 	        				html += "</div>";
 	        				html += "<div class='card-footer'>";
-	        				html += "<a href='" + "/challengeExplorationDetailInfo?challengeName="
-	        				html += item.challengeName;
+	        				html += "<a href='" + "/challengeExplorationDetailInfo?challengeCode="
+	        				html += item.challengeCode;
 	        				html +=	"' class='btn btn-sm btn-primary'>";
 	        				html += "챌린지 정보보기";
 	        				html += "</a></div></div></div></div>";
-				        	
 	        			})
-		        		 
 		        	 }else{
 		        		 html = "<span>" + categoryBtnName + " 카테고리에 해당하는 챌린지가 없습니다." +"</span>";
-		        		 //$("#challengeExplorationCardRow").css('text-align','center');
 		        	 }
 		        	 $("#challengeExplorationCardRow").html(html);
-				        
-			        
 			        }, 
 			        error: function (xhr, status, error) { 
 			        	alert('error');

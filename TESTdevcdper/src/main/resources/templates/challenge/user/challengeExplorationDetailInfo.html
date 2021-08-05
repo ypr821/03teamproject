@@ -38,7 +38,6 @@
 			    <section class="content">
 			        <div class="container-fluid">
 			            <h2 class="text-center display-5">챌린지 상세정보</h2>
-			            <form action="enhanced-results.html">
 			                <div class="row">
 			                    <div class="card-body">
 			                    
@@ -53,26 +52,27 @@
 								    	 </div>
 							              <div class="form-group"> 
 							                <label for="challengeName">챌린지명</label>
-							                <input type="text" id="challengeName" name="challengeName" th:value="${challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white">
+							                <input type="hidden" id="challengeCode" name="challengeCode" th:value="${challengeExplorationDetailInfo.challengeCode}" class="form-control" readonly="readonly" style="background-color: white">
+							                <input type="text" id="challengeName" name="challengeName" th:value="${challengeExplorationDetailInfo.challengeName}" class="form-control" readonly="readonly" style="background-color: white">
 							              </div>
 							              <div class="form-group" id="challengeTerm">
 							                <label for="challengeStartDate">챌린지 기간</label>  
 							              	<div class="row">
-							                <input type="text" id="challengeStartDate" name="challengeStartDate" th:value="${challenge.challengeStartDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+							                <input type="text" id="challengeStartDate" name="challengeStartDate" th:value="${challengeExplorationDetailInfo.challengeStartDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
 							                <div class="input-group-prepend">
 								                  	<span class="input-group-text">~</span>
 								                  </div>
-							                <input type="text" id="challengeEndDate" name="challengeEndDate" th:value="${challenge.challengeEndDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+							                <input type="text" id="challengeEndDate" name="challengeEndDate" th:value="${challengeExplorationDetailInfo.challengeEndDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
 							              	</div>
 							              </div>
 							              <div class="form-group">
 							                <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
-							                <input type="text" id="challengeCertificationFrequency" name="challengeCertificationFrequency" th:value="${challenge.challengeCertificationFrequency}" class="form-control" readonly="readonly" style="background-color: white">
+							                <input type="text" id="challengeCertificationFrequency" name="challengeCertificationFrequency" th:value="${challengeExplorationDetailInfo.challengeCertificationFrequency}" class="form-control" readonly="readonly" style="background-color: white">
 							              </div>
 							               <div class="form-group">
 							                 <label for="challengeMaximumPeople">챌린지 참가인원</label>
 							               <div class="input-group mb-3">
-							                 <input type="text" id="challengeMaximumPeople" name="challengeMaximumPeople" th:value="${challenge.challengeMaximumPeople}" class="form-control" readonly="readonly" style="background-color: white">
+							                 <input type="text" id="challengeMaximumPeople" name="challengeMaximumPeople" th:value="${challengeExplorationDetailInfo.challengeMaximumPeople}" class="form-control" readonly="readonly" style="background-color: white">
 								                  <div class="input-group-prepend">
 								                  	<span class="input-group-text">명</span>
 								                  </div>
@@ -83,7 +83,7 @@
 							                 	  <div class="input-group-prepend" >
 								                  	<span class="input-group-text">총</span>
 								                  </div>
-							               <input type="text" id="challengeBetAmount" name="challengeBetAmount" th:value="${challenge.challengeBetAmount}" class="form-control" readonly="readonly" style="background-color: white">
+							               <input type="text" id="challengeBetAmount" name="challengeBetAmount" th:value="${challengeExplorationDetailInfo.challengeBetAmount}" class="form-control" readonly="readonly" style="background-color: white">
 								                  <div class="input-group-prepend">
 								                  	<span class="input-group-text">원</span>
 								                  </div>
@@ -106,10 +106,10 @@
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                  <div class="tab-pane active" id="tab_1" th:value="${challenge.challengeIntroduce}" th:text="${challenge.challengeIntroduce}">
+                  <div class="tab-pane active" id="tab_1" th:text="${challengeExplorationDetailInfo.challengeIntroduce}">
                   </div>
                   <!-- /.tab-pane -->
-                 <div class="tab-pane" id="tab_2" th:value="${challenge.challengeCertificationContents}" th:text="${challenge.challengeCertificationContents}">
+                 <div class="tab-pane" id="tab_2" th:text="${challengeExplorationDetailInfo.challengeCertificationContents}">
                     	챌린지 인증방법<p>
                     	[자신의 깃허브 계정이 잘 나오도록 Overview 화면을 캡쳐]<p>
                     	[작성한 소스코드도 함께 캡쳐]<p>
@@ -124,15 +124,13 @@
 		
 		
 		<div class="btnGroup">
-		<div th:onclick="|location.href='@{/challengeParticipation(challengeName=${challenge.challengeName})}'|" class="btn btn-danger btn-lg btn-flat participationBtn col-10" style="float: left">
+		<div th:onclick="|location.href='@{/challengeParticipation(challengeCode=${challengeExplorationDetailInfo.challengeCode})}'|" class="btn btn-danger btn-lg btn-flat participationBtn col-10" style="float: left">
 				  <i class="fas fa-sign-in-alt fa-lg mr-2"></i>
                   챌린지 참여하기
         </div>
 		</div>
 		</div>
-		
              				 </div>
-			                </form>
 			                </div>
 			                
 			                </section>

@@ -249,7 +249,7 @@
 				</table>
 			</div>
 			<!-- /.card-body -->
-			<!-- 참여 챌린지 페이지번호  -->
+			<!-- 참여 챌린지 관리 페이지번호  -->
 			<div class="card-footer clearfix">
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                <li class="page-item"><a class="page-link" th:href="@{/adminChallengeParticipation}"> << </a></li>
@@ -347,26 +347,7 @@
 			$('#modalChallengeRegDate').val(challengeParticipationList[countNumber-1].challenge.challengeRegisterDate);
 			console.log("챌린지 등록일 : " + $('#modalChallengeRegDate').val(challengeParticipationList[countNumber-1].challenge.challengeRegisterDate));
 
-			/* /* //모달 챌린지 결제방법 값 전달
-			$('#modalChallengePaymentOption').val(challengeParticipationList[countNumber-1].payment.paymentOption);
-			console.log("챌린지 결제방법 : " + $('#modalChallengePaymentOption').val(challengeParticipationList[countNumber-1].payment.paymentOption));
-			
-			//모달 챌린지 결제여부 값 전달
-			$('#modalChallengePaymentWhether').val(challengeParticipationList[countNumber-1].payment.paymentStatus);
-			console.log("챌린지 결제여부 : " + $('#modalChallengePaymentWhether').val(challengeParticipationList[countNumber-1].payment.paymentStatus));
-			
-			//모달 챌린지 결제금액 값 전달
-			$('#modalChallengePaymentPrice').val(challengeParticipationList[countNumber-1].payment.paymentPrice);
-			console.log("챌린지 결제금액 : " + $('#modalChallengePaymentPrice').val(challengeParticipationList[countNumber-1].payment.paymentPrice));
-			
-			//모달 챌린지 결제일자 값 전달
-			$('#modalChallengePaymentDate').val(challengeParticipationList[countNumber-1].payment.paymentDate);
-			console.log("챌린지 결제일자 : " + $('#modalChallengePaymentDate').val(challengeParticipationList[countNumber-1].payment.paymentDate)); */
-			
-			
 		});
-			
-			
 		
 	});
 </script>

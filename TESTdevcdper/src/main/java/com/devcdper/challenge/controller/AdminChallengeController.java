@@ -35,13 +35,6 @@ public class AdminChallengeController {
 	@PostConstruct
 	public void AdminChallengeControllerInit() {
 
-		/*
-		 * log.info("========================================");
-		 * log.info("AdminChallengeController.java 객체 생성");
-		 * log.info("========================================");
-		 */
-
-		
 		 System.out.println("========================================");
 		 System.out.println("AdminChallengeController.java 객체 생성");
 		 System.out.println("========================================");
@@ -53,7 +46,6 @@ public class AdminChallengeController {
 	/*------------------------------------------------챌린지 관리 Controller 시작-----------------------------------------------------*/
 	@GetMapping("/adminChallenge")
 	public String adminChallenge(Model model,  Pagination paging) {
-		
 		
 		Map<String, Object> resultMap = challengeService.getChallengeList(paging);
 		List<ChallengeCategory> challengeCategoryList = challengeService.getChallengeCategoryList();
@@ -79,9 +71,6 @@ public class AdminChallengeController {
 		
 		int modifyChallengeCategoryName = challengeService.modifyChallengeCategoryName(challengeCategory);
 		System.out.println("챌린지 카테고리 이름 변경 처리 완료 [modifyChallengeCategoryName] : " + modifyChallengeCategoryName);
-		
-		//int addChallengeCategory = challengeService.addChallengeCategory(challengeCategory);
-		//System.out.println("챌린지 카테고리 추가 처리 완료 [addChallengeCategory] : " + addChallengeCategory);
 		
 		return "challenge/admin/adminChallenge";
 	
