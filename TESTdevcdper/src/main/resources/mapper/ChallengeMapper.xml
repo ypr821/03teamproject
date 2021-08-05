@@ -47,6 +47,16 @@
 		</association>
 	</resultMap>
 	
+		<select id="getChallengeInsertOpenerEmail" parameterType="String" resultType="String">
+			SELECT 
+				challenge_opener_email
+			FROM 
+				challenge
+			Where
+				challenge_opener_email = #{sessionEmail}
+			GROUP BY challenge_opener_email
+		</select>
+	
 		<!-- 챌린지 개설하기 (등록) -->
 		<insert id="addChallenge" parameterType="com.devcdper.challenge.domain.Challenge">
 		INSERT INTO challenge
@@ -90,7 +100,8 @@
 	
 	<!-- 메인 챌린지 & 챌린지 탐색하기 : 전체 리스트 조회 -->
 	<select id="getChallengeExplorationList" resultMap="ChallengeResultMap">
-				SELECT 
+				SELECT
+					challenge_code,
 					challenge_name,
 					challenge_tag	
 				FROM 
@@ -100,6 +111,7 @@
 	<!-- 메인 챌린지 & 챌린지 탐색하기 : 카테고리별 리스트 조회 -->
 	<select id="getChallengeByCategoryExplorationList" parameterType="String" resultType="com.devcdper.challenge.domain.Challenge">
 			SELECT 
+						c.challenge_code AS challengeCode,
 						cc.challenge_category_code AS challengeCategoryCode,
 						cc.challenge_category_name AS categoryBtnName,
 						c.challenge_name AS challengeName,
@@ -118,8 +130,9 @@
 	
 	<!-- 챌린지 탐색하기 : 상세정보 조회 -->
 	<!-- 챌린지 참여하기 : 상세정보 조회 -->
-	<select id="getChallengeExplorationDetailInfoByChallengeName" parameterType="String" resultMap="ChallengeResultMap">
+	<select id="getChallengeExplorationDetailInfoByChallengeCode" parameterType="String" resultMap="ChallengeResultMap">
 				SELECT 
+					c.challenge_code,
 					c.challenge_name, 
 					c.challenge_introduce, 
 					c.challenge_maximum_people, 
@@ -132,7 +145,7 @@
 				FROM 
 					challenge AS c
 				WHERE
-					c.challenge_name = #{challengeName};
+					c.challenge_code = #{challengeCode};
 	</select>
 	
 	
@@ -183,6 +196,158 @@
 				LIMIT #{rowStart}, #{rowPerPage};
 	</select>
 	
+	
+	<!-- 나의 챌린지 : 개설 챌린지 전체 리스트 행 개수 -->
+	<select id="getMyChallengeInsertCount" resultType="int">
+		SELECT 
+					count(1)
+				FROM 
+						challenge AS c		
+				INNER JOIN
+						challenge_category AS cc
+				on
+					c.challenge_category_code = cc.challenge_category_code
+				<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="categorySearchOption != null and categorySearchOption != ''.toString()">
+						<if test="categorySearchOption == 'all'.toString()">
+								and cc.challenge_category_name = '학력'
+								and cc.challenge_category_name = '프로젝트'
+								and cc.challenge_category_name = '자격증'
+								and cc.challenge_category_name = '공인어학(외국어능력)'
+								and cc.challenge_category_name = '기술스택'
+								and cc.challenge_category_name = '직종전문교육과정'
+								and cc.challenge_category_name = '인턴십'
+								and cc.challenge_category_name = '공모전'
+								and cc.challenge_category_name = '경력'
+						</if>
+						<if test="categorySearchOption == '학력'.toString()">
+								or cc.challenge_category_name = '학력'
+						</if>
+						<if test="categorySearchOption == '프로젝트'.toString()">
+								and cc.challenge_category_name = '프로젝트'
+						</if>
+						<if test="categorySearchOption == '자격증'.toString()">
+								and cc.challenge_category_name = '자격증'
+						</if>
+						<if test="categorySearchOption == '공인어학(외국어능력)'.toString()">
+								and cc.challenge_category_name = '공인어학(외국어능력)'
+						</if>
+						<if test="categorySearchOption == '기술스택'.toString()">
+								and cc.challenge_category_name = '기술스택'
+						</if>
+						<if test="categorySearchOption == '직종전문교육과정'.toString()">
+								and cc.challenge_category_name = '직종전문교육과정'
+						</if>
+						<if test="categorySearchOption == '인턴십'.toString()">
+								and cc.challenge_category_name = '인턴십'
+						</if>
+						<if test="categorySearchOption == '공모전'.toString()">
+								and cc.challenge_category_name = '공모전'
+						</if>
+						<if test="categorySearchOption == '경력'.toString()">
+								and cc.challenge_category_name = '경력'
+						</if>
+				</if>
+				<if test="myChallengeSearchKey != null and myChallengeSearchKey != ''.toString()">
+						<if test="categorySearchOption == 'all'.toString() and myChallengeSearchKey == 'all'.toString()">
+								or (c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									and c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									and c.challenge_tag LIKE CONCAT('%', #{myChallengeSearchValue} ,'%'))
+						</if>
+						<if test="myChallengeSearchKey == 'all'.toString()">
+								and (c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									and c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									and c.challenge_tag LIKE CONCAT('%', #{myChallengeSearchValue} ,'%'))
+						</if>
+						<if test="myChallengeSearchKey == 'challengeName'.toString()">
+								or c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+						</if>
+						<if test="myChallengeSearchKey == 'challengeCertificationContents'.toString()">
+								or c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+						</if>
+						<if test="myChallengeSearchKey == 'challengeTag'.toString()">
+								or c.challenge_tag LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+						</if>
+						<if test="myChallengeSearchKey == 'cNcCC'.toString()">
+								and (c.challenge_name LIKE CONCAT('%', #{myChallengeSearchValue} ,'%')
+									or c.challenge_certification_contents LIKE CONCAT('%', #{myChallengeSearchValue} ,'%'))
+						</if>
+				</if>
+				<if test="termSearchOption != null and termSearchOption != ''.toString()">
+						<if test="termSearchOption == '1week'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW()
+						</if>
+						<if test="termSearchOption == '2week'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -2 WEEK ) AND NOW()
+						</if>
+						<if test="termSearchOption == '3week'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -3 WEEK ) AND NOW()
+						</if>
+						<if test="termSearchOption == '1month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH ) AND NOW()
+						</if>
+						<if test="termSearchOption == '2month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -2 MONTH ) AND NOW();
+						</if>
+						<if test="termSearchOption == '3month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -3 MONTH ) AND NOW();
+						</if>
+						<if test="termSearchOption == '6month'.toString()">
+								and challenge_start_date BETWEEN DATE_ADD(NOW(),INTERVAL -6 MONTH ) AND NOW();
+						</if>
+				</if>
+			</trim>
+			and c.challenge_opener_email = #{sessionEmail}
+			<if test="sortOption != null and sortOption != ''.toString() and sortOption != 'all'.toString()">
+			Order by
+					<choose>  
+          				<when test="sortOption == 'endDate_asc'.toString()">
+            			   		c.challenge_end_date ASC
+		          		</when>         
+		          	 	<when test="sortOption == 'endDate_desc'.toString()">
+		              		 	c.challenge_end_date DESC
+		         	    </when> 
+		          	 	<when test="sortOption == 'startDate_asc'.toString()">
+		              		 	c.challenge_start_date ASC
+		         	    </when> 
+		          	 	<when test="sortOption == 'startDate_desc'.toString()">
+		              		 	c.challenge_start_date DESC
+		         	    </when> 
+		          	 	<when test="sortOption == 'challengeName_desc'.toString()">
+		              		 	c.challenge_name DESC
+		         	    </when> 
+		          	 	<when test="sortOption == 'challengeName_asc'.toString()">
+		              		 	c.challenge_name ASC
+		         	    </when> 
+					</choose>			
+			</if>
+			<if test="startDateSearchOption != null and startDateSearchOption != ''.toString()">
+							between #{startDateSearchOption} and #{endDateSearchOption}
+			</if>
+	</select>
+	
+	<!-- 나의 챌린지 : 개설 챌린지 상세정보 조회 -->
+	<select id="getMyChallengeInsertDetailInfoByChallengeCode" parameterType="String" resultMap="ChallengeResultMap">
+				SELECT 
+					c.challenge_code,
+					c.challenge_name, 
+					c.challenge_introduce, 
+					c.challenge_maximum_people, 
+					c.challenge_bet_amount,
+					c.challenge_introduce, 
+					c.challenge_certification_method, 
+					c.challenge_certification_contents,
+					c.challenge_certification_frequency,
+					c.challenge_start_date, 
+					c.challenge_end_date
+				FROM 
+						challenge AS c		
+				where
+					c.challenge_opener_email = #{sessionEmail}
+					AND
+					c.challenge_code=#{challengeCode}
+		</select>
+	
 	<!-- 나의 챌린지 : 개설 챌린지 전체 리스트 조회 -->
 	<select id="getMyChallengeInsertList" parameterType="map" resultMap="ChallengeResultMap">
 				SELECT 
@@ -192,6 +357,7 @@
 					c.challenge_scope,
 					c.challenge_tag,
 					c.challenge_maximum_people,
+					c.challenge_certification_frequency,
 					c.challenge_bet_amount,
 					c.challenge_start_date, 
 					c.challenge_end_date
@@ -316,6 +482,7 @@
 		         	    </when> 
 					</choose>			
 			</if>
+			LIMIT #{rowStart}, #{rowPerPage}
 			<if test="startDateSearchOption != null and startDateSearchOption != ''.toString()">
 							between #{startDateSearchOption} and #{endDateSearchOption}
 			</if>
@@ -327,6 +494,7 @@
 	<select id="getModifyInsertChallengeAttributeList" parameterType="String" resultMap="ChallengeResultMap">
 			SELECT
 				challenge_code,
+				challenge_opener_email,
 				challenge_name,
 				challenge_start_date,
 				challenge_end_date,
@@ -336,8 +504,9 @@
 			FROM
 				challenge
 			WHERE 
-				challenge_code=#{challengeCode};
-			
+				challenge_code=#{challengeCode}
+			and
+				challenge_opener_email=#{sessionEmail};
 	</select>
 	
 	<!-- 1. 나의 챌린지 : 챌린지명 수정 -->
@@ -403,6 +572,21 @@
 			challenge_code=#{challengeCode};
 	</update>
 	
+	
+	<delete id="removeChallengeByEmailAndCode" parameterType="String">
+			DELETE 
+			FROM 
+				challenge 
+			WHERE 
+				challenge_code=#{challengeCode}
+			AND
+				challenge_opener_email=#{sessionEmail}
+	</delete>
+	
+	
+	
+	
+	
 	<!-- User 관련 Mapper -->
 	<!-- ChallengeParticipation 관련 -->
 	<resultMap type="com.devcdper.challenge.domain.ChallengeParticipation" id="ChallengeParticipationResultMap">
@@ -447,6 +631,7 @@
 			<result property="challengeTag"						column="challenge_tag"/>
 			<result property="challengeMaximumPeople"			column="challenge_maximum_people"/>
 			<result property="challengeBetAmount"				column="challenge_bet_amount"/>
+			<result property="challengeIntroduce"				column="challenge_introduce"/>
 			<result property="challengeCertificationMethod"		column="challenge_certification_method"/>
 			<result property="challengeCertificationContents"	column="challenge_certification_contents"/>
 			<result property="challengeCertificationFrequency"	column="challenge_certification_frequency"/>
@@ -542,37 +727,102 @@
 				OR	
 				c.challenge_opener_email = #{sessionEmail}; 
 	</select>
+
+	<!-- 나의 챌린지 : 상세정보 조회 -->	
+	<select id="getMyChallengeDetailInfoByChallengeCode" parameterType="String" resultMap="ChallengeParticipationResultMap">
+	   SELECT 
+	    				c.challenge_opener_email,
+	    				cp.challenge_participation_email,
+						c.challenge_code,
+						c.challenge_name, 
+						cc.challenge_category_name,
+						c.challenge_tag,
+						c.challenge_maximum_people,
+						c.challenge_bet_amount,
+						c.challenge_introduce,
+						c.challenge_certification_contents,
+						c.challenge_certification_frequency,
+						c.challenge_start_date, 
+						c.challenge_end_date
+					FROM 
+							challenge AS c		
+					INNER JOIN
+							challenge_category AS cc
+					on
+						c.challenge_category_code = cc.challenge_category_code
+					INNER JOIN
+							challenge_participation AS cp
+					on
+						c.challenge_code = cp.challenge_code
+						and
+						c.challenge_opener_email = #{sessionEmail}
+						or
+						cp.challenge_participation_email = #{sessionEmail}
+					Where
+						c.challenge_code=#{challengeCode}
+					GROUP BY c.challenge_code	
+		</select>
 		
 	<!-- 나의 챌린지 : 전체 리스트 조회 -->	
+	<!-- 나의 챌린지 : 전체 리스트 조회 -->	
 	<select id="getMyChallengeList" resultMap="ChallengeParticipationResultMap">
-			    SELECT 
-    				c.challenge_opener_email,
-    				cp.challenge_participation_email,
-					c.challenge_code,
-					c.challenge_name, 
-					cc.challenge_category_name,
-					c.challenge_scope,
-					c.challenge_tag,
-					c.challenge_maximum_people,
-					c.challenge_bet_amount,
-					c.challenge_start_date, 
-					c.challenge_end_date
+			   (SELECT 
+						c.challenge_opener_email,
+						cp.challenge_participation_email,
+						c.challenge_code,
+						c.challenge_name, 
+						cc.challenge_category_name,
+						c.challenge_tag,
+						c.challenge_certification_frequency,
+						c.challenge_start_date, 
+						c.challenge_end_date
 				FROM 
-						challenge AS c		
-				INNER JOIN
-						challenge_category AS cc
-				on
+						challenge c 
+				LEFT JOIN 
+						challenge_category cc 
+					ON 
 					c.challenge_category_code = cc.challenge_category_code
-				INNER JOIN
+				LEFT JOIN
+										challenge_participation AS cp
+								on
+									c.challenge_code = cp.challenge_code
+		
+			WHERE c.challenge_code is not NULL
+				AND
+			cp.challenge_participation_email  = #{sessionEmail}
+			OR
+			c.challenge_opener_email = #{sessionEmail}
+				GROUP BY c.challenge_code
+				LIMIT #{rowStart}, #{rowPerPage})
+				UNION 
+				(SELECT 
+						c.challenge_opener_email,
+						cp.challenge_participation_email,
+						c.challenge_code,
+						c.challenge_name, 
+						cc.challenge_category_name,
+						c.challenge_tag,
+						c.challenge_certification_frequency,
+						c.challenge_start_date, 
+						c.challenge_end_date
+				FROM 
+						challenge c 
+				RIGHT JOIN 
+						challenge_category cc 
+				ON 
+						c.challenge_category_code = cc.challenge_category_code
+				LEFT JOIN
 						challenge_participation AS cp
 				on
-					c.challenge_code = cp.challenge_code
-				WHERE
-					cp.challenge_participation_email  = #{sessionEmail}
-				OR	
-				c.challenge_opener_email = #{sessionEmail}
-				GROUP BY c.challenge_code
-				LIMIT #{rowStart}, #{rowPerPage};
+						c.challenge_code = cp.challenge_code
+		
+			WHERE c.challenge_code is not NULL
+			AND
+			cp.challenge_participation_email  = #{sessionEmail}
+			OR
+			c.challenge_opener_email = #{sessionEmail}
+			GROUP BY c.challenge_code
+				LIMIT #{rowStart}, #{rowPerPage})
 	</select>
 
 	<!-- ChallengeCertification 관련 -->

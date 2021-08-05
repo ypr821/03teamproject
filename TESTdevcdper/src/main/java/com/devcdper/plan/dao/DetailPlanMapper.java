@@ -39,27 +39,27 @@ public interface DetailPlanMapper {
 	
 	//타이틀 서치 (통합계획 선택)
 	//학력 상세 계획 타이틀 서치
-	public List<PlanDto> getEducationalHistoryTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getEducationalHistoryTotalTitleSearch(String totalPlanCode);
 	
 	//프로젝트 상세 계획 타이틀 서치
-	public List<PlanDto> getProjectTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getProjectTotalTitleSearch(String totalPlanCode);
 	
 	//자격증 상세 계획 타이틀 서치  
-	public List<PlanDto> getCertificateTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getCertificateTotalTitleSearch(String totalPlanCode);
 	
 	//공인어학 상세 계획 타이틀 서치 
-	public List<PlanDto> getCertifiedLanguageTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getCertifiedLanguageTotalTitleSearch(String totalPlanCode);
 	//기술스택 상세 계획 타이틀 서치
-	public List<PlanDto> getTechnologyStackTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getTechnologyStackTotalTitleSearch(String totalPlanCode);
 	//직종전문교육과정 상세 타이틀 서치
-	public List<PlanDto> getJobTrainingTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getJobTrainingTotalTitleSearch(String totalPlanCode);
 	//인턴십 상세 계획 타이틀 서치
-	public List<PlanDto> getInternshipTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getInternshipTotalTitleSearch(String totalPlanCode);
 	
 	//공모전 상세 계획 타이틀 서치
-	public List<PlanDto> getContestTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getContestTotalTitleSearch(String totalPlanCode);
 	//경력 상세 계획 타이틀 서치
-	public List<PlanDto> getCareerTotalTitleSearch(String stotalPlanCode);
+	public List<PlanDto> getCareerTotalTitleSearch(String totalPlanCode);
 	
 	
 	

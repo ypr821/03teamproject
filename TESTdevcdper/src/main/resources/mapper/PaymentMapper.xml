@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devcdper.payment.dao.PaymentMapper">
+	
+	<resultMap type="com.devcdper.payment.domain.Payment"  		id = "PaymentMap">
+		<result property="paymentManagementCode"				column="payment_management_code"/>
+		<result property="userEmail"							column="user_email"/>
+		<result property="allPaymentConnectGroupCode"			column="all_payment_connect_group_code"/>
+		<result property="allPaymentConnectTable"				column="all_payment_connect_table"/>
+		<result property="paymentManagementContentsCode"		column="payment_management_contents_code"/>
+		<result property="paymentOption"						column="payment_option"/>
+		<result property="paymentStatus"						column="payment_status"/>
+		<result property="paymentPrice"							column="payment_price"/>
+		<result property="paymentDate"							column="payment_date"/>
+</resultMap>
+
+
+<insert id="insertPayment" parameterType="com.devcdper.payment.domain.Payment">
+	INSERT INTO payment_management
+		(payment_management_code
+		, user_email
+		, all_payment_connect_group_code
+		, all_payment_connect_table
+		, payment_management_contents_code
+		, payment_option
+		, payment_status
+		, payment_price
+		, payment_date)
+	VALUES 
+		(#{paymentManagementCode}
+		,#{userEmail}
+		,#{allPaymentConnectGroupCode}
+		,#{allPaymentConnectTable}
+		,#{paymentManagementContentsCode}
+		,#{paymentOption}
+		,#{paymentStatus}
+		,#{paymentPrice}
+		,CURDATE())
+
+
+</insert>
+
+
+
+
+
+
+
+
+</mapper>

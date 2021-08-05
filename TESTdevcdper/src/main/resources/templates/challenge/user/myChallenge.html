@@ -56,11 +56,7 @@
          </div>
          <!-- /.card -->
          
-         
-         
-          <div th:replace="/fragments/challengeSearchForm/myChallengeCommonSearchForm :: myChallengeCommonSearchForm"></div>
-         
-         
+          <div th:replace="/fragments/challengeSearchForm/myChallengeSearchForm :: myChallengeSearchForm"></div>
          
          <div class="row">
           <div class="col-12">
@@ -86,10 +82,8 @@
 		                      	<th>번호</th>
 								<th>챌린지명</th>
 								<th>카테고리</th>
-								<th>공개범위</th>
 								<th>태그</th>
-								<th>참가인원</th>
-								<th>베팅금액</th>
+								<th>인증빈도</th>
 								<th>챌린지 시작일</th>
 								<th>챌린지 종료일</th>
 								<th>진행율</th>
@@ -99,16 +93,13 @@
 		                    </tr>
                   </thead>
                   <tbody>
-                  
                   <tr th:if="${#lists.size(myChallengeList) > 0}" th:each="l, idx : ${myChallengeList}">
 							<td th:text="${idx.count}"></td>
 							<!-- <td style="display: none;" th:text="${l.challengeCode}"></td> -->
 							<td th:text="${l.challenge.challengeName}"></td>
 							<td th:text="${l.challengeCategory.challengeCategoryName}"></td>
-							<td th:text="${l.challenge.challengeScope}"></td>
 			                <td th:text="${l.challenge.challengeTag}"></td>
-							<td th:text="${l.challenge.challengeMaximumPeople}"></td>
-							<td th:text="${l.challenge.challengeBetAmount}"></td>
+			                <td th:text="${l.challenge.challengeCertificationFrequency}"></td>
 							<td th:text="${l.challenge.challengeStartDate}"></td>
 							<td th:text="${l.challenge.challengeEndDate}"></td>
 							<td>
@@ -121,7 +112,7 @@
 							</td>
 							<td><span class="badge bg-primary">개설</span></td>
 		                     <td>
-			                    <a th:href="@{/myChallengeDetailInfo}">
+			                    <a th:href="@{/myChallengeDetailInfo(challengeCode=${l.challenge.challengeCode},challengeName=${l.challenge.challengeName})}">
 										<button type="button" class="btn btn-default btn-xs"  id="progressingDetailPlan"  >
 											<i class="fas fa-folder">
 											</i>
@@ -164,6 +155,12 @@
 	
 	
 	<th:block layout:fragment="pageJavascript">
+	<script th:inline="javascript">
+		$(function(){
+			
+			
+		});
+	</script>	
 	
 	</th:block>
 </html>

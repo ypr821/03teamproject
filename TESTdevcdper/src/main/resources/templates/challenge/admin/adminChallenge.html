@@ -248,8 +248,7 @@
 				</table>
 			</div>
 			<!-- /.card-body -->
-			<!-- 코치 list 페이지번호  -->
-			
+			<!-- 챌린지 관리 페이지번호  -->
 			<div class="card-footer clearfix">
 						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
@@ -307,11 +306,9 @@
 				</table>
 			</div>
 			<!-- /.card-body -->
-			<!-- 코치 list 페이지번호  -->
 			
+			<!-- 챌린지 관리 페이지번호 -->
 			<div class="card-footer clearfix">
-						<button type="button" id="addChallengeCategoryBtn" class="btn btn-block btn-outline-primary btn-xs addChallengeCategoryBtn">카테고리 추가</button>
-						<br>
 		                <ul class="pagination pagination-sm m-0 float-right">
 		                <li class="page-item"><a class="page-link" th:href="@{/adminChallenge}"> << </a></li>
 						<li class="page-item"><a class="page-link" th:if="${currentPage > 1}" th:href="@{/adminChallenge(currentPage=${currentPage - 1})}">이전</a></li>
@@ -470,15 +467,6 @@
 		
 		/* ------------------------- 챌린지 태그 수정처리 Script 끝 -------------------------  */
 		
-		
-	});
-	
-	$('#addChallengeCategoryBtn').click(function(){
-		
-		var challengeCategoryTableBody = $('#challengeCategoryTableBody');
-		var newChallengeCategoryRow = $('#challengeCategoryTableBody').find('tr').eq(9).clone();
-		challengeCategoryTableBody.append(newChallengeCategoryRow);
-	
 	});
 	
 });

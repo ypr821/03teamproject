@@ -38,11 +38,9 @@
 			    <section class="content">
 			        <div class="container-fluid">
 			            <h2 class="text-center display-5">챌린지 상세정보</h2>
-			            <form action="enhanced-results.html">
 			                <div class="row">
 			                    <div class="card-body">
-			                    
-									<!-- 챌린지 정보 카드 -->		                    
+			                    <!-- 챌린지 정보 카드 -->		                    
 									<div class="col-10">
 							          <div class="card">
 							            <div class="card-header">
@@ -50,46 +48,41 @@
 							            </div>
 							            <div class="card-body">
 							            <div class="col-12 col-sm-6 d-flex align-items-stretch flex-column">
-								          <div class="card bg-light d-flex flex-fill">
-								             <div class="card-header text-muted border-bottom-0">
-								             </div>
-								             <div class="card-body pt-0">
-								               <div class="row">
-								                 <div class="col-12">
-								                   <h2 class="lead"><b>참여할 챌린지 이미지</b></h2>
-								                   <!-- 알파벳 100자 작성가능  한글 54자 작성가능 -->
-								                 </div>
-								               </div>
-								             </div>
-								           </div>
 								    	 </div>
-							              <div class="form-group">
-							                <label for="inputName">챌린지명</label>
-							                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="1일 1깃허브">
+							              <div class="form-group"> 
+							                <label for="challengeName">챌린지명</label>
+							                <input type="hidden" id="challengeCode" name="challengeCode" th:value="${myChallengeDetailInfo.challenge.challengeCode}" class="form-control" readonly="readonly" style="background-color: white">
+							                <input type="text" id="challengeName" name="challengeName" th:value="${myChallengeDetailInfo.challenge.challengeName}" class="form-control" readonly="readonly" style="background-color: white">
+							              </div>
+							              <div class="form-group" id="challengeTerm">
+							                <label for="challengeStartDate">챌린지 기간</label>  
+							              	<div class="row">
+							                <input type="text" id="challengeStartDate" name="challengeStartDate" th:value="${myChallengeDetailInfo.challenge.challengeStartDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+							                <div class="input-group-prepend">
+								                  	<span class="input-group-text">~</span>
+								                  </div>
+							                <input type="text" id="challengeEndDate" name="challengeEndDate" th:value="${myChallengeDetailInfo.challenge.challengeEndDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+							              	</div>
 							              </div>
 							              <div class="form-group">
-							                <label for="inputName">챌린지 기간</label>
-							                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="2021년 4월 22일 ~ 2021년 5월 6일">
-							              </div>
-							              <div class="form-group">
-							                <label for="inputName">챌린지 인증빈도</label>
-							                <input type="text" id="inputName" class="form-control" readonly="readonly" style="background-color: white" value="월~일 매일 인증하기">
+							                <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
+							                <input type="text" id="challengeCertificationFrequency" name="challengeCertificationFrequency" th:value="${myChallengeDetailInfo.challenge.challengeCertificationFrequency}" class="form-control" readonly="readonly" style="background-color: white">
 							              </div>
 							               <div class="form-group">
-							                 <label for="inputBeting">챌린지 참가인원</label>
+							                 <label for="challengeMaximumPeople">챌린지 참가인원</label>
 							               <div class="input-group mb-3">
-							                 <input type="text" class="form-control" readonly="readonly" style="background-color: white" value="3">
+							                 <input type="text" id="challengeMaximumPeople" name="challengeMaximumPeople" th:value="${myChallengeDetailInfo.challenge.challengeMaximumPeople}" class="form-control" readonly="readonly" style="background-color: white">
 								                  <div class="input-group-prepend">
 								                  	<span class="input-group-text">명</span>
 								                  </div>
 							               </div>
 							               <div class="form-group">
-							                        <label for="inputBeting">챌린지 베팅금액</label>
+							                        <label for="challengeBetAmount">챌린지 베팅금액</label>
 							               <div class="input-group mb-3">
 							                 	  <div class="input-group-prepend" >
 								                  	<span class="input-group-text">총</span>
 								                  </div>
-							               <input type="text" class="form-control" readonly="readonly" style="background-color: white" value="200,000">
+							               <input type="text" id="challengeBetAmount" name="challengeBetAmount" th:value="${myChallengeDetailInfo.challenge.challengeBetAmount}" class="form-control" readonly="readonly" style="background-color: white">
 								                  <div class="input-group-prepend">
 								                  	<span class="input-group-text">원</span>
 								                  </div>
@@ -101,39 +94,34 @@
 							            <!-- /.card-body -->
 										<!-- 챌린지 정보카드 -->   
 									</div>
-		<div class="row">
-          <div class="col-10">
-		<div class="card">
-              <div class="card-header d-flex p-0">
-                <ul class="nav nav-pills ml-auto p-2">
-                  <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">설명</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">인증방법</a></li>
-                  <li class="nav-item"><a class="nav-link" th:href="@{/challengeCertificationBoard}">인증</a></li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="tab-pane active" id="tab_1">
-                    	이런분들께 추천합니다.<p>
-                   - 현재 개발자를 준비하시는 분, 현업에서 개발자로 근무하고 계시는 분	<p>
-                   - 꾸준하게 깃허브에 1일 1커밋을 하여, 자신의 커밋 기록과 실력을 쌓고 싶은 분<p>
-                  </div>
-                  <!-- /.tab-pane -->
-                 <div class="tab-pane" id="tab_2">
-                    	챌린지 인증방법<p>
-                    	[자신의 깃허브 계정이 잘 나오도록 Overview 화면을 캡쳐]<p>
-                    	[작성한 소스코드도 함께 캡쳐]<p>
-                  </div>
-                  <!-- /.tab-pane -->
-                </div>
-             		<!-- /.tab-content -->
-            	</div><!-- /.card-body -->
-            	</div>
-            </div>
-           </div>
+									
+										 <div class="row">
+			          <div class="col-10">
+					<div class="card">
+			              <div class="card-header d-flex p-0">
+			                <ul class="nav nav-pills ml-auto p-2">
+			                  <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">소개</a></li>
+			                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">인증내용</a></li>
+			                  <li class="nav-item"><a class="nav-link" th:href="@{/challengeCertificationBoard}">인증</a></li>
+			                </ul>
+			              </div><!-- /.card-header -->
+			              <div class="card-body">
+			                <div class="tab-content">
+			                  <div class="tab-pane active" id="tab_1" th:text="${myChallengeDetailInfo.challenge.challengeIntroduce}">
+			                  </div>
+			                  <!-- /.tab-pane -->
+			                 <div class="tab-pane" id="tab_2" th:text="${myChallengeDetailInfo.challenge.challengeCertificationContents}">
+			                  </div>
+			                  <!-- /.tab-pane -->
+			                </div>
+			             		<!-- /.tab-content -->
+			            	</div><!-- /.card-body -->
+			            </div>
+			           </div>
+			           </div>
+					
 		</div>
-	 </div>
- </form>
+	</div>
 </div>			                
 </section>               
 </div>

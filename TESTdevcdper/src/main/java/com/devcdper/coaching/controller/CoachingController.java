@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import com.devcdper.coaching.domain.CoachingRFQ;
 import com.devcdper.coaching.domain.CoachingReview;
 import com.devcdper.coaching.domain.CoachingUser;
 import com.devcdper.coaching.service.CoachingService;
+import com.devcdper.paymentManagement.KakaoPayApprovalVO;
 import com.devcdper.plan.domain.PlanDto;
 import com.devcdper.plan.service.PlanService;
 
@@ -32,27 +35,82 @@ public class CoachingController {
 		this.planService = planService;
 	}
 	
-	//private static final Logger log = LoggerFactory.getLogger(CoachingController.class);
 	@PostConstruct
 	public void coachingControllerInit() {
-		//System.out.println("========================================");
-		//System.out.println("CoachingController.java 객체 생성");
-		//System.out.println("========================================");
 		System.out.println("========================================");
 		System.out.println("CoachingController.java 객체 생성");
-		System.out.println("========================================");
+		System.out.println("========================================");		
+	}	
+
+	@PostMapping("/kakaoPay")
+	@ResponseBody
+    public String kakaoPay(Model model,@RequestParam Map<String,Object> result,HttpSession session) {
+        System.out.println("kakaoPay post............................................");
+        System.out.println("컨트롤러 매개변수 result=>"+ result );
+        model.addAttribute("result", result);
+        
+        return coachingService.kakaoPayReady(result,session);
+    }
+	 
+	@SuppressWarnings("unused")
+	@GetMapping("/kakaoPayComplete")
+	 //@ResponseBody
+	 public String kakaoPayApproval(@RequestParam("pg_token") String pg_token, Model model
+			 , HttpSession session) {
+		System.out.println("kakaoPayApproval GetMapping............................................");
+		model.addAttribute("title", "결제 정보 확인");
 		
-	}
+		//System.out.println("pay 컨트롤러 result==>"+ result);
+		
+		KakaoPayApprovalVO kakaoPayInfo = coachingService.kakaoPayApproval(pg_token, session);
+		System.out.println("★kakaoPayInfo =>"+ kakaoPayInfo);
+		System.out.println("kakaoPayInfo getAmount =>"+ kakaoPayInfo.getAmount().getTotal());
+		
+		if(!(null == kakaoPayInfo)) {
+			@SuppressWarnings("unchecked")
+			Map<String,Object> resultInfo =  (Map<String, Object>) session.getAttribute("resultInfo");
+			int insertResult = coachingService.insertPayment(resultInfo, kakaoPayInfo);
+			System.out.println("###################################");
+			System.out.println("#insertResult#==>" + insertResult);
+
+			model.addAttribute("kakaoPayInfo", kakaoPayInfo);
+			System.out.println("ULEVEL session==>"+ session.getAttribute("ULEVEL"));
+			System.out.println("결제완료");
+			System.out.println("###################################");
+
+		 	
+		}else {
+			
+			System.out.println("결제 실패");
+		}
+		
+		session.removeAttribute("resultInfo");
+		session.removeAttribute("partner_order_id");
+		return "redirect:/myCoachingClient";
+	
+	 }
+	
 	
 	//코칭 일반회원 신청 및 결제 화면
 	@GetMapping("/coachingApplyAndPayment")
-	public String coachingApplyAndPayment(Model model) {
+	public String coachingApplyAndPayment(Model model,@RequestParam String resultCode) {
 		System.out.println("=========================================");
 		System.out.println("======coachingApplyAndPayment 메서드 실행==========");
 		//System.out.println("========================================");
 		//System.out.println("=======coachingApplyAndPayment 메서드 실행=================");
 		model.addAttribute("title", "코칭 신청 및 결제 페이지 ");
 		model.addAttribute("radioCheck", "myCoachingClient");
+		System.out.println("resultCode==>"+resultCode);
+		
+		List<CoachingRFQ> result = coachingService.getCoachingRFQResult(resultCode);
+		model.addAttribute("result", result);
+		System.out.println("result==>" + result.get(0).getCoachUserEmail());
+		
+		List<CoachingUser> coachInfo = coachingService.getCoachProfile(result.get(0).getCoachUserEmail());
+		model.addAttribute("coachInfo", coachInfo);
+		System.out.println("coachInfo==>"+ coachInfo);
+
+		
 		return "coaching/coachingApplyAndPayment";
 	}
 	
@@ -61,8 +119,6 @@ public class CoachingController {
 	public String coachingAdminPage(Model model) {
 		System.out.println("=========================================");
 		System.out.println("======coachingAdminPage 메서드 실행==========");
-		//System.out.println("========================================");
-		//System.out.println("=======myCoachingCoach 메서드 실행=================");
 		model.addAttribute("title", "코칭관리자페이지 ");
 		model.addAttribute("radioCheck", "coachingAdminPage");
 		return "coaching/coachingAdminPage";
@@ -101,10 +157,7 @@ public class CoachingController {
 		model.addAttribute("coachList", coachList);
 		return "coaching/coachProfileUpdate";
 	}
-	//
-	
-	
-	
+
 	
 	//코치  프로필 화면
 	@GetMapping("/coachProfile")
@@ -112,8 +165,6 @@ public class CoachingController {
 								,@RequestParam(value="coachEmail", required = false) String coachEmail) {
 		System.out.println("=========================================");
 		System.out.println("=====CoachingController==coachProfile 메서드 실행==========");
-		//System.out.println("========================================");
-		//System.out.println("=======myCoachingCoach 메서드 실행=================");
 		model.addAttribute("title", "코치  프로필 ");
 		
 		//코치정보
@@ -127,8 +178,6 @@ public class CoachingController {
 		List<CoachingReview> coachingReviewList = coachingService.getCoachingReview("coach_user_email",coachEmail);
 		model.addAttribute("coachingReviewList", coachingReviewList);
 		System.out.println("controller coachingReviewList ==> "+ coachingReviewList);
-		
-		
 		
 		return "coaching/coachProfile";
 	}
@@ -148,18 +197,27 @@ public class CoachingController {
 		String sessionEmail = (String) session.getAttribute("UEMAIL");
 		String sessionLevel = (String) session.getAttribute("ULEVEL");
 		System.out.println("sessionEmail : " + sessionEmail);
-		if("".equals(sessionLevel) || sessionLevel ==null) {
-			sessionLevel = "비회원";
-		}
-		System.out.println("sessionLevel : " + sessionLevel);
 		
-		List<CoachingRFQ> myCoachingList = coachingService.getMyCoachingList(null,sessionEmail);
-		System.out.println("======컨트롤==myCoachingList :  "+ myCoachingList + "==========");
-	
+		String returnState = "";
+		List<CoachingRFQ> myCoachingList = null;
+		
+		if(sessionLevel == null || sessionLevel.equals("비회원")) {
+			System.out.println("확인");
+			System.out.println("sessionLevel확인->" +sessionLevel);
+			sessionLevel = "비회원";
+			returnState = "redirect:/login";
+			System.out.println("sessionLevel확인2->" +sessionLevel);
+			
+		}else {
+			myCoachingList = coachingService.getMyCoachingList(null,sessionEmail);
+			System.out.println("======컨트롤==myCoachingList :  "+ myCoachingList +"=========="); 
+			returnState = "coaching/myCoachingClient";
+		}
+
 		model.addAttribute("sessionLevel", sessionLevel.trim());
 		model.addAttribute("myCoachingList", myCoachingList);
-	
-		return "coaching/myCoachingCoach";
+		
+		return returnState;
 	}
 	
 	//코칭 통합계획 선택
@@ -199,9 +257,6 @@ public class CoachingController {
 	
 	
 	
-	
-	
-	
 	//나의 코칭 (일반회원) 페이지 화면
 	@GetMapping("/myCoachingClient")
 	public String myCoachingClient(Model model, HttpSession session) {
@@ -218,18 +273,27 @@ public class CoachingController {
 		System.out.println("sessionEmail : " + sessionEmail);
 		System.out.println("sessionLevel : " + sessionLevel);
 		
-		if("".equals(sessionLevel) || sessionLevel ==null) {
+		String returnState = "";
+		List<CoachingRFQ> myCoachingList = null;
+		
+		if(sessionLevel == null || sessionLevel.equals("비회원")) {
+			System.out.println("확인");
+			System.out.println("sessionLevel확인->" +sessionLevel);
 			sessionLevel = "비회원";
+			returnState = "redirect:/login";
+			System.out.println("sessionLevel확인2->" +sessionLevel);
+			
+		}else {
+			myCoachingList = coachingService.getMyCoachingList(sessionEmail,null);
+			System.out.println("======컨트롤==myCoachingList :  "+ myCoachingList +"=========="); 
+			returnState = "coaching/myCoachingClient";
 		}
 		
-		List<CoachingRFQ> myCoachingList = coachingService.getMyCoachingList(sessionEmail,null);
-		System.out.println("======컨트롤==myCoachingList :  "+ myCoachingList + "==========");
-		
-		
+	
 		model.addAttribute("sessionLevel", sessionLevel.trim());
 		model.addAttribute("myCoachingList", myCoachingList);
 		
-		return "coaching/myCoachingClient";
+		return returnState;
 	}
 	
 

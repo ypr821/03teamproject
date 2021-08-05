@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="challengeModalRemove" class="userChallengeModalContents">
+	<!-- modal -->
+	<div class="modal fade" id="modal-ChallengeModalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%">
+		<div class="modal-dialog modal-lg" >
+			  <div class="modal-content">
+				<div class="modal-header">
+				 <h3 class="modal-title" id="myModalLabel">챌린지 삭제</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+				<div class="modal-body">
+				<form class="challengeModalRemoveForm" name="challengeModalRemoveForm">
+				 <div class="form-group">
+	                <label for="challengeModalRemoveConfirm">정말 삭제하겠습니까?</label> 
+	                <input type="text" id="modalRemoveChallengeOpenerEmail" th:value="${modifyChallengeAttribute.challengeOpenerEmail}" name="modalRemoveSessionEmail" class="form-control" style="background-color: white;">
+	                <input type="text" id="modalRemoveChallengeCode" th:value="${modifyChallengeAttribute.challengeCode}" name="modalRemoveChallengeCode" class="form-control" style="background-color: white;">
+           		 </div>
+           		 </form>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default" id="removeChallengeBtn" data-dismiss="modal">챌린지 삭제</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">삭제 취소</button>
+			    </div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	<!-- /.modal -->
+	</div>
+	</div>
+</th:block>
+
+
+
+</html>

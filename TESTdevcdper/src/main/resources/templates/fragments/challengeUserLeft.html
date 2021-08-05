@@ -10,30 +10,25 @@
 	<!-- Sidebar -->
 	<div class="sidebar">
 	
-	 <!-- 비회원 프로필 -->
+	<!-- 비회원 프로필 -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
-			th:if="${session.NEMAIL eq null}">
+			th:if="${session.UEMAIL eq null}">
 			<div class="image">
-				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
-					class="img-circle elevation-2" alt="User Image">
+				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a th:href="@{/login}" class="d-block">로그인을 해주세요.
-				<span style="font-size: 10px;" class="badge badge-primary">!</span>
-				</a>
+				<a th:href="@{/login}" class="d-block">로그인을 해주세요.</a>
 			</div>
 		</div>
 
 		<!-- 로그인후 프로필 -->
-		<div class="user-panel mt-3 pb-3 mb-3 d-flex"
-			th:if="${session.NEMAIL ne null}">
+	<div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${session.UEMAIL ne null}">
 			<div class="image">
-				<img th:src="@{/AdminLTE3/dist/img/usernull.jpg}"
-					class="img-circle elevation-2" alt="User Image">
-			</div>
-			<div class="info">
-				<a th:href="@{/myPage}" class="d-block"> <span>[[${session.NEMAIL}]]</span>
-				<span style="font-size: 10px;" class="badge badge-primary">#</span>
+				<a th:href="@{/myPage}" class="d-block"> 
+<!-- 					<img th:if="${session.UPROFILE ne null}" th:src="@{/AdminLTE3/dist/img/profilePicture/Normal/${l.NormalPicPath}}" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+					<img  th:if="${session.UPROFILE eq null && session.UPROFILE eq''}"th:src="@{/AdminLTE3/dist/img/profilePicture/Normal/usernull.jpg}" class="brand-image img-circle elevation-3" style="opacity: .8">
+					<span>[[${session.UEMAIL}]]</span>
+					<span style="font-size: 10px;" class="badge badge-primary">#</span>
 				</a>
 			</div>
 		</div>
@@ -75,35 +70,30 @@
                 <a th:href="@{/mainChallenge}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 메인</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
               <li class="nav-item challengeExploration">
                 <a th:href="@{/challengeExploration}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 탐색하기</p>
-                  <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
               <li class="nav-item challengeInsert">
                 <a th:href="@{/challengeInsert}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 개설하기</p>
-                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
               <li class="nav-item challengeCertification">
                 <a th:href="@{/challengeCertification}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>챌린지 인증하기</p>
-                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
               <li class="nav-item myChallenge">
                 <a th:href="@{/myChallenge}" class="nav-link">
                   <i class="nav-icon fas fad fa-thumbs-up"></i>
                   <p>나의 챌린지</p>
-                   <span style="font-size: 10px;" class="badge badge-primary">! 양슬기</span>
                 </a>
               </li>
              </ul>
@@ -121,14 +111,14 @@
                 <a th:href="@{/payment}" class="nav-link">
                   <i class="nav-icon fas fa-credit-card"></i>
                   <p>챌린지 결제 관리</p>
-                   <span style="font-size: 10px;" class="badge badge-primary"># 양슬기</span>
+                   <span style="font-size: 10px;" class="badge badge-primary">#</span>
                 </a>
               </li>
               <li class="nav-item refund">
                 <a th:href="@{/refund}" class="nav-link">
                   <i class="nav-icon fas fa-credit-card"></i>
                   <p>챌린지 환불 관리</p>
-                  <span style="font-size: 10px;" class="badge badge-primary"># 양슬기</span>
+                  <span style="font-size: 10px;" class="badge badge-primary">#</span>
                 </a>
               </li>
             </ul>

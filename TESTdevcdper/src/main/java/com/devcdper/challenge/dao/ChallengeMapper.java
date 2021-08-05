@@ -62,10 +62,13 @@ public interface ChallengeMapper {
 	
 	//챌린지 탐색하기 - 상세정보 조회
 	//챌린지 참여하기 - 상세정보 조회
-	public Challenge getChallengeExplorationDetailInfoByChallengeName(String challengeName);
+	public Challenge getChallengeExplorationDetailInfoByChallengeCode(String challengeCode);
 	
 	//챌린지 탐색하기 - 카테고리별 챌린지 리스트 조회
 	public List<Challenge> getChallengeByCategoryExplorationList(String challengeCategoryCode, String categoryBtnName);
+	
+	//챌린지 개설하기 
+	public String getChallengeInsertOpenerEmail(String sessionEmail);
 	
 	//챌린지 개설하기 : 챌린지 개설 등록 처리
 	public int addChallenge(Challenge challenge);
@@ -86,16 +89,24 @@ public interface ChallengeMapper {
 	
 	/* 나의 챌린지 : 개설 챌린지 설정(수정) */
 	//나의 챌린지 : 전체 리스트 조회
-	public List<Map<String, Challenge>> getMyChallengeList(Map<String, Object> paramMap);
+	public List<Map<String, ChallengeParticipation>> getMyChallengeList(Map<String, Object> paramMap);
 	
 	//나의 챌린지 : 테이블 행의 개수 조회
 	public int getMyChallengeCount(String sessionEmail);
 	
-	////나의 챌린지 : 개설 챌린지 전체 리스트 조회
-	public List<Challenge> getMyChallengeInsertList(Map<String, Object> paramMap);
+	public ChallengeParticipation getMyChallengeDetailInfoByChallengeCode(String challengeCode, String sessionEmail);
+	
+	//나의 챌린지 : 개설 챌린지 전체 리스트 조회
+	public List<Map<String, Challenge>> getMyChallengeInsertList(Map<String, Object> paramMap);
+	
+	//나의 챌린지 : 개설 챌린지 전체 테이블 행의 개수 조회
+	public int getMyChallengeInsertCount(Map<String, Object> paramMap);
+	
+	//나의 챌린지 : 개설 챌린지 상세정보 조회
+	public Challenge getMyChallengeInsertDetailInfoByChallengeCode(String challengeCode, String sessionEmail);
 	
 	//수정할 개설 챌린지 변경 요소 리스트 조회 (챌린지명/챌린지 기간/챌린지 인증방법/챌린지 소개/챌린지 태그)
-	public Challenge getModifyInsertChallengeAttributeList(String challengeCode);
+	public Challenge getModifyInsertChallengeAttributeList(String challengeCode, String sessionEmail);
 
 	  //---------------- 나의 챌린지 : 개설 챌린지 설정(수정) 시작-------------------- 
 	  //1. 챌린지명 수정
@@ -113,6 +124,9 @@ public interface ChallengeMapper {
 	  //5. 챌린지 태그 수정 
 	  public int modifyChallengeTag(Challenge challenge);
 	  //---------------- 나의 챌린지 : 개설 챌린지 설정(수정) 끝 --------------------
+	  
+	  //개설 챌린지 삭제
+	  public int removeChallengeByEmailAndCode(String challengeCode, String sessionEmail); 
 	 	
 
 	//-------------------------------- 일반회원 Mapper 끝 --------------------------------

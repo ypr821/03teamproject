@@ -134,12 +134,14 @@ public class Challenge {
 	public void setNormalUser(NormalUser normalUser) {
 		this.normalUser = normalUser;
 	}
+	
 	public ChallengeCategory getChallengeCategory() {
 		return challengeCategory;
 	}
 	public void setChallengeCategory(ChallengeCategory challengeCategory) {
 		this.challengeCategory = challengeCategory;
 	}
+	
 	
 	
 	@Override
@@ -156,6 +158,15 @@ public class Challenge {
 				+ challengeEndDate + ", challengeRegisterDate=" + challengeRegisterDate + ", normalUser=" + normalUser
 				+ ", challengeCategory=" + challengeCategory + "]";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 	

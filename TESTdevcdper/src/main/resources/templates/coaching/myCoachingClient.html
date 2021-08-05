@@ -279,8 +279,9 @@
 			var sessionLevel = /*[[ ${sessionLevel} ]]*/;
 			/*]]*/ 
 			
-			if(sessionLevel == '비회원'){
+			if(sessionLevel == '비회원' || sessionLevel == null || sessionLevel == ""){
 			console.log('비회원체크');
+			console.log('sessionLevel ====>',sessionLevel);
 			location.replace('/login');
 			}
 		
@@ -293,6 +294,7 @@
 
 		
 		<script th:inline="javascript">
+		
 				<!-- 견적요청 상세보기 Modal -->
 				$(function(){
 					

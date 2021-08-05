@@ -4,26 +4,28 @@ import com.devcdper.user_admin.domain.NormalUser;
 
 public class Payment {
 	
-	String paymentCode;
+	String paymentManagementCode;
 	String userEmail;
 	String allPaymentConnectGroupCode;
 	String allPaymentConnectTable;
 	String paymentManagementContentsCode;
 	String paymentOption;
 	String paymentStatus;
-	String paymentPrice;
+	Integer paymentPrice;
 	String paymentDate;
 	
 	private NormalUser normalUser;
 
-	public String getPaymentCode() {
-		return paymentCode;
+
+	
+	public String getPaymentManagementCode() {
+		return paymentManagementCode;
 	}
 
-	public void setPaymentCode(String paymentCode) {
-		this.paymentCode = paymentCode;
+	public void setPaymentManagementCode(String paymentManagementCode) {
+		this.paymentManagementCode = paymentManagementCode;
 	}
-	
+
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -72,12 +74,12 @@ public class Payment {
 		this.paymentStatus = paymentStatus;
 	}
 
-	public String getPaymentPrice() {
+	public Integer getPaymentPrice() {
 		return paymentPrice;
 	}
 
-	public void setPaymentPrice(String paymentPrice) {
-		this.paymentPrice = paymentPrice;
+	public void setPaymentPrice(Integer integer) {
+		this.paymentPrice = integer;
 	}
 
 	public String getPaymentDate() {
@@ -98,12 +100,14 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [paymentCode=" + paymentCode + ", userEmail=" + userEmail + ", allPaymentConnectGroupCode="
-				+ allPaymentConnectGroupCode + ", allPaymentConnectTable=" + allPaymentConnectTable
-				+ ", paymentManagementContentsCode=" + paymentManagementContentsCode + ", paymentOption="
-				+ paymentOption + ", paymentStatus=" + paymentStatus + ", paymentPrice=" + paymentPrice
-				+ ", paymentDate=" + paymentDate + ", normalUser=" + normalUser + "]";
+		return "Payment [paymentManagementCode=" + paymentManagementCode + ", userEmail=" + userEmail
+				+ ", allPaymentConnectGroupCode=" + allPaymentConnectGroupCode + ", allPaymentConnectTable="
+				+ allPaymentConnectTable + ", paymentManagementContentsCode=" + paymentManagementContentsCode
+				+ ", paymentOption=" + paymentOption + ", paymentStatus=" + paymentStatus + ", paymentPrice="
+				+ paymentPrice + ", paymentDate=" + paymentDate + ", normalUser=" + normalUser + "]";
 	}
+
+	
 	
 	
 	

@@ -99,41 +99,20 @@
 </th:block>
 
 <th:bolck layout:fragment="pageJavascript">
+	<script type="text/javascript" th:src="@{/AdminLTE3/dist/js/plan/commonDetailPlanAjax.js}"></script>
+	
 	<script type="text/javascript">
 	
 
-			/* Modal 영역 */
-			$(document).on('click',".planContents",function(){
-				$("#myModal").modal();
-				$(".modal-text").text($(this).val());
-			});
-			$(document).on('click',".planDegree",function(){
-				$("#myModal2").modal();
-				if($(this).val() == 'null'){
-					$(this).val()='';
-					$(".modal-text2").text($(this).val());			
-				}else{
-					$(".modal-text2").text($(this).val());	
-				}
-			});
-			
-			
-			/*card-title css영역*/
-			$("h3").css({
-				 'display': 'inline-block'
-			});
-			/*table css영역*/
-			$("table").find("td").css({
-			'vertical-align' : 'middle'
-			,'text-align' : 'center'
-			});
-			$("table").find("th").css({
-				'text-align' : 'center'
-				
-			});
-			$("table").find("small").css({
-				'color' : '#969696'
-			});
+	/*card-title css영역*/
+	$("h3").css({
+		 'display': 'inline-block'
+	});
+	/*table css영역*/
+	$("table").find("th").css({
+		'text-align' : 'center'
+		
+	});
 		
 	</script>
 	

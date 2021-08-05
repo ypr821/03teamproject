@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+	<th:block layout:fragment="pageTitle">
+		<title th:text="${title}">main title</title>
+		<div class="col-sm-6">
+			<h1 class="m-0">나의 코칭</h1>
+		</div><!-- /.col -->
+		<th:block th:replace="/coaching/coachingContentsHeaderBar :: coachingContentsHeaderBar"></th:block>
+		
+		<!-- /.col -->
+	</th:block>
+	<th:block layout:fragment="container">
+		
+		<br>
+	    <!-- State box  -->
+
+         <!-- Default box -->
+        <div class="card">
+           <div class="card-header">
+             <h3 class="card-title">Mentoring/Consulting State</h3>
+
+             <div class="card-tools">
+               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                 <i class="fas fa-minus"></i>
+               </button>
+          
+             </div>
+           </div>
+           <div class="card-body">
+            		⁕   전체 5    ⁕  견적요청 1    ⁕  견적결과 1    ⁕  신청완료 1    ⁕  이용완료 1    ⁕  서비스기간만료 0  ⁕  취소환불 1
+           </div>
+           <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+
+		<!-- 검색 -->
+		<div class="card card-default">
+			<div class="card-body">
+			    <section class="content" id="">
+			        <div class="container-fluid">
+			            <form action="coachingAdminPage">
+			                <div class="row">
+			                    <div class="col-md-10 offset-md-1">
+			                        <div class="row">
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>구분</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option>전체</option>
+			  										<option>멘토링</option>
+			  										<option>컨설팅</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>상태</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" >전체</option>
+			  										<option>견적요청</option>
+			                                        <option>견적결과</option>
+			                                        <option>신청완료</option>
+			                                        <option>이용완료</option>
+			                                        <option>서비스기간만료</option>
+			                                        <option>취소환불</option>
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>기간선택</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			                                        <option selected="">전체</option>
+			                                        <option>지난 1일</option>
+			                                        <option>지난 1주</option>
+			                                        <option>지난 1개월</option>
+			                                        <option>지난 1년</option>
+			                                        <!-- <option>기간 설정</option> -->
+												</select>
+			                                </div>
+			                            </div>
+			                            <div class="col-3">
+			                                <div class="form-group">
+			                                    <label>정렬</label>
+			                                    <select class="js-example-placeholder-single js-states form-control">
+			  										<option selected="" data-select2-id="8">등록일자 최신순</option>
+			                                        <option>등록일자 오래된순</option>
+			                                         <option>코칭일정 최신순</option>
+			                                        <option>코칭일정 오래된순</option>
+												</select>
+			                                </div>
+			                            </div>
+			                        
+			                        </div>
+			                        <div class="form-group">
+			                            <div class="input-group input-group-lg">
+			                            	<div class="col-2">
+				                                <div class="form-group">
+				                                    <label>검색옵션</label>
+				                                    <select class="js-example-placeholder-single js-states form-control">
+				  										 <option selected="">전체</option>
+					                                        <option>코치 아이디</option>
+					                                        <option>등록일자</option>
+					                                      <!-- <option>내용</option>
+					                                        <option>제목</option>
+					                                        <option>제목+내용</option> -->
+													</select>
+				                                </div>
+				                            </div>
+			                                <input type="search" class="form-control form-control-lg" style="margin-top : 25px;" placeholder="Type your keywords here" value="검색어를 입력해주세요">
+			                                <div class="input-group-append">
+			                                    <button  class="btn btn-lg btn-default btn-sm" style="height : 49px;margin-top : 25px;">
+			                                        <i class="fa fa-search"></i>
+			                                    </button>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </form>
+			        </div>
+    			</section>
+   			</div>
+    	</div>
+    	<!-- /검색-->
+
+		<!-- 서비스 사용자 페이지  나의 코칭 내역 목록  -->
+		<div class="card ">
+			<div class="card-header">
+				<h3 class="card-title">
+					<ion-icon size="small" name="list-outline"></ion-icon>
+					&emsp; <b>나의 멘토링/컨설팅 목록</b>
+				</h3>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body p-0 autoScroll">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th style="width: 10px">#</th>
+							<th>구분</th>
+							<th>코치이름</th>
+							<th>코치이메일</th>
+							<th>코치연락처</th>
+							<th>코칭일정</th>
+							<th>상태</th>
+							<th>견적요청</th>
+							<th>견적결과</th>
+							<th>후기</th>
+							<th>중단</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:if="${#lists.size(myCoachingList) >0}" th:each="l, i : ${myCoachingList}">
+							<td id="countNumber" th:text="${i.index+1}"></td>
+							<td th:text="${l.getCoachClassification()}"></td>
+							<td th:text="${l.getCoachingUser().getCoachName()}"></td>
+							<td th:text="${l.getCoachUserEmail()}"></td>
+							<td th:text="${l.getCoachingUser().getCoachMobile()}"></td>
+							<td>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceStartDate() != null}" 
+									th:text="${l.getCoachingRFQResult().getCoachingRFQResultServiceStartDate()}">
+								</span>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceStartDate() == null}" 
+									th:text="${l.getCoachingRFQStartDate()}">
+								</span>
+								~
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceEndDate() != null}" 
+									th:text="${l.getCoachingRFQResult().getCoachingRFQResultServiceEndDate()}">
+								</span>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultServiceEndDate() == null}" 
+									th:text="${l.getCoachingRFQEndDate()}">
+								</span>
+								
+							</td>
+							<td>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultCode() == null}" class="badge badge-primary">
+									견적요청
+								</span>
+								<span th:if="${l.getCoachingRFQResult().getCoachingRFQResultCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() == null}" 
+									class="badge badge-warning">
+									견적결과
+								</span>
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='1)신청완료'}" 
+									class="badge badge-success">
+									신청완료
+								</span>
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='2)진행중'}" 
+									class="badge badge-success">
+									진행중
+								</span>
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='3)중단'}" 
+									 class="badge badge-danger">
+									취소/환불
+								</span>
+								<span th:if="${l.getCoachingApplyAndPayment().getCoachingApplyAndPaymentCode() != null
+											and l.getCoachingApplyAndPayment().getCoachingProgressStatus()=='4)기간만료'}" 
+									 class="badge badge-secondary ">
+									사용완료
+								</span>
+							</td>
+							<td>
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-block btn-default btn-xs RFQBtn" th:id="RFQBtn" data-toggle="modal" data-target="#modal-RFQ" th:data-count="${i}" th:data-RFQCode="${l.getCoachingRFQCode()}">
+									 상세보기
+								</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs RFQResultBtn" data-toggle="modal" data-target="#modal-RFQResult"  th:data-count="${i}" th:data-RFQResultCode="${l.getCoachingRFQResult().getCoachingRFQResultCode()}">
+			                  		상세보기
+				                </button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs reviewBtn" data-toggle="modal" data-target="#modal-Review">
+			                  		상세보기
+				                </button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-block btn-default btn-xs " data-toggle="modal" data-target="#modal-coachingStop">
+			                  		중단
+				                </button>
+							</td>	
+						</tr>		
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+			<div class="card-footer clearfix">
+			<!-- 코치 list 페이지번호  -->
+		   		<ul class="pagination pagination-sm m-0 float-right">
+	                 <li class="page-item"><a class="page-link" href="#">«</a></li>
+	                 <li class="page-item"><a class="page-link" href="#">1</a></li>
+	                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+	                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+	                 <li class="page-item"><a class="page-link" href="#">4</a></li>
+	                 <li class="page-item"><a class="page-link" href="#">5</a></li>
+	                 <li class="page-item"><a class="page-link" href="#">»</a></li>
+	           </ul>
+	 	  </div>
+		</div>
+		<!-- / 서비스 사용자 페이지  나의 코칭 내역 목록  -->
+
+		<!-- Modal -->
+		<!-- 견적요청 Modal -->
+		<th:block th:replace="/coaching/coachingModal/modal-RFQ  ::  modal-RFQ"></th:block>
+		<!-- /견적요청 Modal -->
+		
+		<!-- 견적결과 상세보기  Modal  -->			
+		<th:block th:replace="/coaching/coachingModal/modal-RFQResult  ::  modal-RFQResult"></th:block>
+		<!-- /견적결과 상세보기  Modal  -->			
+
+		<!-- 후기 상세보기  Modal  -->			
+		<th:block th:replace="/coaching/coachingModal/modal-Review  ::  modal-Review"></th:block>
+		<!-- /후기 상세보기  Modal -->
+		
+		<!-- 중단  Modal  -->
+		<th:block th:replace="/coaching/coachingModal/modal-coachingStop  ::  modal-coachingStop"></th:block> 
+		<!-- /중단  Modal  -->
+		
+		<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+		<th:block th:replace="/coaching/coachingModal/modal-coaching-totalPlan  ::  modal-coaching-totalPlan"></th:block> 
+		<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+		
+	</th:block>
+
+	
+	<th:block layout:fragment="pageJavascript">
+		
+		<script th:inline="javascript">
+			/*<![CDATA[*/ 
+			var myCoachingList = /*[[ ${myCoachingList} ]]*/;
+			var sessionLevel = /*[[ ${sessionLevel} ]]*/;
+			/*]]*/ 
+			
+			if(sessionLevel == '비회원' || sessionLevel == null || sessionLevel == ""){
+			console.log('비회원체크');
+			console.log('sessionLevel ====>',sessionLevel);
+			location.replace('/login');
+			}
+		
+		</script>
+		
+		<script type="text/javascript" src="coachingJs/coachingRFQJs.js"></script>
+		
+		<!-- 견적결과 상세보기 Modal Js -->
+		<script type="text/javascript" src="coachingJs/coachingRFQResultJs.js"></script>
+
+		
+		<script th:inline="javascript">
+		
+				<!-- 견적요청 상세보기 Modal -->
+				$(function(){
+					
+					console.log("==================================");
+					console.log("sessionLevel???-->",sessionLevel);
+					
+					$('#modal-RFQ, #modal-RFQResult, #modal-Review, #modal-coachingStop').on('hide.bs.modal', function () {
+						console.log('모달 닫기 이벤트 확인');
+						$('.checkbox').removeAttr("checked");
+						$('.checkbox1').removeAttr("checked");
+						//$('.container-fluid').css("pointer-events","auto");
+						location.reload();
+					})
+				});
+		
+				
+				$(function(){
+					<!-- 견적결과 상세보기 Modal -->
+					$('#modal-RFQResult').on('shown.bs.modal', function () {
+						  $('#myInput').focus()
+						})
+				
+					<!-- 후기 상세보기  Modal -->
+					$('#modal-Review').on('shown.bs.modal', function () {
+						  $('#myInput').focus()
+						})
+				
+					<!-- 중단  Modal -->
+					$('#modal-coachingStop').on('shown.bs.modal', function () {
+						  $('#myInput').focus()
+						})
+			
+					/*  중단 경고 메시지 */
+					$('#coaching-stopModalBtn').click(function(){
+						alert('코칭을 중단하시겠습니까')
+					})
+					
+					<!-- 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+					$('#modal-coaching-totalPlan').on('shown.bs.modal', function () {
+						  $('#myInput').focus()
+						  console.log('통합계획 모달 열림 확인 ') 
+						})
+					<!-- / 코치님과 내 계획 짜기 통합계획 선택  Modal --> 
+					
+				});
+			
+		</script>
+	</th:block>
+</html>
+

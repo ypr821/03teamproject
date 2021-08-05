@@ -24,7 +24,6 @@ import com.devcdper.user_admin.dao.CommonMapper;
 @Service
 public class ChallengeService {
 	
-	
 	//의존성 주입 (생성자 메서드 방식)
 	private final ChallengeMapper challengeMapper;
 	private final CommonMapper commonMapper;
@@ -33,6 +32,16 @@ public class ChallengeService {
 		this.challengeMapper = challengeMapper;
 		this.commonMapper = commonMapper;
 	}
+	
+	//챌린지 테이블 기본키 증감
+		public String getNewCode2(String tableName) {
+			System.out.println("tableName=>"+tableName);
+			int codeMaxNum =  Integer.parseInt(commonMapper.getNewCode2(tableName));
+			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode2(" + tableName+ "codeMaxNum♡♡==>>"+ codeMaxNum);
+			String newCode = tableName + "_code_" + (codeMaxNum+1);
+			System.out.println("getNewCode2메서드 newCode=>>" + newCode);
+			return newCode;
+		}
 	
 	
 	//----------------------------------------------- <관리자 Service> 시작 -----------------------------------------------
@@ -73,16 +82,10 @@ public class ChallengeService {
 		
 	}
 	
-	
-	public int getChallengeCount() {
-		return challengeMapper.getChallengeCount();
-	}
-
 	/*------------------------------------------------개설 챌린지 관리 Service 끝-----------------------------------------------------*/
 
 	/*------------------------------------------------ 챌린지 카테고리 관리 Service 시작-----------------------------------------------------*/
 
-	
 	//관리자 페이지 : 개설 챌린지 - 챌린지 카테고리 전체 조회
 	public List<ChallengeCategory> getChallengeCategoryList() {
 		return challengeMapper.getChallengeCategoryList();
@@ -108,7 +111,6 @@ public class ChallengeService {
 	/*------------------------------------------------ 챌린지 카테고리 관리 Service 끝-----------------------------------------------------*/
 	
 	/*------------------------------------------------챌린지 관리 Service 끝-----------------------------------------------------*/
-	
 	
 	
 	/*------------------------------------------------챌린지 참여 관리 Service 시작-----------------------------------------------------*/
@@ -204,8 +206,8 @@ public class ChallengeService {
 	
 	//챌린지 탐색하기 - 상세정보 조회
 	//챌린지 참여하기 - 상세정보 조회
-	public Challenge getChallengeExplorationDetailInfoByChallengeName(String challengeName) {
-		return challengeMapper.getChallengeExplorationDetailInfoByChallengeName(challengeName);
+	public Challenge getChallengeExplorationDetailInfoByChallengeCode(String challengeCode) {
+		return challengeMapper.getChallengeExplorationDetailInfoByChallengeCode(challengeCode);
 	}
 	
 	//메인 챌린지&챌린지 탐색하기 - 카테고리별 챌린지 리스트 조회
@@ -224,6 +226,11 @@ public class ChallengeService {
 	
 	//------------------------------------------------ 챌린지 개설하기 Service 시작 ------------------------------------------------
 
+	//챌린지 개설하기
+	public String getChallengeInsertOpenerEmail(String sessionEmail) {
+		return challengeMapper.getChallengeInsertOpenerEmail(sessionEmail);
+	}
+	
 	//챌린지 개설하기 : 챌린지 개설 등록 처리
 	public int addChallenge(Challenge challenge)  {
 		
@@ -291,19 +298,12 @@ public class ChallengeService {
 		return challengeMapper.getVerifiableChallengeList(sessionEmail);
 	}
 	
-	//챌린지 인증코드(기본키) 증감
-	public String getNewCode2(String tableName) {
-		System.out.println("tableName=>"+tableName);
-		int codeMaxNum =  Integer.parseInt(commonMapper.getNewCode2(tableName));
-		System.out.println("♡♡♡♡♡♡commonMapper.getNewCode2(" + tableName+ "codeMaxNum♡♡==>>"+ codeMaxNum);
-		String newCode = tableName + "_code_" + (codeMaxNum+1);
-		System.out.println("getNewCode2메서드 newCode=>>" + newCode);
-		return newCode;
-	}
+	
 
 	//챌린지 인증하기 : 챌린지 인증 등록 처리
 	public int addChallengeCertification(Map<String, Object> challengeCertification) {
 		
+		//챌린지 인증코드 기본키 증감
 		String newCode2 = getNewCode2("challenge_certification");
 		System.out.println("newCode2=>"+newCode2);
 		challengeCertification.put("challengeCertificationCode", newCode2);
@@ -353,7 +353,7 @@ public class ChallengeService {
 		//------------------------------------------------ 나의 챌린지 Service 시작 ------------------------------------------------
 	
 		//나의 챌린지 전체 리스트 조회
-		public Map<String, Object> getMyChallengeList(Pagination paging, String sessionEmail){
+		public Map<String, Object> getMyChallengeList(Pagination paging, String sessionEmail, Map<String, Object> paramMap){
 			
 			System.out.println("sessionEmail ChallengeService : " + sessionEmail);
 			
@@ -367,13 +367,12 @@ public class ChallengeService {
 		    //총 게시글 수 세팅 : 나의 챌린지 전체 리스트 총 개수를 세는 쿼리를 호출하여 세팅해줌.
 		    pageMaker.setTotalCount(challengeMapper.getMyChallengeCount(sessionEmail));
 		    
-		    Map<String, Object> paramMap = new HashMap<String, Object>();
 			paramMap.put("rowStart", paging.getRowStart());
 			paramMap.put("rowPerPage", paging.getRowPerPage());
 			paramMap.put("sessionEmail", sessionEmail);
 			System.out.println("paramMap ChallengeService : " + paramMap);
 			
-			List<Map<String, Challenge>> myChallengeList = challengeMapper.getMyChallengeList(paramMap);
+			List<Map<String, ChallengeParticipation>> myChallengeList = challengeMapper.getMyChallengeList(paramMap);
 			System.out.println("myChallengeList ChallengeService : >>>> " + myChallengeList);
 			
 			Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -387,16 +386,58 @@ public class ChallengeService {
 			return resultMap;
 		}
 		
+		public ChallengeParticipation getMyChallengeDetailInfoByChallengeCode(String challengeCode, String sessionEmail){
+			System.out.println("챌린지 코드 (ChallengeService):"+ challengeCode);
+			System.out.println("세션 이메일 (ChallengeService):"+ sessionEmail);
+			return challengeMapper.getMyChallengeDetailInfoByChallengeCode(challengeCode, sessionEmail);
+		}
+		
 	//나의 챌린지 : 개설 챌린지 전체 리스트 조회
-	public List<Challenge> getMyChallengeInsertList(Map<String, Object> paramMap){
-		return challengeMapper.getMyChallengeInsertList(paramMap);
+	public Map<String, Object> getMyChallengeInsertList(String sessionEmail, Pagination paging, Map<String, Object> paramMap){
+		
+		//PageMaker 객체를 생성함.
+		PageMaker pageMaker = new PageMaker();
+		
+		paging.setRowPerPage(10);
+		//currentPage(현재 페이지 번호)와 rowPerPage(한 페이지당 보여줄 게시글 행의 개수)를 세팅해준다.
+	    pageMaker.setPaging(paging);
+	   
+	    //총 게시글 수 세팅 : 나의 챌린지 전체 리스트 총 개수를 세는 쿼리를 호출하여 세팅해줌.
+	    pageMaker.setTotalCount(challengeMapper.getMyChallengeInsertCount(paramMap));
+	    
+	    paramMap.put("rowStart", paging.getRowStart());
+	    paramMap.put("rowPerPage", paging.getRowPerPage());
+	    paramMap.put("sessionEmail", sessionEmail);
+		System.out.println("paramMap ChallengeService : " + paramMap);
+		
+		List<Map<String, Challenge>> myChallengeInsertList = challengeMapper.getMyChallengeInsertList(paramMap);
+		System.out.println("myChallengeInsertList ChallengeService : >>>> " + myChallengeInsertList);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("currentPage", paging.getCurrentPage());
+		resultMap.put("myChallengeInsertList", myChallengeInsertList);
+		resultMap.put("lastPage", pageMaker.getLastPage());
+		resultMap.put("pageStartNum", pageMaker.getPageStartNum());
+		resultMap.put("pageEndNum", pageMaker.getPageEndNum());
+		System.out.println("myChallengeInsertList resultMap : >>>> " + resultMap);
+		
+		return resultMap;
+		
 	}
+	
+		public Challenge getMyChallengeInsertDetailInfoByChallengeCode(String challengeCode, String sessionEmail){
+			System.out.println("챌린지 코드 (ChallengeService):"+ challengeCode);
+			System.out.println("세션 이메일 (ChallengeService):"+ sessionEmail);
+			return challengeMapper.getMyChallengeInsertDetailInfoByChallengeCode(challengeCode, sessionEmail);
+		}
+
+		
 	
 	/* 나의 챌린지 : 개설 챌린지 설정(수정) */
 	//1. 수정할 챌린지 정보 리스트 - 챌린지명, 챌린지 시작일, 챌린지 종료일, 챌린지 인증방법, 챌린지 소개, 챌린지 태그 
-	public Challenge getModifyInsertChallengeAttributeList(String challengeCode) {
+	public Challenge getModifyInsertChallengeAttributeList(String challengeCode, String sessionEmail) {
 		System.out.println("챌린지 코드 : " + challengeCode);
-		return challengeMapper.getModifyInsertChallengeAttributeList(challengeCode);
+		return challengeMapper.getModifyInsertChallengeAttributeList(challengeCode, sessionEmail);
 	}
 	
 		//---------------- 나의 챌린지 : 개설 챌린지 설정 정보 수정 시작-------------------- 
@@ -429,6 +470,10 @@ public class ChallengeService {
 		}
 	
 		//---------------- 나의 챌린지 : 개설 챌린지 설정 정보 수정 끝-------------------- 
+		
+		public int removeChallengeByEmailAndCode(String challengeCode, String sessionEmail) {
+			return challengeMapper.removeChallengeByEmailAndCode(challengeCode, sessionEmail);
+		}
 		
 		//------------------------------------------------ 나의 챌린지 Service 끝 ------------------------------------------------
 

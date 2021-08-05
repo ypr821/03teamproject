@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/challengeUserDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-12">
+		<ol class="breadcrumb float-sm-right">
+			<div class="card-body table-responsive pad">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons">
+					<a th:href="@{/mainChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'mainChallenge'}"> 챌린지 메인
+					</a>
+					<a th:href="@{/challengeExploration}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeExploration'}"> 챌린지 탐색하기
+					</a>
+					<a th:href="@{/challengeInsert}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeInsert'}"> 챌린지 개설하기
+					</a>
+					<a th:href="@{/challengeCertification}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'challengeCertification'}"> 챌린지 인증하기
+					</a>
+					<a th:href="@{/myChallenge}" class="btn btn-outline-info">
+						<input type="radio" name="options" id="option_a1" autocomplete="off" th:checked="${radioCheck == 'myChallenge'}"> 나의 챌린지
+					</a>
+				</div>
+			</div>
+		</ol>
+	</div>
+</th:block>
+
+
+
+<th:block layout:fragment="container">
+
+<div class="card card-default">
+			<div class="card-body">
+			    <section class="content">
+			        <div class="container-fluid">
+			            <h2 class="text-center display-5">챌린지 상세정보</h2>
+			                <div class="row">
+			                    <div class="card-body">
+			                    <!-- 챌린지 정보 카드 -->		                    
+									<div class="col-10">
+							          <div class="card">
+							            <div class="card-header">
+							              <h3 class="card-title">챌린지 기본정보</h3>
+							            </div>
+							            <div class="card-body">
+							            <div class="col-12 col-sm-6 d-flex align-items-stretch flex-column">
+								    	 </div>
+							              <div class="form-group"> 
+							                <label for="challengeName">챌린지명</label>
+							                <input type="hidden" id="challengeCode" name="challengeCode" th:value="${myChallengeInsertDetailInfo.challengeCode}" class="form-control" readonly="readonly" style="background-color: white">
+							                <input type="text" id="challengeName" name="challengeName" th:value="${myChallengeInsertDetailInfo.challengeName}" class="form-control" readonly="readonly" style="background-color: white">
+							              </div>
+							              <div class="form-group" id="challengeTerm">
+							                <label for="challengeStartDate">챌린지 기간</label>  
+							              	<div class="row">
+							                <input type="text" id="challengeStartDate" name="challengeStartDate" th:value="${myChallengeInsertDetailInfo.challengeStartDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+							                <div class="input-group-prepend">
+								                  	<span class="input-group-text">~</span>
+								                  </div>
+							                <input type="text" id="challengeEndDate" name="challengeEndDate" th:value="${myChallengeInsertDetailInfo.challengeEndDate}" class="form-control" readonly="readonly" style="background-color: white; width: 422px;">
+							              	</div>
+							              </div>
+							              <div class="form-group">
+							                <label for="challengeCertificationFrequency">챌린지 인증빈도</label>
+							                <input type="text" id="challengeCertificationFrequency" name="challengeCertificationFrequency" th:value="${myChallengeInsertDetailInfo.challengeCertificationFrequency}" class="form-control" readonly="readonly" style="background-color: white">
+							              </div>
+							               <div class="form-group">
+							                 <label for="challengeMaximumPeople">챌린지 참가인원</label>
+							               <div class="input-group mb-3">
+							                 <input type="text" id="challengeMaximumPeople" name="challengeMaximumPeople" th:value="${myChallengeInsertDetailInfo.challengeMaximumPeople}" class="form-control" readonly="readonly" style="background-color: white">
+								                  <div class="input-group-prepend">
+								                  	<span class="input-group-text">명</span>
+								                  </div>
+							               </div>
+							               <div class="form-group">
+							                        <label for="challengeBetAmount">챌린지 베팅금액</label>
+							               <div class="input-group mb-3">
+							                 	  <div class="input-group-prepend" >
+								                  	<span class="input-group-text">총</span>
+								                  </div>
+							               <input type="text" id="challengeBetAmount" name="challengeBetAmount" th:value="${myChallengeInsertDetailInfo.challengeBetAmount}" class="form-control" readonly="readonly" style="background-color: white">
+								                  <div class="input-group-prepend">
+								                  	<span class="input-group-text">원</span>
+								                  </div>
+							                </div>
+										  </div>
+							             </div>
+							           </div>
+							         </div>
+							            <!-- /.card-body -->
+										<!-- 챌린지 정보카드 -->   
+									</div>
+									
+										 <div class="row">
+			          <div class="col-10">
+					<div class="card">
+			              <div class="card-header d-flex p-0">
+			                <ul class="nav nav-pills ml-auto p-2">
+			                  <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">소개</a></li>
+			                  <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">인증내용</a></li>
+			                  <li class="nav-item"><a class="nav-link" th:href="@{/challengeCertificationBoard}">인증</a></li>
+			                </ul>
+			              </div><!-- /.card-header -->
+			              <div class="card-body">
+			                <div class="tab-content">
+			                  <div class="tab-pane active" id="tab_1" th:text="${myChallengeInsertDetailInfo.challengeIntroduce}">
+			                  </div>
+			                  <!-- /.tab-pane -->
+			                 <div class="tab-pane" id="tab_2" th:text="${myChallengeInsertDetailInfo.challengeCertificationContents}">
+			                  </div>
+			                  <!-- /.tab-pane -->
+			                </div>
+			             		<!-- /.tab-content -->
+			            	</div><!-- /.card-body -->
+			            </div>
+			           </div>
+			           </div>
+					
+		</div>
+	</div>
+</div>			                
+</section>               
+</div>
+</div>
+</th:block>
+
+<th:block layout:fragment="pageJavascript">
+</th:block>
+</html>

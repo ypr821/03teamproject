@@ -50,6 +50,8 @@ public interface CoachingMapper {
 	
 	//코칭 리뷰 조회
 	public List<CoachingReview> getCoachingReview(String searchKey, String searchValue);
+
+	public List<CoachingRFQ> getCoachingRFQResult(String resultCode);
 	
 	
 	

@@ -251,7 +251,8 @@ $(function(){
 					alert('시작일자를 확인해주세요');						
 				}else if( todayCountTime > coachingResultStartDate2 ){
 					
-					alert('시작일자는 오늘 이전 날짜로 입력이 불가능합니다. 입력을 확인해주세요!');						
+					alert('시작일자는 오늘 이전 날짜로 입력이 불가능합니다. 입력을 확인해주세요!');
+					$('.applyAndPaymentBtn').attr("hidden", true);
 				}else{
 					//끝나는 일자 유효성검사
 					if('' == coachingResultEndDate || undefined == coachingResultEndDate){
@@ -344,6 +345,18 @@ $(function(){
 			}
 		})
 		
+		
+		
+		
+		$('.applyAndPaymentBtn').click(function(){
+		
+			//console.log('click 이벤트 확인');
+			console.log('$(".applyAndPaymentBtn").attr("href")값: ->',$('.applyAndPaymentBtn').attr('href'));
+			$('.applyAndPaymentBtn').attr('href','/coachingApplyAndPayment?resultCode='+ RFQResultCode);
+
+			
+			
+		})
 	});
 
 })
