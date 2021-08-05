@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/challengeAdminDefault}">
+<th:block layout:fragment="pageTitle">
+	<title th:text="${title}"></title>
+	<div class="col-sm-6">
+		<h1 class="m-0">결제 정보 확인</h1>
+	</div>
+</th:block>
+
+
+<th:block layout:fragment="container">
+
+카카오페이 결제가 정상적으로 완료되었습니다.
+ 
+결제일시:     [[${kakaoPayInfo.approved_at}]]<br/>
+주문번호:    [[${kakaoPayInfo.partner_order_id}]]<br/>
+상품명:    [[${kakaoPayInfo.item_name}]]<br/>
+상품수량:    [[${kakaoPayInfo.quantity}]]<br/>
+결제금액:    [[${kakaoPayInfo.amount.total}]]<br/>
+결제방법:    [[${kakaoPayInfo.payment_method_type}]]<br/>
+				
+</th:block>		
+
+	
+
+
+	<th:block layout:fragment="pageJavascript">
+		<script th:inline="javascript">
+			/*<![CDATA[*/ 
+			var result = /*[[ ${result} ]]*/;
+			var kakaoPayInfo = /*[[ ${kakaoPayInfo} ]]*/
+			/*]]*/ 
+			
+			
+			
+			$(function(){
+		
+				console.log('클릭 결제 버튼 클릭 확인');
+				//updateCoachingRFQ
+				jQuery.ajax({ 
+					type: "Post", 
+					url: "/kakaoPayComplete", 
+					cache: false, 
+					data: { 
+						kakaoPayInfo		: kakaoPayInfo
+					}, 
+					datatype: "JSON", 
+					success: function (obj) { 
+						console.log('obj : ',obj,'- 잘받았다 오버♥');
+						
+						
+						
+						
+					}, 
+					error: function (xhr, status, error) { 
+						console.log("ERROR!!!"); 
+					} 
+					
+					
+				})
+			})
+		</script>
+		
+
+
+	</th:block>
+</html>

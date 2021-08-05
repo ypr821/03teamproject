@@ -1,8 +1,9 @@
 package com.devcdper.coaching.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,10 @@ import com.devcdper.coaching.domain.CoachingRFQ;
 import com.devcdper.coaching.domain.CoachingRFQResult;
 import com.devcdper.coaching.domain.CoachingReview;
 import com.devcdper.coaching.domain.CoachingUser;
+import com.devcdper.payment.dao.PaymentMapper;
+import com.devcdper.payment.domain.Payment;
+import com.devcdper.paymentManagement.KakaoPay;
+import com.devcdper.paymentManagement.KakaoPayApprovalVO;
 import com.devcdper.user_admin.dao.CoachUserMapper;
 import com.devcdper.user_admin.dao.CommonMapper;
 
@@ -20,15 +25,149 @@ import com.devcdper.user_admin.dao.CommonMapper;
 @Service
 public class CoachingService {
 	private CoachingMapper coachingMapper;
-	private CoachUserMapper coachUserMapper;
 	private CommonMapper commonMapper;
+	private PaymentMapper paymentMapper;
 	
 	
-	public CoachingService(CoachingMapper coachingMapper,CoachUserMapper coachUserMapper,CommonMapper commonMapper) {
+	public CoachingService(CoachingMapper coachingMapper,CoachUserMapper coachUserMapper,CommonMapper commonMapper,PaymentMapper paymentMapper) {
 		this.coachingMapper = coachingMapper;
-		this.coachUserMapper = coachUserMapper;
 		this.commonMapper = commonMapper;
+		this.paymentMapper = paymentMapper;
 		
+	}
+	
+	//결제 준비 처리 
+	public String kakaoPayReady(Map<String,Object> result,HttpSession session){
+		System.out.println(" service kakaoPayReady메서드 실행 ............................................");
+		KakaoPay KakaoPay = new KakaoPay();
+		//DB테이블명은 payment_management
+		String partner_order_id = getNewCode2("payment_management");
+		String partner_user_id = (String) result.get("result[0][userEmail]");
+		System.out.println("partner_user_id=>"+partner_user_id);
+		String item_name = ((String) result.get("result[0][coachingUser][coachName]")+"님의 코칭");
+		System.out.println("item_name=>"+item_name);
+		String quantity = "1";
+		String total_amount = (String) result.get("result[0][coachingRFQResult][coachingRFQResultCost]");
+		System.out.println("total_amount=>"+total_amount);
+		 
+		session.setAttribute("resultInfo", result);
+		session.setAttribute("partner_order_id", partner_order_id);
+		String kakaoPayReadyResult =  KakaoPay.kakaoPayReady( partner_order_id,partner_user_id
+															  ,item_name,quantity,total_amount);
+		return kakaoPayReadyResult;
+	}
+	
+	//결제 승인 처리
+	public KakaoPayApprovalVO kakaoPayApproval(String pg_token, HttpSession session){
+		System.out.println("코칭 서비스 kakaoPayApproval 메서드 실행!!!!가즈아!!!!");
+		KakaoPay KakaoPay = new KakaoPay();
+		
+		@SuppressWarnings("unchecked")
+		Map<String,Object> resultInfo =  (Map<String, Object>) session.getAttribute("resultInfo");
+		System.out.println("resultInfo==>"+resultInfo);
+		String partner_order_id = "";
+		String partner_user_id = "";
+		String item_name = "결제 에러입니다";
+		String total_amount = "0";
+		
+		if(! (null == resultInfo)) {
+			
+			partner_order_id = (String) session.getAttribute("partner_order_id");
+			System.out.println("partner_order_id==>"+partner_order_id);
+			
+			partner_user_id = (String)resultInfo.get("result[0][userEmail]");
+			System.out.println("partner_user_id=>"+partner_user_id);
+			
+			item_name = ((String)resultInfo.get("result[0][coachingUser][coachName]")+"님의 코칭");
+			System.out.println("item_name=>"+item_name); 
+			total_amount = (String)resultInfo.get("result[0][coachingRFQResult][coachingRFQResultCost]");
+			System.out.println("total_amount=>"+total_amount);
+		
+		}else {
+			return null;
+		}
+		String quantity = "1"; 
+		
+		
+		return KakaoPay.kakaoPayApproval(pg_token,partner_order_id,partner_user_id,total_amount);
+	}
+	
+	//결제코드 insert
+	public int insertPayment(Map<String, Object> resultInfo, KakaoPayApprovalVO kakaoPayInfo) {
+		
+		Payment paymentInfo = new Payment();
+		System.out.println("****************************************");
+		System.out.println("*kakaoPayInfo*==>" + kakaoPayInfo);
+		System.out.println("*resultInfo*==>" + resultInfo);
+		System.out.println("****************************************");
+		
+		paymentInfo.setPaymentManagementCode(kakaoPayInfo.getPartner_order_id());
+		paymentInfo.setUserEmail(kakaoPayInfo.getPartner_user_id());
+		//paymentInfo.setAllPaymentConnectGroupCode();
+		//paymentInfo.setAllPaymentConnectTable(allPaymentConnectTable);
+		paymentInfo.setPaymentManagementContentsCode((String) resultInfo.get("result[0][coachingRFQResult][coachingRFQResultCode]"));
+		paymentInfo.setPaymentOption(kakaoPayInfo.getPayment_method_type());
+		//paymentInfo.setPaymentStatus(paymentStatus);
+		paymentInfo.setPaymentPrice( kakaoPayInfo.getAmount().getTotal());
+		
+		System.out.println("=============================================");
+		System.out.println("*데이터 채우고난 paymentInfo*==>" + paymentInfo);
+		int insertResult = paymentMapper.insertPayment(paymentInfo);
+		
+		
+		return insertResult;
+	};
+	
+	
+	
+	
+	
+	//견적결과 조회
+	public List<CoachingRFQ> getCoachingRFQResult(String resultCode) {
+		System.out.println("getCoachingRFQResult 서비스 실행");
+		List<CoachingRFQ> result = coachingMapper.getCoachingRFQResult(resultCode);
+		return result;
+	}
+	
+	//코칭리뷰조회
+	public List<CoachingReview> getCoachingReview(String searchKey, String searchValue) {
+		System.out.println("service searchKey=>"+searchKey);
+		System.out.println("service searchValue=>"+searchValue);
+		List<CoachingReview> coachingReviewList = coachingMapper.getCoachingReview(searchKey, searchValue);
+		System.out.println("service coachingReviewList=>"+coachingReviewList);
+		return coachingReviewList;
+	}
+
+	
+	//getNewCode
+	public String getNewCode(String tableName) {
+		System.out.println("tableName=>"+tableName);
+		String result = commonMapper.getNewCode(tableName);
+		System.out.println("♡♡♡♡♡♡commonMapper.getNewCode("+tableName+"♡♡==>>"+ result);
+		return result;
+	}
+	
+	//getNewCode2
+	public String getNewCode2(String tableName) {
+		System.out.println("tableName=>"+tableName);
+		int codeMaxNum =  Integer.parseInt(commonMapper.getNewCode2(tableName));
+		System.out.println("♡♡♡♡♡♡commonMapper.getNewCode(" + tableName+ "codeMaxNum♡♡==>>"+ codeMaxNum);
+		String newCode = tableName + "_code_" + (codeMaxNum+1);
+		System.out.println("getNewCode2메서드 newCode=>>" + newCode);
+		return newCode;
+	}
+
+	//견적결과 insert
+	public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult) {
+		System.out.println("insertCoachingRFQResult 서서서서비비비비스스스 실행");
+		String newCode = getNewCode("coaching_RFQ_result");
+		String newCode2 = getNewCode2("coaching_RFQ_result");
+		System.out.println("newCode=>"+newCode);
+		System.out.println("newCode2!!!!!!!!!!!!!=>"+newCode2);
+		coachingRFQResult.put("coachingRFQResultCode", newCode2);
+		//System.out.println("coachingRFQResult===>>>>>"+coachingRFQResult);
+		int result = coachingMapper.insertCoachingRFQResult(coachingRFQResult);
+		return 0;
 	}
 	
 	//코치 프로필 수정처리
@@ -56,12 +195,7 @@ public class CoachingService {
 		System.out.println("coachList ==> " + coachList);
 		return coachList;
 	}
-	
-	
-	//나의 코칭 목록 일반회원 
-	
-	
-	
+
 	
 	//진행상태가 신청 및 결제 단계인 내역 조회
 	public List<CoachingApplyAndPayment> getCoachingApplyAndPaymentListById(String sessionEmail){
@@ -117,48 +251,11 @@ public class CoachingService {
 			System.out.println("서비스단 updateCoachingRFQ실행확인!!!!!!!!!!!!!!!!!!");
 			int result = coachingMapper.updateCoachingRFQ(rfq);
 			return result;
-		};
-
-	//getNewCode
-		public String getNewCode(String tableName) {
-			System.out.println("tableName=>"+tableName);
-			String result = commonMapper.getNewCode(tableName);
-			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode("+tableName+"♡♡==>>"+ result);
-			return result;
-		}
-		
-	//getNewCode
-		public String getNewCode2(String tableName) {
-			System.out.println("tableName=>"+tableName);
-			int codeMaxNum =  Integer.parseInt(commonMapper.getNewCode2(tableName));
-			System.out.println("♡♡♡♡♡♡commonMapper.getNewCode(" + tableName+ "codeMaxNum♡♡==>>"+ codeMaxNum);
-			String newCode = tableName + "_code_" + (codeMaxNum+1);
-			System.out.println("getNewCode2메서드 newCode=>>" + newCode);
-			return newCode;
 		}
 
-	//견적결과 insert
-		public int insertCoachingRFQResult(Map<String, Object> coachingRFQResult) {
-			System.out.println("insertCoachingRFQResult 서서서서비비비비스스스 실행");
-			String newCode = getNewCode("coaching_RFQ_result");
-			String newCode2 = getNewCode2("coaching_RFQ_result");
-			System.out.println("newCode=>"+newCode);
-			System.out.println("newCode2!!!!!!!!!!!!!=>"+newCode2);
-			coachingRFQResult.put("coachingRFQResultCode", newCode2);
-			//System.out.println("coachingRFQResult===>>>>>"+coachingRFQResult);
-			int result = coachingMapper.insertCoachingRFQResult(coachingRFQResult);
-			return 0;
-		}
+	
 
-	//코칭리뷰조회
-		public List<CoachingReview> getCoachingReview(String searchKey, String searchValue) {
-			System.out.println("service searchKey=>"+searchKey);
-			System.out.println("service searchValue=>"+searchValue);
-			List<CoachingReview> coachingReviewList = coachingMapper.getCoachingReview(searchKey, searchValue);
-			System.out.println("service coachingReviewList=>"+coachingReviewList);
-			return coachingReviewList;
-		}
-	
-	
-	
+
+
+
 }

@@ -159,7 +159,10 @@
 		                	 <!-- th:href="@{/myCoachingCoach}" -->
 			                <a th:if="${'코치'.equals(sessionLevel)}" class="resultBtn col-md-2 btn btn-block bg-gradient-primary btn-sm" style="height: 30px; margin-top: 8px "></a>			               			                 
 			                 &nbsp; &emsp;&emsp;
-			                <a th:if="${'일반'.equals(sessionLevel)}" th:href="@{/coachingApplyAndPayment}" class="col-md-2 btn btn-block bg-gradient-primary btn-sm">코칭 신청</a>
+			                <a th:if="${'일반'.equals(sessionLevel) }"  class="col-md-2 btn btn-block bg-gradient-primary btn-sm applyAndPaymentBtn">
+			                	코칭 신청<!-- th:href="@{/coachingApplyAndPayment}"  -->
+			                	
+			                </a>
 		          		</div>
 		         </div>
 		      </div>

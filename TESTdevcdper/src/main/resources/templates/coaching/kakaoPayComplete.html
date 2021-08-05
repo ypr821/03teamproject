@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	>
+<head>
+	<title th:text="${title}"></title>
+</head>
+<body>
+	<div class="col-sm-6">
+		<h1 class="m-0">결제 정보 확인</h1>
+	</div>
+
+
+	<div >
+	카카오페이 결제가 정상적으로 완료되었습니다.
+	 
+	결제일시:     [[${kakaoPayInfo.approved_at}]]<br/>
+	주문번호:    [[${kakaoPayInfo.partner_order_id}]]<br/>
+	상품명:    [[${kakaoPayInfo.item_name}]]<br/>
+	상품수량:    [[${kakaoPayInfo.quantity}]]<br/>
+	결제금액:    [[${kakaoPayInfo.amount.total}]]<br/>
+	결제방법:    [[${kakaoPayInfo.payment_method_type}]]<br/>
+	</div>		
+
+	<script th:inline="javascript">
+	$(function(){
+		
+		console.log(페이지 js 실행 확인);
+	})	
+		/*<![CDATA[*/ 
+		var result = /*[[ ${result} ]]*/;
+		var kakaoPayInfo = /*[[ ${kakaoPayInfo} ]]*/
+		/*]]*/ 
+	</script>
+</body>
+		
+
+
+</html>
