@@ -362,7 +362,6 @@ $(function(){
 				console.log('$(".applyAndPaymentBtn").attr("href")값: ->',$('.applyAndPaymentBtn').attr('href'));
 				$('.applyAndPaymentBtn').attr('href','/coachingApplyAndPayment?resultCode='+ RFQResultCode);
 			}
-
 			
 		})
 	});
