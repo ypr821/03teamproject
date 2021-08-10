@@ -345,16 +345,24 @@ $(function(){
 			}
 		})
 		
-		
-		
-		
+	
 		$('.applyAndPaymentBtn').click(function(){
-		
-			//console.log('click 이벤트 확인');
-			console.log('$(".applyAndPaymentBtn").attr("href")값: ->',$('.applyAndPaymentBtn').attr('href'));
-			$('.applyAndPaymentBtn').attr('href','/coachingApplyAndPayment?resultCode='+ RFQResultCode);
 
+			var coachingResultStartDate =  myCoachingList[countNumber-1].coachingRFQResult.coachingRFQResultServiceStartDate
+			var coachingResultStartDate2 = Math.floor((new Date(coachingResultStartDate).getTime())*0.00000001);
+			var today = Date();
+			var todayCountTime = Math.floor((new Date(today).getTime())*0.00000001);
 			
+			//console.log('click 이벤트 확인');
+			if(myCoachingList[countNumber-1].coachingRFQResult.coachingRFQResultCode == null){
+				alert('견적결과등록이 필요합니다.');
+			}else if(coachingResultStartDate2 < todayCountTime){
+				alert('이미 만료된 견적 결과입니다. 다시 견적 요청을 진행해주세요.');
+			}else{
+				console.log('$(".applyAndPaymentBtn").attr("href")값: ->',$('.applyAndPaymentBtn').attr('href'));
+				$('.applyAndPaymentBtn').attr('href','/coachingApplyAndPayment?resultCode='+ RFQResultCode);
+			}
+
 			
 		})
 	});
